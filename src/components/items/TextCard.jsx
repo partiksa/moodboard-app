@@ -124,7 +124,7 @@ export default function TextCard({ item, board, dispatch }) {
           update({ body: bodyRef.current.innerHTML });
         }}
         onPaste={onPaste}
-        onClick={openLinkIfClicked}
+        onDoubleClick={openLinkIfClicked}
         dangerouslySetInnerHTML={{ __html: item.body }}
       />
     </div>
