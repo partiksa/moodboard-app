@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { addCustomFont, removeCustomFont, SUPPORTED_FONT_EXTENSIONS } from '../state/fontManager';
 import { idbGetMeta } from '../db/indexedDb';
+import { DEFAULT_GRID } from '../state/boardModel';
 import { X, UploadSimple } from './icons.jsx';
 import './SettingsPanel.css';
 
@@ -17,6 +18,7 @@ export default function SettingsPanel({ board, dispatch, onClose }) {
   const [fontError, setFontError] = useState(null);
   const fileInputRef = useRef(null);
   const settings = board.settings;
+  const grid = settings.grid || DEFAULT_GRID;
 
   useEffect(() => {
     idbGetMeta('customFonts').then((f) => setCustomFonts(f || []));
@@ -25,6 +27,7 @@ export default function SettingsPanel({ board, dispatch, onClose }) {
   const allFonts = [...BUILTIN_FONTS, ...customFonts.map((f) => f.name)];
 
   const updateSettings = (patch) => dispatch({ type: 'SET_SETTINGS', patch });
+  const updateGrid = (patch) => updateSettings({ grid: { ...grid, ...patch } });
   const updateTypography = (key, patch) =>
     dispatch({ type: 'SET_TYPOGRAPHY', key, patch: { ...settings.typography[key], ...patch } });
 
@@ -90,9 +93,47 @@ export default function SettingsPanel({ board, dispatch, onClose }) {
         </section>
 
         <section>
-          <h4>Grid & snapping</h4>
+          <h4>Bento grid</h4>
           <label>
-            Grid color
+            Columns
+            <input
+              type="range"
+              min="2"
+              max="8"
+              value={grid.columns}
+              onChange={(e) => updateGrid({ columns: Number(e.target.value) })}
+            />
+            <span>{grid.columns}</span>
+          </label>
+          <label>
+            Row height (px)
+            <input
+              type="range"
+              min="80"
+              max="300"
+              step="10"
+              value={grid.rowHeight}
+              onChange={(e) => updateGrid({ rowHeight: Number(e.target.value) })}
+            />
+            <span>{grid.rowHeight}px</span>
+          </label>
+          <label>
+            Gutter (px)
+            <input
+              type="range"
+              min="0"
+              max="48"
+              value={grid.gutter}
+              onChange={(e) => updateGrid({ gutter: Number(e.target.value) })}
+            />
+            <span>{grid.gutter}px</span>
+          </label>
+        </section>
+
+        <section>
+          <h4>Background dot pattern</h4>
+          <label>
+            Dot color
             <input
               type="color"
               value={settings.gridColor}
@@ -100,7 +141,7 @@ export default function SettingsPanel({ board, dispatch, onClose }) {
             />
           </label>
           <label>
-            Grid density (px)
+            Dot spacing (px)
             <input
               type="range"
               min="10"
@@ -109,17 +150,6 @@ export default function SettingsPanel({ board, dispatch, onClose }) {
               onChange={(e) => updateSettings({ gridSize: Number(e.target.value) })}
             />
             <span>{settings.gridSize}px</span>
-          </label>
-          <label>
-            Snap distance (px, 0 disables)
-            <input
-              type="range"
-              min="0"
-              max="40"
-              value={settings.snapDistance}
-              onChange={(e) => updateSettings({ snapDistance: Number(e.target.value) })}
-            />
-            <span>{settings.snapDistance}px</span>
           </label>
         </section>
 

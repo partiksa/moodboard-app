@@ -8,7 +8,7 @@ const TYPE_LABELS = {
   url: 'link card',
   color: 'color swatch',
   todo: 'to-do list',
-  column: 'column',
+  column: 'section',
 };
 
 function itemTitle(item) {
@@ -20,7 +20,7 @@ function itemTitle(item) {
   if (item.type === 'url') return item.title || item.url || 'link';
   if (item.type === 'color') return item.hex || 'color';
   if (item.type === 'todo') return 'to-do list';
-  if (item.type === 'column') return item.label || 'column';
+  if (item.type === 'column') return item.label || 'section';
   return TYPE_LABELS[item.type] || item.type;
 }
 
@@ -60,13 +60,17 @@ export function describeAction(action, board) {
       if (!ids.length) return null;
       const sample = action.patches[ids[0]];
       let verb = 'edited';
-      if ('x' in sample || 'y' in sample) verb = 'moved';
-      else if ('width' in sample || 'height' in sample) verb = 'resized';
-      else if ('rotation' in sample) verb = 'rotated';
+      if ('colSpan' in sample || 'rowSpan' in sample) verb = 'resized';
       const item = board.items.find((i) => i.id === ids[0]);
       return ids.length === 1
         ? { verb, itemType: TYPE_LABELS[item?.type] || item?.type, itemTitle: itemTitle(item) }
         : { verb, itemType: `${ids.length} items`, itemTitle: '' };
+    }
+
+    case 'REORDER_ITEM': {
+      const item = board.items.find((i) => i.id === action.id);
+      if (!item) return null;
+      return { verb: 'moved', itemType: TYPE_LABELS[item.type] || item.type, itemTitle: itemTitle(item) };
     }
 
     case 'UPDATE_ITEM': {
@@ -89,10 +93,6 @@ export function describeAction(action, board) {
 
     case 'SET_TYPOGRAPHY':
       return { verb: 'updated', itemType: 'typography settings', itemTitle: '' };
-
-    case 'BRING_TO_FRONT':
-    case 'SEND_TO_BACK':
-      return { verb: action.type === 'BRING_TO_FRONT' ? 'brought forward' : 'sent to back', itemType: `${action.ids.length} item(s)`, itemTitle: '' };
 
     default:
       return null;

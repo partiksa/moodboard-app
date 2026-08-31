@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Toolbar from './Toolbar.jsx';
 import Canvas from './Canvas.jsx';
-import MiniMap from './MiniMap.jsx';
 import SettingsPanel from './SettingsPanel.jsx';
 import ExportDialog from './ExportDialog.jsx';
 import ActivityPanel from './ActivityPanel.jsx';
@@ -14,63 +13,28 @@ import { compressImage } from '../utils/image';
 import './BoardEditor.css';
 import './items/items.css';
 
-function clamp(v, min, max) {
-  return Math.min(max, Math.max(min, v));
-}
-
 export default function BoardEditor({ board: initialBoard, sha, collaboratorName, onChangeName }) {
   const { board, dispatch, undo, redo, canUndo, canRedo, saveState, conflict, resolveConflict, saveNow } =
     useBoard(initialBoard, sha);
   const [selectedIds, setSelectedIds] = useState([]);
-  const [viewport, setViewport] = useState({ panX: 0, panY: 0, zoom: 1 });
-  const [viewportSize, setViewportSize] = useState({ width: 800, height: 600 });
   const [search, setSearch] = useState('');
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [exportOpen, setExportOpen] = useState(false);
   const [activityOpen, setActivityOpen] = useState(false);
-  const canvasRef = useRef(null);
-  const worldRef = useRef(null);
+  const gridRef = useRef(null);
   const searchInputRef = useRef(null);
-
-  useEffect(() => {
-    if (!canvasRef.current) return;
-    const el = canvasRef.current;
-    const observer = new ResizeObserver(() => {
-      setViewportSize({ width: el.clientWidth, height: el.clientHeight });
-    });
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  const zoomBy = useCallback(
-    (factor) => {
-      if (!canvasRef.current) return;
-      const rect = canvasRef.current.getBoundingClientRect();
-      const cx = rect.width / 2;
-      const cy = rect.height / 2;
-      setViewport((v) => {
-        const nextZoom = clamp(v.zoom * factor, 0.1, 4);
-        const worldX = (cx - v.panX) / v.zoom;
-        const worldY = (cy - v.panY) / v.zoom;
-        return { zoom: nextZoom, panX: cx - worldX * nextZoom, panY: cy - worldY * nextZoom };
-      });
-    },
-    []
-  );
 
   const addItem = useCallback(
     (type) => {
-      const centerX = (viewportSize.width / 2 - viewport.panX) / viewport.zoom - 120;
-      const centerY = (viewportSize.height / 2 - viewport.panY) / viewport.zoom - 80;
-      const item = makeItem(type, { x: centerX, y: centerY });
+      const item = makeItem(type);
       dispatch({ type: 'ADD_ITEM', item });
       setSelectedIds([item.id]);
     },
-    [dispatch, viewport, viewportSize]
+    [dispatch]
   );
 
   // Paste an image from the clipboard anywhere on the board (not just inside an empty image
-  // placeholder) as a new image item, sized to fit while keeping its natural aspect ratio.
+  // placeholder) as a new grid item; it fills its cell (scale-to-fit) regardless of its ratio.
   useEffect(() => {
     const onPaste = (e) => {
       const active = document.activeElement;
@@ -85,13 +49,7 @@ export default function BoardEditor({ board: initialBoard, sha, collaboratorName
           const src = compressed ? compressed.dataUrl : reader.result;
           const naturalWidth = compressed ? compressed.width : 0;
           const naturalHeight = compressed ? compressed.height : 0;
-          const maxDim = 360;
-          const scale = naturalWidth ? Math.min(1, maxDim / Math.max(naturalWidth, naturalHeight)) : 1;
-          const width = Math.round((naturalWidth || 240) * scale) || 240;
-          const height = Math.round((naturalHeight || 160) * scale) || 160;
-          const x = (viewportSize.width / 2 - viewport.panX) / viewport.zoom - width / 2;
-          const y = (viewportSize.height / 2 - viewport.panY) / viewport.zoom - height / 2;
-          const item = makeItem('image', { x, y, width, height, src, naturalWidth, naturalHeight });
+          const item = makeItem('image', { src, naturalWidth, naturalHeight });
           dispatch({ type: 'ADD_ITEM', item });
           setSelectedIds([item.id]);
         });
@@ -100,7 +58,7 @@ export default function BoardEditor({ board: initialBoard, sha, collaboratorName
     };
     window.addEventListener('paste', onPaste);
     return () => window.removeEventListener('paste', onPaste);
-  }, [dispatch, viewport, viewportSize]);
+  }, [dispatch]);
 
   const deleteSelected = useCallback(() => {
     if (!selectedIds.length) return;
@@ -111,36 +69,12 @@ export default function BoardEditor({ board: initialBoard, sha, collaboratorName
   const duplicateSelected = useCallback(() => {
     if (!selectedIds.length) return;
     const selectedItems = board.items.filter((i) => selectedIds.includes(i.id));
-    const idMap = {};
-    const clones = selectedItems.map((i) => {
-      const newId = uid('item');
-      idMap[i.id] = newId;
-      return { ...i, id: newId, x: i.x + 24, y: i.y + 24 };
-    });
-    clones.forEach((c) => {
-      if (c.parentId && idMap[c.parentId]) c.parentId = idMap[c.parentId];
-    });
-    dispatch({ type: 'DUPLICATE_ITEMS', items: clones });
+    const clones = selectedItems.map((i) => ({ ...i, id: uid('item') }));
+    const lastIndex = Math.max(...selectedItems.map((i) => board.items.indexOf(i)));
+    const afterId = board.items[lastIndex]?.id;
+    dispatch({ type: 'DUPLICATE_ITEMS', items: clones, afterId });
     setSelectedIds(clones.map((c) => c.id));
   }, [board.items, dispatch, selectedIds]);
-
-  const nudgeSelected = useCallback(
-    (key, amount) => {
-      if (!selectedIds.length) return;
-      const delta = {
-        ArrowUp: { x: 0, y: -amount },
-        ArrowDown: { x: 0, y: amount },
-        ArrowLeft: { x: -amount, y: 0 },
-        ArrowRight: { x: amount, y: 0 },
-      }[key];
-      const patches = {};
-      board.items.forEach((i) => {
-        if (selectedIds.includes(i.id)) patches[i.id] = { x: i.x + delta.x, y: i.y + delta.y };
-      });
-      dispatch({ type: 'COMMIT_ITEMS', patches });
-    },
-    [board.items, dispatch, selectedIds]
-  );
 
   useKeyboardShortcuts({
     onUndo: undo,
@@ -148,12 +82,8 @@ export default function BoardEditor({ board: initialBoard, sha, collaboratorName
     onDelete: deleteSelected,
     onDuplicate: duplicateSelected,
     onSelectAll: () => setSelectedIds(board.items.map((i) => i.id)),
-    onNudge: nudgeSelected,
     onEscape: () => setSelectedIds([]),
     onFocusSearch: () => searchInputRef.current?.focus(),
-    onZoomIn: () => zoomBy(1.15),
-    onZoomOut: () => zoomBy(1 / 1.15),
-    onZoomReset: () => setViewport((v) => ({ ...v, zoom: 1 })),
     onSave: saveNow,
   });
 
@@ -180,9 +110,6 @@ export default function BoardEditor({ board: initialBoard, sha, collaboratorName
         onSearchChange={setSearch}
         onOpenSettings={() => setSettingsOpen(true)}
         onOpenExport={() => setExportOpen(true)}
-        zoom={viewport.zoom}
-        onZoomIn={() => zoomBy(1.15)}
-        onZoomOut={() => zoomBy(1 / 1.15)}
         saveState={saveState}
         onSave={saveNow}
         collaboratorName={collaboratorName}
@@ -195,20 +122,16 @@ export default function BoardEditor({ board: initialBoard, sha, collaboratorName
           dispatch={dispatch}
           selectedIds={selectedIds}
           setSelectedIds={setSelectedIds}
-          viewport={viewport}
-          setViewport={setViewport}
           highlightedIds={highlightedIds}
-          canvasRef={canvasRef}
-          worldRef={worldRef}
+          gridRef={gridRef}
         />
-        <MiniMap board={board} viewport={viewport} setViewport={setViewport} viewportSize={viewportSize} />
       </div>
 
       {settingsOpen && (
         <SettingsPanel board={board} dispatch={dispatch} onClose={() => setSettingsOpen(false)} />
       )}
       {exportOpen && (
-        <ExportDialog board={board} canvasRef={canvasRef} worldRef={worldRef} onClose={() => setExportOpen(false)} />
+        <ExportDialog board={board} gridRef={gridRef} onClose={() => setExportOpen(false)} />
       )}
       {activityOpen && <ActivityPanel activity={board.activity || []} onClose={() => setActivityOpen(false)} />}
       {conflict && <ConflictDialog onReload={() => resolveConflict('reload')} onOverwrite={() => resolveConflict('overwrite')} />}

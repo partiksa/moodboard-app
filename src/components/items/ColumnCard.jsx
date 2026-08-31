@@ -1,6 +1,6 @@
-export default function ColumnCard({ item, board, dispatch }) {
+// A labeled section divider tile for the bento grid (e.g. "Inspiration", "References").
+export default function ColumnCard({ item, dispatch }) {
   const update = (patch) => dispatch({ type: 'UPDATE_ITEM', id: item.id, patch });
-  const hasChildren = board.items.some((i) => i.parentId === item.id);
   return (
     <div className="column-card">
       <div
@@ -12,7 +12,6 @@ export default function ColumnCard({ item, board, dispatch }) {
       >
         {item.label}
       </div>
-      {!hasChildren && <div className="column-drop-hint">Drop items here to group them</div>}
     </div>
   );
 }

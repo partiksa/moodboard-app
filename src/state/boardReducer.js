@@ -6,11 +6,8 @@ export function boardReducer(state, action) {
     case 'RENAME_BOARD':
       return { ...state, name: action.name };
 
-    case 'ADD_ITEM': {
-      const maxZ = state.items.reduce((m, i) => Math.max(m, i.zIndex), 0);
-      const item = { ...action.item, zIndex: maxZ + 1 };
-      return { ...state, items: [...state.items, item] };
-    }
+    case 'ADD_ITEM':
+      return { ...state, items: [...state.items, action.item] };
 
     case 'ADD_ITEMS':
       return { ...state, items: [...state.items, ...action.items] };
@@ -31,11 +28,16 @@ export function boardReducer(state, action) {
 
     case 'DELETE_ITEMS': {
       const ids = new Set(action.ids);
-      return { ...state, items: state.items.filter((i) => !ids.has(i.id) && !ids.has(i.parentId)) };
+      return { ...state, items: state.items.filter((i) => !ids.has(i.id)) };
     }
 
-    case 'DUPLICATE_ITEMS':
-      return { ...state, items: [...state.items, ...action.items] };
+    case 'DUPLICATE_ITEMS': {
+      const afterId = action.afterId;
+      const insertAt = afterId ? state.items.findIndex((i) => i.id === afterId) + 1 : state.items.length;
+      const items = [...state.items];
+      items.splice(insertAt, 0, ...action.items);
+      return { ...state, items };
+    }
 
     case 'COMMIT_ITEMS': {
       const patchMap = action.patches;
@@ -45,24 +47,14 @@ export function boardReducer(state, action) {
       };
     }
 
-    case 'BRING_TO_FRONT': {
-      const maxZ = state.items.reduce((m, i) => Math.max(m, i.zIndex), 0);
-      const ids = new Set(action.ids);
-      let offset = 1;
-      return {
-        ...state,
-        items: state.items.map((i) => (ids.has(i.id) ? { ...i, zIndex: maxZ + offset++ } : i)),
-      };
-    }
-
-    case 'SEND_TO_BACK': {
-      const minZ = state.items.reduce((m, i) => Math.min(m, i.zIndex), 0);
-      const ids = new Set(action.ids);
-      let offset = 1;
-      return {
-        ...state,
-        items: state.items.map((i) => (ids.has(i.id) ? { ...i, zIndex: minZ - offset++ } : i)),
-      };
+    case 'REORDER_ITEM': {
+      const items = [...state.items];
+      const fromIndex = items.findIndex((i) => i.id === action.id);
+      if (fromIndex === -1) return state;
+      const [moved] = items.splice(fromIndex, 1);
+      const toIndex = Math.max(0, Math.min(items.length, action.toIndex));
+      items.splice(toIndex, 0, moved);
+      return { ...state, items };
     }
 
     case 'SET_SETTINGS':
@@ -90,9 +82,8 @@ export const HISTORY_ACTIONS = new Set([
   'ADD_ITEMS',
   'DELETE_ITEMS',
   'DUPLICATE_ITEMS',
-  'BRING_TO_FRONT',
-  'SEND_TO_BACK',
   'SET_SETTINGS',
   'SET_TYPOGRAPHY',
-  'COMMIT_ITEMS', // used after drag/resize/rotate ends
+  'COMMIT_ITEMS', // used after span-resize ends
+  'REORDER_ITEM',
 ]);

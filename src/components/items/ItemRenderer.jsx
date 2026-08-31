@@ -19,58 +19,20 @@ const RENDERERS = {
   column: ColumnCard,
 };
 
-export default function ItemRenderer({
-  item,
-  board,
-  dispatch,
-  selected,
-  highlighted,
-  dropTarget,
-  onMouseDown,
-  onResizeStart,
-  onRotateStart,
-}) {
+export default function ItemRenderer({ item, board, dispatch, selected }) {
   const Content = RENDERERS[item.type];
   if (!Content) return null;
 
   const classes = ['canvas-item'];
   if (selected) classes.push('selected');
-  if (highlighted) classes.push('highlighted');
-  if (dropTarget) classes.push('drop-target');
   if (item.locked) classes.push('locked');
 
   return (
-    <div
-      className={classes.join(' ')}
-      style={{
-        left: item.x,
-        top: item.y,
-        width: item.width,
-        height: item.height,
-        transform: `rotate(${item.rotation || 0}deg)`,
-        zIndex: item.zIndex,
-      }}
-      onMouseDown={onMouseDown}
-      data-item-id={item.id}
-    >
+    <div className={classes.join(' ')}>
       <div className="item-frame">
         <Content item={item} board={board} dispatch={dispatch} />
       </div>
-
       {item.privateNote && <PrivateNoteBadge note={item.privateNote} />}
-
-      {selected && !item.locked && (
-        <>
-          {['nw', 'n', 'ne', 'e', 'se', 's', 'sw', 'w'].map((handle) => (
-            <div
-              key={handle}
-              className={`resize-handle ${handle}`}
-              onMouseDown={(e) => onResizeStart(e, item, handle)}
-            />
-          ))}
-          <div className="rotate-handle" onMouseDown={(e) => onRotateStart(e, item)} />
-        </>
-      )}
     </div>
   );
 }

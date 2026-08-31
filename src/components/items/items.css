@@ -126,7 +126,14 @@
   color: var(--danger);
 }
 
-.image-card-img,
+.image-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background: #111;
+}
+
 .video-card-el {
   width: 100%;
   height: 100%;
@@ -327,28 +334,16 @@
 
 .column-card {
   height: 100%;
-  border: 2px dashed var(--panel-border);
-  background: rgba(0, 0, 0, 0.02);
   display: flex;
-  flex-direction: column;
-  padding: 8px;
+  align-items: center;
+  padding: 0 14px;
+  background: var(--accent-soft);
 }
 
 .column-label {
   font-weight: 600;
+  font-size: 15px;
   outline: none;
-  margin-bottom: 4px;
-}
-
-.column-drop-hint {
-  color: var(--text-muted);
-  font-size: 11px;
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  pointer-events: none;
 }
 
 .private-note-badge {

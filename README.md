@@ -112,15 +112,17 @@ This is a convenience surface for the repo owner, not a secured admin panel — 
 
 ## What's included (board editor)
 
-- **Infinite canvas**: pan, zoom (Ctrl/Cmd + scroll or toolbar +/-), multi-select, drag, resize (8
-  handles), rotate, duplicate (Ctrl/Cmd+D), delete (Backspace/Delete), lock, group/ungroup, z-order.
+- **Bento grid layout**: every item lives in a fixed grid (columns, row height, and gutter are
+  configurable in Settings). Drag an item to reorder it into a new slot; resize by changing its
+  column/row span (selection toolbar), not by dragging free-form handles. Images scale to fill
+  their cell (cropping as needed) so mismatched aspect ratios don't matter.
 - **Backgrounds**: dotted white, dotted black, solid color, or an uploaded image.
-- **Grid & snapping**, **undo/redo** (Ctrl/Cmd+Z / Shift+Ctrl/Cmd+Z, 60-step history), **search**,
-  **mini-map**.
+- **Undo/redo** (Ctrl/Cmd+Z / Shift+Ctrl/Cmd+Z, 60-step history), **search**, multi-select,
+  duplicate (Ctrl/Cmd+D), delete (Backspace/Delete), lock, group/ungroup.
 - **Item types**: freeform rich text (select text, then use the floating toolbar to make it a Heading,
   Subheading, or plain Text block, plus bold/italic/lists/links/color/alignment), images (upload,
   drag-drop, paste, incl. SVG), inline video, generic file attachments, URL cards with best-effort
-  metadata previews, color swatches (hex/RGB/CMYK), to-do lists, and resizable column containers.
+  metadata previews, color swatches (hex/RGB/CMYK), to-do lists, and section-header tiles.
 - **Private notes**: any item can carry a private note; excluded from exports unless opted in, and
   logged in activity without exposing the note text.
 - **Appearance**: light/dark/system theme, Inter by default, custom font upload.

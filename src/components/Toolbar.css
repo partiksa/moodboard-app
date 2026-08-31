@@ -121,35 +121,3 @@
   font-size: 13px;
 }
 
-.zoom-controls {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  color: var(--text-muted);
-  border: 1px solid var(--panel-border);
-  border-radius: var(--radius);
-  padding: 2px 6px;
-}
-
-.zoom-controls span {
-  min-width: 34px;
-  text-align: center;
-}
-
-.zoom-controls button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  border-radius: 5px;
-  border: none;
-  background: transparent;
-  color: var(--text);
-  cursor: pointer;
-}
-
-.zoom-controls button:hover {
-  background: var(--accent-soft);
-}

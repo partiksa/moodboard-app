@@ -54,6 +54,7 @@ export default function UrlCard({ item, dispatch }) {
       href={item.url}
       target="_blank"
       rel="noreferrer"
+      draggable={false}
     >
       {loading && <div className="url-loading">Fetching preview…</div>}
       {!loading && !item.failed && item.image && (
