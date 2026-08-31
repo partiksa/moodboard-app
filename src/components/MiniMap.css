@@ -1,0 +1,28 @@
+.minimap {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  width: 180px;
+  height: 120px;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 40;
+}
+
+.minimap-item {
+  position: absolute;
+  background: var(--text-muted);
+  opacity: 0.6;
+  border-radius: 1px;
+}
+
+.minimap-viewport {
+  position: absolute;
+  border: 1.5px solid var(--accent);
+  background: rgba(0, 0, 0, 0.05);
+  pointer-events: none;
+}

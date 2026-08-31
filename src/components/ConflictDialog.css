@@ -1,0 +1,35 @@
+.conflict-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 500;
+}
+
+.conflict-dialog {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  max-width: 420px;
+  box-shadow: var(--shadow-hover);
+}
+
+.conflict-dialog h3 {
+  margin: 0 0 10px;
+}
+
+.conflict-dialog p {
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0 0 18px;
+}
+
+.conflict-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}

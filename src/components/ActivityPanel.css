@@ -1,0 +1,49 @@
+.activity-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 320px;
+  background: var(--panel);
+  border-left: 1px solid var(--panel-border);
+  box-shadow: var(--shadow-hover);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+}
+
+.activity-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--panel-border);
+  font-weight: 600;
+}
+
+.activity-list {
+  overflow-y: auto;
+  padding: 8px 16px;
+}
+
+.activity-empty {
+  color: var(--text-muted);
+  font-size: 13px;
+  margin-top: 12px;
+}
+
+.activity-row {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.activity-row-main {
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.activity-row-time {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
