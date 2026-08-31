@@ -68,6 +68,46 @@ export default function BoardEditor({ board: initialBoard, sha, collaboratorName
     [dispatch, viewport, viewportSize]
   );
 
+  // Paste an image from the clipboard anywhere on the board (not just inside an empty image
+  // placeholder) as a new image item, sized to fit while keeping its natural aspect ratio.
+  useEffect(() => {
+    const onPaste = (e) => {
+      const active = document.activeElement;
+      const isEditable = active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.isContentEditable);
+      if (isEditable) return;
+      const file = [...(e.clipboardData?.items || [])].find((it) => it.type.startsWith('image/'))?.getAsFile();
+      if (!file) return;
+      e.preventDefault();
+      const reader = new FileReader();
+      reader.onload = () => {
+        const probe = new Image();
+        probe.onload = () => {
+          const maxDim = 360;
+          const scale = Math.min(1, maxDim / Math.max(probe.width, probe.height));
+          const width = Math.round(probe.width * scale);
+          const height = Math.round(probe.height * scale);
+          const x = (viewportSize.width / 2 - viewport.panX) / viewport.zoom - width / 2;
+          const y = (viewportSize.height / 2 - viewport.panY) / viewport.zoom - height / 2;
+          const item = makeItem('image', {
+            x,
+            y,
+            width,
+            height,
+            src: reader.result,
+            naturalWidth: probe.width,
+            naturalHeight: probe.height,
+          });
+          dispatch({ type: 'ADD_ITEM', item });
+          setSelectedIds([item.id]);
+        };
+        probe.src = reader.result;
+      };
+      reader.readAsDataURL(file);
+    };
+    window.addEventListener('paste', onPaste);
+    return () => window.removeEventListener('paste', onPaste);
+  }, [dispatch, viewport, viewportSize]);
+
   const deleteSelected = useCallback(() => {
     if (!selectedIds.length) return;
     dispatch({ type: 'DELETE_ITEMS', ids: selectedIds });

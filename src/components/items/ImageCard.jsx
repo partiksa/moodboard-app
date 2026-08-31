@@ -39,6 +39,7 @@ export default function ImageCard({ item, dispatch }) {
         }}
         onDragOver={(e) => e.preventDefault()}
         onPaste={(e) => {
+          e.stopPropagation(); // handled here for this placeholder; don't also trigger the board-wide paste handler
           const file = [...e.clipboardData.items].find((it) => it.type.startsWith('image/'))?.getAsFile();
           if (file) loadFile(file);
         }}

@@ -212,12 +212,16 @@ export default function Canvas({
     e.preventDefault();
     const start = screenToCanvas(e.clientX, e.clientY);
     const orig = { x: item.x, y: item.y, width: item.width, height: item.height };
+    const aspectRatio =
+      item.type === 'image' && item.naturalWidth && item.naturalHeight
+        ? item.naturalWidth / item.naturalHeight
+        : null;
     let lastPatch = orig;
     const onMove = (ev) => {
       const current = screenToCanvas(ev.clientX, ev.clientY);
       const dx = current.x - start.x;
       const dy = current.y - start.y;
-      lastPatch = applyResize(orig, handle, dx, dy);
+      lastPatch = applyResize(orig, handle, dx, dy, aspectRatio);
       dispatch({ type: 'UPDATE_ITEMS', patches: { [item.id]: lastPatch } });
     };
     const onUp = () => {
@@ -328,7 +332,7 @@ function findColumnUnder(items, dragged) {
   );
 }
 
-function applyResize(orig, handle, dx, dy) {
+function applyResize(orig, handle, dx, dy, aspectRatio) {
   let { x, y, width, height } = orig;
   if (handle.includes('e')) width = Math.max(40, orig.width + dx);
   if (handle.includes('s')) height = Math.max(30, orig.height + dy);
@@ -340,6 +344,23 @@ function applyResize(orig, handle, dx, dy) {
     height = Math.max(30, orig.height - dy);
     y = orig.y + orig.height - height;
   }
+
+  if (aspectRatio) {
+    const isCorner = handle.length === 2;
+    if (isCorner) {
+      const scale = Math.abs(dx) >= Math.abs(dy) ? width / orig.width : height / orig.height;
+      width = Math.max(40, orig.width * scale);
+      height = Math.max(30, orig.height * scale);
+    } else if (handle === 'e' || handle === 'w') {
+      height = Math.max(30, width / aspectRatio);
+    } else if (handle === 'n' || handle === 's') {
+      width = Math.max(40, height * aspectRatio);
+    }
+    // re-anchor so the edge/corner opposite the dragged handle stays put
+    if (handle.includes('w')) x = orig.x + orig.width - width;
+    if (handle.includes('n')) y = orig.y + orig.height - height;
+  }
+
   return { x, y, width, height };
 }
 
