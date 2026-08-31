@@ -2,7 +2,7 @@
   "id": "b_mthc5299_nme1qma",
   "name": "energyinHim",
   "createdAt": "2026-08-31T14:30:14.445Z",
-  "updatedAt": "2026-08-31T15:05:24.952Z",
+  "updatedAt": "2026-08-31T15:07:28.819Z",
   "items": [
     {
       "id": "item_mthc5ob3_t7dqtjg",
@@ -143,8 +143,8 @@
     {
       "id": "item_mthcrpy3_xrxohrp",
       "type": "image",
-      "x": -48,
-      "y": 168,
+      "x": -120,
+      "y": 149.66213187532918,
       "width": 247.87687912034608,
       "height": 372.67573624934164,
       "rotation": 0,
@@ -224,21 +224,6 @@
       "alt": "",
       "naturalWidth": 558,
       "naturalHeight": 640
-    },
-    {
-      "id": "item_mthctmu9_fa0sg1m",
-      "type": "column",
-      "x": -864.833621914194,
-      "y": -12.58409574276979,
-      "width": 672.833621914194,
-      "height": 985.1681914855396,
-      "rotation": 0,
-      "zIndex": 14,
-      "locked": false,
-      "parentId": null,
-      "privateNote": "",
-      "label": "cyanotype",
-      "childIds": []
     }
   ],
   "activity": [
@@ -1433,6 +1418,186 @@
     {
       "id": "act_mthcu93g_eo614",
       "ts": "2026-08-31T14:49:49.708Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "image",
+      "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mthdejx0_v7xaz",
+      "ts": "2026-08-31T15:05:36.852Z",
+      "name": "patko",
+      "verb": "restored a previous version of",
+      "itemType": "the board",
+      "itemTitle": "",
+      "private": false
+    },
+    {
+      "id": "act_mthdekj7_4ev6z",
+      "ts": "2026-08-31T15:05:37.651Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "image",
+      "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mthdemii_kdscf",
+      "ts": "2026-08-31T15:05:40.218Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "image",
+      "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mthdeoem_k3bmp",
+      "ts": "2026-08-31T15:05:42.670Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "column",
+      "itemTitle": "cyanotype",
+      "private": false
+    },
+    {
+      "id": "act_mthdepnz_syudc",
+      "ts": "2026-08-31T15:05:44.303Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "column",
+      "itemTitle": "cyanotype",
+      "private": false
+    },
+    {
+      "id": "act_mthdeq4w_8184g",
+      "ts": "2026-08-31T15:05:44.912Z",
+      "name": "patko",
+      "verb": "deleted",
+      "itemType": "column",
+      "itemTitle": "cyanotyp",
+      "private": false
+    },
+    {
+      "id": "act_mthderfv_o5bna",
+      "ts": "2026-08-31T15:05:46.603Z",
+      "name": "patko",
+      "verb": "added",
+      "itemType": "column",
+      "itemTitle": "Column",
+      "private": false
+    },
+    {
+      "id": "act_mthdese3_5m01g",
+      "ts": "2026-08-31T15:05:47.835Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "column",
+      "itemTitle": "Column",
+      "private": false
+    },
+    {
+      "id": "act_mthdesty_wwcap",
+      "ts": "2026-08-31T15:05:48.406Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "column",
+      "itemTitle": "Column",
+      "private": false
+    },
+    {
+      "id": "act_mthdetmk_9phhn",
+      "ts": "2026-08-31T15:05:49.436Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "image",
+      "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mthdevxj_m2fhl",
+      "ts": "2026-08-31T15:05:52.423Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "image",
+      "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mthdewri_coph5",
+      "ts": "2026-08-31T15:05:53.502Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "image",
+      "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mthdexix_k5v3m",
+      "ts": "2026-08-31T15:05:54.489Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "column",
+      "itemTitle": "Column",
+      "private": false
+    },
+    {
+      "id": "act_mthdghaq_4o9a2",
+      "ts": "2026-08-31T15:07:06.770Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "pray without ceasing Christian Symbolism",
+      "private": false
+    },
+    {
+      "id": "act_mthdgicb_jnuw7",
+      "ts": "2026-08-31T15:07:08.123Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "pray without ceasing Christian Symbolism",
+      "private": false
+    },
+    {
+      "id": "act_mthdgkea_3ybo1",
+      "ts": "2026-08-31T15:07:10.786Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "praying mantis cyanotype 1 Sol 5, 17 pra",
+      "private": false
+    },
+    {
+      "id": "act_mthdgmht_da8ij",
+      "ts": "2026-08-31T15:07:13.505Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "column",
+      "itemTitle": "Column",
+      "private": false
+    },
+    {
+      "id": "act_mthdgne5_8mhdw",
+      "ts": "2026-08-31T15:07:14.669Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "column",
+      "itemTitle": "Column",
+      "private": false
+    },
+    {
+      "id": "act_mthdgob0_coahd",
+      "ts": "2026-08-31T15:07:15.852Z",
+      "name": "patko",
+      "verb": "deleted",
+      "itemType": "column",
+      "itemTitle": "Colum",
+      "private": false
+    },
+    {
+      "id": "act_mthdgpp1_v447l",
+      "ts": "2026-08-31T15:07:17.653Z",
       "name": "patko",
       "verb": "moved",
       "itemType": "image",
