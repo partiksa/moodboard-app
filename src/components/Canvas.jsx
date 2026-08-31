@@ -22,6 +22,7 @@ export default function Canvas({
   const dragState = useRef(null);
   const [guides, setGuides] = useState({ x: null, y: null });
   const [marquee, setMarquee] = useState(null);
+  const [dropTargetId, setDropTargetId] = useState(null);
   const isPanningRef = useRef(false);
   const spaceHeldRef = useRef(false);
 
@@ -179,24 +180,33 @@ export default function Canvas({
       });
       dragState.current.lastPatches = patches;
       dispatch({ type: 'UPDATE_ITEMS', patches });
+
+      // live drop-target highlight: any non-column item being dragged over a column
+      const draggableId = Object.keys(patches).find((id) => itemsById[id]?.type !== 'column');
+      if (draggableId) {
+        const rect = { ...itemsById[draggableId], ...patches[draggableId] };
+        const col = findColumnUnder(items, rect);
+        setDropTargetId(col ? col.id : null);
+      } else {
+        setDropTargetId(null);
+      }
     };
 
     const onUp = () => {
       window.removeEventListener('mousemove', onMove);
       window.removeEventListener('mouseup', onUp);
       setGuides({ x: null, y: null });
+      setDropTargetId(null);
       if (dragState.current?.moved) {
         const patches = { ...dragState.current.lastPatches };
-        // resolve column drop target for a single dragged, non-column item
-        if (nextSelected.length === 1) {
-          const draggedId = nextSelected[0];
+        // drop any dragged, non-column item onto the column it's released over (or detach it)
+        Object.keys(patches).forEach((draggedId) => {
           const dragged = itemsById[draggedId];
-          if (dragged && dragged.type !== 'column' && patches[draggedId]) {
-            const draggedRect = { ...dragged, ...patches[draggedId] };
-            const col = findColumnUnder(items, draggedRect);
-            patches[draggedId] = { ...patches[draggedId], parentId: col ? col.id : null };
-          }
-        }
+          if (!dragged || dragged.type === 'column') return;
+          const draggedRect = { ...dragged, ...patches[draggedId] };
+          const col = findColumnUnder(items, draggedRect);
+          patches[draggedId] = { ...patches[draggedId], parentId: col ? col.id : null };
+        });
         dispatch({ type: 'COMMIT_ITEMS', patches });
       }
       dragState.current = null;
@@ -285,6 +295,7 @@ export default function Canvas({
               dispatch={dispatch}
               selected={selectedSet.has(item.id)}
               highlighted={highlightedIds?.has(item.id)}
+              dropTarget={item.id === dropTargetId}
               onMouseDown={(e) => onItemMouseDown(e, item)}
               onResizeStart={onResizeStart}
               onRotateStart={onRotateStart}

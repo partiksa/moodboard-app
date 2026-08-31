@@ -59,6 +59,11 @@
   cursor: not-allowed;
 }
 
+.canvas-item.drop-target > .item-frame {
+  outline: 2px dashed var(--accent);
+  outline-offset: 4px;
+}
+
 .item-frame {
   width: 100%;
   height: 100%;

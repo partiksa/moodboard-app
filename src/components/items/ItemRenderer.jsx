@@ -25,6 +25,7 @@ export default function ItemRenderer({
   dispatch,
   selected,
   highlighted,
+  dropTarget,
   onMouseDown,
   onResizeStart,
   onRotateStart,
@@ -35,6 +36,7 @@ export default function ItemRenderer({
   const classes = ['canvas-item'];
   if (selected) classes.push('selected');
   if (highlighted) classes.push('highlighted');
+  if (dropTarget) classes.push('drop-target');
   if (item.locked) classes.push('locked');
 
   return (
