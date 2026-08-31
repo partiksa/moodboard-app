@@ -1,0 +1,38 @@
+{
+  "id": "b_mthf7ok5_w5n6413",
+  "name": "odrazse",
+  "createdAt": "2026-08-31T15:56:15.509Z",
+  "updatedAt": "2026-08-31T15:56:15.509Z",
+  "items": [],
+  "activity": [],
+  "settings": {
+    "background": {
+      "type": "dotted-white"
+    },
+    "gridSize": 24,
+    "gridColor": "#c9c9c9",
+    "snapDistance": 8,
+    "typography": {
+      "heading": {
+        "fontFamily": "Inter",
+        "fontSize": 28,
+        "color": "#111111"
+      },
+      "subheading": {
+        "fontFamily": "Inter",
+        "fontSize": 18,
+        "color": "#333333"
+      },
+      "body": {
+        "fontFamily": "Inter",
+        "fontSize": 14,
+        "color": "#222222"
+      },
+      "privateNote": {
+        "fontFamily": "Inter",
+        "fontSize": 13,
+        "color": "#8a6d00"
+      }
+    }
+  }
+}
