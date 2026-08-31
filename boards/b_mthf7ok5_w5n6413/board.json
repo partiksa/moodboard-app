@@ -2,7 +2,7 @@
   "id": "b_mthf7ok5_w5n6413",
   "name": "odrazse",
   "createdAt": "2026-08-31T15:56:15.509Z",
-  "updatedAt": "2026-08-31T16:17:33.222Z",
+  "updatedAt": "2026-08-31T16:20:30.355Z",
   "items": [
     {
       "id": "item_mthf7uv1_kfpanqd",
@@ -94,18 +94,32 @@
       "naturalHeight": 606
     },
     {
-      "id": "item_mthfwxue_q48rhp3",
+      "id": "item_mthg2bli_t99bxxd",
       "type": "color",
-      "x": 685.5,
-      "y": 288,
-      "width": 240,
-      "height": 160,
+      "x": 568,
+      "y": 144,
+      "width": 200,
+      "height": 200,
       "rotation": 0,
-      "zIndex": 7,
+      "zIndex": 8,
       "locked": false,
       "parentId": null,
       "privateNote": "",
-      "hex": "#4f8cff"
+      "hex": "#0000ff"
+    },
+    {
+      "id": "item_mthg2hgv_qfkpb6s",
+      "type": "color",
+      "x": 784,
+      "y": 144,
+      "width": 200,
+      "height": 200,
+      "rotation": 0,
+      "zIndex": 9,
+      "locked": false,
+      "parentId": null,
+      "privateNote": "",
+      "hex": "#ec008c"
     }
   ],
   "activity": [
@@ -953,6 +967,69 @@
       "verb": "moved",
       "itemType": "color swatch",
       "itemTitle": "#4f8cff",
+      "private": false
+    },
+    {
+      "id": "act_mthg25jn_337so",
+      "ts": "2026-08-31T16:19:57.203Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "color swatch",
+      "itemTitle": "#4f8cff",
+      "private": false
+    },
+    {
+      "id": "act_mthg2bli_cfskj",
+      "ts": "2026-08-31T16:20:05.046Z",
+      "name": "patko",
+      "verb": "added",
+      "itemType": "color swatch",
+      "itemTitle": "#0000ff",
+      "private": false
+    },
+    {
+      "id": "act_mthg2cvz_gbeuf",
+      "ts": "2026-08-31T16:20:06.719Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "color swatch",
+      "itemTitle": "#4f8cff",
+      "private": false
+    },
+    {
+      "id": "act_mthg2d25_hxalp",
+      "ts": "2026-08-31T16:20:06.941Z",
+      "name": "patko",
+      "verb": "deleted",
+      "itemType": "color swatch",
+      "itemTitle": "#4f8cff",
+      "private": false
+    },
+    {
+      "id": "act_mthg2eg0_1z8j4",
+      "ts": "2026-08-31T16:20:08.736Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "color swatch",
+      "itemTitle": "#0000ff",
+      "private": false
+    },
+    {
+      "id": "act_mthg2hgw_19yy8",
+      "ts": "2026-08-31T16:20:12.656Z",
+      "name": "patko",
+      "verb": "added",
+      "itemType": "color swatch",
+      "itemTitle": "#ec008c",
+      "private": false
+    },
+    {
+      "id": "act_mthg2jbg_7d1ry",
+      "ts": "2026-08-31T16:20:15.052Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "color swatch",
+      "itemTitle": "#ec008c",
       "private": false
     }
   ],
