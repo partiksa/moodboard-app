@@ -270,6 +270,27 @@
   position: relative;
 }
 
+.color-swatch-paste-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 10px;
+  cursor: pointer;
+  backdrop-filter: blur(2px);
+}
+
+.color-swatch-paste-btn:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+
 .color-swatch-values {
   display: flex;
   flex-direction: column;

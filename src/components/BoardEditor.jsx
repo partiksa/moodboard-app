@@ -11,6 +11,7 @@ import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts';
 import { makeItem } from '../state/boardModel';
 import { uid } from '../utils/id';
 import { compressImage } from '../utils/image';
+import { normalizeHex } from '../utils/color';
 import './BoardEditor.css';
 import './items/items.css';
 
@@ -79,7 +80,17 @@ export default function BoardEditor({ board: initialBoard, sha, collaboratorName
       const file = [...(e.clipboardData?.items || [])].find((it) => it.type.startsWith('image/'))?.getAsFile();
       if (!file) {
         const text = e.clipboardData?.getData('text/plain')?.trim();
-        if (text && /^(https?:\/\/|www\.)\S+$/i.test(text)) {
+        const hex = text ? normalizeHex(text) : null;
+        if (hex) {
+          e.preventDefault();
+          const width = 200;
+          const height = 200;
+          const x = (viewportSize.width / 2 - viewport.panX) / viewport.zoom - width / 2;
+          const y = (viewportSize.height / 2 - viewport.panY) / viewport.zoom - height / 2;
+          const item = makeItem('color', { x, y, width, height, hex });
+          dispatch({ type: 'ADD_ITEM', item });
+          setSelectedIds([item.id]);
+        } else if (text && /^(https?:\/\/|www\.)\S+$/i.test(text)) {
           e.preventDefault();
           const url = /^https?:\/\//i.test(text) ? text : `https://${text}`;
           const width = 240;

@@ -1,3 +1,14 @@
+const HEX_RE = /^#?([0-9a-f]{3}|[0-9a-f]{6})$/i;
+
+// Accepts "#fff", "fff", "#ffffff", "ffffff" (case-insensitive); returns null if not a hex color.
+export function normalizeHex(text) {
+  const clean = (text || '').trim();
+  if (!HEX_RE.test(clean)) return null;
+  const stripped = clean.replace('#', '');
+  const full = stripped.length === 3 ? stripped.split('').map((c) => c + c).join('') : stripped;
+  return `#${full.toLowerCase()}`;
+}
+
 export function hexToRgb(hex) {
   const clean = hex.replace('#', '');
   const full = clean.length === 3 ? clean.split('').map((c) => c + c).join('') : clean;

@@ -39,4 +39,5 @@ export {
   Minus,
   UsersThree,
   FloppyDisk,
+  ClipboardText,
 } from '@phosphor-icons/react';
