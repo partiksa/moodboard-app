@@ -1,5 +1,6 @@
-export default function ColumnCard({ item, dispatch }) {
+export default function ColumnCard({ item, board, dispatch }) {
   const update = (patch) => dispatch({ type: 'UPDATE_ITEM', id: item.id, patch });
+  const hasChildren = board.items.some((i) => i.parentId === item.id);
   return (
     <div className="column-card">
       <div
@@ -11,7 +12,7 @@ export default function ColumnCard({ item, dispatch }) {
       >
         {item.label}
       </div>
-      <div className="column-drop-hint">Drop items here to group them</div>
+      {!hasChildren && <div className="column-drop-hint">Drop items here to group them</div>}
     </div>
   );
 }

@@ -199,13 +199,29 @@ export default function Canvas({
       setDropTargetId(null);
       if (dragState.current?.moved) {
         const patches = { ...dragState.current.lastPatches };
+        const draggedIdSet = new Set(Object.keys(patches));
+        const touchedColumnIds = new Set();
         // drop any dragged, non-column item onto the column it's released over (or detach it)
         Object.keys(patches).forEach((draggedId) => {
           const dragged = itemsById[draggedId];
           if (!dragged || dragged.type === 'column') return;
+          // its column parent is moving right along with it (whole group dragged together) —
+          // keep the relationship as-is instead of re-checking against the column's stale,
+          // pre-drag position
+          if (dragged.parentId && draggedIdSet.has(dragged.parentId)) {
+            touchedColumnIds.add(dragged.parentId);
+            return;
+          }
+          if (dragged.parentId) touchedColumnIds.add(dragged.parentId);
           const draggedRect = { ...dragged, ...patches[draggedId] };
           const col = findColumnUnder(items, draggedRect);
           patches[draggedId] = { ...patches[draggedId], parentId: col ? col.id : null };
+          if (col) touchedColumnIds.add(col.id);
+        });
+        // re-run layout on any column whose membership changed, using positions post-drag
+        const itemsAfterDrag = items.map((i) => (patches[i.id] ? { ...i, ...patches[i.id] } : i));
+        touchedColumnIds.forEach((colId) => {
+          Object.assign(patches, layoutColumn(itemsAfterDrag, colId));
         });
         dispatch({ type: 'COMMIT_ITEMS', patches });
       }
@@ -237,7 +253,13 @@ export default function Canvas({
     const onUp = () => {
       window.removeEventListener('mousemove', onMove);
       window.removeEventListener('mouseup', onUp);
-      dispatch({ type: 'COMMIT_ITEMS', patches: { [item.id]: lastPatch } });
+      const patches = { [item.id]: lastPatch };
+      const columnId = item.type === 'column' ? item.id : item.parentId;
+      if (columnId) {
+        const itemsAfterResize = items.map((i) => (patches[i.id] ? { ...i, ...patches[i.id] } : i));
+        Object.assign(patches, layoutColumn(itemsAfterResize, columnId));
+      }
+      dispatch({ type: 'COMMIT_ITEMS', patches });
     };
     window.addEventListener('mousemove', onMove);
     window.addEventListener('mouseup', onUp);
@@ -328,6 +350,38 @@ export default function Canvas({
 function idAndChildren(id, items) {
   const children = items.filter((i) => i.parentId === id).map((i) => i.id);
   return [id, ...children];
+}
+
+const COLUMN_PADDING = 12;
+const COLUMN_LABEL_HEIGHT = 34;
+const COLUMN_GAP = 10;
+
+// Stacks a column's children vertically inside it, fitting them to its inner width
+// (preserving aspect ratio for images) and growing the column to fit their total height.
+function layoutColumn(items, columnId) {
+  const column = items.find((i) => i.id === columnId && i.type === 'column');
+  if (!column) return {};
+  const children = items.filter((i) => i.parentId === columnId);
+  const patches = {};
+  const innerWidth = Math.max(40, column.width - COLUMN_PADDING * 2);
+  let cursorY = column.y + COLUMN_LABEL_HEIGHT;
+
+  children.forEach((child) => {
+    const width = innerWidth;
+    let height;
+    if (child.type === 'image' && child.naturalWidth && child.naturalHeight) {
+      height = Math.round((width * child.naturalHeight) / child.naturalWidth);
+    } else {
+      height = Math.round((child.height / child.width) * width) || child.height;
+    }
+    height = Math.max(30, height);
+    patches[child.id] = { x: column.x + COLUMN_PADDING, y: cursorY, width, height };
+    cursorY += height + COLUMN_GAP;
+  });
+
+  const contentHeight = children.length ? cursorY - column.y - COLUMN_GAP + COLUMN_PADDING : column.height;
+  patches[column.id] = { height: Math.max(160, contentHeight) };
+  return patches;
 }
 
 function findColumnUnder(items, dragged) {

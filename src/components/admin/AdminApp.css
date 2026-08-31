@@ -133,3 +133,16 @@
 .admin-activity-time {
   color: var(--text-muted);
 }
+
+.copy-link-btn.copied {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+  animation: copy-pop 0.28s ease;
+}
+
+@keyframes copy-pop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './WelcomeScreen.css';
+import cursorFace from '../assets/cursor-face.png';
 
 export default function WelcomeScreen({ boardId, onEnter, initialName = '' }) {
   const [name, setName] = useState(initialName);
@@ -10,7 +11,7 @@ export default function WelcomeScreen({ boardId, onEnter, initialName = '' }) {
   };
 
   return (
-    <div className="welcome-screen">
+    <div className="welcome-screen" style={{ cursor: `url(${cursorFace}) 30 15, auto` }}>
       <div className="welcome-card">
         <h1>Welcome to Patkov Moodboard</h1>
         <p className="welcome-sub">Tell me your name</p>

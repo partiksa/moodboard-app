@@ -16,6 +16,7 @@ export default function AdminApp() {
   const [status, setStatus] = useState('idle'); // idle | loading | error
   const [error, setError] = useState(null);
   const [expandedId, setExpandedId] = useState(null);
+  const [copiedId, setCopiedId] = useState(null);
   const importInputRef = useRef(null);
 
   const refresh = useCallback(async () => {
@@ -98,6 +99,8 @@ export default function AdminApp() {
 
   const copyLink = (id) => {
     navigator.clipboard?.writeText(boardShareUrl(id)).catch(() => {});
+    setCopiedId(id);
+    setTimeout(() => setCopiedId((cur) => (cur === id ? null : cur)), 1200);
   };
 
   const handleImportFile = async (e) => {
@@ -183,7 +186,12 @@ export default function AdminApp() {
             </div>
             <div className="admin-board-actions">
               <button onClick={() => navigate(`/b/${b.id}`)}>Open</button>
-              <button onClick={() => copyLink(b.id)}>Copy link</button>
+              <button
+                className={`copy-link-btn${copiedId === b.id ? ' copied' : ''}`}
+                onClick={() => copyLink(b.id)}
+              >
+                {copiedId === b.id ? 'Copied!' : 'Copy link'}
+              </button>
               <button onClick={() => handleRename(b.id, b.name)}>Rename</button>
               <button onClick={() => handleDuplicate(b.id)}>Duplicate</button>
               <button onClick={() => setExpandedId(expandedId === b.id ? null : b.id)}>Activity</button>
