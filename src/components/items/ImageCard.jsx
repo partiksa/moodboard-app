@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { compressImage } from '../../utils/image';
+import { compressImage, pickClipboardImageFile } from '../../utils/image';
 
 const ACCEPTED = ['image/png', 'image/jpeg', 'image/gif', 'image/webp', 'image/svg+xml', 'image/bmp'];
 
@@ -41,7 +41,7 @@ export default function ImageCard({ item, dispatch }) {
         onDragOver={(e) => e.preventDefault()}
         onPaste={(e) => {
           e.stopPropagation(); // handled here for this placeholder; don't also trigger the board-wide paste handler
-          const file = [...e.clipboardData.items].find((it) => it.type.startsWith('image/'))?.getAsFile();
+          const file = pickClipboardImageFile(e.clipboardData.items);
           if (file) loadFile(file);
         }}
         onClick={() => inputRef.current?.click()}

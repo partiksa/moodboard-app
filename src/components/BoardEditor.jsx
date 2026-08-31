@@ -10,7 +10,7 @@ import { useBoard } from '../state/useBoard';
 import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts';
 import { makeItem } from '../state/boardModel';
 import { uid } from '../utils/id';
-import { compressImage } from '../utils/image';
+import { compressImage, pickClipboardImageFile, svgMarkupToDataUrl, parseSvgIntrinsicSize } from '../utils/image';
 import { normalizeHex } from '../utils/color';
 import './BoardEditor.css';
 import './items/items.css';
@@ -77,7 +77,7 @@ export default function BoardEditor({ board: initialBoard, sha, collaboratorName
       const active = document.activeElement;
       const isEditable = active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.isContentEditable);
       if (isEditable) return;
-      const file = [...(e.clipboardData?.items || [])].find((it) => it.type.startsWith('image/'))?.getAsFile();
+      const file = pickClipboardImageFile(e.clipboardData?.items);
       if (!file) {
         const text = e.clipboardData?.getData('text/plain')?.trim();
         const hex = text ? normalizeHex(text) : null;
@@ -90,6 +90,9 @@ export default function BoardEditor({ board: initialBoard, sha, collaboratorName
           const item = makeItem('color', { x, y, width, height, hex });
           dispatch({ type: 'ADD_ITEM', item });
           setSelectedIds([item.id]);
+        } else if (text && /^\s*(<\?xml[^>]*>\s*)?<svg[\s\S]*<\/svg>\s*$/i.test(text)) {
+          e.preventDefault();
+          addSvgItem(text);
         } else if (text && /^(https?:\/\/|www\.)\S+$/i.test(text)) {
           e.preventDefault();
           const url = /^https?:\/\//i.test(text) ? text : `https://${text}`;
@@ -104,6 +107,12 @@ export default function BoardEditor({ board: initialBoard, sha, collaboratorName
         return;
       }
       e.preventDefault();
+      if (file.type === 'image/svg+xml') {
+        const reader = new FileReader();
+        reader.onload = () => addSvgItem(reader.result);
+        reader.readAsText(file);
+        return;
+      }
       const reader = new FileReader();
       reader.onload = () => {
         compressImage(reader.result, file.type).then((compressed) => {
@@ -122,6 +131,29 @@ export default function BoardEditor({ board: initialBoard, sha, collaboratorName
         });
       };
       reader.readAsDataURL(file);
+    };
+
+    // Kept as raw SVG markup (not rasterized) so pasted vectors stay crisp at any zoom
+    // and keep their native transparency instead of a canvas-flattened black background.
+    const addSvgItem = (svgText) => {
+      const intrinsic = parseSvgIntrinsicSize(svgText);
+      const maxDim = 360;
+      const ratio = intrinsic ? intrinsic.width / intrinsic.height : 1.5;
+      const width = intrinsic ? Math.min(maxDim, intrinsic.width) : 240;
+      const height = Math.round(width / ratio) || 160;
+      const x = (viewportSize.width / 2 - viewport.panX) / viewport.zoom - width / 2;
+      const y = (viewportSize.height / 2 - viewport.panY) / viewport.zoom - height / 2;
+      const item = makeItem('image', {
+        x,
+        y,
+        width,
+        height,
+        src: svgMarkupToDataUrl(svgText),
+        naturalWidth: intrinsic?.width || 0,
+        naturalHeight: intrinsic?.height || 0,
+      });
+      dispatch({ type: 'ADD_ITEM', item });
+      setSelectedIds([item.id]);
     };
     window.addEventListener('paste', onPaste);
     return () => window.removeEventListener('paste', onPaste);
