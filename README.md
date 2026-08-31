@@ -89,10 +89,13 @@ Set as GitHub Actions secrets/variables (production) or in `.env.local` (local d
 
 ## Collaboration behavior
 
-- **Save states**: the toolbar shows *Saved*, *Saving…*, *Unsaved changes*, or *Sync failed* (click it
-  to retry). Edits are queued locally (IndexedDB) first, so closing the tab mid-save never loses work.
-- **Offline editing** keeps working; changes sync automatically once the connection is back, or via the
-  retry click.
+- **Saving is manual.** Nothing is pushed to GitHub until you click **Save** in the toolbar (or press
+  Ctrl/Cmd+S). The toolbar shows *Saved*, *Unsaved changes*, *Saving…*, or *Sync failed*. Edits are
+  still mirrored to IndexedDB in the background as you work (no network call), so closing the tab with
+  unsaved changes doesn't lose them — the browser also warns you before you navigate away with unsaved
+  changes.
+- **Offline editing** keeps working; click Save again once the connection is back, or it retries
+  automatically the moment the browser reports it's back online.
 - **Conflicts**: if the board changed on GitHub since it was last loaded here (someone else saved in
   the meantime), you're shown a dialog with two choices — *Reload remote version* or *Overwrite with my
   version*. Nothing is silently overwritten, and no real-time merge is attempted.

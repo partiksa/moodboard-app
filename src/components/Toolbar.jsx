@@ -16,6 +16,7 @@ import {
   GearSix,
   Export,
   UsersThree,
+  FloppyDisk,
 } from './icons.jsx';
 import './Toolbar.css';
 
@@ -53,7 +54,7 @@ export default function Toolbar({
   onZoomIn,
   onZoomOut,
   saveState,
-  onRetrySync,
+  onSave,
   collaboratorName,
   onChangeName,
   onToggleActivity,
@@ -72,12 +73,14 @@ export default function Toolbar({
       <div className="toolbar-group">
         <span className="board-title">{boardName}</span>
         <button
-          className={`save-indicator save-${saveState}`}
-          onClick={saveState === 'error' ? onRetrySync : undefined}
-          title={saveState === 'error' ? 'Click to retry syncing' : undefined}
+          className="tool-btn primary"
+          onClick={onSave}
+          disabled={saveState === 'saving' || saveState === 'saved' || saveState === 'conflict'}
+          title="Save (Ctrl/Cmd+S)"
         >
-          {SAVE_LABELS[saveState] || 'Saved'}
+          <FloppyDisk size={14} weight="bold" /> Save
         </button>
+        <span className={`save-indicator save-${saveState}`}>{SAVE_LABELS[saveState] || 'Saved'}</span>
       </div>
 
       <div className="toolbar-group">

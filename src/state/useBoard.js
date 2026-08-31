@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useReducer, useRef, useState } from 'react';
 import { boardReducer, HISTORY_ACTIONS } from './boardReducer';
-import { saveBoard as syncSaveBoard, ConflictError } from '../lib/boardSync';
+import { saveBoard as syncSaveBoard, cacheBoardLocally, ConflictError } from '../lib/boardSync';
 import { describeAction, pushActivity } from '../lib/activity';
 import { getDisplayName } from '../lib/displayName';
 
 const HISTORY_LIMIT = 60;
-const AUTOSAVE_DELAY = 1200;
+const LOCAL_CACHE_DELAY = 500;
 
 function reducerWithActivity(state, action) {
   if (action.type !== '__WRAPPED__') return boardReducer(state, action);
@@ -14,6 +14,9 @@ function reducerWithActivity(state, action) {
   return description ? pushActivity(next, { name: action.name, ...description }) : next;
 }
 
+// Saving is manual (a Save button / Ctrl+S), not automatic on every edit — the app only ever
+// writes to GitHub when the user asks it to. Edits are still cached to IndexedDB in the
+// background (no network call) so nothing is lost if the tab closes before a manual save.
 export function useBoard(initialBoard, initialSha) {
   const [board, rawDispatch] = useReducer(reducerWithActivity, initialBoard);
   const pastRef = useRef([]);
@@ -22,8 +25,8 @@ export function useBoard(initialBoard, initialSha) {
   const shaRef = useRef(initialSha);
   const prevBoardIdRef = useRef(initialBoard.id);
   const [, forceRender] = useState(0);
-  const saveTimer = useRef(null);
-  const [saveState, setSaveState] = useState('saved');
+  const cacheTimer = useRef(null);
+  const [saveState, setSaveState] = useState('saved'); // saved | unsaved | saving | error | conflict
   const [conflict, setConflict] = useState(null); // { remoteBoard, remoteSha }
 
   useEffect(() => {
@@ -93,33 +96,44 @@ export function useBoard(initialBoard, initialSha) {
     []
   );
 
-  // autosave, debounced
+  // Marks unsaved and mirrors to the local offline cache (no network) whenever the board changes.
   useEffect(() => {
     if (prevBoardIdRef.current !== board.id) {
       prevBoardIdRef.current = board.id;
       return;
     }
-    if (conflict) return; // don't save over an unresolved conflict
-    setSaveState('unsaved');
-    clearTimeout(saveTimer.current);
-    saveTimer.current = setTimeout(() => {
-      performSave({ ...board, updatedAt: new Date().toISOString() });
-    }, AUTOSAVE_DELAY);
-    return () => clearTimeout(saveTimer.current);
+    if (conflict) return; // don't touch anything while a conflict is unresolved
+    setSaveState((s) => (s === 'saving' ? s : 'unsaved'));
+    clearTimeout(cacheTimer.current);
+    cacheTimer.current = setTimeout(() => {
+      cacheBoardLocally(board.id, board, shaRef.current).catch(() => {});
+    }, LOCAL_CACHE_DELAY);
+    return () => clearTimeout(cacheTimer.current);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [board]);
 
-  const retrySync = useCallback(() => {
+  const saveNow = useCallback(() => {
     performSave({ ...board, updatedAt: new Date().toISOString() });
   }, [board, performSave]);
 
   useEffect(() => {
     const onOnline = () => {
-      if (saveState === 'error') retrySync();
+      if (saveState === 'error') saveNow();
     };
     window.addEventListener('online', onOnline);
     return () => window.removeEventListener('online', onOnline);
-  }, [saveState, retrySync]);
+  }, [saveState, saveNow]);
+
+  useEffect(() => {
+    const onBeforeUnload = (e) => {
+      if (saveState === 'unsaved' || saveState === 'error') {
+        e.preventDefault();
+        e.returnValue = '';
+      }
+    };
+    window.addEventListener('beforeunload', onBeforeUnload);
+    return () => window.removeEventListener('beforeunload', onBeforeUnload);
+  }, [saveState]);
 
   const resolveConflict = useCallback(
     (mode) => {
@@ -138,5 +152,5 @@ export function useBoard(initialBoard, initialSha) {
     [conflict, board, performSave]
   );
 
-  return { board, dispatch, undo, redo, canUndo, canRedo, saveState, conflict, resolveConflict, retrySync };
+  return { board, dispatch, undo, redo, canUndo, canRedo, saveState, conflict, resolveConflict, saveNow };
 }

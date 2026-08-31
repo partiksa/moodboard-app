@@ -38,4 +38,5 @@ export {
   DownloadSimple,
   Minus,
   UsersThree,
+  FloppyDisk,
 } from '@phosphor-icons/react';

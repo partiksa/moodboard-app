@@ -7,7 +7,10 @@ export function useKeyboardShortcuts(handlers) {
       const isEditable = tag === 'INPUT' || tag === 'TEXTAREA' || e.target.isContentEditable;
       const mod = e.metaKey || e.ctrlKey;
 
-      if (mod && e.key.toLowerCase() === 'z' && !e.shiftKey) {
+      if (mod && e.key.toLowerCase() === 's') {
+        e.preventDefault();
+        handlers.onSave?.();
+      } else if (mod && e.key.toLowerCase() === 'z' && !e.shiftKey) {
         e.preventDefault();
         handlers.onUndo?.();
       } else if ((mod && e.key.toLowerCase() === 'z' && e.shiftKey) || (mod && e.key.toLowerCase() === 'y')) {
