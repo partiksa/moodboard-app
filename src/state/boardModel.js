@@ -7,8 +7,6 @@ export const DEFAULT_TYPOGRAPHY = {
   privateNote: { fontFamily: 'Inter', fontSize: 13, color: '#8a6d00' },
 };
 
-export const DEFAULT_GRID = { columns: 4, gutter: 16, rowHeight: 150 };
-
 export function createEmptyBoard(name = 'Untitled board') {
   const now = new Date().toISOString();
   return {
@@ -22,7 +20,7 @@ export function createEmptyBoard(name = 'Untitled board') {
       background: { type: 'dotted-white' },
       gridSize: 24,
       gridColor: '#c9c9c9',
-      grid: { ...DEFAULT_GRID },
+      snapDistance: 8,
       typography: DEFAULT_TYPOGRAPHY,
     },
   };
@@ -32,9 +30,14 @@ export function createItemBase(type, overrides = {}) {
   return {
     id: uid('item'),
     type,
-    colSpan: 1,
-    rowSpan: 1,
+    x: 100,
+    y: 100,
+    width: 240,
+    height: 160,
+    rotation: 0,
+    zIndex: 1,
     locked: false,
+    parentId: null,
     privateNote: '',
     ...overrides,
   };
@@ -47,13 +50,13 @@ export const ITEM_DEFAULTS = {
     textColor: '#111111',
     backgroundColor: '#ffffff',
   }),
-  image: () => ({ src: '', alt: '', naturalWidth: 0, naturalHeight: 0, rowSpan: 2 }),
-  video: () => ({ src: '', name: '', rowSpan: 2 }),
+  image: () => ({ src: '', alt: '', naturalWidth: 0, naturalHeight: 0 }),
+  video: () => ({ src: '', name: '' }),
   attachment: () => ({ name: '', size: 0, fileType: '', dataUrl: '' }),
-  url: () => ({ url: '', title: '', description: '', image: '', fetchedAt: null, failed: false, rowSpan: 2 }),
+  url: () => ({ url: '', title: '', description: '', image: '', fetchedAt: null, failed: false }),
   color: () => ({ hex: '#4f8cff' }),
-  todo: () => ({ tasks: [], rowSpan: 2 }),
-  column: () => ({ label: 'Section', colSpan: 2 }),
+  todo: () => ({ tasks: [] }),
+  column: () => ({ label: 'Column', childIds: [] }),
 };
 
 export function makeItem(type, overrides = {}) {

@@ -1,24 +1,27 @@
 import { useState } from 'react';
 import { uid } from '../utils/id';
 import {
+  ArrowLineUp,
+  ArrowLineDown,
   LockSimple,
   LockSimpleOpen,
   CopySimple,
   UsersThree,
   NotePencil,
   TrashSimple,
-  Minus,
-  Plus,
 } from './icons.jsx';
 import './SelectionToolbar.css';
 
-export default function SelectionToolbar({ board, dispatch, selectedIds, setSelectedIds, grid, changeSpan }) {
+export default function SelectionToolbar({ board, dispatch, selectedIds, setSelectedIds }) {
   const [noteOpen, setNoteOpen] = useState(false);
   const items = board.items;
   const selectedItems = items.filter((i) => selectedIds.includes(i.id));
   const single = selectedItems.length === 1 ? selectedItems[0] : null;
   const anyLocked = selectedItems.some((i) => i.locked);
   const anyGrouped = selectedItems.some((i) => i.groupId);
+
+  const bringToFront = () => dispatch({ type: 'BRING_TO_FRONT', ids: selectedIds });
+  const sendToBack = () => dispatch({ type: 'SEND_TO_BACK', ids: selectedIds });
 
   const toggleLock = () => {
     const patches = {};
@@ -27,10 +30,16 @@ export default function SelectionToolbar({ board, dispatch, selectedIds, setSele
   };
 
   const duplicate = () => {
-    const clones = selectedItems.map((i) => ({ ...i, id: uid('item') }));
-    const lastIndex = Math.max(...selectedItems.map((i) => items.indexOf(i)));
-    const afterId = items[lastIndex]?.id;
-    dispatch({ type: 'DUPLICATE_ITEMS', items: clones, afterId });
+    const idMap = {};
+    const clones = selectedItems.map((i) => {
+      const newId = uid('item');
+      idMap[i.id] = newId;
+      return { ...i, id: newId, x: i.x + 24, y: i.y + 24 };
+    });
+    clones.forEach((c) => {
+      if (c.parentId && idMap[c.parentId]) c.parentId = idMap[c.parentId];
+    });
+    dispatch({ type: 'DUPLICATE_ITEMS', items: clones });
     setSelectedIds(clones.map((c) => c.id));
   };
 
@@ -55,32 +64,8 @@ export default function SelectionToolbar({ board, dispatch, selectedIds, setSele
 
   return (
     <div className="selection-toolbar">
-      {single && grid && (() => {
-        const colSpan = single.colSpan || 1;
-        const rowSpan = single.rowSpan || 1;
-        return (
-          <>
-            <div className="span-control" title="Columns wide">
-              <button onClick={() => changeSpan(single.id, { colSpan: colSpan - 1 })} disabled={colSpan <= 1}>
-                <Minus size={11} weight="bold" />
-              </button>
-              <span>{colSpan}w</span>
-              <button onClick={() => changeSpan(single.id, { colSpan: colSpan + 1 })} disabled={colSpan >= grid.columns}>
-                <Plus size={11} weight="bold" />
-              </button>
-            </div>
-            <div className="span-control" title="Rows tall">
-              <button onClick={() => changeSpan(single.id, { rowSpan: rowSpan - 1 })} disabled={rowSpan <= 1}>
-                <Minus size={11} weight="bold" />
-              </button>
-              <span>{rowSpan}h</span>
-              <button onClick={() => changeSpan(single.id, { rowSpan: rowSpan + 1 })} disabled={rowSpan >= 4}>
-                <Plus size={11} weight="bold" />
-              </button>
-            </div>
-          </>
-        );
-      })()}
+      <button onClick={bringToFront} title="Bring to front"><ArrowLineUp size={14} weight="bold" /></button>
+      <button onClick={sendToBack} title="Send to back"><ArrowLineDown size={14} weight="bold" /></button>
       <button onClick={toggleLock} title={anyLocked ? 'Unlock' : 'Lock'}>
         {anyLocked ? <LockSimpleOpen size={14} weight="bold" /> : <LockSimple size={14} weight="bold" />}
       </button>

@@ -11,6 +11,8 @@ import {
   ArrowCounterClockwise,
   ArrowClockwise,
   MagnifyingGlass,
+  Minus,
+  Plus,
   GearSix,
   Export,
   UsersThree,
@@ -34,7 +36,7 @@ const ITEM_BUTTONS = [
   { type: 'url', label: 'Link', Icon: LinkSimple },
   { type: 'color', label: 'Color', Icon: Palette },
   { type: 'todo', label: 'To-do', Icon: ListChecks },
-  { type: 'column', label: 'Section', Icon: Columns },
+  { type: 'column', label: 'Column', Icon: Columns },
 ];
 
 export default function Toolbar({
@@ -48,6 +50,9 @@ export default function Toolbar({
   onSearchChange,
   onOpenSettings,
   onOpenExport,
+  zoom,
+  onZoomIn,
+  onZoomOut,
   saveState,
   onSave,
   collaboratorName,
@@ -101,6 +106,15 @@ export default function Toolbar({
             value={search}
             onChange={(e) => onSearchChange(e.target.value)}
           />
+        </div>
+        <div className="zoom-controls">
+          <button onClick={onZoomOut} title="Zoom out (Ctrl+-)">
+            <Minus size={12} weight="bold" />
+          </button>
+          <span>{Math.round(zoom * 100)}%</span>
+          <button onClick={onZoomIn} title="Zoom in (Ctrl++)">
+            <Plus size={12} weight="bold" />
+          </button>
         </div>
         <button className="tool-btn" onClick={onOpenSettings}>
           <GearSix size={14} weight="bold" /> Settings

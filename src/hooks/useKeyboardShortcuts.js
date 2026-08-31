@@ -32,6 +32,18 @@ export function useKeyboardShortcuts(handlers) {
       } else if (mod && e.key.toLowerCase() === 'f') {
         e.preventDefault();
         handlers.onFocusSearch?.();
+      } else if (mod && (e.key === '=' || e.key === '+')) {
+        e.preventDefault();
+        handlers.onZoomIn?.();
+      } else if (mod && e.key === '-') {
+        e.preventDefault();
+        handlers.onZoomOut?.();
+      } else if (mod && e.key === '0') {
+        e.preventDefault();
+        handlers.onZoomReset?.();
+      } else if (!isEditable && ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+        e.preventDefault();
+        handlers.onNudge?.(e.key, e.shiftKey ? 10 : 1);
       } else if (!isEditable && e.key === 'Escape') {
         handlers.onEscape?.();
       }

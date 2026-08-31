@@ -4,7 +4,7 @@ import { sanitizeFileName } from '../db/storage';
 import { X } from './icons.jsx';
 import './ExportDialog.css';
 
-export default function ExportDialog({ board, gridRef, onClose }) {
+export default function ExportDialog({ board, canvasRef, worldRef, onClose }) {
   const [format, setFormat] = useState('png');
   const [resolution, setResolution] = useState(2);
   const [quality, setQuality] = useState(0.92);
@@ -17,7 +17,8 @@ export default function ExportDialog({ board, gridRef, onClose }) {
     setStatus('Rendering board…');
     try {
       const canvas = await renderBoardToCanvas({
-        gridNode: gridRef.current,
+        worldNode: worldRef.current,
+        viewportNode: canvasRef.current,
         board,
         pixelRatio: resolution,
         includeBackground,

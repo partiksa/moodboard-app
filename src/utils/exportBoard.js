@@ -1,22 +1,31 @@
 import { toCanvas } from 'html-to-image';
 import { jsPDF } from 'jspdf';
 
-// Renders the board's bento-grid node to an offscreen canvas at the given pixel ratio.
-export async function renderBoardToCanvas({ gridNode, board, pixelRatio, includeBackground, includePrivateNotes }) {
-  if (board.items.length === 0) throw new Error('This board has no items to export.');
+// Renders the board's world node to an offscreen canvas at the given pixel ratio,
+// temporarily reframing the viewport to the content bounds so the whole board is captured.
+export async function renderBoardToCanvas({ worldNode, viewportNode, board, pixelRatio, includeBackground, includePrivateNotes }) {
+  const items = board.items;
+  if (items.length === 0) throw new Error('This board has no items to export.');
 
-  const rect = gridNode.getBoundingClientRect();
-  const width = Math.ceil(rect.width);
-  const height = Math.ceil(gridNode.scrollHeight);
-  const prevBg = gridNode.style.background;
-  const prevBgImage = gridNode.style.backgroundImage;
-  if (!includeBackground) {
-    gridNode.style.background = 'transparent';
-    gridNode.style.backgroundImage = 'none';
-  }
+  const PADDING = 60;
+  const minX = Math.min(...items.map((i) => i.x)) - PADDING;
+  const minY = Math.min(...items.map((i) => i.y)) - PADDING;
+  const maxX = Math.max(...items.map((i) => i.x + i.width)) + PADDING;
+  const maxY = Math.max(...items.map((i) => i.y + i.height)) + PADDING;
+  const width = Math.ceil(maxX - minX);
+  const height = Math.ceil(maxY - minY);
+
+  const prevTransform = worldNode.style.transform;
+  const prevOverflow = viewportNode.style.overflow;
+  const prevBg = viewportNode.style.background;
+
+  worldNode.style.transform = `translate(${-minX}px, ${-minY}px) scale(1)`;
+  viewportNode.style.overflow = 'visible';
+  if (!includeBackground) viewportNode.style.background = 'transparent';
 
   const filter = (node) => {
     if (!includePrivateNotes && node.classList?.contains('private-note-badge')) return false;
+    if (node.classList?.contains('resize-handle') || node.classList?.contains('rotate-handle')) return false;
     if (node.classList?.contains('selection-toolbar')) return false;
     return true;
   };
@@ -24,7 +33,7 @@ export async function renderBoardToCanvas({ gridNode, board, pixelRatio, include
   try {
     // allow layout to settle before capture
     await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
-    const canvas = await toCanvas(gridNode, {
+    const canvas = await toCanvas(viewportNode, {
       width,
       height,
       pixelRatio,
@@ -33,8 +42,9 @@ export async function renderBoardToCanvas({ gridNode, board, pixelRatio, include
     });
     return canvas;
   } finally {
-    gridNode.style.background = prevBg;
-    gridNode.style.backgroundImage = prevBgImage;
+    worldNode.style.transform = prevTransform;
+    viewportNode.style.overflow = prevOverflow;
+    viewportNode.style.background = prevBg;
   }
 }
 
