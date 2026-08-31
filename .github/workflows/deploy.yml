@@ -3,6 +3,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - 'boards/**' # board data commits (written by the app itself) shouldn't trigger a redeploy
   workflow_dispatch:
 
 permissions:

@@ -75,8 +75,12 @@ export function useBoard(initialBoard, initialSha) {
   const canUndo = pastRef.current.length > 0;
   const canRedo = futureRef.current.length > 0;
 
+  const savingRef = useRef(false);
+
   const performSave = useCallback(
     async (boardToSave, { force = false } = {}) => {
+      if (savingRef.current) return; // a save is already in flight; ignore duplicate triggers
+      savingRef.current = true;
       setSaveState('saving');
       try {
         const { sha } = await syncSaveBoard(boardToSave.id, boardToSave, shaRef.current, { force });
@@ -91,6 +95,8 @@ export function useBoard(initialBoard, initialSha) {
           console.error('Board sync failed', err);
           setSaveState('error');
         }
+      } finally {
+        savingRef.current = false;
       }
     },
     []
