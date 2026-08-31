@@ -55,7 +55,8 @@ export const ITEM_DEFAULTS = {
   attachment: () => ({ name: '', size: 0, fileType: '', dataUrl: '' }),
   url: () => ({ url: '', title: '', description: '', image: '', fetchedAt: null, failed: false }),
   color: () => ({ hex: '#4f8cff' }),
-  todo: () => ({ tasks: [] }),
+  // starts with one empty row so the card is immediately typeable (Enter adds the next)
+  todo: () => ({ tasks: [{ id: uid('task'), text: '', done: false }] }),
   column: () => ({ label: 'Column', childIds: [] }),
 };
 

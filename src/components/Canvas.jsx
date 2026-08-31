@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import ItemRenderer from './items/ItemRenderer.jsx';
 import SelectionToolbar from './SelectionToolbar.jsx';
-import { computeSnap, rectsIntersect } from '../utils/geometry';
+import { computeSmartGuides, guidesForRect, snapResizeRect, rectsIntersect } from '../utils/geometry';
 import { layoutColumn } from '../utils/columnLayout';
 import './Canvas.css';
 
@@ -21,7 +21,8 @@ export default function Canvas({
 }) {
   const containerRef = canvasRef;
   const dragState = useRef(null);
-  const [guides, setGuides] = useState({ x: null, y: null });
+  const [guides, setGuides] = useState([]);
+  const [sizeBadge, setSizeBadge] = useState(null);
   const [marquee, setMarquee] = useState(null);
   const [dropTargetId, setDropTargetId] = useState(null);
   const isPanningRef = useRef(false);
@@ -169,10 +170,10 @@ export default function Canvas({
           height: primary.height,
         };
         const others = items.filter((i) => !draggingIds.has(i.id));
-        const snap = computeSnap(movedRect, others, board.settings.gridSize, board.settings.snapDistance);
+        const snap = computeSmartGuides(movedRect, others, board.settings.gridSize, board.settings.snapDistance);
         dx += snap.dx;
         dy += snap.dy;
-        setGuides({ x: snap.guideX, y: snap.guideY });
+        setGuides(snap.guides);
       }
 
       const patches = {};
@@ -196,7 +197,7 @@ export default function Canvas({
     const onUp = () => {
       window.removeEventListener('mousemove', onMove);
       window.removeEventListener('mouseup', onUp);
-      setGuides({ x: null, y: null });
+      setGuides([]);
       setDropTargetId(null);
       if (dragState.current?.moved) {
         const patches = { ...dragState.current.lastPatches };
@@ -244,16 +245,25 @@ export default function Canvas({
         ? item.naturalWidth / item.naturalHeight
         : null;
     let lastPatch = orig;
+    const others = items.filter((i) => i.id !== item.id && i.parentId !== item.id);
     const onMove = (ev) => {
       const current = screenToCanvas(ev.clientX, ev.clientY);
       const dx = current.x - start.x;
       const dy = current.y - start.y;
-      lastPatch = applyResize(orig, handle, dx, dy, aspectRatio);
-      dispatch({ type: 'UPDATE_ITEMS', patches: { [item.id]: lastPatch } });
+      let rect = applyResize(orig, handle, dx, dy, aspectRatio);
+      // free-ratio items snap their dragged edges to neighbours; ratio-locked images would
+      // fight the snap (it would break the aspect), so they are left alone
+      if (!aspectRatio) rect = snapResizeRect(rect, handle, others, board.settings.snapDistance);
+      lastPatch = rect;
+      setGuides(guidesForRect(rect, others));
+      setSizeBadge(rect);
+      dispatch({ type: 'UPDATE_ITEMS', patches: { [item.id]: rect } });
     };
     const onUp = () => {
       window.removeEventListener('mousemove', onMove);
       window.removeEventListener('mouseup', onUp);
+      setGuides([]);
+      setSizeBadge(null);
       const patches = { [item.id]: lastPatch };
       const columnId = item.type === 'column' ? item.id : item.parentId;
       if (columnId) {
@@ -276,7 +286,9 @@ export default function Canvas({
     const onMove = (ev) => {
       const current = screenToCanvas(ev.clientX, ev.clientY);
       const angle = (Math.atan2(current.y - cy, current.x - cx) * 180) / Math.PI + 90;
-      lastRotation = Math.round(angle);
+      // ease onto the common 15° stops without locking free rotation out
+      const stop = Math.round(angle / 15) * 15;
+      lastRotation = Math.round(Math.abs(angle - stop) < 4 ? stop : angle);
       dispatch({ type: 'UPDATE_ITEMS', patches: { [item.id]: { rotation: lastRotation } } });
     };
     const onUp = () => {
@@ -301,7 +313,11 @@ export default function Canvas({
       <div
         ref={worldRef}
         className="canvas-world"
-        style={{ transform: `translate(${viewport.panX}px, ${viewport.panY}px) scale(${viewport.zoom})` }}
+        style={{
+          transform: `translate(${viewport.panX}px, ${viewport.panY}px) scale(${viewport.zoom})`,
+          // handles, guides and badges divide by this so they keep a constant on-screen size
+          '--inv-zoom': 1 / viewport.zoom,
+        }}
       >
         {items
           .slice()
@@ -325,8 +341,27 @@ export default function Canvas({
             />
           ))}
 
-        {guides.x !== null && <div className="snap-guide vertical" style={{ left: guides.x }} />}
-        {guides.y !== null && <div className="snap-guide horizontal" style={{ top: guides.y }} />}
+        {guides.map((g) =>
+          g.axis === 'x' ? (
+            <div
+              key={`x${g.pos}`}
+              className="smart-guide vertical"
+              style={{ left: g.pos, top: g.start - 16, height: g.end - g.start + 32 }}
+            />
+          ) : (
+            <div
+              key={`y${g.pos}`}
+              className="smart-guide horizontal"
+              style={{ top: g.pos, left: g.start - 16, width: g.end - g.start + 32 }}
+            />
+          )
+        )}
+
+        {sizeBadge && (
+          <div className="size-badge" style={{ left: sizeBadge.x, top: sizeBadge.y + sizeBadge.height }}>
+            {Math.round(sizeBadge.width)} × {Math.round(sizeBadge.height)}
+          </div>
+        )}
 
         {marquee && (
           <div

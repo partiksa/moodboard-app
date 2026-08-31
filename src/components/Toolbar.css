@@ -22,26 +22,32 @@
   margin-right: 8px;
 }
 
-.save-indicator {
-  font-size: 11px;
-  color: var(--text-muted);
-  background: none;
-  border: none;
-  cursor: default;
-  padding: 2px 6px;
-  border-radius: 999px;
+.save-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #cfcfcb;
+  flex-shrink: 0;
 }
 
-.save-unsaved {
-  color: #956400;
-  background: #fbf3db;
+.save-dot.save-saving {
+  background: var(--accent);
 }
 
-.save-error,
-.save-conflict {
-  color: var(--danger);
-  background: var(--danger-bg);
-  cursor: pointer;
+.save-dot.save-unsaved {
+  background: #d9a300;
+}
+
+.save-dot.save-error,
+.save-dot.save-conflict {
+  background: var(--danger);
+}
+
+.item-buttons {
+  gap: 2px;
+  padding: 0 4px;
+  border-left: 1px solid var(--panel-border);
+  border-right: 1px solid var(--panel-border);
 }
 
 .collaborator-chip {

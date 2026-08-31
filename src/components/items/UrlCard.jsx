@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { compressImage } from '../../utils/image';
+import { Image } from '../icons.jsx';
 
 async function fetchMetadata(url) {
   const res = await fetch(url, { mode: 'cors' });
@@ -77,46 +78,37 @@ export default function UrlCard({ item, dispatch }) {
   const hostname = safeHostname(item.url);
 
   return (
-    <a
-      className="url-card"
-      href={item.url}
-      target="_blank"
-      rel="noreferrer"
+    <div
+      className={`url-card${item.image ? '' : ' no-preview'}`}
+      title={`${item.url}\nDouble-click to open`}
+      // opening only on double-click, so a single click can select or drag the card
+      // without navigating away by accident
+      onDoubleClick={() => window.open(item.url, '_blank', 'noopener,noreferrer')}
     >
       {loading && <div className="url-loading">Fetching preview…</div>}
-      {!loading && item.image && <img className="url-card-image" src={item.image} alt="" />}
+      {item.image && <img className="url-card-image" src={item.image} alt="" />}
       <div className="url-card-body">
         <div className="url-card-title">{item.title || hostname}</div>
         {item.description && <div className="url-card-desc">{item.description}</div>}
         <div className="url-card-host">{hostname}</div>
-        {!loading && !item.image && (
-          <>
-            <div className="url-card-fallback-note">No preview found for this link.</div>
-            <button
-              className="url-card-add-preview"
-              onMouseDown={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-              }}
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                fileInputRef.current?.click();
-              }}
-            >
-              Add preview image
-            </button>
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="image/*"
-              hidden
-              onChange={onPickPreviewImage}
-            />
-          </>
-        )}
       </div>
-    </a>
+      {!loading && !item.image && (
+        <>
+          <button
+            className="url-card-add-preview"
+            title="Add a preview image"
+            onMouseDown={(e) => e.stopPropagation()}
+            onClick={(e) => {
+              e.stopPropagation();
+              fileInputRef.current?.click();
+            }}
+          >
+            <Image size={12} weight="bold" />
+          </button>
+          <input ref={fileInputRef} type="file" accept="image/*" hidden onChange={onPickPreviewImage} />
+        </>
+      )}
+    </div>
   );
 }
 

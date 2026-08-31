@@ -72,21 +72,25 @@ export default function Toolbar({
     <div className="toolbar">
       <div className="toolbar-group">
         <span className="board-title">{boardName}</span>
-        <button
-          className="tool-btn primary"
-          onClick={onSave}
-          disabled={saveState === 'saving' || saveState === 'saved' || saveState === 'conflict'}
-          title="Save (Ctrl/Cmd+S)"
-        >
-          <FloppyDisk size={14} weight="bold" /> Save
-        </button>
-        <span className={`save-indicator save-${saveState}`}>{SAVE_LABELS[saveState] || 'Saved'}</span>
+        {/* the board autosaves, so the state is a quiet dot; the button only appears when
+            there is actually something to push */}
+        <span className={`save-dot save-${saveState}`} title={SAVE_LABELS[saveState] || 'Saved'} />
+        {saveState !== 'saved' && saveState !== 'saving' && (
+          <button className="tool-btn icon-only" onClick={onSave} title="Save now (Ctrl/Cmd+S)">
+            <FloppyDisk size={14} weight="bold" />
+          </button>
+        )}
       </div>
 
-      <div className="toolbar-group">
+      <div className="toolbar-group item-buttons">
         {ITEM_BUTTONS.map(({ type, label, Icon }) => (
-          <button key={type} className="tool-btn" onClick={() => onAddItem(type)}>
-            <Icon size={14} weight="bold" /> {label}
+          <button
+            key={type}
+            className="tool-btn icon-only"
+            onClick={() => onAddItem(type)}
+            title={`Add ${label.toLowerCase()}`}
+          >
+            <Icon size={16} weight="bold" />
           </button>
         ))}
       </div>
@@ -116,8 +120,8 @@ export default function Toolbar({
             <Plus size={12} weight="bold" />
           </button>
         </div>
-        <button className="tool-btn" onClick={onOpenSettings}>
-          <GearSix size={14} weight="bold" /> Settings
+        <button className="tool-btn icon-only" onClick={onOpenSettings} title="Board settings">
+          <GearSix size={16} weight="bold" />
         </button>
         <button className="tool-btn primary" onClick={onOpenExport}>
           <Export size={14} weight="bold" /> Export
@@ -125,8 +129,8 @@ export default function Toolbar({
       </div>
 
       <div className="toolbar-group">
-        <button className="tool-btn" onClick={onToggleActivity} title="Activity history">
-          <UsersThree size={14} weight="bold" /> Activity
+        <button className="tool-btn icon-only" onClick={onToggleActivity} title="Activity history">
+          <UsersThree size={16} weight="bold" />
         </button>
         {editingName ? (
           <input

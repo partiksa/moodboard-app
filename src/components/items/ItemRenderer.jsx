@@ -64,7 +64,7 @@ export default function ItemRenderer({
           {['nw', 'n', 'ne', 'e', 'se', 's', 'sw', 'w'].map((handle) => (
             <div
               key={handle}
-              className={`resize-handle ${handle}`}
+              className={`resize-handle ${handle} ${handle.length === 2 ? 'corner' : 'edge'}`}
               onMouseDown={(e) => onResizeStart(e, item, handle)}
             />
           ))}

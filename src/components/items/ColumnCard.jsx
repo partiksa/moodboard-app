@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { makeItem } from '../../state/boardModel';
+import { COLUMN_PADDING, nextChildY } from '../../utils/columnLayout';
 import { Plus, TextAa, Image, VideoCamera, File, LinkSimple, Palette, ListChecks } from '../icons.jsx';
+
+const DEFAULT_CHILD_HEIGHT = { color: 120, url: 96, attachment: 64, todo: 140, text: 110 };
 
 const ADD_OPTIONS = [
   { type: 'text', label: 'Text', Icon: TextAa },
@@ -19,10 +22,10 @@ export default function ColumnCard({ item, board, dispatch }) {
 
   const addChild = (type) => {
     const child = makeItem(type, {
-      x: item.x + 12,
-      y: item.y + 56,
-      width: item.width - 24,
-      height: 120,
+      x: item.x + COLUMN_PADDING,
+      y: nextChildY(board.items, item), // appended below the current children, not on top of them
+      width: item.width - COLUMN_PADDING * 2,
+      height: DEFAULT_CHILD_HEIGHT[type] || 120,
       parentId: item.id,
     });
     dispatch({ type: 'ADD_ITEM', item: child });
@@ -63,7 +66,7 @@ export default function ColumnCard({ item, board, dispatch }) {
           )}
         </div>
       </div>
-      {!hasChildren && <div className="column-drop-hint">Drop items here, or use + to add one</div>}
+      {!hasChildren && <div className="column-drop-hint">Drop items here</div>}
     </div>
   );
 }

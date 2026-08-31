@@ -132,6 +132,14 @@
   height: 100%;
   object-fit: contain;
   display: block;
+}
+
+/* transparent PNGs and SVGs keep their transparency instead of sitting on a black plate */
+.image-card-img {
+  background: transparent;
+}
+
+.video-card-el {
   background: #111;
 }
 
@@ -145,11 +153,18 @@
 }
 
 .url-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 100%;
   text-decoration: none;
   color: var(--text);
+  cursor: pointer;
+}
+
+/* no metadata available: no empty preview slot, just a compact link chip */
+.url-card.no-preview {
+  justify-content: center;
 }
 
 .url-card-image {
@@ -188,25 +203,32 @@
   margin-top: 4px;
 }
 
-.url-card-fallback-note {
-  font-size: 10px;
+.url-card-add-preview {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--panel-border);
+  background: var(--panel);
   color: var(--text-muted);
-  margin-top: 4px;
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 120ms;
 }
 
-.url-card-add-preview {
-  margin-top: 4px;
-  border: 1px solid var(--panel-border);
-  background: var(--bg);
-  color: var(--text);
-  border-radius: 6px;
-  padding: 3px 7px;
-  font-size: 10px;
-  cursor: pointer;
+.url-card:hover .url-card-add-preview,
+.url-card-add-preview:focus-visible {
+  opacity: 1;
 }
 
 .url-card-add-preview:hover {
   background: var(--accent-soft);
+  color: var(--text);
 }
 
 .url-loading {
@@ -343,7 +365,7 @@
   outline: none;
 }
 
-.todo-row button {
+.todo-remove {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -352,6 +374,13 @@
   color: var(--text-muted);
   cursor: pointer;
   padding: 2px;
+  opacity: 0;
+  transition: opacity 120ms;
+}
+
+.todo-row:hover .todo-remove,
+.todo-remove:focus-visible {
+  opacity: 1;
 }
 
 .todo-add {

@@ -1,5 +1,11 @@
 import { useRef, useState } from 'react';
-import { compressImage, pickClipboardImageFile } from '../../utils/image';
+import {
+  compressImage,
+  pickClipboardImageFile,
+  readClipboardSvg,
+  svgMarkupToDataUrl,
+  parseSvgIntrinsicSize,
+} from '../../utils/image';
 
 const ACCEPTED = ['image/png', 'image/jpeg', 'image/gif', 'image/webp', 'image/svg+xml', 'image/bmp'];
 
@@ -41,6 +47,16 @@ export default function ImageCard({ item, dispatch }) {
         onDragOver={(e) => e.preventDefault()}
         onPaste={(e) => {
           e.stopPropagation(); // handled here for this placeholder; don't also trigger the board-wide paste handler
+          const svg = readClipboardSvg(e.clipboardData);
+          if (svg) {
+            const size = parseSvgIntrinsicSize(svg);
+            update({
+              src: svgMarkupToDataUrl(svg),
+              naturalWidth: size?.width || 0,
+              naturalHeight: size?.height || 0,
+            });
+            return;
+          }
           const file = pickClipboardImageFile(e.clipboardData.items);
           if (file) loadFile(file);
         }}

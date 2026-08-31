@@ -10,7 +10,13 @@ import { useBoard } from '../state/useBoard';
 import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts';
 import { makeItem } from '../state/boardModel';
 import { uid } from '../utils/id';
-import { compressImage, pickClipboardImageFile, svgMarkupToDataUrl, parseSvgIntrinsicSize } from '../utils/image';
+import {
+  compressImage,
+  pickClipboardImageFile,
+  readClipboardSvg,
+  svgMarkupToDataUrl,
+  parseSvgIntrinsicSize,
+} from '../utils/image';
 import { normalizeHex } from '../utils/color';
 import './BoardEditor.css';
 import './items/items.css';
@@ -77,6 +83,14 @@ export default function BoardEditor({ board: initialBoard, sha, collaboratorName
       const active = document.activeElement;
       const isEditable = active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.isContentEditable);
       if (isEditable) return;
+      // checked before any file: design tools put SVG markup on the clipboard *alongside* a
+      // rasterized PNG fallback, and taking the PNG is what used to flatten pasted vectors
+      const clipboardSvg = readClipboardSvg(e.clipboardData);
+      if (clipboardSvg) {
+        e.preventDefault();
+        addSvgItem(clipboardSvg);
+        return;
+      }
       const file = pickClipboardImageFile(e.clipboardData?.items);
       if (!file) {
         const text = e.clipboardData?.getData('text/plain')?.trim();
@@ -90,9 +104,6 @@ export default function BoardEditor({ board: initialBoard, sha, collaboratorName
           const item = makeItem('color', { x, y, width, height, hex });
           dispatch({ type: 'ADD_ITEM', item });
           setSelectedIds([item.id]);
-        } else if (text && /^\s*(<\?xml[^>]*>\s*)?<svg[\s\S]*<\/svg>\s*$/i.test(text)) {
-          e.preventDefault();
-          addSvgItem(text);
         } else if (text && /^(https?:\/\/|www\.)\S+$/i.test(text)) {
           e.preventDefault();
           const url = /^https?:\/\//i.test(text) ? text : `https://${text}`;
