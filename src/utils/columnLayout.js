@@ -1,5 +1,5 @@
 export const COLUMN_PADDING = 12;
-export const COLUMN_LABEL_HEIGHT = 34;
+export const COLUMN_LABEL_HEIGHT = 56;
 export const COLUMN_GAP = 10;
 
 // Stacks a column's children vertically inside it, fitting them to its inner width

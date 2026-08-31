@@ -20,7 +20,7 @@ export default function ColumnCard({ item, board, dispatch }) {
   const addChild = (type) => {
     const child = makeItem(type, {
       x: item.x + 12,
-      y: item.y + 34,
+      y: item.y + 56,
       width: item.width - 24,
       height: 120,
       parentId: item.id,
