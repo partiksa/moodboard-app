@@ -2,7 +2,7 @@
   "id": "b_mthc5299_nme1qma",
   "name": "energyinHim",
   "createdAt": "2026-08-31T14:30:14.445Z",
-  "updatedAt": "2026-08-31T15:07:28.819Z",
+  "updatedAt": "2026-08-31T15:40:25.711Z",
   "items": [
     {
       "id": "item_mthc5ob3_t7dqtjg",
@@ -143,8 +143,8 @@
     {
       "id": "item_mthcrpy3_xrxohrp",
       "type": "image",
-      "x": -120,
-      "y": 149.66213187532918,
+      "x": -99.93843956017304,
+      "y": 197.66213187532918,
       "width": 247.87687912034608,
       "height": 372.67573624934164,
       "rotation": 0,
@@ -160,8 +160,8 @@
     {
       "id": "item_mthcsavc_heqser8",
       "type": "image",
-      "x": 312,
-      "y": 225.40815695466995,
+      "x": 168,
+      "y": 224.8618461575781,
       "width": 240,
       "height": 270.2763076848438,
       "rotation": 0,
@@ -196,8 +196,8 @@
       "type": "image",
       "x": 168,
       "y": 516.5547582528208,
-      "width": 259.69219780086496,
-      "height": 323.44524174717924,
+      "width": 250.53176842171038,
+      "height": 312.0359760082039,
       "rotation": 0,
       "zIndex": 12,
       "locked": false,
@@ -211,8 +211,8 @@
     {
       "id": "item_mthct57j_gi5hk60",
       "type": "image",
-      "x": 177.84609890043248,
-      "y": 877.415890116021,
+      "x": 168,
+      "y": 853.4158901160213,
       "width": 240,
       "height": 250.58410988397884,
       "rotation": 0,
@@ -1598,6 +1598,51 @@
     {
       "id": "act_mthdgpp1_v447l",
       "ts": "2026-08-31T15:07:17.653Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "image",
+      "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mthemnuz_1vwef",
+      "ts": "2026-08-31T15:39:54.827Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "image",
+      "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mthemp05_56dm9",
+      "ts": "2026-08-31T15:39:56.309Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "image",
+      "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mthemqjc_ac1a0",
+      "ts": "2026-08-31T15:39:58.296Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "image",
+      "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mthemso3_6iwi1",
+      "ts": "2026-08-31T15:40:01.059Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "image",
+      "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mthemx9x_jl5t9",
+      "ts": "2026-08-31T15:40:07.029Z",
       "name": "patko",
       "verb": "moved",
       "itemType": "image",
