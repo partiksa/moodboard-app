@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { compressImage } from '../../utils/image';
 
 const ACCEPTED = ['image/png', 'image/jpeg', 'image/gif', 'image/webp', 'image/svg+xml', 'image/bmp'];
 
@@ -18,9 +19,9 @@ export default function ImageCard({ item, dispatch }) {
     const reader = new FileReader();
     reader.onload = () => {
       if (file.type.startsWith('image/') && file.type !== 'image/svg+xml') {
-        const probe = new Image();
-        probe.onload = () => update({ src: reader.result, naturalWidth: probe.width, naturalHeight: probe.height });
-        probe.src = reader.result;
+        compressImage(reader.result, file.type)
+          .then((compressed) => update({ src: compressed.dataUrl, naturalWidth: compressed.width, naturalHeight: compressed.height }))
+          .catch(() => setError('Could not process this image.'));
       } else {
         update({ src: reader.result });
       }

@@ -10,6 +10,7 @@ import { useBoard } from '../state/useBoard';
 import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts';
 import { makeItem } from '../state/boardModel';
 import { uid } from '../utils/id';
+import { compressImage } from '../utils/image';
 import './BoardEditor.css';
 import './items/items.css';
 
@@ -80,27 +81,20 @@ export default function BoardEditor({ board: initialBoard, sha, collaboratorName
       e.preventDefault();
       const reader = new FileReader();
       reader.onload = () => {
-        const probe = new Image();
-        probe.onload = () => {
+        compressImage(reader.result, file.type).then((compressed) => {
+          const src = compressed ? compressed.dataUrl : reader.result;
+          const naturalWidth = compressed ? compressed.width : 0;
+          const naturalHeight = compressed ? compressed.height : 0;
           const maxDim = 360;
-          const scale = Math.min(1, maxDim / Math.max(probe.width, probe.height));
-          const width = Math.round(probe.width * scale);
-          const height = Math.round(probe.height * scale);
+          const scale = naturalWidth ? Math.min(1, maxDim / Math.max(naturalWidth, naturalHeight)) : 1;
+          const width = Math.round((naturalWidth || 240) * scale) || 240;
+          const height = Math.round((naturalHeight || 160) * scale) || 160;
           const x = (viewportSize.width / 2 - viewport.panX) / viewport.zoom - width / 2;
           const y = (viewportSize.height / 2 - viewport.panY) / viewport.zoom - height / 2;
-          const item = makeItem('image', {
-            x,
-            y,
-            width,
-            height,
-            src: reader.result,
-            naturalWidth: probe.width,
-            naturalHeight: probe.height,
-          });
+          const item = makeItem('image', { x, y, width, height, src, naturalWidth, naturalHeight });
           dispatch({ type: 'ADD_ITEM', item });
           setSelectedIds([item.id]);
-        };
-        probe.src = reader.result;
+        });
       };
       reader.readAsDataURL(file);
     };
