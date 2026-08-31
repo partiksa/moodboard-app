@@ -27,6 +27,36 @@ export default function TextCard({ item, board, dispatch }) {
     if (url) exec('createLink', url);
   };
 
+  const URL_RE = /(https?:\/\/[^\s<]+|www\.[^\s<]+\.[^\s<]+)/gi;
+
+  const linkifyHtml = (text) =>
+    text
+      .split('\n')
+      .map((line) =>
+        line.replace(URL_RE, (match) => {
+          const href = /^https?:\/\//i.test(match) ? match : `https://${match}`;
+          return `<a href="${href}" target="_blank" rel="noreferrer">${match}</a>`;
+        })
+      )
+      .join('<br>');
+
+  const onPaste = (e) => {
+    const text = e.clipboardData?.getData('text/plain');
+    if (!text || !URL_RE.test(text)) return;
+    URL_RE.lastIndex = 0;
+    e.preventDefault();
+    document.execCommand('insertHTML', false, linkifyHtml(text));
+    update({ body: bodyRef.current.innerHTML });
+  };
+
+  const openLinkIfClicked = (e) => {
+    const link = e.target.closest('a');
+    if (link && bodyRef.current?.contains(link)) {
+      e.preventDefault();
+      window.open(link.href, '_blank', 'noopener,noreferrer');
+    }
+  };
+
   const wrapperVars = {
     '--tc-heading-font': typography.heading.fontFamily,
     '--tc-heading-size': `${typography.heading.fontSize}px`,
@@ -93,6 +123,8 @@ export default function TextCard({ item, board, dispatch }) {
           setToolbarOpen(false);
           update({ body: bodyRef.current.innerHTML });
         }}
+        onPaste={onPaste}
+        onClick={openLinkIfClicked}
         dangerouslySetInnerHTML={{ __html: item.body }}
       />
     </div>

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { compressImage } from '../../utils/image';
 
 async function fetchMetadata(url) {
   const res = await fetch(url, { mode: 'cors' });
@@ -16,6 +17,7 @@ async function fetchMetadata(url) {
 
 export default function UrlCard({ item, dispatch }) {
   const [loading, setLoading] = useState(false);
+  const fileInputRef = useRef(null);
   const update = (patch) => dispatch({ type: 'UPDATE_ITEM', id: item.id, patch });
 
   const submitUrl = async (raw) => {
@@ -31,6 +33,32 @@ export default function UrlCard({ item, dispatch }) {
     } finally {
       setLoading(false);
     }
+  };
+
+  // A url can arrive already set (e.g. pasted straight onto the board) without ever going
+  // through submitUrl, so fetch its preview metadata once as soon as it shows up.
+  useEffect(() => {
+    if (item.url && !item.fetchedAt) {
+      setLoading(true);
+      fetchMetadata(item.url)
+        .then((meta) => update({ ...meta, fetchedAt: new Date().toISOString(), failed: false }))
+        .catch(() => update({ fetchedAt: new Date().toISOString(), failed: true }))
+        .finally(() => setLoading(false));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [item.url]);
+
+  const onPickPreviewImage = (e) => {
+    const file = e.target.files?.[0];
+    e.target.value = '';
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      compressImage(reader.result, file.type).then((compressed) => {
+        update({ image: compressed ? compressed.dataUrl : reader.result });
+      });
+    };
+    reader.readAsDataURL(file);
   };
 
   if (!item.url) {
@@ -56,14 +84,37 @@ export default function UrlCard({ item, dispatch }) {
       rel="noreferrer"
     >
       {loading && <div className="url-loading">Fetching preview…</div>}
-      {!loading && !item.failed && item.image && (
-        <img className="url-card-image" src={item.image} alt="" />
-      )}
+      {!loading && item.image && <img className="url-card-image" src={item.image} alt="" />}
       <div className="url-card-body">
         <div className="url-card-title">{item.title || hostname}</div>
         {item.description && <div className="url-card-desc">{item.description}</div>}
         <div className="url-card-host">{hostname}</div>
-        {item.failed && <div className="url-card-fallback-note">Preview unavailable — showing basic link.</div>}
+        {!loading && !item.image && (
+          <>
+            <div className="url-card-fallback-note">No preview found for this link.</div>
+            <button
+              className="url-card-add-preview"
+              onMouseDown={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+              }}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                fileInputRef.current?.click();
+              }}
+            >
+              Add preview image
+            </button>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              hidden
+              onChange={onPickPreviewImage}
+            />
+          </>
+        )}
       </div>
     </a>
   );

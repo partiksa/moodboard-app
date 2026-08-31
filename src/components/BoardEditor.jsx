@@ -77,7 +77,21 @@ export default function BoardEditor({ board: initialBoard, sha, collaboratorName
       const isEditable = active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.isContentEditable);
       if (isEditable) return;
       const file = [...(e.clipboardData?.items || [])].find((it) => it.type.startsWith('image/'))?.getAsFile();
-      if (!file) return;
+      if (!file) {
+        const text = e.clipboardData?.getData('text/plain')?.trim();
+        if (text && /^(https?:\/\/|www\.)\S+$/i.test(text)) {
+          e.preventDefault();
+          const url = /^https?:\/\//i.test(text) ? text : `https://${text}`;
+          const width = 240;
+          const height = 160;
+          const x = (viewportSize.width / 2 - viewport.panX) / viewport.zoom - width / 2;
+          const y = (viewportSize.height / 2 - viewport.panY) / viewport.zoom - height / 2;
+          const item = makeItem('url', { x, y, width, height, url });
+          dispatch({ type: 'ADD_ITEM', item });
+          setSelectedIds([item.id]);
+        }
+        return;
+      }
       e.preventDefault();
       const reader = new FileReader();
       reader.onload = () => {

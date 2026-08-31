@@ -190,8 +190,23 @@
 
 .url-card-fallback-note {
   font-size: 10px;
-  color: var(--danger);
+  color: var(--text-muted);
   margin-top: 4px;
+}
+
+.url-card-add-preview {
+  margin-top: 4px;
+  border: 1px solid var(--panel-border);
+  background: var(--bg);
+  color: var(--text);
+  border-radius: 6px;
+  padding: 3px 7px;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.url-card-add-preview:hover {
+  background: var(--accent-soft);
 }
 
 .url-loading {
@@ -327,17 +342,89 @@
 
 .column-card {
   height: 100%;
-  border: 2px dashed var(--panel-border);
+  border: 2px solid var(--panel-border);
+  border-radius: var(--radius);
   background: rgba(0, 0, 0, 0.02);
   display: flex;
   flex-direction: column;
   padding: 8px;
 }
 
+.column-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
 .column-label {
   font-weight: 600;
   outline: none;
-  margin-bottom: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.column-add-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.column-add-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 5px;
+  background: var(--panel);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.column-add-btn:hover {
+  background: var(--accent-soft);
+}
+
+.column-add-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9;
+}
+
+.column-add-menu {
+  position: absolute;
+  top: 24px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  padding: 4px;
+  box-shadow: var(--shadow-hover);
+  z-index: 10;
+  min-width: 110px;
+}
+
+.column-add-menu button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  background: none;
+  color: var(--text);
+  padding: 5px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.column-add-menu button:hover {
+  background: var(--accent-soft);
 }
 
 .column-drop-hint {

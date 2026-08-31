@@ -1,3 +1,11 @@
+import { layoutColumn } from '../utils/columnLayout';
+
+function relayoutColumn(items, columnId) {
+  if (!items.some((i) => i.id === columnId)) return items;
+  const patches = layoutColumn(items, columnId);
+  return items.map((i) => (patches[i.id] ? { ...i, ...patches[i.id] } : i));
+}
+
 export function boardReducer(state, action) {
   switch (action.type) {
     case 'SET_BOARD':
@@ -9,7 +17,9 @@ export function boardReducer(state, action) {
     case 'ADD_ITEM': {
       const maxZ = state.items.reduce((m, i) => Math.max(m, i.zIndex), 0);
       const item = { ...action.item, zIndex: maxZ + 1 };
-      return { ...state, items: [...state.items, item] };
+      let items = [...state.items, item];
+      if (item.parentId) items = relayoutColumn(items, item.parentId);
+      return { ...state, items };
     }
 
     case 'ADD_ITEMS':
@@ -31,7 +41,14 @@ export function boardReducer(state, action) {
 
     case 'DELETE_ITEMS': {
       const ids = new Set(action.ids);
-      return { ...state, items: state.items.filter((i) => !ids.has(i.id) && !ids.has(i.parentId)) };
+      const affectedColumns = new Set(
+        state.items.filter((i) => ids.has(i.id) && i.parentId).map((i) => i.parentId)
+      );
+      let items = state.items.filter((i) => !ids.has(i.id) && !ids.has(i.parentId));
+      affectedColumns.forEach((colId) => {
+        items = relayoutColumn(items, colId);
+      });
+      return { ...state, items };
     }
 
     case 'DUPLICATE_ITEMS':
