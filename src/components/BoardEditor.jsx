@@ -26,7 +26,7 @@ function clamp(v, min, max) {
 }
 
 export default function BoardEditor({ board: initialBoard, sha, collaboratorName, onChangeName }) {
-  const { board, dispatch, undo, redo, canUndo, canRedo, saveState, conflict, resolveConflict, saveNow } =
+  const { board, dispatch, undo, redo, canUndo, canRedo, saveState, saveError, conflict, resolveConflict, saveNow } =
     useBoard(initialBoard, sha);
   const [selectedIds, setSelectedIds] = useState([]);
   const [viewport, setViewport] = useState({ panX: 0, panY: 0, zoom: 1 });
@@ -252,7 +252,9 @@ export default function BoardEditor({ board: initialBoard, sha, collaboratorName
         onZoomIn={() => zoomBy(1.15)}
         onZoomOut={() => zoomBy(1 / 1.15)}
         saveState={saveState}
+        saveError={saveError}
         onSave={saveNow}
+        onRenameBoard={(name) => dispatch({ type: 'RENAME_BOARD', name })}
         collaboratorName={collaboratorName}
         onChangeName={onChangeName}
         onToggleActivity={() => setActivityOpen((v) => !v)}

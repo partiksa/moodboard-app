@@ -11,6 +11,16 @@ export class ConflictError extends Error {
   }
 }
 
+// A truncated or non-JSON response used to surface as a raw "JSON Parse error: Unexpected EOF",
+// which said nothing about what actually went wrong.
+function parseBoardJson(text, id) {
+  try {
+    return JSON.parse(text);
+  } catch {
+    throw new Error(`The saved data for board ${id} could not be read (it looks incomplete or corrupted).`);
+  }
+}
+
 function boardPath(id) {
   return `boards/${id}/board.json`;
 }
@@ -32,7 +42,7 @@ export async function loadBoard(id) {
       if (cached) return { board: cached.board, sha: cached.sha, offline: true };
       return null;
     }
-    const board = JSON.parse(file.text);
+    const board = parseBoardJson(file.text, id);
     await idbPutBoard({ id, board, sha: file.sha, dirty: false });
     return { board, sha: file.sha, offline: false };
   } catch (err) {
@@ -59,15 +69,27 @@ export async function saveBoard(id, board, knownSha, { force = false, message, t
   const remoteSha = remote?.sha;
 
   if (remote && knownSha && remoteSha !== knownSha && !force) {
-    const remoteBoard = JSON.parse(remote.text);
+    const remoteBoard = parseBoardJson(remote.text, id);
     throw new ConflictError(remoteBoard, remoteSha);
   }
 
-  const result = await putFile(boardPath(id), JSON.stringify(board, null, 2), {
-    sha: remoteSha,
-    message: message || `Update board "${board.name}"`,
-    token,
-  });
+  const text = JSON.stringify(board, null, 2);
+  const commitMessage = message || `Update board "${board.name}"`;
+
+  let result;
+  try {
+    result = await putFile(boardPath(id), text, { sha: remoteSha, message: commitMessage, token });
+  } catch (err) {
+    // GitHub answers 409/422 when the sha we sent is already stale, which happens whenever
+    // someone else's save lands between our read and our write. Re-read the sha and try once
+    // more instead of failing the save outright.
+    if (err.status !== 409 && err.status !== 422) throw err;
+    const fresh = await getFile(boardPath(id), token);
+    if (fresh && knownSha && fresh.sha !== remoteSha && !force) {
+      throw new ConflictError(parseBoardJson(fresh.text, id), fresh.sha);
+    }
+    result = await putFile(boardPath(id), text, { sha: fresh?.sha, message: commitMessage, token });
+  }
 
   await idbPutBoard({ id, board, sha: result.sha, dirty: false });
   return { sha: result.sha };
@@ -77,7 +99,7 @@ export async function saveBoard(id, board, knownSha, { force = false, message, t
 export async function getBoardRaw(id, token = GITHUB_TOKEN) {
   const file = await getFile(boardPath(id), token);
   if (!file) return null;
-  return { board: JSON.parse(file.text), sha: file.sha };
+  return { board: parseBoardJson(file.text, id), sha: file.sha };
 }
 
 export async function createBoard(board, token = GITHUB_TOKEN) {
@@ -107,7 +129,7 @@ export async function listBoardSummaries(token = GITHUB_TOKEN) {
     try {
       const file = await getFile(boardPath(dir.name), token);
       if (!file) continue;
-      const board = JSON.parse(file.text);
+      const board = parseBoardJson(file.text, dir.name);
       const activity = board.activity || [];
       const collaborators = [...new Set(activity.map((a) => a.name))];
       summaries.push({

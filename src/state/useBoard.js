@@ -6,6 +6,7 @@ import { getDisplayName } from '../lib/displayName';
 
 const HISTORY_LIMIT = 60;
 const LOCAL_CACHE_DELAY = 500;
+const AUTOSAVE_DELAY = 4000;
 
 function reducerWithActivity(state, action) {
   if (action.type !== '__WRAPPED__') return boardReducer(state, action);
@@ -14,9 +15,9 @@ function reducerWithActivity(state, action) {
   return description ? pushActivity(next, { name: action.name, ...description }) : next;
 }
 
-// Saving is manual (a Save button / Ctrl+S), not automatic on every edit — the app only ever
-// writes to GitHub when the user asks it to. Edits are still cached to IndexedDB in the
-// background (no network call) so nothing is lost if the tab closes before a manual save.
+// Edits are cached to IndexedDB immediately (no network) and pushed to GitHub a few seconds
+// after the last change, so a shared board is never stale because nobody pressed Save. The
+// Save button and Ctrl+S still force an immediate push.
 export function useBoard(initialBoard, initialSha) {
   const [board, rawDispatch] = useReducer(reducerWithActivity, initialBoard);
   const pastRef = useRef([]);
@@ -26,6 +27,7 @@ export function useBoard(initialBoard, initialSha) {
   const prevBoardIdRef = useRef(initialBoard.id);
   const [, forceRender] = useState(0);
   const cacheTimer = useRef(null);
+  const autosaveTimer = useRef(null);
   const [saveState, setSaveState] = useState('saved'); // saved | unsaved | saving | error | conflict
   const [conflict, setConflict] = useState(null); // { remoteBoard, remoteSha }
 
@@ -76,16 +78,24 @@ export function useBoard(initialBoard, initialSha) {
   const canRedo = futureRef.current.length > 0;
 
   const savingRef = useRef(false);
+  const pendingSaveRef = useRef(null);
+  const [saveError, setSaveError] = useState(null);
 
   const performSave = useCallback(
     async (boardToSave, { force = false } = {}) => {
-      if (savingRef.current) return; // a save is already in flight; ignore duplicate triggers
+      // A save already in flight used to make the new request vanish, so a click during a
+      // slow save looked like "saving doesn't work". The newest board is queued instead.
+      if (savingRef.current) {
+        pendingSaveRef.current = { boardToSave, force };
+        return;
+      }
       savingRef.current = true;
       setSaveState('saving');
       try {
         const { sha } = await syncSaveBoard(boardToSave.id, boardToSave, shaRef.current, { force });
         shaRef.current = sha;
         setSaveState('saved');
+        setSaveError(null);
         setConflict(null);
       } catch (err) {
         if (err instanceof ConflictError) {
@@ -93,14 +103,23 @@ export function useBoard(initialBoard, initialSha) {
           setSaveState('conflict');
         } else {
           console.error('Board sync failed', err);
+          setSaveError(err.message || 'Sync failed.');
           setSaveState('error');
         }
       } finally {
         savingRef.current = false;
+        const queued = pendingSaveRef.current;
+        pendingSaveRef.current = null;
+        if (queued) performSaveRef.current(queued.boardToSave, { force: queued.force });
       }
     },
     []
   );
+
+  // performSave re-enters itself for a queued save; a ref keeps that from needing a
+  // self-referencing dependency.
+  const performSaveRef = useRef(performSave);
+  performSaveRef.current = performSave;
 
   // Marks unsaved and mirrors to the local offline cache (no network) whenever the board changes.
   useEffect(() => {
@@ -114,7 +133,16 @@ export function useBoard(initialBoard, initialSha) {
     cacheTimer.current = setTimeout(() => {
       cacheBoardLocally(board.id, board, shaRef.current).catch(() => {});
     }, LOCAL_CACHE_DELAY);
-    return () => clearTimeout(cacheTimer.current);
+    // Edits are also pushed to GitHub on their own once typing/dragging stops, so a shared
+    // link never shows a stale board just because nobody pressed Save.
+    clearTimeout(autosaveTimer.current);
+    autosaveTimer.current = setTimeout(() => {
+      performSaveRef.current({ ...board, updatedAt: new Date().toISOString() });
+    }, AUTOSAVE_DELAY);
+    return () => {
+      clearTimeout(cacheTimer.current);
+      clearTimeout(autosaveTimer.current);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [board]);
 
@@ -158,5 +186,5 @@ export function useBoard(initialBoard, initialSha) {
     [conflict, board, performSave]
   );
 
-  return { board, dispatch, undo, redo, canUndo, canRedo, saveState, conflict, resolveConflict, saveNow };
+  return { board, dispatch, undo, redo, canUndo, canRedo, saveState, saveError, conflict, resolveConflict, saveNow };
 }

@@ -20,6 +20,31 @@
 .board-title {
   font-weight: 600;
   margin-right: 8px;
+  border: 0;
+  background: none;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  padding: 2px 4px;
+  border-radius: 4px;
+  cursor: text;
+}
+
+.board-title:hover {
+  background: var(--panel-border);
+}
+
+.board-title-input {
+  font-weight: 600;
+  font-size: inherit;
+  font-family: inherit;
+  margin-right: 8px;
+  padding: 2px 4px;
+  width: 180px;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--text);
 }
 
 .save-dot {

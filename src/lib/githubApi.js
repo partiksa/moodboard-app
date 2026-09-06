@@ -62,12 +62,22 @@ function contentsPath(path) {
   return `/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${path}`;
 }
 
-// Returns { json, sha, text } or null if the file does not exist.
+// Returns { sha, text } or null if the file does not exist.
+// The Contents API only inlines files up to 1 MB: above that it answers with an empty
+// `content` and `encoding: "none"`, which used to decode to an empty string and blow up as
+// "JSON Parse error: Unexpected EOF" further up. Anything without usable inline content is
+// re-fetched through the Git blobs API, which serves files up to 100 MB.
 export async function getFile(path, token) {
   try {
     const data = await request(`${contentsPath(path)}?ref=${GITHUB_BRANCH}`, { token });
-    const text = base64ToUtf8(data.content);
-    return { text, sha: data.sha };
+    if (data.encoding === 'base64' && data.content) {
+      return { text: base64ToUtf8(data.content), sha: data.sha };
+    }
+    const blob = await request(`/repos/${GITHUB_OWNER}/${GITHUB_REPO}/git/blobs/${data.sha}`, { token });
+    if (blob.encoding !== 'base64' || !blob.content) {
+      throw new GitHubApiError('This board file is too large for GitHub to return in one piece.', 0);
+    }
+    return { text: base64ToUtf8(blob.content), sha: data.sha };
   } catch (err) {
     if (err.status === 404) return null;
     throw err;

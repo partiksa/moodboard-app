@@ -41,6 +41,7 @@ const ITEM_BUTTONS = [
 
 export default function Toolbar({
   boardName,
+  onRenameBoard,
   onAddItem,
   onUndo,
   onRedo,
@@ -54,6 +55,7 @@ export default function Toolbar({
   onZoomIn,
   onZoomOut,
   saveState,
+  saveError,
   onSave,
   collaboratorName,
   onChangeName,
@@ -61,6 +63,15 @@ export default function Toolbar({
 }) {
   const [editingName, setEditingName] = useState(false);
   const [nameDraft, setNameDraft] = useState(collaboratorName || '');
+  const [editingBoardName, setEditingBoardName] = useState(false);
+  const [boardDraft, setBoardDraft] = useState(boardName);
+
+  const commitBoardName = () => {
+    setEditingBoardName(false);
+    const next = boardDraft.trim();
+    if (next && next !== boardName) onRenameBoard?.(next);
+    else setBoardDraft(boardName);
+  };
 
   const commitName = () => {
     setEditingName(false);
@@ -71,10 +82,30 @@ export default function Toolbar({
   return (
     <div className="toolbar">
       <div className="toolbar-group">
-        <span className="board-title">{boardName}</span>
+        {editingBoardName ? (
+          <input
+            className="board-title-input"
+            autoFocus
+            value={boardDraft}
+            onChange={(e) => setBoardDraft(e.target.value)}
+            onBlur={commitBoardName}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') commitBoardName();
+              if (e.key === 'Escape') { setBoardDraft(boardName); setEditingBoardName(false); }
+            }}
+          />
+        ) : (
+          <button
+            className="board-title"
+            title="Rename board"
+            onClick={() => { setBoardDraft(boardName); setEditingBoardName(true); }}
+          >
+            {boardName}
+          </button>
+        )}
         {/* the board autosaves, so the state is a quiet dot; the button only appears when
             there is actually something to push */}
-        <span className={`save-dot save-${saveState}`} title={SAVE_LABELS[saveState] || 'Saved'} />
+        <span className={`save-dot save-${saveState}`} title={saveError || SAVE_LABELS[saveState] || 'Saved'} />
         {saveState !== 'saved' && saveState !== 'saving' && (
           <button className="tool-btn icon-only" onClick={onSave} title="Save now (Ctrl/Cmd+S)">
             <FloppyDisk size={14} weight="bold" />

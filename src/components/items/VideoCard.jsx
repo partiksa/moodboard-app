@@ -42,12 +42,12 @@ export default function VideoCard({ item, dispatch }) {
     );
   }
 
+  // The video sits inside a padded frame: the frame is the grab area, and the video itself
+  // only takes clicks (for its controls) once the item is selected. Previously the <video>
+  // swallowed every mousedown, so a video could not be dragged at all.
   return (
-    <video
-      className="video-card-el"
-      src={item.src}
-      controls
-      onMouseDown={(e) => e.stopPropagation()}
-    />
+    <div className="video-card">
+      <video className="video-card-el" src={item.src} controls />
+    </div>
   );
 }
