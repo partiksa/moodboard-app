@@ -38,8 +38,13 @@ export async function loadBoard(id) {
   try {
     const file = await getFile(boardPath(id), GITHUB_TOKEN);
     if (!file) {
-      // Not on GitHub. Fall back to a local unsynced copy if one exists, otherwise it's an invalid link.
-      if (cached) return { board: cached.board, sha: cached.sha, offline: true };
+      // Not on GitHub. A cache row that carries a sha was synced at some point, so the board
+      // was deleted since — showing it again would resurrect a deleted board. Only local edits
+      // that never reached GitHub (dirty and never synced) are worth falling back to.
+      if (cached && cached.dirty && !cached.sha) {
+        return { board: cached.board, sha: null, offline: true };
+      }
+      if (cached) await idbDeleteBoard(id).catch(() => {});
       return null;
     }
     const board = parseBoardJson(file.text, id);
@@ -115,7 +120,17 @@ export async function createBoard(board, token = GITHUB_TOKEN) {
 export async function deleteBoard(id, token = GITHUB_TOKEN) {
   if (!GITHUB_CONFIGURED) throw new Error('This app is not configured with a shared GitHub repository yet.');
   const remote = await getFile(boardPath(id), token);
-  if (remote) await deleteFile(boardPath(id), remote.sha, `Delete board ${id}`, token);
+  if (remote) {
+    try {
+      await deleteFile(boardPath(id), remote.sha, `Delete board ${id}`, token);
+    } catch (err) {
+      // A sha that GitHub considers stale (409/422) means the file moved on since we read it,
+      // so re-read it and delete the current version rather than reporting a failure.
+      if (err.status !== 409 && err.status !== 422) throw err;
+      const fresh = await getFile(boardPath(id), token);
+      if (fresh) await deleteFile(boardPath(id), fresh.sha, `Delete board ${id}`, token);
+    }
+  }
   await idbDeleteBoard(id).catch(() => {});
 }
 

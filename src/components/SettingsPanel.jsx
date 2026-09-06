@@ -75,6 +75,7 @@ export default function SettingsPanel({ board, dispatch, onClose }) {
               Color
               <input
                 type="color"
+                value={settings.background.color || '#ffffff'}
                 onChange={(e) => updateSettings({ background: { type: 'color', color: e.target.value } })}
               />
             </label>

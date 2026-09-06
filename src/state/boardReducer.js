@@ -22,8 +22,16 @@ export function boardReducer(state, action) {
       return { ...state, items };
     }
 
-    case 'ADD_ITEMS':
-      return { ...state, items: [...state.items, ...action.items] };
+    case 'ADD_ITEMS': {
+      // stacked above whatever is already on the board, and any column they land in is relaid out
+      let maxZ = state.items.reduce((m, i) => Math.max(m, i.zIndex), 0);
+      const added = action.items.map((item) => ({ ...item, zIndex: ++maxZ }));
+      let items = [...state.items, ...added];
+      new Set(added.map((i) => i.parentId).filter(Boolean)).forEach((colId) => {
+        items = relayoutColumn(items, colId);
+      });
+      return { ...state, items };
+    }
 
     case 'UPDATE_ITEM':
       return {
@@ -51,8 +59,15 @@ export function boardReducer(state, action) {
       return { ...state, items };
     }
 
-    case 'DUPLICATE_ITEMS':
-      return { ...state, items: [...state.items, ...action.items] };
+    case 'DUPLICATE_ITEMS': {
+      let maxZ = state.items.reduce((m, i) => Math.max(m, i.zIndex), 0);
+      const clones = action.items.map((item) => ({ ...item, zIndex: ++maxZ }));
+      let items = [...state.items, ...clones];
+      new Set(clones.map((i) => i.parentId).filter(Boolean)).forEach((colId) => {
+        items = relayoutColumn(items, colId);
+      });
+      return { ...state, items };
+    }
 
     case 'COMMIT_ITEMS': {
       const patchMap = action.patches;

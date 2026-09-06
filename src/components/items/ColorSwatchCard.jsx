@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { formatSwatchValues, normalizeHex } from '../../utils/color';
+import { copyText } from '../../utils/clipboard';
 import { ClipboardText } from '../icons.jsx';
 
 export default function ColorSwatchCard({ item, dispatch }) {
@@ -8,10 +9,10 @@ export default function ColorSwatchCard({ item, dispatch }) {
   const update = (patch) => dispatch({ type: 'UPDATE_ITEM', id: item.id, patch });
   const values = formatSwatchValues(item.hex);
 
-  const copy = (label, value) => {
-    navigator.clipboard?.writeText(value).catch(() => {});
-    setCopied(label);
-    setTimeout(() => setCopied(null), 1000);
+  const copy = async (label, value) => {
+    const ok = await copyText(value);
+    setCopied(ok ? label : null);
+    if (ok) setTimeout(() => setCopied(null), 1000);
   };
 
   const pasteHex = async () => {
@@ -63,7 +64,12 @@ export default function ColorSwatchCard({ item, dispatch }) {
           ['RGB', values.rgb],
           ['CMYK', values.cmyk],
         ].map(([label, value]) => (
-          <button key={label} className="color-value-row" onClick={() => copy(label, value)}>
+          <button
+            key={label}
+            className="color-value-row"
+            onMouseDown={(e) => e.stopPropagation()}
+            onClick={() => copy(label, value)}
+          >
             <span>{label}</span>
             <span>{copied === label ? 'Copied!' : value}</span>
           </button>

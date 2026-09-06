@@ -37,6 +37,10 @@ async function request(path, { method = 'GET', token, body } = {}) {
   try {
     res = await fetch(`${API_ROOT}${path}`, {
       method,
+      // GitHub answers authenticated GETs with `cache-control: private, max-age=60`, so the
+      // browser used to replay a stale listing or a stale file sha for a minute: a deleted
+      // board reappeared on refresh and saves failed on a sha that was already outdated.
+      cache: 'no-store',
       headers: {
         Accept: 'application/vnd.github+json',
         Authorization: `Bearer ${token}`,
