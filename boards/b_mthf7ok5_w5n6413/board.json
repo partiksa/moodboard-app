@@ -2,7 +2,7 @@
   "id": "b_mthf7ok5_w5n6413",
   "name": "odrazse",
   "createdAt": "2026-08-31T15:56:15.509Z",
-  "updatedAt": "2026-09-08T12:41:20.167Z",
+  "updatedAt": "2026-09-08T12:42:15.040Z",
   "items": [
     {
       "id": "item_mthf7uv1_kfpanqd",
@@ -295,7 +295,7 @@
       "id": "item_mtpv66a1_y46wjvj",
       "type": "video",
       "x": 1896.0000000000002,
-      "y": -183.99999999999997,
+      "y": -184,
       "width": 240,
       "height": 328,
       "rotation": 0,
@@ -2121,6 +2121,15 @@
       "id": "act_mtpvhkm3_7zrm3",
       "ts": "2026-09-06T13:54:00.219Z",
       "name": "patko",
+      "verb": "moved",
+      "itemType": "video",
+      "itemTitle": "0001-0150.mp4",
+      "private": false
+    },
+    {
+      "id": "act_mtsnswyl_cyks2",
+      "ts": "2026-09-08T12:42:11.037Z",
+      "name": "lucka",
       "verb": "moved",
       "itemType": "video",
       "itemTitle": "0001-0150.mp4",
