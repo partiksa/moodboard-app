@@ -2,7 +2,7 @@
   "id": "b_mthf7ok5_w5n6413",
   "name": "odrazse",
   "createdAt": "2026-08-31T15:56:15.509Z",
-  "updatedAt": "2026-09-08T12:42:23.390Z",
+  "updatedAt": "2026-09-08T12:44:02.372Z",
   "items": [
     {
       "id": "item_mthf7uv1_kfpanqd",
@@ -2142,6 +2142,15 @@
       "verb": "moved",
       "itemType": "image",
       "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mtsnv7s1_enjai",
+      "ts": "2026-09-08T12:43:58.369Z",
+      "name": "lucka",
+      "verb": "moved",
+      "itemType": "link card",
+      "itemTitle": "https://nonotak.com",
       "private": false
     }
   ],
