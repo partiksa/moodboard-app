@@ -2,7 +2,7 @@
   "id": "b_mthf7ok5_w5n6413",
   "name": "odrazse",
   "createdAt": "2026-08-31T15:56:15.509Z",
-  "updatedAt": "2026-09-10T18:02:16.494Z",
+  "updatedAt": "2026-09-10T18:02:43.494Z",
   "items": [
     {
       "id": "item_mthf7uv1_kfpanqd",
@@ -294,8 +294,8 @@
     {
       "id": "item_mtpv66a1_y46wjvj",
       "type": "video",
-      "x": 1895.9999999999998,
-      "y": -208,
+      "x": 1896,
+      "y": -208.5,
       "width": 240,
       "height": 328,
       "rotation": 0,
@@ -343,8 +343,8 @@
     {
       "id": "item_mtvu4253_4j609wf",
       "type": "text",
-      "x": 1928.2161598527414,
-      "y": -211.14210791398827,
+      "x": 1944,
+      "y": -528,
       "width": 232.3043282612466,
       "height": 160,
       "rotation": 0,
@@ -352,7 +352,7 @@
       "locked": false,
       "parentId": null,
       "privateNote": "",
-      "body": "",
+      "body": "<div>post 2</div><div>carousel</div><div>textovy</div>",
       "textAlign": "left",
       "textColor": "#111111",
       "backgroundColor": "#ffffff"
@@ -2490,6 +2490,87 @@
       "verb": "edited",
       "itemType": "text note",
       "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mtvu4g9g_rb0t8",
+      "ts": "2026-09-10T18:02:25.492Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mtvu4hl5_uia54",
+      "ts": "2026-09-10T18:02:27.209Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "post 2 carousel textovy",
+      "private": false
+    },
+    {
+      "id": "act_mtvu4ief_xudxu",
+      "ts": "2026-09-10T18:02:28.263Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "video",
+      "itemTitle": "0001-0150.mp4",
+      "private": false
+    },
+    {
+      "id": "act_mtvu4jrd_xqy6j",
+      "ts": "2026-09-10T18:02:30.025Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "post 2 carousel textovy",
+      "private": false
+    },
+    {
+      "id": "act_mtvu4miv_htzbq",
+      "ts": "2026-09-10T18:02:33.607Z",
+      "name": "patko",
+      "verb": "rotated",
+      "itemType": "text note",
+      "itemTitle": "post 2 carousel textovy",
+      "private": false
+    },
+    {
+      "id": "act_mtvu4niz_hexjc",
+      "ts": "2026-09-10T18:02:34.907Z",
+      "name": "patko",
+      "verb": "rotated",
+      "itemType": "text note",
+      "itemTitle": "post 2 carousel textovy",
+      "private": false
+    },
+    {
+      "id": "act_mtvu4pcs_p221z",
+      "ts": "2026-09-10T18:02:37.276Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "post 2 carousel textovy",
+      "private": false
+    },
+    {
+      "id": "act_mtvu4pxo_fspla",
+      "ts": "2026-09-10T18:02:38.028Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "post 2 carousel textovy",
+      "private": false
+    },
+    {
+      "id": "act_mtvu4r2c_ntnrj",
+      "ts": "2026-09-10T18:02:39.492Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "video",
+      "itemTitle": "0001-0150.mp4",
       "private": false
     }
   ],
