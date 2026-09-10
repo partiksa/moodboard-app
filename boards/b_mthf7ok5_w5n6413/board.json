@@ -2,7 +2,7 @@
   "id": "b_mthf7ok5_w5n6413",
   "name": "odrazse",
   "createdAt": "2026-08-31T15:56:15.509Z",
-  "updatedAt": "2026-09-10T17:58:50.161Z",
+  "updatedAt": "2026-09-10T18:01:22.943Z",
   "items": [
     {
       "id": "item_mthf7uv1_kfpanqd",
@@ -322,6 +322,23 @@
       "alt": "",
       "naturalWidth": 1050,
       "naturalHeight": 940
+    },
+    {
+      "id": "item_mtvu30wt_rvci2zq",
+      "type": "text",
+      "x": 1928.2161598527414,
+      "y": -211.14210791398827,
+      "width": 240,
+      "height": 160,
+      "rotation": 0,
+      "zIndex": 22,
+      "locked": false,
+      "parentId": null,
+      "privateNote": "",
+      "body": "",
+      "textAlign": "left",
+      "textColor": "#111111",
+      "backgroundColor": "#ffffff"
     }
   ],
   "activity": [
@@ -2276,6 +2293,33 @@
       "verb": "moved",
       "itemType": "video",
       "itemTitle": "0001-0150.mp4",
+      "private": false
+    },
+    {
+      "id": "act_mtvu2yvq_m1605",
+      "ts": "2026-09-10T18:01:16.310Z",
+      "name": "patko",
+      "verb": "added",
+      "itemType": "file",
+      "itemTitle": "file",
+      "private": false
+    },
+    {
+      "id": "act_mtvu2zsr_u8aqm",
+      "ts": "2026-09-10T18:01:17.499Z",
+      "name": "patko",
+      "verb": "deleted",
+      "itemType": "file",
+      "itemTitle": "file",
+      "private": false
+    },
+    {
+      "id": "act_mtvu30wt_t7523",
+      "ts": "2026-09-10T18:01:18.941Z",
+      "name": "patko",
+      "verb": "added",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
       "private": false
     }
   ],
