@@ -2,7 +2,7 @@
   "id": "b_mthf7ok5_w5n6413",
   "name": "odrazse",
   "createdAt": "2026-08-31T15:56:15.509Z",
-  "updatedAt": "2026-09-10T18:01:42.259Z",
+  "updatedAt": "2026-09-10T18:01:51.543Z",
   "items": [
     {
       "id": "item_mthf7uv1_kfpanqd",
@@ -294,8 +294,8 @@
     {
       "id": "item_mtpv66a1_y46wjvj",
       "type": "video",
-      "x": 2005.2785386902974,
-      "y": -9.766666666666652,
+      "x": 1895.9999999999998,
+      "y": -208,
       "width": 240,
       "height": 328,
       "rotation": 0,
@@ -326,8 +326,8 @@
     {
       "id": "item_mtvu30wt_rvci2zq",
       "type": "text",
-      "x": 1928.2161598527414,
-      "y": -211.14210791398827,
+      "x": 1680,
+      "y": -528,
       "width": 240,
       "height": 160,
       "rotation": 0,
@@ -2370,6 +2370,51 @@
     {
       "id": "act_mtvu3fte_zh8nb",
       "ts": "2026-09-10T18:01:38.258Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "kombo farby animacka",
+      "private": false
+    },
+    {
+      "id": "act_mtvu3jge_w2gyd",
+      "ts": "2026-09-10T18:01:42.974Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "kombo farby animacka",
+      "private": false
+    },
+    {
+      "id": "act_mtvu3kbf_o4nya",
+      "ts": "2026-09-10T18:01:44.091Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "kombo farby animacka",
+      "private": false
+    },
+    {
+      "id": "act_mtvu3ksl_jwoe4",
+      "ts": "2026-09-10T18:01:44.709Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "kombo farby animacka",
+      "private": false
+    },
+    {
+      "id": "act_mtvu3lk5_71b8j",
+      "ts": "2026-09-10T18:01:45.701Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "video",
+      "itemTitle": "0001-0150.mp4",
+      "private": false
+    },
+    {
+      "id": "act_mtvu3mz9_8i09g",
+      "ts": "2026-09-10T18:01:47.541Z",
       "name": "patko",
       "verb": "edited",
       "itemType": "text note",
