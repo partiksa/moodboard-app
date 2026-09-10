@@ -2,7 +2,7 @@
   "id": "b_mthf7ok5_w5n6413",
   "name": "odrazse",
   "createdAt": "2026-08-31T15:56:15.509Z",
-  "updatedAt": "2026-09-10T18:01:51.543Z",
+  "updatedAt": "2026-09-10T18:02:16.494Z",
   "items": [
     {
       "id": "item_mthf7uv1_kfpanqd",
@@ -335,7 +335,24 @@
       "locked": false,
       "parentId": null,
       "privateNote": "",
-      "body": "kombo farby<div>animacka</div><div><br></div>",
+      "body": "kombo farby<div>animacka</div><div>na reel</div><div>plus datum</div><div><br></div>",
+      "textAlign": "left",
+      "textColor": "#111111",
+      "backgroundColor": "#ffffff"
+    },
+    {
+      "id": "item_mtvu4253_4j609wf",
+      "type": "text",
+      "x": 1928.2161598527414,
+      "y": -211.14210791398827,
+      "width": 232.3043282612466,
+      "height": 160,
+      "rotation": 0,
+      "zIndex": 23,
+      "locked": false,
+      "parentId": null,
+      "privateNote": "",
+      "body": "",
       "textAlign": "left",
       "textColor": "#111111",
       "backgroundColor": "#ffffff"
@@ -2419,6 +2436,60 @@
       "verb": "edited",
       "itemType": "text note",
       "itemTitle": "kombo farby animacka",
+      "private": false
+    },
+    {
+      "id": "act_mtvu3x50_uqiyk",
+      "ts": "2026-09-10T18:02:00.708Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "kombo farby animacka",
+      "private": false
+    },
+    {
+      "id": "act_mtvu3zw2_wyquo",
+      "ts": "2026-09-10T18:02:04.274Z",
+      "name": "patko",
+      "verb": "added",
+      "itemType": "file",
+      "itemTitle": "file",
+      "private": false
+    },
+    {
+      "id": "act_mtvu410p_syivu",
+      "ts": "2026-09-10T18:02:05.737Z",
+      "name": "patko",
+      "verb": "deleted",
+      "itemType": "file",
+      "itemTitle": "file",
+      "private": false
+    },
+    {
+      "id": "act_mtvu4253_dwquu",
+      "ts": "2026-09-10T18:02:07.191Z",
+      "name": "patko",
+      "verb": "added",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mtvu45y4_lvew0",
+      "ts": "2026-09-10T18:02:12.124Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mtvu468d_ovjh3",
+      "ts": "2026-09-10T18:02:12.493Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
       "private": false
     }
   ],
