@@ -1,0 +1,38 @@
+{
+  "id": "b_mtwy7yqh_vm29pal",
+  "name": "portfolko",
+  "createdAt": "2026-09-11T12:44:54.041Z",
+  "updatedAt": "2026-09-11T12:44:54.041Z",
+  "items": [],
+  "activity": [],
+  "settings": {
+    "background": {
+      "type": "dotted-white"
+    },
+    "gridSize": 24,
+    "gridColor": "#c9c9c9",
+    "snapDistance": 8,
+    "typography": {
+      "heading": {
+        "fontFamily": "Inter",
+        "fontSize": 28,
+        "color": "#111111"
+      },
+      "subheading": {
+        "fontFamily": "Inter",
+        "fontSize": 18,
+        "color": "#333333"
+      },
+      "body": {
+        "fontFamily": "Inter",
+        "fontSize": 14,
+        "color": "#222222"
+      },
+      "privateNote": {
+        "fontFamily": "Inter",
+        "fontSize": 13,
+        "color": "#8a6d00"
+      }
+    }
+  }
+}
