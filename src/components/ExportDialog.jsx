@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { renderBoardToCanvas, exportRaster, exportPdf } from '../utils/exportBoard';
+import { renderBoardToCanvas, exportRaster, exportPdf, downloadBlob } from '../utils/exportBoard';
+import { boardToMarkdown } from '../utils/exportMarkdown';
 import { sanitizeFileName } from '../db/storage';
 import { X } from './icons.jsx';
 import './ExportDialog.css';
@@ -14,6 +15,15 @@ export default function ExportDialog({ board, canvasRef, worldRef, onClose }) {
   const [status, setStatus] = useState(null);
 
   const run = async () => {
+    const base = sanitizeFileName(board.name);
+    // Markdown is a plain content dump for pasting into an AI chat, so it skips rendering.
+    if (format === 'md') {
+      const md = boardToMarkdown(board, { includePrivateNotes });
+      downloadBlob(new Blob([md], { type: 'text/markdown;charset=utf-8' }), `${base}.md`);
+      setStatus('Done!');
+      setTimeout(onClose, 500);
+      return;
+    }
     setStatus('Rendering board…');
     try {
       const canvas = await renderBoardToCanvas({
@@ -24,7 +34,6 @@ export default function ExportDialog({ board, canvasRef, worldRef, onClose }) {
         includeBackground,
         includePrivateNotes,
       });
-      const base = sanitizeFileName(board.name);
       if (format === 'pdf') {
         exportPdf(canvas, { mode: pdfMode, filenameBase: base });
       } else {
@@ -52,9 +61,15 @@ export default function ExportDialog({ board, canvasRef, worldRef, onClose }) {
             <option value="png">PNG</option>
             <option value="jpg">JPG</option>
             <option value="pdf">PDF</option>
+            <option value="md">Markdown (text for AI)</option>
           </select>
         </label>
 
+        {format === 'md' && (
+          <p className="export-hint">Plain text only: headings, notes, links, colours and tasks. No layout or images.</p>
+        )}
+
+        {format !== 'md' && (
         <label>
           Resolution
           <select value={resolution} onChange={(e) => setResolution(Number(e.target.value))}>
@@ -63,6 +78,7 @@ export default function ExportDialog({ board, canvasRef, worldRef, onClose }) {
             <option value={3}>3x</option>
           </select>
         </label>
+        )}
 
         {format === 'jpg' && (
           <label>
@@ -82,10 +98,12 @@ export default function ExportDialog({ board, canvasRef, worldRef, onClose }) {
           </label>
         )}
 
+        {format !== 'md' && (
         <label>
           <input type="checkbox" checked={includeBackground} onChange={(e) => setIncludeBackground(e.target.checked)} />
           Include background
         </label>
+        )}
 
         <label>
           <input type="checkbox" checked={includePrivateNotes} onChange={(e) => setIncludePrivateNotes(e.target.checked)} />
