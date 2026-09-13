@@ -2,13 +2,13 @@
   "id": "b_mthf7ok5_w5n6413",
   "name": "odrazse",
   "createdAt": "2026-08-31T15:56:15.509Z",
-  "updatedAt": "2026-09-13T13:18:02.302Z",
+  "updatedAt": "2026-09-13T13:24:51.147Z",
   "items": [
     {
       "id": "item_mthf7uv1_kfpanqd",
       "type": "text",
-      "x": 602.5,
-      "y": 67,
+      "x": 585.052833972466,
+      "y": 21.5,
       "width": 363,
       "height": 53,
       "rotation": 0,
@@ -2938,6 +2938,15 @@
       "verb": "deleted",
       "itemType": "column",
       "itemTitle": "Column",
+      "private": false
+    },
+    {
+      "id": "act_mtzuiyll_0r06o",
+      "ts": "2026-09-13T13:24:47.145Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "odrazse x ATELIÉR ZLÍN",
       "private": false
     }
   ],
