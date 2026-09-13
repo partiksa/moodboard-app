@@ -266,6 +266,7 @@ export default function BoardEditor({ board: initialBoard, sha, collaboratorName
           setSelectedIds={setSelectedIds}
           viewport={viewport}
           setViewport={setViewport}
+          viewportSize={viewportSize}
           highlightedIds={highlightedIds}
           canvasRef={canvasRef}
           worldRef={worldRef}

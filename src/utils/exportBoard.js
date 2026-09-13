@@ -25,6 +25,7 @@ export async function renderBoardToCanvas({ worldNode, viewportNode, board, pixe
 
   const filter = (node) => {
     if (!includePrivateNotes && node.classList?.contains('private-note-badge')) return false;
+    if (!includeBackground && node.classList?.contains('canvas-grid')) return false;
     if (node.classList?.contains('resize-handle') || node.classList?.contains('rotate-handle')) return false;
     if (node.classList?.contains('selection-toolbar')) return false;
     if (node.classList?.contains('comment-area') || node.classList?.contains('text-toolbar')) return false;

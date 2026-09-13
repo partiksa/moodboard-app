@@ -9,6 +9,7 @@ const MIN_ZOOM = 0.1;
 const MAX_ZOOM = 4;
 
 export default function Canvas({
+  viewportSize,
   board,
   dispatch,
   selectedIds,
@@ -301,7 +302,8 @@ export default function Canvas({
   };
 
   const bg = board.settings.background;
-  const bgStyle = backgroundStyle(bg, board.settings.gridSize, board.settings.gridColor, viewport);
+  const bgStyle = backgroundStyle(bg);
+  const gridStyle = worldGridStyle(bg, board.settings.gridSize, board.settings.gridColor, viewport, viewportSize || { width: 0, height: 0 });
 
   return (
     <div
@@ -319,6 +321,7 @@ export default function Canvas({
           '--inv-zoom': 1 / viewport.zoom,
         }}
       >
+        {gridStyle && <div className="canvas-grid" style={gridStyle} />}
         {items
           .slice()
           .sort((a, b) => {
@@ -442,34 +445,45 @@ function applyResize(orig, handle, dx, dy, aspectRatio) {
   return { x, y, width, height };
 }
 
-function backgroundStyle(bg, gridSize, gridColor, viewport) {
+function backgroundStyle(bg) {
   const base = { position: 'relative', overflow: 'hidden' };
-
   if (bg.type === 'image' && bg.imageDataUrl) {
     return { ...base, backgroundImage: `url(${bg.imageDataUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' };
   }
   if (bg.type === 'color') {
     return { ...base, background: bg.color || '#ffffff' };
   }
+  return { ...base, background: bg.type === 'dotted-black' ? '#111114' : 'var(--canvas-bg)' };
+}
 
-  // The dot grid is a static screen texture at a fixed spacing (what the board grid looks
-  // like at 75 % zoom). It is deliberately not tied to the pan offset: zooming around the
-  // cursor changes the pan, and a pan-locked grid then visibly slides towards the corner.
-  // Below 20 % zoom the dots disappear entirely.
-  if (viewport.zoom < 0.2) {
-    return { ...base, background: bg.type === 'dotted-black' ? '#111114' : 'var(--canvas-bg)' };
-  }
-  const step = Math.max(8, Math.round(gridSize * 0.75));
-
+// The dot grid lives inside the zoomed world, like an endless picture behind the items: it
+// pans and scales exactly with them, so it can never drift on its own. Only the part of
+// the world that is on screen (plus a margin) is covered, aligned to the grid, so the
+// element stays a sane size at any zoom. Under 20 % zoom it fades out.
+function worldGridStyle(bg, gridSize, gridColor, viewport, viewportSize) {
+  if (bg.type !== 'dotted-white' && bg.type !== 'dotted-black') return null;
+  const step = Math.max(4, gridSize);
+  const margin = step * 4;
+  const left = Math.floor((-viewport.panX / viewport.zoom - margin) / step) * step;
+  const top = Math.floor((-viewport.panY / viewport.zoom - margin) / step) * step;
+  const width = Math.ceil((viewportSize.width / viewport.zoom + margin * 2) / step) * step;
+  const height = Math.ceil((viewportSize.height / viewport.zoom + margin * 2) / step) * step;
   const dark = bg.type === 'dotted-black';
   const dotColor = dark ? 'rgba(255, 255, 255, 0.28)' : hexToRgba(gridColor, 0.7);
-  const pageColor = dark ? '#111114' : 'var(--canvas-bg)';
+  // dot radius in world units, sized so it reads about 1 px at 75 % zoom
+  const r = 0.8;
   return {
-    ...base,
-    background: pageColor,
-    backgroundImage: `radial-gradient(circle, ${dotColor} 0.6px, transparent 1.1px)`,
+    position: 'absolute',
+    left,
+    top,
+    width,
+    height,
+    backgroundImage: `radial-gradient(circle, ${dotColor} ${r}px, transparent ${r + 0.6}px)`,
     backgroundSize: `${step}px ${step}px`,
     backgroundPosition: '0 0',
+    opacity: viewport.zoom < 0.2 ? 0 : 1,
+    transition: 'opacity 0.3s ease',
+    pointerEvents: 'none',
   };
 }
 
