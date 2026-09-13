@@ -4,7 +4,7 @@ import { idbGetMeta } from '../db/indexedDb';
 import { X, UploadSimple } from './icons.jsx';
 import './SettingsPanel.css';
 
-const BUILTIN_FONTS = ['Inter', 'Arial', 'Georgia', 'Times New Roman', 'Courier New'];
+const BUILTIN_FONTS = ['Plus Jakarta Sans Variable', 'Inter', 'Arial', 'Georgia', 'Times New Roman', 'Courier New'];
 const TYPOGRAPHY_KEYS = [
   ['heading', 'Heading'],
   ['subheading', 'Subheading'],

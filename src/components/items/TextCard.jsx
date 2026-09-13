@@ -155,17 +155,17 @@ export default function TextCard({ item, board, dispatch }) {
         <div className="text-toolbar" onMouseDown={(e) => e.preventDefault()}>
           <div className="text-toolbar-group">
             {BLOCK_STYLES.map((b) => (
-              <button key={b.tag} onClick={() => setBlockStyle(b.tag)} title={b.label}>
+              <button key={b.tag} onClick={() => setBlockStyle(b.tag)}>
                 {b.label}
               </button>
             ))}
           </div>
           <div className="text-toolbar-divider" />
-          <button onClick={() => exec('bold')} title="Bold"><TextB size={13} weight="bold" /></button>
-          <button onClick={() => exec('italic')} title="Italic"><TextItalic size={13} weight="bold" /></button>
-          <button onClick={() => exec('insertUnorderedList')} title="Bulleted list"><ListBullets size={13} weight="bold" /></button>
-          <button onClick={() => exec('insertOrderedList')} title="Numbered list"><ListNumbers size={13} weight="bold" /></button>
-          <button onClick={insertLink} title="Insert link"><LinkSimple size={13} weight="bold" /></button>
+          <button className="tip tip-top" data-tip="Bold" data-kbd="⌘ B" onClick={() => exec('bold')} aria-label="Bold"><TextB size={13} weight="bold" /></button>
+          <button className="tip tip-top" data-tip="Italic" data-kbd="⌘ I" onClick={() => exec('italic')} aria-label="Italic"><TextItalic size={13} weight="bold" /></button>
+          <button className="tip tip-top" data-tip="Bulleted list" onClick={() => exec('insertUnorderedList')} aria-label="Bulleted list"><ListBullets size={13} weight="bold" /></button>
+          <button className="tip tip-top" data-tip="Numbered list" onClick={() => exec('insertOrderedList')} aria-label="Numbered list"><ListNumbers size={13} weight="bold" /></button>
+          <button className="tip tip-top" data-tip="Insert link" onClick={insertLink} aria-label="Insert link"><LinkSimple size={13} weight="bold" /></button>
           <input
             type="color"
             title="Text color"

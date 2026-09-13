@@ -11,6 +11,7 @@
     "start": "vite build && vite preview --open"
   },
   "dependencies": {
+    "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
     "@fontsource/inter": "^5.3.0",
     "@phosphor-icons/react": "^2.1.10",
     "html-to-image": "^1.11.13",

@@ -4,13 +4,22 @@
   right: 14px;
   width: 180px;
   height: 120px;
-  background: var(--panel);
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
   border: 1px solid var(--panel-border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  border-radius: 14px;
+  box-shadow: var(--shadow-float);
   overflow: hidden;
   cursor: pointer;
   z-index: 40;
+  opacity: 0.75;
+  transition: opacity 0.4s var(--ease), transform 0.5s var(--ease);
+}
+
+.minimap:hover {
+  opacity: 1;
+  transform: scale(1.02);
 }
 
 .minimap-item {
@@ -23,6 +32,7 @@
 .minimap-viewport {
   position: absolute;
   border: 1.5px solid var(--accent);
+  border-radius: 3px;
   background: rgba(0, 0, 0, 0.05);
   pointer-events: none;
 }

@@ -64,21 +64,22 @@ export default function SelectionToolbar({ board, dispatch, selectedIds, setSele
 
   return (
     <div className="selection-toolbar">
-      <button onClick={bringToFront} title="Bring to front"><ArrowLineUp size={14} weight="bold" /></button>
-      <button onClick={sendToBack} title="Send to back"><ArrowLineDown size={14} weight="bold" /></button>
-      <button onClick={toggleLock} title={anyLocked ? 'Unlock' : 'Lock'}>
-        {anyLocked ? <LockSimpleOpen size={14} weight="bold" /> : <LockSimple size={14} weight="bold" />}
+      <span className="selection-count">{selectedItems.length === 1 ? '1 item' : `${selectedItems.length} items`}</span>
+      <button className="tip tip-top" data-tip="Bring to front" onClick={bringToFront} aria-label="Bring to front"><ArrowLineUp size={15} weight="regular" /></button>
+      <button className="tip tip-top" data-tip="Send to back" onClick={sendToBack} aria-label="Send to back"><ArrowLineDown size={15} weight="regular" /></button>
+      <button className="tip tip-top" data-tip={anyLocked ? 'Unlock' : 'Lock in place'} onClick={toggleLock} aria-label={anyLocked ? 'Unlock' : 'Lock'}>
+        {anyLocked ? <LockSimpleOpen size={15} weight="regular" /> : <LockSimple size={15} weight="regular" />}
       </button>
-      <button onClick={duplicate} title="Duplicate (Ctrl+D)"><CopySimple size={14} weight="bold" /></button>
+      <button className="tip tip-top" data-tip="Duplicate" data-kbd="⌘ D" onClick={duplicate} aria-label="Duplicate"><CopySimple size={15} weight="regular" /></button>
       {selectedItems.length > 1 && (
-        <button onClick={anyGrouped ? ungroup : group} title="Group/Ungroup (Ctrl+G)">
-          <UsersThree size={14} weight="bold" />
+        <button className="tip tip-top" data-tip={anyGrouped ? 'Ungroup' : 'Group'} data-kbd="⌘ G" onClick={anyGrouped ? ungroup : group} aria-label="Group or ungroup">
+          <UsersThree size={15} weight="regular" />
         </button>
       )}
       {single && (
-        <button onClick={() => setNoteOpen((o) => !o)} title="Private note"><NotePencil size={14} weight="bold" /></button>
+        <button className={`tip tip-top${noteOpen ? ' active' : ''}`} data-tip="Private note" onClick={() => setNoteOpen((o) => !o)} aria-label="Private note"><NotePencil size={15} weight="regular" /></button>
       )}
-      <button onClick={remove} title="Delete" className="danger"><TrashSimple size={14} weight="bold" /></button>
+      <button className="danger tip tip-top" data-tip="Delete" data-kbd="⌫" onClick={remove} aria-label="Delete"><TrashSimple size={15} weight="regular" /></button>
 
       {noteOpen && single && (
         <div className="private-note-editor">

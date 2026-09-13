@@ -1,7 +1,9 @@
 .conflict-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(20, 20, 20, 0.28);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,14 +13,17 @@
 .conflict-dialog {
   background: var(--panel);
   border: 1px solid var(--panel-border);
-  border-radius: var(--radius-lg);
-  padding: 24px;
+  border-radius: var(--radius-xl);
+  padding: 26px 28px;
   max-width: 420px;
   box-shadow: var(--shadow-hover);
+  animation: card-in 0.5s var(--ease) both;
 }
 
 .conflict-dialog h3 {
   margin: 0 0 10px;
+  font-size: 17px;
+  letter-spacing: -0.02em;
 }
 
 .conflict-dialog p {

@@ -371,6 +371,14 @@ export default function Canvas({
         )}
       </div>
 
+      {items.length === 0 && (
+        <div className="canvas-empty">
+          <span className="canvas-empty-eyebrow">Empty board</span>
+          <p>Pick something from the bar above, or just paste an image, a link or a colour code.</p>
+          <p className="canvas-empty-hint"><kbd>⌘ V</kbd> paste  ·  scroll to pan  ·  <kbd>Space</kbd> drag to pan  ·  <kbd>⌘</kbd> scroll to zoom</p>
+        </div>
+      )}
+
       {selectedIds.length > 0 && (
         <SelectionToolbar
           board={board}

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './WelcomeScreen.css';
 import cursorFace from '../assets/cursor-face.png';
+import { CaretRight } from './icons.jsx';
 
 export default function WelcomeScreen({ boardId, onEnter, initialName = '' }) {
   const [name, setName] = useState(initialName);
@@ -12,9 +13,11 @@ export default function WelcomeScreen({ boardId, onEnter, initialName = '' }) {
 
   return (
     <div className="welcome-screen" style={{ cursor: `url(${cursorFace}) 30 15, auto` }}>
+      <div className="welcome-shell">
       <div className="welcome-card">
+        <span className="welcome-eyebrow">Shared board</span>
         <h1>Welcome to Patkov Moodboard</h1>
-        <p className="welcome-sub">Tell me your name</p>
+        <p className="welcome-sub">Tell me your name so your edits carry it</p>
         <input
           autoFocus
           className="welcome-input"
@@ -25,6 +28,7 @@ export default function WelcomeScreen({ boardId, onEnter, initialName = '' }) {
         />
         <button className="welcome-btn" onClick={submit} disabled={!name.trim()}>
           {boardId ? 'Open board' : 'Continue'}
+          <span className="btn-orb"><CaretRight size={14} weight="bold" /></span>
         </button>
 
         {!boardId && (
@@ -39,6 +43,7 @@ export default function WelcomeScreen({ boardId, onEnter, initialName = '' }) {
           are just labels for attribution, not verified identities &mdash; don&rsquo;t share this
           link outside your trusted group.
         </p>
+      </div>
       </div>
     </div>
   );

@@ -1,14 +1,36 @@
 .export-dialog {
   margin: auto;
-  width: 340px;
+  width: 360px;
+  max-width: calc(100% - 24px);
   background: var(--panel);
   border: 1px solid var(--panel-border);
-  border-radius: var(--radius-lg);
-  padding: 20px;
+  border-radius: var(--radius-xl);
+  padding: 22px 24px 24px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
   box-shadow: var(--shadow-hover);
+  animation: card-in 0.5s var(--ease) both;
+}
+
+.export-dialog .settings-header h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.export-dialog .settings-header button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--panel-border);
+  background: var(--accent-softer);
+  cursor: pointer;
+  color: var(--text-muted);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
 }
 
 .export-dialog .primary-btn {
@@ -18,16 +40,37 @@
 .export-dialog label {
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: space-between;
+  gap: 12px;
   font-size: 13px;
+  font-weight: 500;
+}
+
+.export-dialog label:has(input[type='checkbox']) {
+  justify-content: flex-start;
+  font-weight: 400;
 }
 
 .export-dialog select {
-  padding: 4px 6px;
-  border-radius: 6px;
+  padding: 7px 10px;
+  border-radius: 999px;
   border: 1px solid var(--panel-border);
-  background: var(--bg);
+  background: var(--accent-softer);
   color: var(--text);
+  font-size: 12.5px;
+  outline: none;
+  min-width: 150px;
+}
+
+.export-dialog input[type='range'] {
+  accent-color: var(--accent);
+  flex: 1;
+}
+
+.export-dialog input[type='checkbox'] {
+  accent-color: var(--accent);
+  width: 15px;
+  height: 15px;
 }
 
 .export-status {

@@ -1,146 +1,276 @@
+/* Floating island detached from the top edge: the board runs underneath it. */
 .toolbar {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: calc(100% - 28px);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
-  gap: 8px;
-  padding: 10px 16px;
-  background: var(--panel);
-  border-bottom: 1px solid var(--panel-border);
+  gap: 6px;
+  padding: 6px 8px;
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(22px) saturate(1.4);
+  backdrop-filter: blur(22px) saturate(1.4);
+  border: 1px solid var(--panel-border);
+  border-radius: 999px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset, var(--shadow-float);
   z-index: 20;
+  animation: fade-up 0.7s var(--ease) both;
+}
+
+[data-theme='dark'] .toolbar {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, var(--shadow-float);
 }
 
 .toolbar-group {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   flex-wrap: wrap;
+}
+
+.toolbar-group + .toolbar-group::before {
+  content: '';
+  width: 1px;
+  height: 18px;
+  margin: 0 6px;
+  background: var(--panel-strong);
+  border-radius: 1px;
 }
 
 .board-title {
   font-weight: 600;
-  margin-right: 8px;
+  font-size: 13.5px;
+  letter-spacing: -0.01em;
   border: 0;
   background: none;
   color: inherit;
-  font-size: inherit;
   font-family: inherit;
-  padding: 2px 4px;
-  border-radius: 4px;
+  padding: 6px 10px;
+  border-radius: 999px;
   cursor: text;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .board-title:hover {
-  background: var(--panel-border);
+  background: var(--accent-soft);
 }
 
 .board-title-input {
   font-weight: 600;
-  font-size: inherit;
+  font-size: 13.5px;
   font-family: inherit;
-  margin-right: 8px;
-  padding: 2px 4px;
-  width: 180px;
-  border: 1px solid var(--accent);
-  border-radius: 4px;
-  background: var(--bg);
+  padding: 6px 12px;
+  width: 200px;
+  border: 1px solid var(--panel-strong);
+  border-radius: 999px;
+  background: var(--panel);
   color: var(--text);
+  outline: none;
+}
+
+.board-title-input:focus {
+  border-color: var(--accent);
+}
+
+/* autosave status: a quiet pill, the label only shows while something is happening */
+.save-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 6px;
+  height: 28px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  color: var(--text-muted);
 }
 
 .save-dot {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background: #cfcfcb;
+  background: #b9b9b4;
   flex-shrink: 0;
+  transition: background 0.5s var(--ease), box-shadow 0.5s var(--ease);
 }
 
-.save-dot.save-saving {
+.save-label {
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  opacity: 0;
+  transition: max-width 0.5s var(--ease), opacity 0.4s var(--ease);
+}
+
+.save-pill:not(.save-saved) .save-label {
+  max-width: 120px;
+  opacity: 1;
+}
+
+.save-pill.save-saving .save-dot {
   background: var(--accent);
+  animation: pulse 1.2s var(--ease) infinite;
 }
 
-.save-dot.save-unsaved {
+.save-pill.save-unsaved .save-dot {
   background: #d9a300;
 }
 
-.save-dot.save-error,
-.save-dot.save-conflict {
+.save-pill.save-error .save-dot,
+.save-pill.save-conflict .save-dot {
   background: var(--danger);
+  box-shadow: 0 0 0 3px var(--danger-bg);
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.5; }
 }
 
 .item-buttons {
   gap: 2px;
-  padding: 0 4px;
-  border-left: 1px solid var(--panel-border);
-  border-right: 1px solid var(--panel-border);
 }
 
 .collaborator-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   font-size: 12px;
-  padding: 6px 10px;
+  font-weight: 500;
+  padding: 3px 12px 3px 3px;
+  height: 30px;
   border-radius: 999px;
   border: 1px solid var(--panel-border);
-  background: var(--accent-soft);
+  background: var(--accent-softer);
   color: var(--text);
   cursor: pointer;
 }
 
+.collaborator-chip:hover {
+  background: var(--accent-soft);
+}
+
+.avatar {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-size: 11px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .name-input {
   font-size: 12px;
-  padding: 6px 10px;
+  padding: 6px 12px;
+  height: 30px;
   border-radius: 999px;
-  border: 1px solid var(--panel-border);
-  background: var(--bg);
+  border: 1px solid var(--panel-strong);
+  background: var(--panel);
   color: var(--text);
-  width: 120px;
+  width: 130px;
+  outline: none;
 }
 
 .tool-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   background: transparent;
   border: 1px solid transparent;
-  border-radius: var(--radius);
-  padding: 6px 10px;
+  border-radius: 999px;
+  padding: 6px 12px;
+  height: 32px;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 12.5px;
+  font-weight: 500;
   color: var(--text);
-  transition: background 0.15s ease, border-color 0.15s ease;
 }
 
-.tool-btn:hover {
+.tool-btn:hover:not(:disabled) {
   background: var(--accent-soft);
 }
 
 .tool-btn.icon-only {
-  padding: 6px;
+  width: 32px;
+  padding: 0;
+  justify-content: center;
 }
 
 .tool-btn:disabled {
-  opacity: 0.35;
+  opacity: 0.3;
   cursor: default;
-  background: none;
 }
 
 .tool-btn.primary {
   background: var(--accent);
   color: var(--accent-contrast);
+  padding: 4px 4px 4px 14px;
+  gap: 8px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.14) inset;
 }
 
-.tool-btn.primary:hover {
-  background: var(--text-muted);
+.tool-btn.primary:hover:not(:disabled) {
+  background: var(--accent);
+  transform: translateY(-1px);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.14) inset, var(--shadow-hover);
+}
+
+/* the trailing icon sits in its own small orb inside the pill */
+.btn-orb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.5s var(--ease-spring);
+}
+
+[data-theme='dark'] .btn-orb {
+  background: rgba(0, 0, 0, 0.14);
+}
+
+.tool-btn.primary:hover .btn-orb {
+  transform: translate(1px, -1px) scale(1.08);
+}
+
+/* rich tooltips: label on the first line, a short hint below */
+.tip.tip-rich::after {
+  content: attr(data-tip) '\A' attr(data-hint);
+  white-space: pre;
+  text-align: center;
+  line-height: 1.35;
+  border-radius: 12px;
+  padding: 7px 11px;
 }
 
 .search-box {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 10px;
-  border-radius: var(--radius);
-  border: 1px solid var(--panel-border);
-  background: var(--bg);
+  padding: 0 12px;
+  height: 32px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: var(--accent-softer);
   color: var(--text-muted);
+  transition: background 0.35s var(--ease), border-color 0.35s var(--ease), width 0.5s var(--ease);
+}
+
+.search-box:focus-within {
+  background: var(--panel);
+  border-color: var(--panel-strong);
 }
 
 .search-input {
@@ -148,23 +278,34 @@
   outline: none;
   background: transparent;
   color: var(--text);
-  width: 150px;
-  font-size: 13px;
+  width: 110px;
+  font-size: 12.5px;
+  transition: width 0.5s var(--ease);
+}
+
+.search-input:focus {
+  width: 170px;
+}
+
+.search-input::placeholder {
+  color: var(--text-muted);
 }
 
 .zoom-controls {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 12px;
+  gap: 2px;
+  font-size: 11.5px;
+  font-variant-numeric: tabular-nums;
   color: var(--text-muted);
-  border: 1px solid var(--panel-border);
-  border-radius: var(--radius);
-  padding: 2px 6px;
+  border-radius: 999px;
+  background: var(--accent-softer);
+  padding: 2px;
+  height: 32px;
 }
 
 .zoom-controls span {
-  min-width: 34px;
+  min-width: 38px;
   text-align: center;
 }
 
@@ -172,9 +313,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
-  border-radius: 5px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
   border: none;
   background: transparent;
   color: var(--text);
@@ -182,5 +323,16 @@
 }
 
 .zoom-controls button:hover {
-  background: var(--accent-soft);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+@media (max-width: 900px) {
+  .toolbar {
+    top: 10px;
+    border-radius: 22px;
+  }
+  .search-input {
+    width: 80px;
+  }
 }

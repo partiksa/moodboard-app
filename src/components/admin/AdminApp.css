@@ -1,6 +1,7 @@
 .admin-screen {
-  height: 100vh;
-  width: 100vw;
+  min-height: 100dvh;
+  width: 100%;
+  padding: 24px 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,41 +9,68 @@
 }
 
 .admin-card {
-  max-width: 420px;
+  max-width: 440px;
   width: 100%;
-  padding: 32px;
+  padding: 34px 32px;
   background: var(--panel);
   border: 1px solid var(--panel-border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-hover);
+  animation: card-in 0.6s var(--ease) both;
+}
+
+.admin-card h2,
+.admin-topbar h2 {
+  margin: 0 0 6px;
+  font-size: 22px;
+  letter-spacing: -0.03em;
 }
 
 .admin-input {
   width: 100%;
   box-sizing: border-box;
-  padding: 10px 12px;
-  border-radius: var(--radius);
+  padding: 11px 16px;
+  border-radius: 999px;
   border: 1px solid var(--panel-border);
-  background: var(--bg);
+  background: var(--accent-softer);
   color: var(--text);
   margin: 12px 0;
+  outline: none;
+}
+
+.admin-input:focus {
+  background: var(--panel);
+  border-color: var(--accent);
 }
 
 .admin-btn {
-  padding: 8px 14px;
-  border-radius: var(--radius);
+  padding: 9px 16px;
+  border-radius: 999px;
   border: none;
   background: var(--accent);
   color: var(--accent-contrast);
   cursor: pointer;
   font-size: 13px;
+  font-weight: 600;
   margin-left: 8px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.14) inset, var(--shadow);
+}
+
+.admin-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-hover);
+}
+
+.admin-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
 }
 
 .admin-btn.ghost {
-  background: transparent;
+  background: var(--accent-softer);
   color: var(--text);
   border: 1px solid var(--panel-border);
+  box-shadow: none;
 }
 
 .admin-note {
@@ -54,13 +82,14 @@
 .admin-error {
   color: var(--danger);
   background: var(--danger-bg);
-  padding: 8px 12px;
-  border-radius: var(--radius);
+  padding: 10px 14px;
+  border-radius: 12px;
   font-size: 13px;
+  animation: fade-up 0.4s var(--ease) both;
 }
 
 .admin-dashboard {
-  padding: 24px 32px;
+  padding: 40px 24px 80px;
   max-width: 900px;
   margin: 0 auto;
 }
@@ -81,8 +110,16 @@
 .admin-board-row {
   border: 1px solid var(--panel-border);
   border-radius: var(--radius-lg);
-  padding: 14px 18px;
+  padding: 16px 20px;
   background: var(--panel);
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.45s var(--ease), transform 0.45s var(--ease);
+  animation: fade-up 0.5s var(--ease) both;
+}
+
+.admin-board-row:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-1px);
 }
 
 .admin-board-name {
@@ -104,17 +141,23 @@
 
 .admin-board-actions button {
   font-size: 12px;
-  padding: 6px 10px;
-  border-radius: var(--radius);
+  font-weight: 500;
+  padding: 7px 13px;
+  border-radius: 999px;
   border: 1px solid var(--panel-border);
-  background: var(--bg);
+  background: var(--accent-softer);
   color: var(--text);
   cursor: pointer;
 }
 
+.admin-board-actions button:hover:not(:disabled) {
+  background: var(--accent-soft);
+}
+
 .admin-board-actions button.danger {
   color: var(--danger);
-  border-color: var(--danger);
+  border-color: transparent;
+  background: var(--danger-bg);
 }
 
 .admin-activity-list {
@@ -138,7 +181,7 @@
   background: var(--accent);
   color: white;
   border-color: var(--accent);
-  animation: copy-pop 0.28s ease;
+  animation: copy-pop 0.4s var(--ease-spring);
 }
 
 @keyframes copy-pop {

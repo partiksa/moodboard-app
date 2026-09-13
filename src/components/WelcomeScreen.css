@@ -1,60 +1,160 @@
 .welcome-screen {
-  height: 100vh;
-  width: 100vw;
+  min-height: 100dvh;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 24px 16px;
   background: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* two slow ambient light spots behind the card so the page is never a flat sheet */
+.welcome-screen::before,
+.welcome-screen::after {
+  content: '';
+  position: absolute;
+  width: 60vmax;
+  height: 60vmax;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(80px);
+  opacity: 0.55;
+}
+
+.welcome-screen::before {
+  top: -30vmax;
+  left: -20vmax;
+  background: radial-gradient(closest-side, rgba(255, 220, 190, 0.7), transparent);
+  animation: drift 26s var(--ease) infinite alternate;
+}
+
+.welcome-screen::after {
+  bottom: -30vmax;
+  right: -20vmax;
+  background: radial-gradient(closest-side, rgba(190, 210, 255, 0.6), transparent);
+  animation: drift 32s var(--ease) infinite alternate-reverse;
+}
+
+[data-theme='dark'] .welcome-screen::before { background: radial-gradient(closest-side, rgba(120, 90, 60, 0.35), transparent); }
+[data-theme='dark'] .welcome-screen::after { background: radial-gradient(closest-side, rgba(60, 80, 140, 0.35), transparent); }
+
+@keyframes drift {
+  from { transform: translate(0, 0); }
+  to { transform: translate(8vmax, 6vmax); }
+}
+
+/* double bezel: soft tray around a white core */
+.welcome-shell {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  padding: 8px;
+  border-radius: var(--radius-xl);
+  background: var(--accent-soft);
+  border: 1px solid var(--panel-border);
+  animation: card-in 0.7s var(--ease) both;
 }
 
 .welcome-card {
-  max-width: 380px;
-  width: 100%;
-  padding: 36px;
+  padding: 38px 34px 30px;
   background: var(--panel);
-  border: 1px solid var(--panel-border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow);
+  border-radius: calc(var(--radius-xl) - 8px);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset, var(--shadow-hover);
   text-align: center;
 }
 
+.welcome-eyebrow {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--accent-softer);
+  border: 1px solid var(--panel-border);
+  color: var(--text-muted);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 18px;
+}
+
 .welcome-card h1 {
-  font-size: 22px;
-  margin: 0 0 6px;
+  font-size: 26px;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+  margin: 0 0 8px;
   color: var(--text);
 }
 
 .welcome-sub {
   color: var(--text-muted);
-  margin: 0 0 18px;
+  margin: 0 0 22px;
   font-size: 14px;
 }
 
 .welcome-input {
   width: 100%;
-  box-sizing: border-box;
-  padding: 10px 12px;
-  border-radius: var(--radius);
+  padding: 12px 16px;
+  border-radius: 999px;
   border: 1px solid var(--panel-border);
-  background: var(--bg);
+  background: var(--accent-softer);
   color: var(--text);
   font-size: 14px;
-  margin-bottom: 12px;
+  text-align: center;
+  margin-bottom: 10px;
+  outline: none;
+}
+
+.welcome-input:focus {
+  background: var(--panel);
+  border-color: var(--accent);
 }
 
 .welcome-btn {
   width: 100%;
-  padding: 10px 12px;
-  border-radius: var(--radius);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 5px 5px 5px 18px;
+  height: 46px;
+  border-radius: 999px;
   border: none;
   background: var(--accent);
   color: var(--accent-contrast);
   cursor: pointer;
   font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.14) inset, var(--shadow);
+}
+
+.welcome-btn .btn-orb {
+  margin-left: auto;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.5s var(--ease-spring);
+}
+
+[data-theme='dark'] .welcome-btn .btn-orb { background: rgba(0, 0, 0, 0.14); }
+
+.welcome-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-hover);
+}
+
+.welcome-btn:hover:not(:disabled) .btn-orb {
+  transform: translateX(2px) scale(1.06);
 }
 
 .welcome-btn:disabled {
-  opacity: 0.4;
+  opacity: 0.35;
   cursor: default;
 }
 
@@ -62,7 +162,7 @@
 .welcome-disclaimer {
   font-size: 12px;
   color: var(--text-muted);
-  margin-top: 14px;
-  line-height: 1.5;
+  margin: 16px 0 0;
+  line-height: 1.55;
   text-align: left;
 }
