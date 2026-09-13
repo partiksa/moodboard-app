@@ -452,29 +452,23 @@ function backgroundStyle(bg, gridSize, gridColor, viewport) {
     return { ...base, background: bg.color || '#ffffff' };
   }
 
-  // The dot grid is drawn in screen space. Scaling the step 1:1 with the zoom made the dots
-  // crowd into moiré when zoomed out and drift apart when zoomed in, so the step doubles or
-  // halves until it lands in a comfortable on-screen range, and the dots fade in as a
-  // finer level appears instead of popping.
-  const MIN_STEP = 18;
-  const MAX_STEP = 36;
-  let step = gridSize * viewport.zoom;
-  while (step < MIN_STEP) step *= 2;
-  while (step > MAX_STEP) step /= 2;
-  const fade = clamp((step - MIN_STEP) / (MAX_STEP - MIN_STEP), 0, 1);
-  const alpha = 0.35 + fade * 0.45;
-  // whole-pixel steps keep every dot the same size; fractional steps shimmer while zooming
-  step = Math.round(step * 2) / 2;
+  // The dot grid is drawn in screen space at a fixed spacing (what the board grid looks like
+  // at 75 % zoom), so zooming never changes how far apart the dots sit; it only slides with
+  // panning. Below 20 % zoom the dots disappear entirely.
+  if (viewport.zoom < 0.2) {
+    return { ...base, background: bg.type === 'dotted-black' ? '#111114' : 'var(--canvas-bg)' };
+  }
+  const step = Math.max(8, Math.round(gridSize * 0.75));
   const offsetX = ((viewport.panX % step) + step) % step;
   const offsetY = ((viewport.panY % step) + step) % step;
 
   const dark = bg.type === 'dotted-black';
-  const dotColor = dark ? `rgba(255, 255, 255, ${alpha * 0.45})` : hexToRgba(gridColor, alpha);
+  const dotColor = dark ? 'rgba(255, 255, 255, 0.28)' : hexToRgba(gridColor, 0.7);
   const pageColor = dark ? '#111114' : 'var(--canvas-bg)';
   return {
     ...base,
     background: pageColor,
-    backgroundImage: `radial-gradient(circle, ${dotColor} 1px, transparent 1.5px)`,
+    backgroundImage: `radial-gradient(circle, ${dotColor} 0.6px, transparent 1.1px)`,
     backgroundSize: `${step}px ${step}px`,
     backgroundPosition: `${offsetX}px ${offsetY}px`,
   };
