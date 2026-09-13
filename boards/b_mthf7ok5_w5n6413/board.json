@@ -2,7 +2,7 @@
   "id": "b_mthf7ok5_w5n6413",
   "name": "odrazse",
   "createdAt": "2026-08-31T15:56:15.509Z",
-  "updatedAt": "2026-09-13T13:26:23.312Z",
+  "updatedAt": "2026-09-13T13:26:35.481Z",
   "items": [
     {
       "id": "item_mthf7uv1_kfpanqd",
@@ -408,7 +408,7 @@
       "backgroundColor": "#ffffff"
     },
     {
-      "id": "item_mtzukxpq_j8zrfr8",
+      "id": "item_mtzul73q_nmctfsy",
       "type": "text",
       "x": 2519.1534640231885,
       "y": -18.796631410003805,
@@ -426,51 +426,6 @@
     }
   ],
   "activity": [
-    {
-      "id": "act_mthf87ol_go1o2",
-      "ts": "2026-08-31T15:56:40.293Z",
-      "name": "patko",
-      "verb": "moved",
-      "itemType": "text note",
-      "itemTitle": "odrazse x ATELIÉR ZLÍN",
-      "private": false
-    },
-    {
-      "id": "act_mthf88w4_lomgb",
-      "ts": "2026-08-31T15:56:41.860Z",
-      "name": "patko",
-      "verb": "moved",
-      "itemType": "text note",
-      "itemTitle": "odrazse x ATELIÉR ZLÍN",
-      "private": false
-    },
-    {
-      "id": "act_mthf8bio_enbyy",
-      "ts": "2026-08-31T15:56:45.264Z",
-      "name": "patko",
-      "verb": "moved",
-      "itemType": "text note",
-      "itemTitle": "odrazse x ATELIÉR ZLÍN",
-      "private": false
-    },
-    {
-      "id": "act_mthf8bsc_0oqtb",
-      "ts": "2026-08-31T15:56:45.612Z",
-      "name": "patko",
-      "verb": "edited",
-      "itemType": "text note",
-      "itemTitle": "odrazse x ATELIÉR ZLÍN",
-      "private": false
-    },
-    {
-      "id": "act_mthf8csd_ndx44",
-      "ts": "2026-08-31T15:56:46.909Z",
-      "name": "patko",
-      "verb": "moved",
-      "itemType": "text note",
-      "itemTitle": "odrazse x ATELIÉR ZLÍN",
-      "private": false
-    },
     {
       "id": "act_mthf8d94_urmia",
       "ts": "2026-08-31T15:56:47.512Z",
@@ -3120,6 +3075,51 @@
     {
       "id": "act_mtzukxpr_117zd",
       "ts": "2026-09-13T13:26:19.311Z",
+      "name": "patko",
+      "verb": "added",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mtzul12q_5bn9h",
+      "ts": "2026-09-13T13:26:23.666Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mtzul1g2_gz1x8",
+      "ts": "2026-09-13T13:26:24.146Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "post2",
+      "private": false
+    },
+    {
+      "id": "act_mtzul2xa_20geo",
+      "ts": "2026-09-13T13:26:26.062Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "post2",
+      "private": false
+    },
+    {
+      "id": "act_mtzul5t1_9kf5a",
+      "ts": "2026-09-13T13:26:29.797Z",
+      "name": "patko",
+      "verb": "deleted",
+      "itemType": "text note",
+      "itemTitle": "post2",
+      "private": false
+    },
+    {
+      "id": "act_mtzul73q_5ela4",
+      "ts": "2026-09-13T13:26:31.478Z",
       "name": "patko",
       "verb": "added",
       "itemType": "text note",
