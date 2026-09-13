@@ -1,6 +1,12 @@
 {
   "version": 1,
-  "categories": [],
+  "categories": [
+    {
+      "id": "c_mu00u7be_0jtoxlp",
+      "name": "POST_1",
+      "createdAt": "2026-09-13T16:21:29.354Z"
+    }
+  ],
   "files": [
     {
       "id": "f_mu00txnr_nfhhlpc",
@@ -23,5 +29,5 @@
       "uploadedBy": "Admin"
     }
   ],
-  "updatedAt": "2026-09-13T16:21:28.047Z"
+  "updatedAt": "2026-09-13T16:21:29.354Z"
 }
