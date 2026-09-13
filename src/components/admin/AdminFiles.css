@@ -1,0 +1,345 @@
+.admin-files {
+  max-width: 1080px;
+}
+
+.admin-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  background: none;
+  color: var(--text-muted);
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 6px 0;
+  margin-bottom: 14px;
+  transition: color 0.3s var(--ease);
+}
+
+.admin-back svg {
+  transition: transform 0.5s var(--ease-spring);
+}
+
+.admin-back:hover {
+  color: var(--text);
+}
+
+.admin-back:hover svg {
+  transform: translateX(-3px);
+}
+
+.admin-files-top {
+  align-items: flex-start;
+  margin-bottom: 28px;
+}
+
+.admin-files-top h2 {
+  margin: 0 0 4px;
+}
+
+.admin-files-top .admin-note {
+  margin: 0;
+}
+
+.admin-files-top-actions {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.admin-files-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.admin-files-side h4,
+.admin-files-grid-head h4 {
+  margin: 0 0 10px;
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--text-muted);
+}
+
+.admin-rail {
+  border-right: none;
+  padding-right: 0;
+}
+
+.admin-cat-row {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  border-radius: 999px;
+}
+
+.admin-cat-row > button {
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-cat-tools {
+  display: none;
+  align-items: center;
+  gap: 1px;
+  flex-shrink: 0;
+  padding-right: 4px;
+}
+
+.admin-cat-row:hover .admin-cat-tools,
+.admin-cat-row:focus-within .admin-cat-tools {
+  display: flex;
+}
+
+.admin-cat-tools button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+.admin-cat-tools button:hover:not(:disabled) {
+  background: var(--accent-soft);
+  color: var(--text);
+}
+
+.admin-cat-tools button.danger:hover:not(:disabled) {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+.admin-cat-tools button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.admin-cat-input {
+  flex: 1;
+  min-width: 0;
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--panel-border);
+  background: var(--accent-softer);
+  color: var(--text);
+  font-size: 12.5px;
+  outline: none;
+}
+
+.admin-cat-input:focus {
+  background: var(--panel);
+  border-color: var(--accent);
+}
+
+.admin-cat-add {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--panel-border);
+}
+
+.admin-cat-add-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.5s var(--ease-spring), opacity 0.3s var(--ease);
+}
+
+.admin-cat-add-btn:hover:not(:disabled) {
+  transform: scale(1.08);
+}
+
+.admin-cat-add-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* drop zone: dashed tray with a glowing orb, lights up when a file hovers over it */
+.admin-dropzone {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 22px;
+  border-radius: var(--radius-lg);
+  border: 1.5px dashed var(--panel-strong);
+  background: var(--accent-softer);
+  cursor: pointer;
+  margin-bottom: 18px;
+  transition: border-color 0.35s var(--ease), background 0.35s var(--ease), transform 0.5s var(--ease);
+  outline: none;
+}
+
+.admin-dropzone:hover,
+.admin-dropzone:focus-visible {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.admin-dropzone.over {
+  border-style: solid;
+  border-color: var(--accent);
+  background: var(--panel);
+  transform: scale(1.01);
+  box-shadow: var(--shadow-hover);
+}
+
+.admin-dropzone-orb {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  flex-shrink: 0;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.14) inset, var(--shadow);
+  transition: transform 0.55s var(--ease-spring);
+}
+
+.admin-dropzone:hover .admin-dropzone-orb,
+.admin-dropzone.over .admin-dropzone-orb {
+  transform: translateY(-2px) scale(1.06);
+}
+
+.admin-dropzone strong {
+  display: block;
+  font-size: 13.5px;
+  letter-spacing: -0.01em;
+}
+
+.admin-dropzone span:not(.admin-dropzone-orb) {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.admin-dropzone b {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.admin-upload-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.admin-upload-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 14px;
+  border-radius: 12px;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  font-size: 12px;
+  overflow: hidden;
+  animation: fade-up 0.4s var(--ease) both;
+}
+
+.admin-upload-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.admin-upload-size,
+.admin-upload-state {
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.admin-upload-row.done .admin-upload-state {
+  color: #346538;
+}
+
+.admin-upload-row.error .admin-upload-state {
+  color: var(--danger);
+}
+
+.admin-upload-dismiss {
+  display: inline-flex;
+  border: none;
+  background: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 2px;
+}
+
+.admin-upload-bar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background: var(--accent);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease);
+}
+
+.admin-upload-row.error .admin-upload-bar {
+  background: var(--danger);
+}
+
+.admin-files-grid-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.admin-files-grid {
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+}
+
+.admin-files-foot {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 40px;
+}
+
+@media (max-width: 760px) {
+  .admin-files-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-files-top {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .admin-cat-tools {
+    display: flex;
+  }
+}

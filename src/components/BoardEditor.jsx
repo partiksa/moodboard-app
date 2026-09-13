@@ -3,6 +3,7 @@ import Toolbar from './Toolbar.jsx';
 import Canvas from './Canvas.jsx';
 import SettingsPanel from './SettingsPanel.jsx';
 import ExportDialog from './ExportDialog.jsx';
+import FilesPanel from './files/FilesPanel.jsx';
 import ActivityPanel from './ActivityPanel.jsx';
 import ConflictDialog from './ConflictDialog.jsx';
 import ColorCheckDialog from './ColorCheckDialog.jsx';
@@ -34,6 +35,7 @@ export default function BoardEditor({ board: initialBoard, sha, collaboratorName
   const [search, setSearch] = useState('');
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [exportOpen, setExportOpen] = useState(false);
+  const [filesOpen, setFilesOpen] = useState(false);
   const [activityOpen, setActivityOpen] = useState(false);
   const [colorCheckItem, setColorCheckItem] = useState(null);
   const canvasRef = useRef(null);
@@ -249,6 +251,7 @@ export default function BoardEditor({ board: initialBoard, sha, collaboratorName
         onSearchChange={setSearch}
         onOpenSettings={() => setSettingsOpen(true)}
         onOpenExport={() => setExportOpen(true)}
+        onOpenFiles={() => setFilesOpen(true)}
         zoom={viewport.zoom}
         onZoomIn={() => zoomBy(1.15)}
         onZoomOut={() => zoomBy(1 / 1.15)}
@@ -282,6 +285,7 @@ export default function BoardEditor({ board: initialBoard, sha, collaboratorName
       {exportOpen && (
         <ExportDialog board={board} canvasRef={canvasRef} worldRef={worldRef} onClose={() => setExportOpen(false)} />
       )}
+      {filesOpen && <FilesPanel board={board} onClose={() => setFilesOpen(false)} />}
       {activityOpen && <ActivityPanel activity={board.activity || []} onClose={() => setActivityOpen(false)} />}
       {colorCheckItem && <ColorCheckDialog board={board} item={colorCheckItem} onClose={() => setColorCheckItem(null)} />}
       {conflict && <ConflictDialog onReload={() => resolveConflict('reload')} onOverwrite={() => resolveConflict('overwrite')} />}

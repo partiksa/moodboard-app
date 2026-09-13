@@ -71,9 +71,9 @@ function contentsPath(path) {
 // `content` and `encoding: "none"`, which used to decode to an empty string and blow up as
 // "JSON Parse error: Unexpected EOF" further up. Anything without usable inline content is
 // re-fetched through the Git blobs API, which serves files up to 100 MB.
-export async function getFile(path, token) {
+export async function getFile(path, token, { branch = GITHUB_BRANCH } = {}) {
   try {
-    const data = await request(`${contentsPath(path)}?ref=${GITHUB_BRANCH}`, { token });
+    const data = await request(`${contentsPath(path)}?ref=${branch}`, { token });
     if (data.encoding === 'base64' && data.content) {
       return { text: base64ToUtf8(data.content), sha: data.sha };
     }
@@ -89,32 +89,89 @@ export async function getFile(path, token) {
 }
 
 // Creates or updates a file. Pass `sha` when updating an existing file (optimistic concurrency).
-export async function putFile(path, text, { sha, message, token }) {
+export async function putFile(path, text, { sha, message, token, branch = GITHUB_BRANCH }) {
   const data = await request(contentsPath(path), {
     method: 'PUT',
     token,
     body: {
       message,
       content: utf8ToBase64(text),
-      branch: GITHUB_BRANCH,
+      branch,
       ...(sha ? { sha } : {}),
     },
   });
   return { sha: data.content.sha };
 }
 
-export async function deleteFile(path, sha, message, token) {
+export async function deleteFile(path, sha, message, token, { branch = GITHUB_BRANCH } = {}) {
   await request(contentsPath(path), {
     method: 'DELETE',
     token,
-    body: { message, sha, branch: GITHUB_BRANCH },
+    body: { message, sha, branch },
   });
 }
 
-// Lists entries of a directory. Returns [] if the directory does not exist.
-export async function listDir(path, token) {
+// Binary upload (content already base64) through XMLHttpRequest so the caller can show real
+// upload progress; fetch() has no upload progress events.
+export function putBinaryFile(path, base64, { sha, message, token, branch = GITHUB_BRANCH, onProgress, signal }) {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('PUT', `${API_ROOT}${contentsPath(path)}`);
+    xhr.setRequestHeader('Accept', 'application/vnd.github+json');
+    xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+    xhr.setRequestHeader('X-GitHub-Api-Version', '2022-11-28');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.upload.onprogress = (e) => {
+      if (e.lengthComputable && onProgress) onProgress(e.loaded / e.total);
+    };
+    xhr.onerror = () => reject(new GitHubApiError('Could not reach GitHub. Check your internet connection.', 0));
+    xhr.onabort = () => reject(new GitHubApiError('Upload cancelled.', 0));
+    xhr.onload = () => {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        try {
+          resolve({ sha: JSON.parse(xhr.responseText).content.sha });
+        } catch {
+          resolve({ sha: null });
+        }
+        return;
+      }
+      let detail = '';
+      try { detail = JSON.parse(xhr.responseText).message; } catch { /* ignore */ }
+      reject(friendlyError(xhr.status, detail));
+    };
+    if (signal) signal.addEventListener('abort', () => xhr.abort(), { once: true });
+    xhr.send(JSON.stringify({ message, content: base64, branch, ...(sha ? { sha } : {}) }));
+  });
+}
+
+export async function branchExists(branch, token) {
   try {
-    const data = await request(`${contentsPath(path)}?ref=${GITHUB_BRANCH}`, { token });
+    await request(`/repos/${GITHUB_OWNER}/${GITHUB_REPO}/git/ref/heads/${branch}`, { token });
+    return true;
+  } catch (err) {
+    if (err.status === 404) return false;
+    throw err;
+  }
+}
+
+// Creates a branch with no parent commit (so it does not drag the app's history along),
+// seeded with a single text file.
+export async function createOrphanBranch(branch, seedPath, seedText, message, token) {
+  const repo = `/repos/${GITHUB_OWNER}/${GITHUB_REPO}`;
+  const blob = await request(`${repo}/git/blobs`, { method: 'POST', token, body: { content: seedText, encoding: 'utf-8' } });
+  const tree = await request(`${repo}/git/trees`, {
+    method: 'POST',
+    token,
+    body: { tree: [{ path: seedPath, mode: '100644', type: 'blob', sha: blob.sha }] },
+  });
+  const commit = await request(`${repo}/git/commits`, { method: 'POST', token, body: { message, tree: tree.sha, parents: [] } });
+  await request(`${repo}/git/refs`, { method: 'POST', token, body: { ref: `refs/heads/${branch}`, sha: commit.sha } });
+}
+
+// Lists entries of a directory. Returns [] if the directory does not exist.
+export async function listDir(path, token, { branch = GITHUB_BRANCH } = {}) {
+  try {
+    const data = await request(`${contentsPath(path)}?ref=${branch}`, { token });
     return Array.isArray(data) ? data : [];
   } catch (err) {
     if (err.status === 404) return [];

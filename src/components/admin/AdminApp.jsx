@@ -237,6 +237,7 @@ export default function AdminApp() {
               </div>
               <div className="admin-board-actions">
                 <button onClick={() => navigate(`/b/${b.id}`)}>Open</button>
+                <button onClick={() => navigate(`/admin/files/${b.id}`)}>Files</button>
                 <button
                   className={`copy-link-btn${copiedId === b.id ? ' copied' : ''}`}
                   onClick={() => copyLink(b.id)}

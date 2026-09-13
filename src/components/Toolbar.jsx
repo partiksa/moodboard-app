@@ -19,6 +19,7 @@ import {
   FloppyDisk,
   CaretUp,
   CaretDown,
+  FolderOpen,
 } from './icons.jsx';
 import './Toolbar.css';
 
@@ -66,6 +67,7 @@ export default function Toolbar({
   onSearchChange,
   onOpenSettings,
   onOpenExport,
+  onOpenFiles,
   zoom,
   onZoomIn,
   onZoomOut,
@@ -194,6 +196,10 @@ export default function Toolbar({
               <Plus size={12} weight="bold" />
             </button>
           </div>
+
+        <button className="tool-btn icon-only tip tip-rich" data-tip="Files" data-hint="Originals to download" onClick={onOpenFiles} aria-label="Board files">
+          <FolderOpen size={iconSize} weight="regular" />
+        </button>
 
         <button className="tool-btn icon-only tip" data-tip="Board settings" onClick={onOpenSettings} aria-label="Board settings">
           <GearSix size={iconSize} weight="regular" />

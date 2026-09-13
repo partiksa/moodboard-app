@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import BoardEditor from './components/BoardEditor.jsx';
 import WelcomeScreen from './components/WelcomeScreen.jsx';
 import AdminApp from './components/admin/AdminApp.jsx';
+import AdminFiles from './components/admin/AdminFiles.jsx';
 import { useTheme } from './state/useTheme';
 import { useHashRoute } from './lib/hashRoute';
 import { getDisplayName, setDisplayName } from './lib/displayName';
@@ -44,6 +45,10 @@ export default function App() {
 
   if (route.name === 'admin') {
     return <AdminApp />;
+  }
+
+  if (route.name === 'admin-files') {
+    return <AdminFiles boardId={route.boardId} />;
   }
 
   if (route.name === 'board') {

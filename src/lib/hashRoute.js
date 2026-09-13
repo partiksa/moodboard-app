@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 
 // Hash-based routing so GitHub Pages (static hosting, no server rewrites) never 404s.
-// Recognized shapes: "#/", "#/b/<boardId>", "#/admin".
+// Recognized shapes: "#/", "#/b/<boardId>", "#/admin", "#/admin/files/<boardId>".
 function parseHash(hash) {
   const clean = hash.replace(/^#\/?/, '');
   const parts = clean.split('/').filter(Boolean);
   if (parts[0] === 'b' && parts[1]) return { name: 'board', boardId: decodeURIComponent(parts[1]) };
+  if (parts[0] === 'admin' && parts[1] === 'files' && parts[2]) return { name: 'admin-files', boardId: decodeURIComponent(parts[2]) };
   if (parts[0] === 'admin') return { name: 'admin' };
   return { name: 'welcome' };
 }
