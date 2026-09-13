@@ -2,7 +2,7 @@
   "id": "b_mthf7ok5_w5n6413",
   "name": "odrazse",
   "createdAt": "2026-08-31T15:56:15.509Z",
-  "updatedAt": "2026-09-13T15:54:17.949Z",
+  "updatedAt": "2026-09-13T15:54:39.551Z",
   "items": [
     {
       "id": "item_mthf7uv1_kfpanqd",
@@ -520,8 +520,8 @@
     {
       "id": "item_mtzzpf0h_757opa2",
       "type": "image",
-      "x": 996,
-      "y": -672,
+      "x": 1051.5,
+      "y": -603.5921654467161,
       "width": 201,
       "height": 360,
       "rotation": 0,
@@ -537,8 +537,8 @@
     {
       "id": "item_mtzzptyr_xivchd3",
       "type": "image",
-      "x": 768,
-      "y": -672,
+      "x": 823.5,
+      "y": -603.5921654467161,
       "width": 203,
       "height": 360,
       "rotation": 0,
@@ -554,8 +554,8 @@
     {
       "id": "item_mtzzr4xs_wgvkz4h",
       "type": "image",
-      "x": 552,
-      "y": -672,
+      "x": 607.5,
+      "y": -603.5921654467161,
       "width": 202,
       "height": 360,
       "rotation": 0,
@@ -570,24 +570,6 @@
     }
   ],
   "activity": [
-    {
-      "id": "act_mthfc00m_48ctq",
-      "ts": "2026-08-31T15:59:36.982Z",
-      "name": "patko",
-      "verb": "edited",
-      "itemType": "column",
-      "itemTitle": "Column",
-      "private": false
-    },
-    {
-      "id": "act_mthfc09w_y2ioe",
-      "ts": "2026-08-31T15:59:37.316Z",
-      "name": "patko",
-      "verb": "deleted",
-      "itemType": "column",
-      "itemTitle": "Column",
-      "private": false
-    },
     {
       "id": "act_mthfc14t_uqeqs",
       "ts": "2026-08-31T15:59:38.429Z",
@@ -3268,6 +3250,24 @@
       "verb": "moved",
       "itemType": "image",
       "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mtzzvijk_v3ljn",
+      "ts": "2026-09-13T15:54:30.944Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "image",
+      "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mtzzvm3i_fo432",
+      "ts": "2026-09-13T15:54:35.550Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "3 items",
+      "itemTitle": "",
       "private": false
     }
   ],
