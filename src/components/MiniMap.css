@@ -1,7 +1,7 @@
 .minimap {
   position: absolute;
   bottom: 14px;
-  left: 14px;
+  right: 14px;
   width: 180px;
   height: 120px;
   background: var(--glass);
