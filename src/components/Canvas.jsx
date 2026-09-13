@@ -10,6 +10,7 @@ const MAX_ZOOM = 4;
 
 export default function Canvas({
   viewportSize,
+  onColorCheck,
   board,
   dispatch,
   selectedIds,
@@ -388,6 +389,7 @@ export default function Canvas({
           dispatch={dispatch}
           selectedIds={selectedIds}
           setSelectedIds={setSelectedIds}
+          onColorCheck={onColorCheck}
         />
       )}
     </div>

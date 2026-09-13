@@ -5,6 +5,7 @@ import SettingsPanel from './SettingsPanel.jsx';
 import ExportDialog from './ExportDialog.jsx';
 import ActivityPanel from './ActivityPanel.jsx';
 import ConflictDialog from './ConflictDialog.jsx';
+import ColorCheckDialog from './ColorCheckDialog.jsx';
 import { useBoard } from '../state/useBoard';
 import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts';
 import { makeItem } from '../state/boardModel';
@@ -34,6 +35,7 @@ export default function BoardEditor({ board: initialBoard, sha, collaboratorName
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [exportOpen, setExportOpen] = useState(false);
   const [activityOpen, setActivityOpen] = useState(false);
+  const [colorCheckItem, setColorCheckItem] = useState(null);
   const canvasRef = useRef(null);
   const worldRef = useRef(null);
   const searchInputRef = useRef(null);
@@ -267,6 +269,7 @@ export default function BoardEditor({ board: initialBoard, sha, collaboratorName
           viewport={viewport}
           setViewport={setViewport}
           viewportSize={viewportSize}
+          onColorCheck={setColorCheckItem}
           highlightedIds={highlightedIds}
           canvasRef={canvasRef}
           worldRef={worldRef}
@@ -280,6 +283,7 @@ export default function BoardEditor({ board: initialBoard, sha, collaboratorName
         <ExportDialog board={board} canvasRef={canvasRef} worldRef={worldRef} onClose={() => setExportOpen(false)} />
       )}
       {activityOpen && <ActivityPanel activity={board.activity || []} onClose={() => setActivityOpen(false)} />}
+      {colorCheckItem && <ColorCheckDialog board={board} item={colorCheckItem} onClose={() => setColorCheckItem(null)} />}
       {conflict && <ConflictDialog onReload={() => resolveConflict('reload')} onOverwrite={() => resolveConflict('overwrite')} />}
     </div>
   );

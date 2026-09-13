@@ -9,10 +9,11 @@ import {
   UsersThree,
   NotePencil,
   TrashSimple,
+  Eye,
 } from './icons.jsx';
 import './SelectionToolbar.css';
 
-export default function SelectionToolbar({ board, dispatch, selectedIds, setSelectedIds }) {
+export default function SelectionToolbar({ board, dispatch, selectedIds, setSelectedIds, onColorCheck }) {
   const [noteOpen, setNoteOpen] = useState(false);
   const items = board.items;
   const selectedItems = items.filter((i) => selectedIds.includes(i.id));
@@ -74,6 +75,11 @@ export default function SelectionToolbar({ board, dispatch, selectedIds, setSele
       {selectedItems.length > 1 && (
         <button className="tip tip-top" data-tip={anyGrouped ? 'Ungroup' : 'Group'} data-kbd="⌘ G" onClick={anyGrouped ? ungroup : group} aria-label="Group or ungroup">
           <UsersThree size={15} weight="regular" />
+        </button>
+      )}
+      {single && (single.type === 'image' && single.src || single.type === 'color') && (
+        <button className="tip tip-top" data-tip={single.type === 'image' ? 'Color blindness check' : 'Contrast check'} onClick={() => onColorCheck?.(single)} aria-label="Color check">
+          <Eye size={15} weight="regular" />
         </button>
       )}
       {single && (

@@ -41,4 +41,5 @@ export {
   FloppyDisk,
   ClipboardText,
   ChatCircle,
+  Eye,
 } from '@phosphor-icons/react';
