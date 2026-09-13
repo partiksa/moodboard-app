@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Toolbar from './Toolbar.jsx';
 import Canvas from './Canvas.jsx';
-import MiniMap from './MiniMap.jsx';
 import SettingsPanel from './SettingsPanel.jsx';
 import ExportDialog from './ExportDialog.jsx';
 import ActivityPanel from './ActivityPanel.jsx';
@@ -271,7 +270,6 @@ export default function BoardEditor({ board: initialBoard, sha, collaboratorName
           canvasRef={canvasRef}
           worldRef={worldRef}
         />
-        <MiniMap board={board} viewport={viewport} setViewport={setViewport} viewportSize={viewportSize} />
       </div>
 
       {settingsOpen && (
