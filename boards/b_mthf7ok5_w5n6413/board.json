@@ -2,7 +2,7 @@
   "id": "b_mthf7ok5_w5n6413",
   "name": "odrazse",
   "createdAt": "2026-08-31T15:56:15.509Z",
-  "updatedAt": "2026-09-13T13:24:51.147Z",
+  "updatedAt": "2026-09-13T13:25:02.216Z",
   "items": [
     {
       "id": "item_mthf7uv1_kfpanqd",
@@ -341,23 +341,6 @@
       "backgroundColor": "#ffffff"
     },
     {
-      "id": "item_mtvu4253_4j609wf",
-      "type": "text",
-      "x": 2448,
-      "y": -464.5,
-      "width": 232.3043282612466,
-      "height": 127,
-      "rotation": 0,
-      "zIndex": 23,
-      "locked": false,
-      "parentId": null,
-      "privateNote": "",
-      "body": "<h1>post 2</h1><div>carousel</div><div>textovy</div>",
-      "textAlign": "left",
-      "textColor": "#111111",
-      "backgroundColor": "#ffffff"
-    },
-    {
       "id": "item_mtzu9i6n_e6kuz3a",
       "type": "image",
       "x": 2448,
@@ -390,6 +373,23 @@
       "alt": "",
       "naturalWidth": 916,
       "naturalHeight": 1056
+    },
+    {
+      "id": "item_mtzuj74z_z6w4cuy",
+      "type": "text",
+      "x": 2952.4335489093905,
+      "y": -354.78968742893267,
+      "width": 240,
+      "height": 160,
+      "rotation": 0,
+      "zIndex": 26,
+      "locked": false,
+      "parentId": null,
+      "privateNote": "",
+      "body": "",
+      "textAlign": "left",
+      "textColor": "#111111",
+      "backgroundColor": "#ffffff"
     }
   ],
   "activity": [
@@ -2947,6 +2947,33 @@
       "verb": "moved",
       "itemType": "text note",
       "itemTitle": "odrazse x ATELIÉR ZLÍN",
+      "private": false
+    },
+    {
+      "id": "act_mtzuj4iz_qbx25",
+      "ts": "2026-09-13T13:24:54.827Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "post 2 carousel textovy",
+      "private": false
+    },
+    {
+      "id": "act_mtzuj518_o4or6",
+      "ts": "2026-09-13T13:24:55.484Z",
+      "name": "patko",
+      "verb": "deleted",
+      "itemType": "text note",
+      "itemTitle": "post 2 carousel textovy",
+      "private": false
+    },
+    {
+      "id": "act_mtzuj750_c0qsx",
+      "ts": "2026-09-13T13:24:58.212Z",
+      "name": "patko",
+      "verb": "added",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
       "private": false
     }
   ],
