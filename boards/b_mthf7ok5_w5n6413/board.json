@@ -2,7 +2,7 @@
   "id": "b_mthf7ok5_w5n6413",
   "name": "odrazse",
   "createdAt": "2026-08-31T15:56:15.509Z",
-  "updatedAt": "2026-09-13T13:16:54.780Z",
+  "updatedAt": "2026-09-13T13:17:06.259Z",
   "items": [
     {
       "id": "item_mthf7uv1_kfpanqd",
@@ -344,7 +344,7 @@
       "id": "item_mtvu4253_4j609wf",
       "type": "text",
       "x": 2448,
-      "y": -471.5,
+      "y": -464.5,
       "width": 232.3043282612466,
       "height": 127,
       "rotation": 0,
@@ -352,7 +352,7 @@
       "locked": false,
       "parentId": null,
       "privateNote": "",
-      "body": "<div>post 2</div><div>carousel</div><div>textovy</div>",
+      "body": "<h1>post 2</h1><div>carousel</div><div>textovy</div>",
       "textAlign": "left",
       "textColor": "#111111",
       "backgroundColor": "#ffffff"
@@ -2783,6 +2783,60 @@
     {
       "id": "act_mtzu8r16_dxc4k",
       "ts": "2026-09-13T13:16:50.778Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "post 2 carousel textovy",
+      "private": false
+    },
+    {
+      "id": "act_mtzu8v1c_y3b2l",
+      "ts": "2026-09-13T13:16:55.968Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "post 2 carousel textovy",
+      "private": false
+    },
+    {
+      "id": "act_mtzu8v5c_axbbj",
+      "ts": "2026-09-13T13:16:56.112Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "post 2 carousel textovy",
+      "private": false
+    },
+    {
+      "id": "act_mtzu8xoj_kea7g",
+      "ts": "2026-09-13T13:16:59.395Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "post 2 carousel textovy",
+      "private": false
+    },
+    {
+      "id": "act_mtzu8xon_5xara",
+      "ts": "2026-09-13T13:16:59.399Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "post 2 carousel textovy",
+      "private": false
+    },
+    {
+      "id": "act_mtzu8zj8_vzbyw",
+      "ts": "2026-09-13T13:17:01.796Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "post 2 carousel textovy",
+      "private": false
+    },
+    {
+      "id": "act_mtzu8zvr_dnw8c",
+      "ts": "2026-09-13T13:17:02.247Z",
       "name": "patko",
       "verb": "edited",
       "itemType": "text note",
