@@ -87,11 +87,12 @@
   overflow: hidden;
   background: var(--panel);
   box-shadow: 0 0 0 1px var(--panel-border), var(--shadow);
-  transition: box-shadow 0.45s var(--ease);
+  transition: box-shadow 0.45s var(--ease), transform 0.5s var(--ease);
 }
 
-.canvas-item:not(.frameless):hover > .item-frame {
+.canvas-item:not(.frameless):not(.selected):hover > .item-frame {
   box-shadow: 0 0 0 1px var(--panel-strong), var(--shadow-hover);
+  transform: translateY(calc(-1px * var(--inv-zoom)));
 }
 
 /* --- selection handles: crisp squares at the corners, invisible grab strips on the edges --- */
@@ -168,9 +169,7 @@
   font-weight: 500;
   border-radius: 999px;
   border: 1px solid var(--panel-border);
-  background: var(--glass);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+  background: var(--panel);
   color: var(--text);
   cursor: pointer;
   box-shadow: var(--shadow);

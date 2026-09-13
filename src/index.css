@@ -189,6 +189,63 @@ button:active:not(:disabled) {
   cursor: default;
 }
 
+/* --- hover choreography: icons spring, surfaces lift, nothing snaps --- */
+.tool-btn svg,
+.selection-toolbar > button svg,
+.text-toolbar button svg,
+.zoom-controls button svg,
+.toolbar-hide svg,
+.settings-header button svg,
+.activity-header button svg,
+.comment-add-btn svg {
+  transition: transform 0.55s var(--ease-spring);
+}
+
+.tool-btn:hover:not(:disabled) svg,
+.selection-toolbar > button:hover svg,
+.text-toolbar button:hover svg,
+.zoom-controls button:hover svg,
+.comment-add-btn:hover svg {
+  transform: scale(1.18);
+}
+
+.toolbar-hide:hover svg,
+.settings-header button:hover svg,
+.activity-header button:hover svg {
+  transform: rotate(90deg);
+}
+
+.collaborator-chip:hover .avatar {
+  transform: rotate(-8deg) scale(1.08);
+}
+
+.avatar {
+  transition: transform 0.55s var(--ease-spring);
+}
+
+.bg-options button:hover:not(.active),
+.admin-board-actions button:hover:not(:disabled),
+.comment-composer-actions button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.comment-badge {
+  transition: transform 0.45s var(--ease-spring), box-shadow 0.35s var(--ease);
+}
+
+.comment-badge:hover {
+  transform: scale(1.06);
+  box-shadow: var(--shadow);
+}
+
+.private-note-badge:hover {
+  transform: scale(1.1);
+}
+
+.private-note-badge {
+  transition: transform 0.45s var(--ease-spring);
+}
+
 /* Every overlay dialog fades in over a blurred board and its card settles into place. */
 .settings-overlay,
 .conflict-overlay {

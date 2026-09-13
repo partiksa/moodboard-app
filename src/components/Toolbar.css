@@ -1,10 +1,45 @@
-/* Floating island detached from the top edge: the board runs underneath it. */
+/* Floating island. It parks at the top, the left edge or the bottom-right corner, can be
+   dragged between them by its grip, and folds into a small orb that peeks open on hover. */
 .toolbar {
   position: absolute;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  animation: fade-up 0.7s var(--ease) both;
+}
+
+.toolbar.dock-top {
   top: 14px;
   left: 50%;
   transform: translateX(-50%);
   max-width: calc(100% - 28px);
+}
+
+.toolbar.dock-left {
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  max-height: calc(100% - 28px);
+}
+
+.toolbar.dock-bottom-right {
+  right: 14px;
+  bottom: 14px;
+  max-width: calc(100% - 28px);
+}
+
+.toolbar.dragging {
+  cursor: grabbing;
+  animation: none;
+  transition: none;
+}
+
+.toolbar.dragging .toolbar-body {
+  transform: scale(1.02);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset, var(--shadow-hover);
+}
+
+.toolbar-body {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,13 +52,217 @@
   border: 1px solid var(--panel-border);
   border-radius: 999px;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset, var(--shadow-float);
-  z-index: 20;
-  animation: fade-up 0.7s var(--ease) both;
+  transform-origin: center;
+  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease), opacity 0.4s var(--ease);
 }
 
-[data-theme='dark'] .toolbar {
+[data-theme='dark'] .toolbar-body {
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, var(--shadow-float);
 }
+
+/* vertical layout when parked on the left */
+.toolbar.dock-left .toolbar-body {
+  flex-direction: column;
+  flex-wrap: nowrap;
+  padding: 8px 6px;
+  border-radius: 24px;
+  max-height: calc(100vh - 60px);
+  overflow-y: auto;
+  overflow-x: visible;
+}
+
+.toolbar.dock-left .toolbar-group {
+  flex-direction: column;
+}
+
+.toolbar.dock-left .toolbar-group + .toolbar-group::before {
+  width: 18px;
+  height: 1px;
+  margin: 6px 0;
+}
+
+.toolbar.dock-left .board-title {
+  max-width: 120px;
+  writing-mode: horizontal-tb;
+}
+
+.toolbar.dock-left .search-input,
+.toolbar.dock-left .search-input:focus {
+  width: 90px;
+}
+
+.toolbar.dock-left .tool-btn.primary {
+  padding: 4px 4px 4px 12px;
+}
+
+/* tooltips flip to the side when the bar is vertical so they never hide behind it */
+.toolbar.dock-left .tip::after {
+  top: 50%;
+  left: calc(100% + 10px);
+  transform: translate(-4px, -50%) scale(0.96);
+}
+
+.toolbar.dock-left .tip:hover::after,
+.toolbar.dock-left .tip:focus-within::after {
+  transform: translate(0, -50%) scale(1);
+}
+
+.toolbar.dock-bottom-right .tip::after {
+  top: auto;
+  bottom: calc(100% + 8px);
+  transform: translate(-50%, 4px) scale(0.96);
+}
+
+.toolbar.dock-bottom-right .tip:hover::after,
+.toolbar.dock-bottom-right .tip:focus-within::after {
+  transform: translate(-50%, 0) scale(1);
+}
+
+/* grip: three dot pairs on the leading edge */
+.toolbar-grip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  border-radius: 999px;
+  cursor: grab;
+  margin-right: -2px;
+}
+
+.toolbar-grip:hover {
+  color: var(--text);
+  background: var(--accent-soft);
+}
+
+.toolbar-grip:active {
+  cursor: grabbing;
+  transform: none;
+}
+
+.toolbar.dock-left .toolbar-grip {
+  width: 32px;
+  height: 22px;
+  margin: -2px 0 0;
+}
+
+.toolbar.dock-left .toolbar-grip svg {
+  transform: rotate(90deg);
+}
+
+/* hide arrow on the trailing edge */
+.toolbar-hide {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--panel-border);
+  background: var(--accent-softer);
+  color: var(--text-muted);
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: 2px;
+}
+
+.toolbar-hide:hover {
+  background: var(--accent-soft);
+  color: var(--text);
+}
+
+.toolbar.dock-left .toolbar-hide {
+  margin: 2px 0 0;
+}
+
+/* collapsed: only the orb shows; hovering it peeks the full bar out, the arrow pins it */
+.toolbar-orb {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--panel-border);
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(22px) saturate(1.4);
+  backdrop-filter: blur(22px) saturate(1.4);
+  color: var(--text-muted);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset, var(--shadow-float);
+  cursor: pointer;
+  position: absolute;
+  transition: transform 0.5s var(--ease-spring), color 0.35s var(--ease), opacity 0.35s var(--ease);
+}
+
+.toolbar.collapsed .toolbar-orb {
+  display: inline-flex;
+  animation: orb-in 0.5s var(--ease-spring) both;
+}
+
+@keyframes orb-in {
+  from { transform: scale(0.6); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.toolbar.collapsed:hover .toolbar-orb {
+  opacity: 0;
+  transform: scale(0.6);
+  pointer-events: none;
+}
+
+.toolbar.collapsed .toolbar-body {
+  opacity: 0;
+  transform: scale(0.92);
+  pointer-events: none;
+}
+
+.toolbar.collapsed:hover .toolbar-body {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+  transition-delay: 0.05s;
+}
+
+/* the orb sits where the bar's leading edge is, so the peek grows out of it */
+.toolbar.dock-top.collapsed { top: 10px; }
+.toolbar.dock-top .toolbar-orb { top: 0; left: 50%; transform: translateX(-50%); }
+.toolbar.dock-top.collapsed:hover .toolbar-orb { transform: translateX(-50%) scale(0.6); }
+.toolbar.dock-left .toolbar-orb { left: 0; top: 50%; transform: translateY(-50%); }
+.toolbar.dock-left.collapsed:hover .toolbar-orb { transform: translateY(-50%) scale(0.6); }
+.toolbar.dock-bottom-right .toolbar-orb { right: 0; bottom: 0; }
+
+.toolbar.collapsed .toolbar-body {
+  transform-origin: top center;
+}
+.toolbar.dock-left.collapsed .toolbar-body {
+  transform-origin: left center;
+}
+.toolbar.dock-bottom-right.collapsed .toolbar-body {
+  transform-origin: bottom right;
+}
+
+/* a faint frame previews where the bar will snap while it is being dragged */
+.toolbar-snap-zone {
+  position: absolute;
+  z-index: 19;
+  border: 1.5px dashed var(--panel-strong);
+  border-radius: 999px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s var(--ease);
+}
+
+.toolbar-snap-zone.active {
+  opacity: 1;
+  border-color: var(--accent);
+  background: var(--accent-softer);
+}
+
+.toolbar-snap-zone.zone-top { top: 14px; left: 50%; transform: translateX(-50%); width: 320px; height: 44px; }
+.toolbar-snap-zone.zone-left { left: 14px; top: 50%; transform: translateY(-50%); width: 48px; height: 320px; border-radius: 24px; }
+.toolbar-snap-zone.zone-bottom-right { right: 14px; bottom: 14px; width: 320px; height: 44px; }
 
 .toolbar-group {
   display: flex;
@@ -328,8 +567,7 @@
 }
 
 @media (max-width: 900px) {
-  .toolbar {
-    top: 10px;
+  .toolbar-body {
     border-radius: 22px;
   }
   .search-input {

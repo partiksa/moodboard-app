@@ -41,4 +41,5 @@ export {
   FloppyDisk,
   ClipboardText,
   ChatCircle,
+  DotsSixVertical,
 } from '@phosphor-icons/react';

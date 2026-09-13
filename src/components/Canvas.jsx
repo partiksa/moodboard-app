@@ -444,9 +444,6 @@ function applyResize(orig, handle, dx, dy, aspectRatio) {
 
 function backgroundStyle(bg, gridSize, gridColor, viewport) {
   const base = { position: 'relative', overflow: 'hidden' };
-  const offsetX = viewport.panX % (gridSize * viewport.zoom);
-  const offsetY = viewport.panY % (gridSize * viewport.zoom);
-  const size = gridSize * viewport.zoom;
 
   if (bg.type === 'image' && bg.imageDataUrl) {
     return { ...base, backgroundImage: `url(${bg.imageDataUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' };
@@ -454,15 +451,41 @@ function backgroundStyle(bg, gridSize, gridColor, viewport) {
   if (bg.type === 'color') {
     return { ...base, background: bg.color || '#ffffff' };
   }
-  const dotColor = bg.type === 'dotted-black' ? '#00000022' : gridColor + '80';
-  const pageColor = bg.type === 'dotted-black' ? '#111114' : 'var(--canvas-bg)';
+
+  // The dot grid is drawn in screen space. Scaling the step 1:1 with the zoom made the dots
+  // crowd into moiré when zoomed out and drift apart when zoomed in, so the step doubles or
+  // halves until it lands in a comfortable on-screen range, and the dots fade in as a
+  // finer level appears instead of popping.
+  const MIN_STEP = 18;
+  const MAX_STEP = 36;
+  let step = gridSize * viewport.zoom;
+  while (step < MIN_STEP) step *= 2;
+  while (step > MAX_STEP) step /= 2;
+  const fade = clamp((step - MIN_STEP) / (MAX_STEP - MIN_STEP), 0, 1);
+  const alpha = 0.35 + fade * 0.45;
+  // whole-pixel steps keep every dot the same size; fractional steps shimmer while zooming
+  step = Math.round(step * 2) / 2;
+  const offsetX = ((viewport.panX % step) + step) % step;
+  const offsetY = ((viewport.panY % step) + step) % step;
+
+  const dark = bg.type === 'dotted-black';
+  const dotColor = dark ? `rgba(255, 255, 255, ${alpha * 0.45})` : hexToRgba(gridColor, alpha);
+  const pageColor = dark ? '#111114' : 'var(--canvas-bg)';
   return {
     ...base,
     background: pageColor,
-    backgroundImage: `radial-gradient(${dotColor} 1px, transparent 1px)`,
-    backgroundSize: `${size}px ${size}px`,
+    backgroundImage: `radial-gradient(circle, ${dotColor} 1px, transparent 1.5px)`,
+    backgroundSize: `${step}px ${step}px`,
     backgroundPosition: `${offsetX}px ${offsetY}px`,
   };
+}
+
+function hexToRgba(hex, alpha) {
+  const clean = (hex || '#c9c9c9').replace('#', '');
+  const full = clean.length === 3 ? clean.split('').map((c) => c + c).join('') : clean;
+  const n = parseInt(full, 16);
+  if (Number.isNaN(n)) return `rgba(0, 0, 0, ${alpha})`;
+  return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${alpha})`;
 }
 
 function clamp(v, min, max) {

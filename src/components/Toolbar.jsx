@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   TextAa,
   Image,
@@ -17,6 +17,11 @@ import {
   Export,
   UsersThree,
   FloppyDisk,
+  DotsSixVertical,
+  CaretLeft,
+  CaretRight,
+  CaretUp,
+  CaretDown,
 } from './icons.jsx';
 import './Toolbar.css';
 
@@ -38,6 +43,37 @@ const ITEM_BUTTONS = [
   { type: 'todo', label: 'To-do', hint: 'Checklist', Icon: ListChecks },
   { type: 'column', label: 'Column', hint: 'Group items in a stack', Icon: Columns },
 ];
+
+// The bar can be parked in three places; the choice and its hidden state survive reloads.
+const DOCK_KEY = 'moodboard-toolbar-dock';
+const DOCKS = ['top', 'left', 'bottom-right'];
+
+function loadDock() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(DOCK_KEY) || '{}');
+    return {
+      dock: DOCKS.includes(saved.dock) ? saved.dock : 'top',
+      collapsed: Boolean(saved.collapsed),
+    };
+  } catch {
+    return { dock: 'top', collapsed: false };
+  }
+}
+
+function saveDock(state) {
+  try {
+    localStorage.setItem(DOCK_KEY, JSON.stringify(state));
+  } catch {
+    /* private mode */
+  }
+}
+
+// Nearest parking spot for a pointer position inside the editor area.
+function dockForPoint(x, y, width, height) {
+  if (x > width * 0.6 && y > height * 0.55) return 'bottom-right';
+  if (x < width * 0.28) return 'left';
+  return 'top';
+}
 
 const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/.test(navigator.platform);
 const MOD = isMac ? '⌘' : 'Ctrl';
@@ -82,8 +118,90 @@ export default function Toolbar({
     else setNameDraft(collaboratorName || '');
   };
 
+  const [{ dock, collapsed }, setDockState] = useState(loadDock);
+  const [drag, setDrag] = useState(null); // { x, y, target } while the grip is held
+  const barRef = useRef(null);
+
+  const updateDock = useCallback((patch) => {
+    setDockState((prev) => {
+      const next = { ...prev, ...patch };
+      saveDock(next);
+      return next;
+    });
+  }, []);
+
+  const onGripMouseDown = (e) => {
+    if (e.button !== 0) return;
+    e.preventDefault();
+    const bar = barRef.current;
+    const area = bar?.parentElement;
+    if (!bar || !area) return;
+    const areaRect = area.getBoundingClientRect();
+    const barRect = bar.getBoundingClientRect();
+    const grabX = e.clientX - barRect.left;
+    const grabY = e.clientY - barRect.top;
+    const place = (ev) => {
+      const px = ev.clientX - areaRect.left;
+      const py = ev.clientY - areaRect.top;
+      return {
+        x: px - grabX,
+        y: py - grabY,
+        target: dockForPoint(px, py, areaRect.width, areaRect.height),
+      };
+    };
+    setDrag(place(e));
+    const onMove = (ev) => setDrag(place(ev));
+    const onUp = (ev) => {
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('mouseup', onUp);
+      const final = place(ev);
+      setDrag(null);
+      updateDock({ dock: final.target, collapsed: false });
+    };
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mouseup', onUp);
+  };
+
+  // arrow direction follows the edge the bar hides towards
+  const HideIcon = dock === 'left' ? CaretLeft : dock === 'bottom-right' ? CaretRight : CaretUp;
+  const ShowIcon = dock === 'left' ? CaretRight : dock === 'bottom-right' ? CaretLeft : CaretDown;
+
+  const classes = ['toolbar', `dock-${dock}`];
+  if (collapsed) classes.push('collapsed');
+  if (drag) classes.push('dragging');
+
   return (
-    <div className="toolbar">
+    <>
+    {drag && DOCKS.map((d) => (
+      <div key={d} className={`toolbar-snap-zone zone-${d}${drag.target === d ? ' active' : ''}`} />
+    ))}
+    <div
+      ref={barRef}
+      className={classes.join(' ')}
+      data-snap={drag?.target || undefined}
+      style={drag ? { left: drag.x, top: drag.y, right: 'auto', bottom: 'auto', transform: 'none' } : undefined}
+    >
+      {/* the whole bar hides into this orb; hovering it peeks the bar back out */}
+      <button
+        type="button"
+        className="toolbar-orb"
+        aria-label="Show toolbar"
+        onClick={() => updateDock({ collapsed: false })}
+      >
+        <DotsSixVertical size={16} weight="bold" />
+      </button>
+
+      <div className="toolbar-body">
+      <button
+        type="button"
+        className="toolbar-grip tip"
+        data-tip="Drag to move"
+        aria-label="Move toolbar"
+        onMouseDown={onGripMouseDown}
+      >
+        <DotsSixVertical size={16} weight="bold" />
+      </button>
+
       <div className="toolbar-group">
         {editingBoardName ? (
           <input
@@ -188,6 +306,18 @@ export default function Toolbar({
           </button>
         )}
       </div>
+
+      <button
+        type="button"
+        className="toolbar-hide tip"
+        data-tip={collapsed ? 'Keep open' : 'Hide'}
+        aria-label={collapsed ? 'Keep toolbar open' : 'Hide toolbar'}
+        onClick={() => updateDock({ collapsed: !collapsed })}
+      >
+        {collapsed ? <ShowIcon size={12} weight="bold" /> : <HideIcon size={12} weight="bold" />}
+      </button>
+      </div>
     </div>
+    </>
   );
 }

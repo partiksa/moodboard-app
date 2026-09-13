@@ -81,9 +81,7 @@
   display: flex;
   align-items: center;
   gap: 3px;
-  background: var(--glass);
-  -webkit-backdrop-filter: blur(18px) saturate(1.4);
-  backdrop-filter: blur(18px) saturate(1.4);
+  background: var(--panel);
   border: 1px solid var(--panel-border);
   border-radius: 999px;
   padding: 4px;
@@ -362,9 +360,8 @@
   padding: 4px 8px;
   font-size: 10px;
   cursor: pointer;
-  backdrop-filter: blur(2px);
   opacity: 0;
-  transition: opacity 120ms;
+  transition: opacity 0.3s var(--ease);
 }
 
 .color-swatch-fill:hover .color-swatch-paste-btn,
