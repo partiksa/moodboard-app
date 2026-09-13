@@ -2,15 +2,15 @@
   "id": "b_mthf7ok5_w5n6413",
   "name": "odrazse",
   "createdAt": "2026-08-31T15:56:15.509Z",
-  "updatedAt": "2026-09-13T13:25:54.334Z",
+  "updatedAt": "2026-09-13T13:26:16.330Z",
   "items": [
     {
       "id": "item_mthf7uv1_kfpanqd",
       "type": "text",
-      "x": 585.052833972466,
-      "y": 21.5,
-      "width": 363,
-      "height": 53,
+      "x": 525.2583019384818,
+      "y": 70.74999999999999,
+      "width": 517.4833961230363,
+      "height": 49.25000000000001,
       "rotation": 0,
       "zIndex": 1,
       "locked": false,
@@ -409,42 +409,6 @@
     }
   ],
   "activity": [
-    {
-      "id": "act_mthf7uv1_g73n5",
-      "ts": "2026-08-31T15:56:23.677Z",
-      "name": "patko",
-      "verb": "added",
-      "itemType": "text note",
-      "itemTitle": "untitled note",
-      "private": false
-    },
-    {
-      "id": "act_mthf8321_kqwy6",
-      "ts": "2026-08-31T15:56:34.297Z",
-      "name": "patko",
-      "verb": "edited",
-      "itemType": "text note",
-      "itemTitle": "untitled note",
-      "private": false
-    },
-    {
-      "id": "act_mthf84ej_2krj2",
-      "ts": "2026-08-31T15:56:36.043Z",
-      "name": "patko",
-      "verb": "moved",
-      "itemType": "text note",
-      "itemTitle": "odrazse x ATELIÉR ZLÍN",
-      "private": false
-    },
-    {
-      "id": "act_mthf84eq_l0cr1",
-      "ts": "2026-08-31T15:56:36.050Z",
-      "name": "patko",
-      "verb": "edited",
-      "itemType": "text note",
-      "itemTitle": "odrazse x ATELIÉR ZLÍN",
-      "private": false
-    },
     {
       "id": "act_mthf865z_c7mt4",
       "ts": "2026-08-31T15:56:38.327Z",
@@ -3080,6 +3044,69 @@
       "verb": "commented on",
       "itemType": "image",
       "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mtzukk7o_dezl1",
+      "ts": "2026-09-13T13:26:01.812Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "odrazse x ATELIÉR ZLÍN",
+      "private": false
+    },
+    {
+      "id": "act_mtzuklti_1v0bc",
+      "ts": "2026-09-13T13:26:03.894Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "odrazse x ATELIÉR ZLÍN",
+      "private": false
+    },
+    {
+      "id": "act_mtzukmlb_u4rxg",
+      "ts": "2026-09-13T13:26:04.895Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "odrazse x ATELIÉR ZLÍN",
+      "private": false
+    },
+    {
+      "id": "act_mtzukoe4_endh6",
+      "ts": "2026-09-13T13:26:07.228Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "odrazse x ATELIÉR ZLÍN",
+      "private": false
+    },
+    {
+      "id": "act_mtzukp6c_l488d",
+      "ts": "2026-09-13T13:26:08.244Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "odrazse x ATELIÉR ZLÍN",
+      "private": false
+    },
+    {
+      "id": "act_mtzukqy9_i8c3w",
+      "ts": "2026-09-13T13:26:10.545Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "odrazse x ATELIÉR ZLÍN",
+      "private": false
+    },
+    {
+      "id": "act_mtzuksbs_imz7a",
+      "ts": "2026-09-13T13:26:12.328Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "odrazse x ATELIÉR ZLÍN",
       "private": false
     }
   ],
