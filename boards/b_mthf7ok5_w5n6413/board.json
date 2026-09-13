@@ -2,7 +2,7 @@
   "id": "b_mthf7ok5_w5n6413",
   "name": "odrazse",
   "createdAt": "2026-08-31T15:56:15.509Z",
-  "updatedAt": "2026-09-13T13:03:51.181Z",
+  "updatedAt": "2026-09-13T13:03:57.166Z",
   "items": [
     {
       "id": "item_mthf7uv1_kfpanqd",
@@ -362,8 +362,8 @@
       "type": "image",
       "x": 2148.5,
       "y": -312,
-      "width": 262.3882087223467,
-      "height": 567.3258566969658,
+      "width": 486.3329343349849,
+      "height": 1051.5306688323997,
       "rotation": 0,
       "zIndex": 24,
       "locked": false,
@@ -2710,6 +2710,15 @@
     {
       "id": "act_mtztryek_hz50h",
       "ts": "2026-09-13T13:03:47.180Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "image",
+      "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mtzts30s_os297",
+      "ts": "2026-09-13T13:03:53.164Z",
       "name": "patko",
       "verb": "moved",
       "itemType": "image",
