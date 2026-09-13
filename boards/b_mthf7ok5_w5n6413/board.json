@@ -2,7 +2,7 @@
   "id": "b_mthf7ok5_w5n6413",
   "name": "odrazse",
   "createdAt": "2026-08-31T15:56:15.509Z",
-  "updatedAt": "2026-09-13T13:27:03.370Z",
+  "updatedAt": "2026-09-13T13:27:10.598Z",
   "items": [
     {
       "id": "item_mthf7uv1_kfpanqd",
@@ -410,10 +410,10 @@
     {
       "id": "item_mtzul73q_nmctfsy",
       "type": "text",
-      "x": 1344,
-      "y": -642,
-      "width": 240,
-      "height": 160,
+      "x": 1404.3439163816151,
+      "y": -631.1843308934322,
+      "width": 119.65608361838486,
+      "height": 55.184330893432104,
       "rotation": 0,
       "zIndex": 27,
       "locked": false,
@@ -426,33 +426,6 @@
     }
   ],
   "activity": [
-    {
-      "id": "act_mthfa3r1_tyynl",
-      "ts": "2026-08-31T15:58:08.509Z",
-      "name": "patko",
-      "verb": "added",
-      "itemType": "link card",
-      "itemTitle": "link",
-      "private": false
-    },
-    {
-      "id": "act_mthfa56c_06u6s",
-      "ts": "2026-08-31T15:58:10.356Z",
-      "name": "patko",
-      "verb": "edited",
-      "itemType": "link card",
-      "itemTitle": "link",
-      "private": false
-    },
-    {
-      "id": "act_mthfa6gf_wzdnm",
-      "ts": "2026-08-31T15:58:12.015Z",
-      "name": "patko",
-      "verb": "edited",
-      "itemType": "link card",
-      "itemTitle": "https://joanielemercier.com/brume/",
-      "private": false
-    },
     {
       "id": "act_mthfaaqr_vf5gm",
       "ts": "2026-08-31T15:58:17.571Z",
@@ -3120,6 +3093,33 @@
     {
       "id": "act_mtzulg3c_kq5pz",
       "ts": "2026-09-13T13:26:43.128Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "post1",
+      "private": false
+    },
+    {
+      "id": "act_mtzulxas_7r9dy",
+      "ts": "2026-09-13T13:27:05.428Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "post1",
+      "private": false
+    },
+    {
+      "id": "act_mtzulzn2_7c2di",
+      "ts": "2026-09-13T13:27:08.462Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "post1",
+      "private": false
+    },
+    {
+      "id": "act_mtzum0t6_wx92q",
+      "ts": "2026-09-13T13:27:09.978Z",
       "name": "patko",
       "verb": "moved",
       "itemType": "text note",
