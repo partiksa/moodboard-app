@@ -1,4 +1,5 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { isHeadingCard, headingColorForBackground } from '../../utils/textCard';
 import { TextB, TextItalic, ListBullets, ListNumbers, LinkSimple } from '../icons.jsx';
 
 const BLOCK_STYLES = [
@@ -11,6 +12,26 @@ export default function TextCard({ item, board, dispatch }) {
   const typography = board.settings.typography;
   const bodyRef = useRef(null);
   const [toolbarOpen, setToolbarOpen] = useState(false);
+  // The card is only editable after a double-click; otherwise a mousedown anywhere on it
+  // starts a drag, so text blocks move like every other item. A brand-new empty card opens
+  // for editing straight away so typing can start without the extra click.
+  const [editing, setEditing] = useState(() => !item.body);
+  const heading = isHeadingCard(item.body);
+  const headingColor = heading ? headingColorForBackground(board.settings.background) : null;
+
+  const mountedRef = useRef(false);
+  useEffect(() => {
+    // focus only on a real double-click transition, not on mount (a loaded board may hold
+    // several empty cards and none of them should steal focus)
+    if (editing && mountedRef.current) bodyRef.current?.focus();
+    mountedRef.current = true;
+  }, [editing]);
+
+  const startEditing = (e) => {
+    if (editing) return;
+    e.stopPropagation();
+    setEditing(true);
+  };
 
   const update = (patch) => dispatch({ type: 'UPDATE_ITEM', id: item.id, patch });
 
@@ -71,11 +92,18 @@ export default function TextCard({ item, board, dispatch }) {
 
   return (
     <div
-      className="text-card"
-      style={{ background: item.backgroundColor, textAlign: item.textAlign, ...wrapperVars }}
-      onMouseDown={(e) => {
-        if (e.target.isContentEditable) e.stopPropagation();
+      className={`text-card${heading ? ' text-card--heading' : ''}${editing ? ' editing' : ''}`}
+      style={{
+        background: heading ? 'transparent' : item.backgroundColor,
+        textAlign: item.textAlign,
+        ...wrapperVars,
+        ...(heading ? { '--tc-heading-color': headingColor || 'var(--text)' } : {}),
       }}
+      onMouseDown={(e) => {
+        // while editing, clicks inside the card (text or toolbar) must not start a drag
+        if (editing) e.stopPropagation();
+      }}
+      onDoubleClick={startEditing}
     >
       {toolbarOpen && (
         <div className="text-toolbar" onMouseDown={(e) => e.preventDefault()}>
@@ -115,13 +143,17 @@ export default function TextCard({ item, board, dispatch }) {
       <div
         ref={bodyRef}
         className="text-card-body"
-        contentEditable
+        contentEditable={editing}
         suppressContentEditableWarning
-        data-placeholder="Type anything…"
+        data-placeholder={editing ? 'Type anything…' : 'Double-click to write'}
         onFocus={() => setToolbarOpen(true)}
         onBlur={() => {
           setToolbarOpen(false);
+          setEditing(false);
           update({ body: bodyRef.current.innerHTML });
+        }}
+        onKeyDown={(e) => {
+          if (e.key === 'Escape') bodyRef.current?.blur();
         }}
         onPaste={onPaste}
         onDoubleClick={openLinkIfClicked}

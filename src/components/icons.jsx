@@ -40,4 +40,5 @@ export {
   UsersThree,
   FloppyDisk,
   ClipboardText,
+  ChatCircle,
 } from '@phosphor-icons/react';

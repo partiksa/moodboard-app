@@ -6,6 +6,27 @@
   flex-direction: column;
 }
 
+.text-card:not(.editing) .text-card-body {
+  cursor: grab;
+  user-select: none;
+}
+
+/* heading-only card: the box disappears, only the large text stays on the board */
+.text-card--heading {
+  padding: 0;
+  overflow: visible;
+}
+
+.text-card--heading .text-card-body h1 {
+  font-size: calc(var(--tc-heading-size) * 1.6);
+  margin: 0;
+}
+
+.text-card--heading .text-card-body[data-placeholder]:empty:before {
+  color: var(--tc-heading-color);
+  opacity: 0.5;
+}
+
 .text-card-body {
   flex: 1;
   outline: none;

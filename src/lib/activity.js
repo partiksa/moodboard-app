@@ -72,6 +72,10 @@ export function describeAction(action, board) {
     case 'UPDATE_ITEM': {
       const item = board.items.find((i) => i.id === action.id);
       if (!item) return null;
+      if (action.patch.comments !== undefined) {
+        const grew = (action.patch.comments?.length || 0) > (item.comments?.length || 0);
+        return { verb: grew ? 'commented on' : 'removed a comment from', itemType: TYPE_LABELS[item.type] || item.type, itemTitle: itemTitle(item) };
+      }
       if (action.patch.privateNote !== undefined) {
         return { verb: 'edited', itemType: 'private note', itemTitle: '', private: true };
       }

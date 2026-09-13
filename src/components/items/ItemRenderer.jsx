@@ -7,6 +7,8 @@ import ColorSwatchCard from './ColorSwatchCard.jsx';
 import TodoCard from './TodoCard.jsx';
 import ColumnCard from './ColumnCard.jsx';
 import PrivateNoteBadge from './PrivateNoteBadge.jsx';
+import CommentBadge from './CommentBadge.jsx';
+import { isHeadingCard } from '../../utils/textCard';
 
 const RENDERERS = {
   text: TextCard,
@@ -38,6 +40,8 @@ export default function ItemRenderer({
   if (highlighted) classes.push('highlighted');
   if (dropTarget) classes.push('drop-target');
   if (item.locked) classes.push('locked');
+  // a heading-only text card draws just its text, without the card box
+  if (item.type === 'text' && isHeadingCard(item.body)) classes.push('frameless');
 
   return (
     <div
@@ -58,6 +62,7 @@ export default function ItemRenderer({
       </div>
 
       {item.privateNote && <PrivateNoteBadge note={item.privateNote} />}
+      <CommentBadge item={item} dispatch={dispatch} />
 
       {selected && !item.locked && (
         <>

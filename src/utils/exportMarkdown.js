@@ -67,6 +67,9 @@ function itemToMarkdown(item, { includePrivateNotes }) {
     default:
       break;
   }
+  for (const c of item.comments || []) {
+    if (c.text?.trim()) out += `${out ? '\n' : ''}> Comment (${c.author || 'Anonymous'}): ${c.text.trim()}`;
+  }
   if (includePrivateNotes && item.privateNote?.trim()) {
     out += `${out ? '\n' : ''}> Note: ${item.privateNote.trim()}`;
   }
