@@ -2,7 +2,7 @@
   "id": "b_mthf7ok5_w5n6413",
   "name": "odrazse",
   "createdAt": "2026-08-31T15:56:15.509Z",
-  "updatedAt": "2026-09-13T15:13:55.969Z",
+  "updatedAt": "2026-09-13T15:15:47.572Z",
   "items": [
     {
       "id": "item_mthf7uv1_kfpanqd",
@@ -445,7 +445,7 @@
       "id": "item_mtzusfy0_cpm1y53",
       "type": "image",
       "x": 2796,
-      "y": 74.5,
+      "y": 83.3589671598155,
       "width": 312,
       "height": 360,
       "rotation": 0,
@@ -502,15 +502,6 @@
     }
   ],
   "activity": [
-    {
-      "id": "act_mthfbdtd_yjig4",
-      "ts": "2026-08-31T15:59:08.209Z",
-      "name": "patko",
-      "verb": "moved",
-      "itemType": "2 items",
-      "itemTitle": "",
-      "private": false
-    },
     {
       "id": "act_mthfbf29_df26u",
       "ts": "2026-08-31T15:59:09.825Z",
@@ -3198,6 +3189,15 @@
       "ts": "2026-09-13T13:44:51.202Z",
       "name": "patko",
       "verb": "deleted",
+      "itemType": "image",
+      "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mtzyhmq9_hzz6l",
+      "ts": "2026-09-13T15:15:43.569Z",
+      "name": "patko",
+      "verb": "moved",
       "itemType": "image",
       "itemTitle": "image",
       "private": false
