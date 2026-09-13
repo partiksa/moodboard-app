@@ -1,32 +1,19 @@
-/* Floating island. It parks at the top, the left edge or the bottom-right corner, can be
-   dragged between them by its grip, and folds into a small orb that peeks open on hover. */
+/* Floating island. It parks centred on any of the four edges, can be dragged between them by
+   its grip, and folds into a small orb that peeks open on hover. On the side edges it turns
+   vertical and drops every label: icons only. */
 .toolbar {
   position: absolute;
   z-index: 20;
   display: flex;
   align-items: center;
+  justify-content: center;
   animation: fade-up 0.7s var(--ease) both;
 }
 
-.toolbar.dock-top {
-  top: 14px;
-  left: 50%;
-  transform: translateX(-50%);
-  max-width: calc(100% - 28px);
-}
-
-.toolbar.dock-left {
-  left: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  max-height: calc(100% - 28px);
-}
-
-.toolbar.dock-bottom-right {
-  right: 14px;
-  bottom: 14px;
-  max-width: calc(100% - 28px);
-}
+.toolbar.dock-top    { top: 14px;    left: 50%; transform: translateX(-50%); max-width: calc(100% - 28px); }
+.toolbar.dock-bottom { bottom: 14px; left: 50%; transform: translateX(-50%); max-width: calc(100% - 28px); }
+.toolbar.dock-left   { left: 14px;   top: 50%;  transform: translateY(-50%); max-height: calc(100% - 28px); }
+.toolbar.dock-right  { right: 14px;  top: 50%;  transform: translateY(-50%); max-height: calc(100% - 28px); }
 
 .toolbar.dragging {
   cursor: grabbing;
@@ -60,18 +47,297 @@
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, var(--shadow-float);
 }
 
-/* vertical layout when parked on the left */
-.toolbar.dock-left .toolbar-body {
+/* --- vertical (left / right): a slim column of icons --- */
+.toolbar.vertical .toolbar-body {
   flex-direction: column;
   flex-wrap: nowrap;
+  gap: 4px;
   padding: 8px 6px;
   border-radius: 24px;
   max-height: calc(100vh - 60px);
   overflow-y: auto;
   overflow-x: visible;
+  scrollbar-width: none;
 }
 
-.toolbar.dock-left .toolbar-group {
+.toolbar.vertical .toolbar-body::-webkit-scrollbar {
+  display: none;
+}
+
+.toolbar.vertical .toolbar-group {
+  flex-direction: column;
+  gap: 2px;
+}
+
+.toolbar.vertical .toolbar-group + .toolbar-group::before {
+  width: 18px;
+  height: 1px;
+  margin: 4px 0;
+}
+
+.toolbar.vertical .save-pill {
+  padding: 0;
+  height: 14px;
+  justify-content: center;
+}
+
+.toolbar.vertical .board-title-input,
+.toolbar.vertical .name-input {
+  width: 120px;
+}
+
+.toolbar.vertical .tool-btn.primary {
+  width: 32px;
+  padding: 0;
+}
+
+.toolbar.vertical .tool-btn.active {
+  background: var(--accent-soft);
+}
+
+.toolbar.vertical .collaborator-chip.avatar-only {
+  padding: 3px;
+  width: 30px;
+  justify-content: center;
+}
+
+/* tooltips flip outward from the edge so they never hide behind the bar */
+.toolbar.dock-left .tip::after {
+  top: 50%;
+  left: calc(100% + 10px);
+  bottom: auto;
+  transform: translate(-4px, -50%) scale(0.96);
+}
+.toolbar.dock-left .tip:hover::after,
+.toolbar.dock-left .tip:focus-within::after {
+  transform: translate(0, -50%) scale(1);
+}
+
+.toolbar.dock-right .tip::after {
+  top: 50%;
+  left: auto;
+  right: calc(100% + 10px);
+  bottom: auto;
+  transform: translate(4px, -50%) scale(0.96);
+}
+.toolbar.dock-right .tip:hover::after,
+.toolbar.dock-right .tip:focus-within::after {
+  transform: translate(0, -50%) scale(1);
+}
+
+.toolbar.dock-bottom .tip::after {
+  top: auto;
+  bottom: calc(100% + 8px);
+  transform: translate(-50%, 4px) scale(0.96);
+}
+.toolbar.dock-bottom .tip:hover::after,
+.toolbar.dock-bottom .tip:focus-within::after {
+  transform: translate(-50%, 0) scale(1);
+}
+
+/* search on a vertical bar opens as a small popover beside the icon */
+.search-popover-anchor {
+  position: relative;
+}
+
+.search-popover {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px;
+  height: 34px;
+  border-radius: 999px;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  box-shadow: var(--shadow-float);
+  color: var(--text-muted);
+  animation: card-in 0.35s var(--ease) both;
+  z-index: 2;
+}
+
+.toolbar.dock-left .search-popover { left: calc(100% + 12px); }
+.toolbar.dock-right .search-popover { right: calc(100% + 12px); }
+
+.search-popover .search-input,
+.search-popover .search-input:focus {
+  width: 150px;
+}
+
+/* grip: three dot pairs on the leading edge */
+.toolbar-grip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  border-radius: 999px;
+  cursor: grab;
+  margin-right: -2px;
+}
+
+.toolbar-grip:hover {
+  color: var(--text);
+  background: var(--accent-soft);
+}
+
+.toolbar-grip:active {
+  cursor: grabbing;
+  transform: none;
+}
+
+.toolbar.vertical .toolbar-grip {
+  width: 32px;
+  height: 22px;
+  margin: -2px 0 0;
+}
+
+.toolbar.vertical .toolbar-grip svg {
+  transform: rotate(90deg);
+}
+
+/* hide arrow on the trailing edge */
+.toolbar-hide {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--panel-border);
+  background: var(--accent-softer);
+  color: var(--text-muted);
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: 2px;
+  flex-shrink: 0;
+}
+
+.toolbar-hide:hover {
+  background: var(--accent-soft);
+  color: var(--text);
+}
+
+.toolbar.vertical .toolbar-hide {
+  margin: 2px 0 0;
+}
+
+/* --- collapsed: only the orb shows; hovering it peeks the bar out, the arrow pins it --- */
+.toolbar-orb {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--panel-border);
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(22px) saturate(1.4);
+  backdrop-filter: blur(22px) saturate(1.4);
+  color: var(--text-muted);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset, var(--shadow-float);
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.5s var(--ease-spring), color 0.35s var(--ease), opacity 0.35s var(--ease);
+}
+
+.toolbar.collapsed .toolbar-orb {
+  display: inline-flex;
+  animation: orb-in 0.5s var(--ease-spring) both;
+}
+
+@keyframes orb-in {
+  from { transform: translate(-50%, -50%) scale(0.6); opacity: 0; }
+  to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+/* while collapsed the wrapper shrinks to the orb so the hit area is just the circle; the
+   body floats out of it towards the board */
+.toolbar.collapsed {
+  width: 38px;
+  height: 38px;
+}
+
+.toolbar.collapsed .toolbar-body {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.toolbar.dock-top.collapsed .toolbar-body    { top: 0;    left: 50%; transform: translateX(-50%) scale(0.9); transform-origin: top center; }
+.toolbar.dock-bottom.collapsed .toolbar-body { bottom: 0; left: 50%; transform: translateX(-50%) scale(0.9); transform-origin: bottom center; }
+.toolbar.dock-left.collapsed .toolbar-body   { left: 0;   top: 50%;  transform: translateY(-50%) scale(0.9); transform-origin: left center; }
+.toolbar.dock-right.collapsed .toolbar-body  { right: 0;  top: 50%;  transform: translateY(-50%) scale(0.9); transform-origin: right center; }
+
+.toolbar.dock-top.collapsed:not(.no-peek):hover .toolbar-body,
+.toolbar.dock-bottom.collapsed:not(.no-peek):hover .toolbar-body { transform: translateX(-50%) scale(1); }
+.toolbar.dock-left.collapsed:not(.no-peek):hover .toolbar-body,
+.toolbar.dock-right.collapsed:not(.no-peek):hover .toolbar-body { transform: translateY(-50%) scale(1); }
+
+.toolbar.collapsed:not(.no-peek):hover .toolbar-orb {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.6);
+  pointer-events: none;
+}
+
+.toolbar.collapsed:not(.no-peek):hover .toolbar-body {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+  transition-delay: 0.05s;
+}
+
+/* the bottom dock takes the selection bar's spot, so that one moves to the top */
+.board-editor:has(.toolbar.dock-bottom) .selection-toolbar {
+  bottom: auto;
+  top: 18px;
+}
+
+.board-editor:has(.toolbar.dock-bottom) .selection-toolbar .tip.tip-top::after {
+  bottom: auto;
+  top: calc(100% + 8px);
+  transform: translate(-50%, -4px) scale(0.96);
+}
+
+.board-editor:has(.toolbar.dock-bottom) .selection-toolbar .tip.tip-top:hover::after {
+  transform: translate(-50%, 0) scale(1);
+}
+
+.board-editor:has(.toolbar.dock-bottom) .private-note-editor {
+  bottom: auto;
+  top: calc(100% + 10px);
+}
+
+/* a faint frame previews where the bar will snap while it is being dragged */
+.toolbar-snap-zone {
+  position: absolute;
+  z-index: 19;
+  border: 1.5px dashed var(--panel-strong);
+  border-radius: 999px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s var(--ease);
+}
+
+.toolbar-snap-zone.active {
+  opacity: 1;
+  border-color: var(--accent);
+  background: var(--accent-softer);
+}
+
+.toolbar-snap-zone.zone-top    { top: 14px;    left: 50%; transform: translateX(-50%); width: 320px; height: 44px; }
+.toolbar-snap-zone.zone-bottom { bottom: 14px; left: 50%; transform: translateX(-50%); width: 320px; height: 44px; }
+.toolbar-snap-zone.zone-left   { left: 14px;   top: 50%;  transform: translateY(-50%); width: 46px;  height: 320px; border-radius: 24px; }
+.toolbar-snap-zone.zone-right  { right: 14px;  top: 50%;  transform: translateY(-50%); width: 46px;  height: 320px; border-radius: 24px; }
+
+.toolbar-group {
   flex-direction: column;
 }
 
@@ -241,6 +507,27 @@
 }
 .toolbar.dock-bottom-right.collapsed .toolbar-body {
   transform-origin: bottom right;
+}
+
+/* the bottom dock takes the selection bar's spot, so that one moves to the top */
+.board-editor:has(.toolbar.dock-bottom) .selection-toolbar {
+  bottom: auto;
+  top: 18px;
+}
+
+.board-editor:has(.toolbar.dock-bottom) .selection-toolbar .tip.tip-top::after {
+  bottom: auto;
+  top: calc(100% + 8px);
+  transform: translate(-50%, -4px) scale(0.96);
+}
+
+.board-editor:has(.toolbar.dock-bottom) .selection-toolbar .tip.tip-top:hover::after {
+  transform: translate(-50%, 0) scale(1);
+}
+
+.board-editor:has(.toolbar.dock-bottom) .private-note-editor {
+  bottom: auto;
+  top: calc(100% + 10px);
 }
 
 /* a faint frame previews where the bar will snap while it is being dragged */
