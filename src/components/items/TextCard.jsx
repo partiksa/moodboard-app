@@ -19,18 +19,67 @@ export default function TextCard({ item, board, dispatch }) {
   const heading = isHeadingCard(item.body);
   const headingColor = heading ? headingColorForBackground(board.settings.background) : null;
 
+  // Double-clicks are detected by hand from two quick mousedowns: the browser's dblclick
+  // event is unreliable here because the first mousedown starts a drag on the canvas and
+  // the item re-renders in between, which some browsers treat as a broken double-click.
+  const lastDownRef = useRef({ time: 0, x: 0, y: 0 });
+  const focusPointRef = useRef(null);
+
   const mountedRef = useRef(false);
   useEffect(() => {
-    // focus only on a real double-click transition, not on mount (a loaded board may hold
-    // several empty cards and none of them should steal focus)
-    if (editing && mountedRef.current) bodyRef.current?.focus();
+    // no focus on mount: a loaded board may hold several empty cards and none should steal focus
+    const mounted = mountedRef.current;
     mountedRef.current = true;
+    if (!editing || !mounted) return;
+    const el = bodyRef.current;
+    if (!el) return;
+    el.focus();
+    const point = focusPointRef.current;
+    focusPointRef.current = null;
+    if (!point) return;
+    // put the caret where the user double-clicked instead of at the start of the text
+    const range =
+      document.caretRangeFromPoint?.(point.x, point.y) ||
+      (document.caretPositionFromPoint
+        ? (() => {
+            const pos = document.caretPositionFromPoint(point.x, point.y);
+            if (!pos) return null;
+            const r = document.createRange();
+            r.setStart(pos.offsetNode, pos.offset);
+            r.collapse(true);
+            return r;
+          })()
+        : null);
+    if (range && el.contains(range.startContainer)) {
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+    }
   }, [editing]);
 
   const startEditing = (e) => {
     if (editing) return;
     e.stopPropagation();
+    e.preventDefault();
+    focusPointRef.current = { x: e.clientX, y: e.clientY };
     setEditing(true);
+  };
+
+  const onCardMouseDown = (e) => {
+    // while editing, clicks inside the card (text or toolbar) must not start a drag
+    if (editing) {
+      e.stopPropagation();
+      return;
+    }
+    if (e.button !== 0) return;
+    const now = Date.now();
+    const last = lastDownRef.current;
+    const quick = now - last.time < 450 && Math.abs(e.clientX - last.x) < 6 && Math.abs(e.clientY - last.y) < 6;
+    lastDownRef.current = { time: now, x: e.clientX, y: e.clientY };
+    if (quick) {
+      lastDownRef.current.time = 0;
+      startEditing(e);
+    }
   };
 
   const update = (patch) => dispatch({ type: 'UPDATE_ITEM', id: item.id, patch });
@@ -99,10 +148,7 @@ export default function TextCard({ item, board, dispatch }) {
         ...wrapperVars,
         ...(heading ? { '--tc-heading-color': headingColor || 'var(--text)' } : {}),
       }}
-      onMouseDown={(e) => {
-        // while editing, clicks inside the card (text or toolbar) must not start a drag
-        if (editing) e.stopPropagation();
-      }}
+      onMouseDown={onCardMouseDown}
       onDoubleClick={startEditing}
     >
       {toolbarOpen && (
