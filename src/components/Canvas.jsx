@@ -452,15 +452,14 @@ function backgroundStyle(bg, gridSize, gridColor, viewport) {
     return { ...base, background: bg.color || '#ffffff' };
   }
 
-  // The dot grid is drawn in screen space at a fixed spacing (what the board grid looks like
-  // at 75 % zoom), so zooming never changes how far apart the dots sit; it only slides with
-  // panning. Below 20 % zoom the dots disappear entirely.
+  // The dot grid is a static screen texture at a fixed spacing (what the board grid looks
+  // like at 75 % zoom). It is deliberately not tied to the pan offset: zooming around the
+  // cursor changes the pan, and a pan-locked grid then visibly slides towards the corner.
+  // Below 20 % zoom the dots disappear entirely.
   if (viewport.zoom < 0.2) {
     return { ...base, background: bg.type === 'dotted-black' ? '#111114' : 'var(--canvas-bg)' };
   }
   const step = Math.max(8, Math.round(gridSize * 0.75));
-  const offsetX = ((viewport.panX % step) + step) % step;
-  const offsetY = ((viewport.panY % step) + step) % step;
 
   const dark = bg.type === 'dotted-black';
   const dotColor = dark ? 'rgba(255, 255, 255, 0.28)' : hexToRgba(gridColor, 0.7);
@@ -470,7 +469,7 @@ function backgroundStyle(bg, gridSize, gridColor, viewport) {
     background: pageColor,
     backgroundImage: `radial-gradient(circle, ${dotColor} 0.6px, transparent 1.1px)`,
     backgroundSize: `${step}px ${step}px`,
-    backgroundPosition: `${offsetX}px ${offsetY}px`,
+    backgroundPosition: '0 0',
   };
 }
 
