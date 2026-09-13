@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { X, DownloadSimple, FolderSimple, WarningCircle } from '../icons.jsx';
 import { loadFileIndex, downloadAllAsZip, formatBytes } from '../../lib/boardFiles';
 import FileCard from './FileCard.jsx';
+import FilePreview from './FilePreview.jsx';
 import './FilesPanel.css';
 
 const EMPTY = [];
@@ -14,6 +15,7 @@ export default function FilesPanel({ board, onClose }) {
   const [index, setIndex] = useState(null);
   const [activeCat, setActiveCat] = useState('all');
   const [zipState, setZipState] = useState({ running: false, progress: 0, error: null });
+  const [preview, setPreview] = useState(null); // { file, kind, url }
 
   useEffect(() => {
     let cancelled = false;
@@ -32,10 +34,10 @@ export default function FilesPanel({ board, onClose }) {
   }, [board.id]);
 
   useEffect(() => {
-    const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+    const onKey = (e) => { if (e.key === 'Escape' && !preview) onClose(); };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [onClose]);
+  }, [onClose, preview]);
 
   const files = index?.files || EMPTY;
   const categories = index?.categories || EMPTY;
@@ -112,7 +114,7 @@ export default function FilesPanel({ board, onClose }) {
 
             <div className="files-main">
               <div className="files-grid">
-                {visible.map((f) => <FileCard key={f.id} file={f} />)}
+                {visible.map((f) => <FileCard key={f.id} file={f} onPreview={(file, kind, url) => setPreview({ file, kind, url })} />)}
                 {visible.length === 0 && <div className="files-state small">Nothing in this category.</div>}
               </div>
             </div>
@@ -133,6 +135,7 @@ export default function FilesPanel({ board, onClose }) {
           </div>
         )}
       </div>
+      {preview && <FilePreview {...preview} onClose={() => setPreview(null)} />}
     </div>
   );
 }

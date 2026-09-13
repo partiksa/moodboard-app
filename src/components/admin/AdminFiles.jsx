@@ -31,6 +31,7 @@ import {
   WarningCircle,
 } from '../icons.jsx';
 import FileCard from '../files/FileCard.jsx';
+import FilePreview from '../files/FilePreview.jsx';
 import '../files/FilesPanel.css';
 import './AdminApp.css';
 import './AdminFiles.css';
@@ -54,6 +55,7 @@ export default function AdminFiles({ boardId }) {
   const [uploads, setUploads] = useState([]); // { id, name, size, progress, status, error }
   const [dragOver, setDragOver] = useState(false);
   const [zipState, setZipState] = useState({ running: false, progress: 0 });
+  const [preview, setPreview] = useState(null); // { file, kind, url }
   const inputRef = useRef(null);
   const uploadQueue = useRef(Promise.resolve());
 
@@ -365,6 +367,7 @@ export default function AdminFiles({ boardId }) {
                   key={f.id}
                   file={f}
                   busy={busyFileId === f.id}
+                  onPreview={(file, kind, url) => setPreview({ file, kind, url })}
                   onDelete={handleDeleteFile}
                   categoryPicker={
                     <select
@@ -388,6 +391,8 @@ export default function AdminFiles({ boardId }) {
           </section>
         </div>
       )}
+
+      {preview && <FilePreview {...preview} onClose={() => setPreview(null)} />}
 
       <p className="admin-note admin-files-foot">
         <DownloadSimple size={12} weight="bold" /> Anyone with the board link can download these from the Files button in the toolbar.

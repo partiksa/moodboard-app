@@ -286,6 +286,189 @@
   cursor: default;
 }
 
+.file-card-preview video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.file-card-pdf {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.file-card-pdf object {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #fff;
+}
+
+.file-card-eye {
+  position: absolute;
+  left: 7px;
+  bottom: 7px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--glass);
+  color: var(--text);
+  border: 1px solid var(--panel-border);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.35s var(--ease), transform 0.5s var(--ease-spring);
+}
+
+.file-card:hover .file-card-eye {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- lightbox --- */
+.file-preview-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  background: rgba(12, 12, 14, 0.82);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  animation: overlay-in 0.4s var(--ease) both;
+  color: #f2f1ee;
+}
+
+.file-preview-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 22px;
+}
+
+.file-preview-title {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.file-preview-title strong {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-preview-title span {
+  font-size: 11.5px;
+  opacity: 0.6;
+  font-variant-numeric: tabular-nums;
+}
+
+.file-preview-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.file-preview-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 8px 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.1);
+  color: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.35s var(--ease), transform 0.5s var(--ease);
+}
+
+.file-preview-btn .btn-orb {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.file-preview-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.18);
+  transform: translateY(-1px);
+}
+
+.file-preview-btn:hover:not(:disabled) .btn-orb {
+  transform: translateY(1px) scale(1.08);
+}
+
+.file-preview-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.1);
+  color: inherit;
+  cursor: pointer;
+  transition: background 0.35s var(--ease);
+}
+
+.file-preview-close svg {
+  transition: transform 0.5s var(--ease-spring);
+}
+
+.file-preview-close:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.file-preview-close:hover svg {
+  transform: rotate(90deg);
+}
+
+.file-preview-stage {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px 28px;
+  animation: card-in 0.5s var(--ease) both;
+}
+
+.file-preview-stage img,
+.file-preview-stage video {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 14px;
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.7);
+}
+
+.file-preview-stage img {
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.file-preview-stage iframe {
+  width: min(960px, 100%);
+  height: 100%;
+  border: none;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.7);
+}
+
 /* --- states --- */
 .files-state {
   display: flex;

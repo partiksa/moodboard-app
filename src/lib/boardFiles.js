@@ -34,11 +34,24 @@ export function fileDownloadUrl(path) {
   return `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${FILES_BRANCH}/${path.split('/').map(encodeURIComponent).join('/')}`;
 }
 
-// raw.githubusercontent.com serves SVG as text/plain with nosniff, which <img> refuses to
-// render; jsDelivr mirrors the same branch with proper content types (files up to 20 MB).
+// raw.githubusercontent.com serves SVG, video and PDF as text/plain or octet-stream with
+// nosniff, which <img>/<video>/<object> refuse; jsDelivr mirrors the same branch with proper
+// content types (files up to 20 MB). Raster images are fine straight from raw.
+export const PREVIEW_MAX_BYTES = 20 * 1024 * 1024;
+
 export function filePreviewUrl(path) {
-  if (fileExtension(path) !== 'svg') return fileDownloadUrl(path);
+  if (fileKind(path) === 'image') return fileDownloadUrl(path);
   return `https://cdn.jsdelivr.net/gh/${GITHUB_OWNER}/${GITHUB_REPO}@${FILES_BRANCH}/${path.split('/').map(encodeURIComponent).join('/')}`;
+}
+
+// What the tile and the lightbox can show inline: 'image' | 'video' | 'pdf' | null.
+export function previewType(file) {
+  const ext = fileExtension(file.name);
+  if (['png', 'jpg', 'jpeg', 'gif', 'webp', 'avif', 'svg', 'bmp'].includes(ext)) return 'image';
+  if (file.size > PREVIEW_MAX_BYTES) return null;
+  if (['mp4', 'webm', 'mov', 'm4v'].includes(ext)) return 'video';
+  if (ext === 'pdf') return 'pdf';
+  return null;
 }
 
 export function formatBytes(bytes) {
@@ -68,12 +81,6 @@ const KIND_BY_EXT = {
 
 export function fileKind(name) {
   return KIND_BY_EXT[fileExtension(name)] || 'other';
-}
-
-// Images and SVGs can be previewed straight from the raw URL; everything else gets an icon.
-export function isPreviewable(name) {
-  const ext = fileExtension(name);
-  return ['png', 'jpg', 'jpeg', 'gif', 'webp', 'avif', 'svg', 'bmp'].includes(ext);
 }
 
 export async function loadFileIndex(boardId, token = GITHUB_TOKEN) {
