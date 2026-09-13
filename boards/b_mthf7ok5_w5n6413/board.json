@@ -2,7 +2,7 @@
   "id": "b_mthf7ok5_w5n6413",
   "name": "odrazse",
   "createdAt": "2026-08-31T15:56:15.509Z",
-  "updatedAt": "2026-09-13T13:25:02.216Z",
+  "updatedAt": "2026-09-13T13:25:25.514Z",
   "items": [
     {
       "id": "item_mthf7uv1_kfpanqd",
@@ -377,16 +377,16 @@
     {
       "id": "item_mtzuj74z_z6w4cuy",
       "type": "text",
-      "x": 2952.4335489093905,
-      "y": -354.78968742893267,
-      "width": 240,
-      "height": 160,
+      "x": 2539.4158572954116,
+      "y": -401,
+      "width": 129.16828540917686,
+      "height": 49.16828540917675,
       "rotation": 0,
       "zIndex": 26,
       "locked": false,
       "parentId": null,
       "privateNote": "",
-      "body": "",
+      "body": "<h1>post2</h1>",
       "textAlign": "left",
       "textColor": "#111111",
       "backgroundColor": "#ffffff"
@@ -2974,6 +2974,78 @@
       "verb": "added",
       "itemType": "text note",
       "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mtzujfbj_jm9ro",
+      "ts": "2026-09-13T13:25:08.815Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mtzujfuf_fblx1",
+      "ts": "2026-09-13T13:25:09.495Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "post2",
+      "private": false
+    },
+    {
+      "id": "act_mtzujh3c_ro4iz",
+      "ts": "2026-09-13T13:25:11.112Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "post2",
+      "private": false
+    },
+    {
+      "id": "act_mtzujinc_i3uxl",
+      "ts": "2026-09-13T13:25:13.128Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "post2",
+      "private": false
+    },
+    {
+      "id": "act_mtzujkam_bw6f5",
+      "ts": "2026-09-13T13:25:15.262Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "post2",
+      "private": false
+    },
+    {
+      "id": "act_mtzujm3j_liw7k",
+      "ts": "2026-09-13T13:25:17.599Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "post2",
+      "private": false
+    },
+    {
+      "id": "act_mtzujnbe_x1zqf",
+      "ts": "2026-09-13T13:25:19.178Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "post2",
+      "private": false
+    },
+    {
+      "id": "act_mtzujp48_9bkq2",
+      "ts": "2026-09-13T13:25:21.512Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "post2",
       "private": false
     }
   ],
