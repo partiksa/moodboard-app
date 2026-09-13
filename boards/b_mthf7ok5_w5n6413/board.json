@@ -2,7 +2,7 @@
   "id": "b_mthf7ok5_w5n6413",
   "name": "odrazse",
   "createdAt": "2026-08-31T15:56:15.509Z",
-  "updatedAt": "2026-09-13T13:26:35.481Z",
+  "updatedAt": "2026-09-13T13:26:47.129Z",
   "items": [
     {
       "id": "item_mthf7uv1_kfpanqd",
@@ -410,8 +410,8 @@
     {
       "id": "item_mtzul73q_nmctfsy",
       "type": "text",
-      "x": 2519.1534640231885,
-      "y": -18.796631410003805,
+      "x": 1344,
+      "y": -642,
       "width": 240,
       "height": 160,
       "rotation": 0,
@@ -419,40 +419,13 @@
       "locked": false,
       "parentId": null,
       "privateNote": "",
-      "body": "",
+      "body": "<h1>post1</h1>",
       "textAlign": "left",
       "textColor": "#111111",
       "backgroundColor": "#ffffff"
     }
   ],
   "activity": [
-    {
-      "id": "act_mthf8d94_urmia",
-      "ts": "2026-08-31T15:56:47.512Z",
-      "name": "patko",
-      "verb": "edited",
-      "itemType": "text note",
-      "itemTitle": "odrazse x ATELIÉR ZLÍN",
-      "private": false
-    },
-    {
-      "id": "act_mthf8eh1_q1hxn",
-      "ts": "2026-08-31T15:56:49.093Z",
-      "name": "patko",
-      "verb": "moved",
-      "itemType": "text note",
-      "itemTitle": "odrazse x ATELIÉR ZLÍN",
-      "private": false
-    },
-    {
-      "id": "act_mthf8eoz_lb918",
-      "ts": "2026-08-31T15:56:49.379Z",
-      "name": "patko",
-      "verb": "edited",
-      "itemType": "text note",
-      "itemTitle": "odrazse x ATELIÉR ZLÍN",
-      "private": false
-    },
     {
       "id": "act_mthfa3r1_tyynl",
       "ts": "2026-08-31T15:58:08.509Z",
@@ -3124,6 +3097,33 @@
       "verb": "added",
       "itemType": "text note",
       "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mtzuld34_8wofk",
+      "ts": "2026-09-13T13:26:39.232Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mtzuledd_zalym",
+      "ts": "2026-09-13T13:26:40.897Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "post1",
+      "private": false
+    },
+    {
+      "id": "act_mtzulg3c_kq5pz",
+      "ts": "2026-09-13T13:26:43.128Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "post1",
       "private": false
     }
   ],
