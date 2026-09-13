@@ -10,39 +10,18 @@
   overflow: hidden;
 }
 
-/* two slow ambient light spots behind the card so the page is never a flat sheet */
-.welcome-screen::before,
-.welcome-screen::after {
-  content: '';
-  position: absolute;
-  width: 60vmax;
-  height: 60vmax;
-  border-radius: 50%;
-  pointer-events: none;
-  filter: blur(80px);
-  opacity: 0.55;
+/* two soft light spots painted once (no blur filter, no animation: the old version
+   re-rasterised two huge blurred layers every frame and froze Safari) */
+.welcome-screen {
+  background-image:
+    radial-gradient(60vmax 60vmax at -5% -10%, rgba(255, 220, 190, 0.45), transparent 60%),
+    radial-gradient(60vmax 60vmax at 105% 110%, rgba(190, 210, 255, 0.4), transparent 60%);
 }
 
-.welcome-screen::before {
-  top: -30vmax;
-  left: -20vmax;
-  background: radial-gradient(closest-side, rgba(255, 220, 190, 0.7), transparent);
-  animation: drift 26s var(--ease) infinite alternate;
-}
-
-.welcome-screen::after {
-  bottom: -30vmax;
-  right: -20vmax;
-  background: radial-gradient(closest-side, rgba(190, 210, 255, 0.6), transparent);
-  animation: drift 32s var(--ease) infinite alternate-reverse;
-}
-
-[data-theme='dark'] .welcome-screen::before { background: radial-gradient(closest-side, rgba(120, 90, 60, 0.35), transparent); }
-[data-theme='dark'] .welcome-screen::after { background: radial-gradient(closest-side, rgba(60, 80, 140, 0.35), transparent); }
-
-@keyframes drift {
-  from { transform: translate(0, 0); }
-  to { transform: translate(8vmax, 6vmax); }
+[data-theme='dark'] .welcome-screen {
+  background-image:
+    radial-gradient(60vmax 60vmax at -5% -10%, rgba(120, 90, 60, 0.25), transparent 60%),
+    radial-gradient(60vmax 60vmax at 105% 110%, rgba(60, 80, 140, 0.25), transparent 60%);
 }
 
 /* double bezel: soft tray around a white core */

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import './WelcomeScreen.css';
-import cursorFace from '../assets/cursor-face.png';
 import { CaretRight } from './icons.jsx';
 
 export default function WelcomeScreen({ boardId, onEnter, initialName = '' }) {
@@ -12,7 +11,7 @@ export default function WelcomeScreen({ boardId, onEnter, initialName = '' }) {
   };
 
   return (
-    <div className="welcome-screen" style={{ cursor: `url(${cursorFace}) 30 15, auto` }}>
+    <div className="welcome-screen">
       <div className="welcome-shell">
       <div className="welcome-card">
         <span className="welcome-eyebrow">Shared board</span>
