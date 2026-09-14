@@ -2,7 +2,7 @@
   "id": "b_mthf7ok5_w5n6413",
   "name": "odrazse",
   "createdAt": "2026-08-31T15:56:15.509Z",
-  "updatedAt": "2026-09-14T16:04:13.547Z",
+  "updatedAt": "2026-09-14T16:04:31.708Z",
   "items": [
     {
       "id": "item_mthf7uv1_kfpanqd",
@@ -503,7 +503,7 @@
     {
       "id": "item_mtzzr4xs_wgvkz4h",
       "type": "image",
-      "x": 607.5,
+      "x": 614,
       "y": -603.5921654467161,
       "width": 202,
       "height": 360,
@@ -649,15 +649,6 @@
     }
   ],
   "activity": [
-    {
-      "id": "act_mthfvrt6_etfcy",
-      "ts": "2026-08-31T16:14:59.466Z",
-      "name": "patko",
-      "verb": "edited",
-      "itemType": "column",
-      "itemTitle": "vis fx",
-      "private": false
-    },
     {
       "id": "act_mthfvrv8_98li7",
       "ts": "2026-08-31T16:14:59.540Z",
@@ -3343,6 +3334,15 @@
     {
       "id": "act_mu1fnrnr_auj5c",
       "ts": "2026-09-14T16:04:09.543Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "image",
+      "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mu1fnw4c_h0b3t",
+      "ts": "2026-09-14T16:04:15.324Z",
       "name": "patko",
       "verb": "moved",
       "itemType": "image",
