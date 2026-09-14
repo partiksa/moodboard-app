@@ -2,7 +2,7 @@
   "id": "b_mthf7ok5_w5n6413",
   "name": "odrazse",
   "createdAt": "2026-08-31T15:56:15.509Z",
-  "updatedAt": "2026-09-14T07:23:43.099Z",
+  "updatedAt": "2026-09-14T07:23:54.790Z",
   "items": [
     {
       "id": "item_mthf7uv1_kfpanqd",
@@ -590,7 +590,7 @@
       "privateNote": "",
       "tasks": [
         {
-          "id": "task_mu0x2avm_ryrzxx6",
+          "id": "task_mu0x2k45_mba64dv",
           "text": "",
           "done": false
         }
@@ -598,42 +598,6 @@
     }
   ],
   "activity": [
-    {
-      "id": "act_mthfeg7l_7vwr5",
-      "ts": "2026-08-31T16:01:31.281Z",
-      "name": "patko",
-      "verb": "edited",
-      "itemType": "link card",
-      "itemTitle": "link",
-      "private": false
-    },
-    {
-      "id": "act_mthfegvx_5gwgy",
-      "ts": "2026-08-31T16:01:32.157Z",
-      "name": "patko",
-      "verb": "edited",
-      "itemType": "link card",
-      "itemTitle": "https://nonotak.com",
-      "private": false
-    },
-    {
-      "id": "act_mthftwo3_r48xs",
-      "ts": "2026-08-31T16:13:32.451Z",
-      "name": "patko",
-      "verb": "restored a previous version of",
-      "itemType": "the board",
-      "itemTitle": "",
-      "private": false
-    },
-    {
-      "id": "act_mthftxqu_7b13b",
-      "ts": "2026-08-31T16:13:33.846Z",
-      "name": "patko",
-      "verb": "moved",
-      "itemType": "text note",
-      "itemTitle": "odrazse x ATELIÉR ZLÍN",
-      "private": false
-    },
     {
       "id": "act_mthfty06_gj438",
       "ts": "2026-08-31T16:13:34.182Z",
@@ -3294,6 +3258,42 @@
       "ts": "2026-09-14T07:23:39.098Z",
       "name": "patko",
       "verb": "moved",
+      "itemType": "to-do list",
+      "itemTitle": "to-do list",
+      "private": false
+    },
+    {
+      "id": "act_mu0x2j9o_l5lg9",
+      "ts": "2026-09-14T07:23:45.804Z",
+      "name": "patko",
+      "verb": "updated",
+      "itemType": "to-do list",
+      "itemTitle": "to-do list",
+      "private": false
+    },
+    {
+      "id": "act_mu0x2k46_kg6m6",
+      "ts": "2026-09-14T07:23:46.902Z",
+      "name": "patko",
+      "verb": "updated",
+      "itemType": "to-do list",
+      "itemTitle": "to-do list",
+      "private": false
+    },
+    {
+      "id": "act_mu0x2m2r_8ng79",
+      "ts": "2026-09-14T07:23:49.443Z",
+      "name": "patko",
+      "verb": "updated",
+      "itemType": "to-do list",
+      "itemTitle": "to-do list",
+      "private": false
+    },
+    {
+      "id": "act_mu0x2n44_89nua",
+      "ts": "2026-09-14T07:23:50.788Z",
+      "name": "patko",
+      "verb": "updated",
       "itemType": "to-do list",
       "itemTitle": "to-do list",
       "private": false
