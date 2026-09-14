@@ -58,6 +58,7 @@ export const ITEM_DEFAULTS = {
   // starts with one empty row so the card is immediately typeable (Enter adds the next)
   todo: () => ({ tasks: [{ id: uid('task'), text: '', done: false }] }),
   column: () => ({ label: 'Column', childIds: [] }),
+  drawing: () => ({ strokes: [], localWidth: 1, localHeight: 1 }),
 };
 
 export function makeItem(type, overrides = {}) {

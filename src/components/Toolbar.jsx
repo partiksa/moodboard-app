@@ -20,6 +20,7 @@ import {
   CaretUp,
   CaretDown,
   FolderOpen,
+  PencilSimpleLine,
 } from './icons.jsx';
 import './Toolbar.css';
 
@@ -68,6 +69,8 @@ export default function Toolbar({
   onOpenSettings,
   onOpenExport,
   onOpenFiles,
+  drawActive,
+  onToggleDraw,
   zoom,
   onZoomIn,
   onZoomOut,
@@ -170,6 +173,17 @@ export default function Toolbar({
       </div>
 
       <div className="toolbar-group">
+        <button
+          className={`tool-btn icon-only tip tip-rich${drawActive ? ' active' : ''}`}
+          data-tip="Draw"
+          data-hint="Sketch with mouse, finger or Apple Pencil"
+          data-kbd="D"
+          onClick={onToggleDraw}
+          aria-pressed={drawActive}
+          aria-label="Drawing tool"
+        >
+          <PencilSimpleLine size={iconSize} weight="regular" />
+        </button>
         <button className="tool-btn icon-only tip" data-tip="Undo" data-kbd={`${MOD} Z`} onClick={onUndo} disabled={!canUndo} aria-label="Undo">
           <ArrowCounterClockwise size={15} weight="regular" />
         </button>

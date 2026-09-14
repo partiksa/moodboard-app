@@ -77,7 +77,7 @@ export default function TodoCard({ item, dispatch }) {
               style={{ textDecoration: task.done ? 'line-through' : 'none' }}
               onChange={(e) => editTask(task.id, e.target.value)}
               onKeyDown={(e) => onKeyDown(e, task, i)}
-              onMouseDown={(e) => e.stopPropagation()}
+              onPointerDown={(e) => e.stopPropagation()}
             />
             <button className="todo-remove" onClick={() => removeTask(task.id, i)} title="Remove">
               <X size={12} weight="bold" />

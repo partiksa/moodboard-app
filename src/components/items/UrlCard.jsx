@@ -64,7 +64,7 @@ export default function UrlCard({ item, dispatch }) {
 
   if (!item.url) {
     return (
-      <div className="url-input-box" onMouseDown={(e) => e.stopPropagation()}>
+      <div className="url-input-box" onPointerDown={(e) => e.stopPropagation()}>
         <input
           placeholder="Paste a URL and press Enter"
           onKeyDown={(e) => {
@@ -97,7 +97,7 @@ export default function UrlCard({ item, dispatch }) {
           <button
             className="url-card-add-preview"
             title="Add a preview image"
-            onMouseDown={(e) => e.stopPropagation()}
+            onPointerDown={(e) => e.stopPropagation()}
             onClick={(e) => {
               e.stopPropagation();
               fileInputRef.current?.click();

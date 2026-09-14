@@ -581,3 +581,16 @@
   white-space: pre-wrap;
   animation: card-in 0.35s var(--ease) both;
 }
+
+.drawing-card {
+  display: block;
+  overflow: visible;
+  pointer-events: none;
+}
+
+/* the sketch itself has no box; its frame only shows while selected */
+.canvas-item.is-drawing > .item-frame {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}

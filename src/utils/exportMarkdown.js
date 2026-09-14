@@ -59,6 +59,9 @@ function itemToMarkdown(item, { includePrivateNotes }) {
       out = `Color ${v.hex} (RGB ${v.rgb}, CMYK ${v.cmyk})`;
       break;
     }
+    case 'drawing':
+      out = `[Sketch, ${(item.strokes || []).length} stroke${(item.strokes || []).length === 1 ? '' : 's'}]`;
+      break;
     case 'todo': {
       const tasks = (item.tasks || []).filter((t) => t.text?.trim());
       out = tasks.map((t) => `- [${t.done ? 'x' : ' '}] ${t.text.trim()}`).join('\n');

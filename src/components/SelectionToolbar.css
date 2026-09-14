@@ -83,3 +83,21 @@
   outline: none;
   box-shadow: 0 1px 1px rgba(255, 255, 255, 0.4) inset;
 }
+
+/* phones: the pill scrolls sideways rather than overflowing the screen */
+@media (max-width: 640px) {
+  .selection-toolbar {
+    left: 10px;
+    right: 10px;
+    transform: none;
+    max-width: calc(100% - 20px);
+    overflow-x: auto;
+    scrollbar-width: none;
+    touch-action: pan-x;
+    justify-content: flex-start;
+  }
+
+  .selection-toolbar::-webkit-scrollbar {
+    display: none;
+  }
+}

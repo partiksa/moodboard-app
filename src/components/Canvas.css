@@ -3,6 +3,35 @@
   flex: 1;
   overflow: hidden;
   cursor: default;
+  /* the canvas handles every touch itself: pan, pinch, drag, draw */
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+  overscroll-behavior: none;
+}
+
+/* draw mode: strokes land on top of everything, items stop catching the pointer */
+.canvas-viewport.drawing {
+  cursor: crosshair;
+}
+
+.canvas-viewport.drawing.tool-eraser {
+  cursor: cell;
+}
+
+.canvas-viewport.drawing .canvas-item {
+  pointer-events: none;
+}
+
+.live-stroke {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 1000;
 }
 
 .canvas-world {
@@ -382,4 +411,19 @@
   border: 1px solid var(--panel-border);
   background: var(--panel);
   box-shadow: 0 1px 0 var(--panel-border);
+}
+
+/* fingers need bigger targets than a mouse pointer */
+@media (pointer: coarse) {
+  .resize-handle {
+    --h: calc(18px * var(--inv-zoom));
+    --edge: calc(16px * var(--inv-zoom));
+  }
+
+  .rotate-handle {
+    top: calc(-34px * var(--inv-zoom));
+    width: calc(18px * var(--inv-zoom));
+    height: calc(18px * var(--inv-zoom));
+    margin-left: calc(-9px * var(--inv-zoom));
+  }
 }

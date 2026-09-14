@@ -48,7 +48,7 @@ export default function ColorSwatchCard({ item, dispatch }) {
         <button
           className="color-swatch-paste-btn"
           title="Paste hex code from clipboard"
-          onMouseDown={(e) => e.stopPropagation()}
+          onPointerDown={(e) => e.stopPropagation()}
           onClick={(e) => {
             e.stopPropagation();
             pasteHex();
@@ -67,7 +67,7 @@ export default function ColorSwatchCard({ item, dispatch }) {
           <button
             key={label}
             className="color-value-row"
-            onMouseDown={(e) => e.stopPropagation()}
+            onPointerDown={(e) => e.stopPropagation()}
             onClick={() => copy(label, value)}
           >
             <span>{label}</span>

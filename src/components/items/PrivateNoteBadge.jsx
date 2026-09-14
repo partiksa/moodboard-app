@@ -7,7 +7,7 @@ export default function PrivateNoteBadge({ note }) {
     <div
       className="private-note-badge"
       title="Has a private note (excluded from export by default)"
-      onMouseDown={(e) => e.stopPropagation()}
+      onPointerDown={(e) => e.stopPropagation()}
       onClick={(e) => {
         e.stopPropagation();
         setOpen((o) => !o);

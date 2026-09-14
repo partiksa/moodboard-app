@@ -3,6 +3,8 @@ import ItemRenderer from './items/ItemRenderer.jsx';
 import SelectionToolbar from './SelectionToolbar.jsx';
 import { computeSmartGuides, guidesForRect, snapResizeRect, rectsIntersect } from '../utils/geometry';
 import { layoutColumn } from '../utils/columnLayout';
+import { makeItem } from '../state/boardModel';
+import { strokePath, drawingFromWorldStrokes, appendWorldStroke, removeStrokes, strokesNear } from '../utils/drawing';
 import './Canvas.css';
 
 const MIN_ZOOM = 0.1;
@@ -11,6 +13,8 @@ const MAX_ZOOM = 4;
 export default function Canvas({
   viewportSize,
   onColorCheck,
+  draw,
+  onDrawPenSeen,
   board,
   dispatch,
   selectedIds,
@@ -29,6 +33,14 @@ export default function Canvas({
   const [dropTargetId, setDropTargetId] = useState(null);
   const isPanningRef = useRef(false);
   const spaceHeldRef = useRef(false);
+  // touch: every finger currently down, so a second one turns any gesture into a pinch
+  const touchesRef = useRef(new Map());
+  const pinchRef = useRef(null);
+  // drawing: the stroke being drawn and the item this drawing session appends to
+  const [liveStroke, setLiveStroke] = useState(null);
+  const liveStrokeRef = useRef(null);
+  const sessionItemRef = useRef(null);
+  const drawActive = Boolean(draw?.active);
 
   const items = board.items;
   const itemsById = useMemo(() => Object.fromEntries(items.map((i) => [i.id, i])), [items]);
@@ -74,28 +86,48 @@ export default function Canvas({
   const startPan = (e) => {
     isPanningRef.current = true;
     const start = { x: e.clientX, y: e.clientY, panX: viewport.panX, panY: viewport.panY };
+    let dead = false;
     const onMove = (ev) => {
+      // once a second finger lands the pinch owns the viewport for the rest of this gesture
+      if (pinchRef.current) dead = true;
+      if (dead || ev.pointerId !== e.pointerId) return;
       setViewport((v) => ({ ...v, panX: start.panX + (ev.clientX - start.x), panY: start.panY + (ev.clientY - start.y) }));
     };
     const onUp = () => {
       isPanningRef.current = false;
-      window.removeEventListener('mousemove', onMove);
-      window.removeEventListener('mouseup', onUp);
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerup', onUp);
+      window.removeEventListener('pointercancel', onUp);
     };
-    window.addEventListener('mousemove', onMove);
-    window.addEventListener('mouseup', onUp);
+    window.addEventListener('pointermove', onMove);
+    window.addEventListener('pointerup', onUp);
+    window.addEventListener('pointercancel', onUp);
   };
 
   // ---- background click: marquee select or clear ----
-  const onBackgroundMouseDown = (e) => {
-    if (e.button === 1 || spaceHeldRef.current) {
+  const onBackgroundPointerDown = (e) => {
+    if (e.pointerType === 'touch') {
+      trackTouch(e);
+      if (touchesRef.current.size > 1) return;
+    }
+    // drawing mode: pen and mouse draw; a finger draws too until an Apple Pencil has been
+    // seen, after that fingers only pan so a resting palm cannot scribble
+    if (drawActive && !e.target.closest('.selection-toolbar, .canvas-empty') && drawPointerAllowed(e)) {
+      if (draw.tool === 'eraser') startErase(e);
+      else startStroke(e);
+      return;
+    }
+    if (e.button === 1 || spaceHeldRef.current || e.pointerType === 'touch') {
       startPan(e);
       return;
     }
     if (e.target !== e.currentTarget) return;
     const start = screenToCanvas(e.clientX, e.clientY);
     let didDrag = false;
+    let dead = false;
     const onMove = (ev) => {
+      if (pinchRef.current) dead = true;
+      if (dead) return;
       const current = screenToCanvas(ev.clientX, ev.clientY);
       didDrag = true;
       setMarquee({
@@ -106,8 +138,13 @@ export default function Canvas({
       });
     };
     const onUp = (ev) => {
-      window.removeEventListener('mousemove', onMove);
-      window.removeEventListener('mouseup', onUp);
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerup', onUp);
+      window.removeEventListener('pointercancel', onUp);
+      if (dead) {
+        setMarquee(null);
+        return;
+      }
       if (didDrag) {
         const end = screenToCanvas(ev.clientX, ev.clientY);
         const rect = {
@@ -123,8 +160,9 @@ export default function Canvas({
       }
       setMarquee(null);
     };
-    window.addEventListener('mousemove', onMove);
-    window.addEventListener('mouseup', onUp);
+    window.addEventListener('pointermove', onMove);
+    window.addEventListener('pointerup', onUp);
+    window.addEventListener('pointercancel', onUp);
   };
 
   // ---- item selection + drag ----
@@ -135,8 +173,12 @@ export default function Canvas({
     return [id];
   };
 
-  const onItemMouseDown = (e, item) => {
+  const onItemPointerDown = (e, item) => {
     e.stopPropagation();
+    if (e.pointerType === 'touch') {
+      trackTouch(e);
+      if (touchesRef.current.size > 1) return;
+    }
     if (item.locked) return;
     let nextSelected = selectedIds;
     if (e.shiftKey) {
@@ -157,6 +199,7 @@ export default function Canvas({
     dragState.current = { startX: start.x, startY: start.y, startPositions, moved: false };
 
     const onMove = (ev) => {
+      if (pinchRef.current || !dragState.current) return;
       const current = screenToCanvas(ev.clientX, ev.clientY);
       let dx = current.x - dragState.current.startX;
       let dy = current.y - dragState.current.startY;
@@ -197,8 +240,9 @@ export default function Canvas({
     };
 
     const onUp = () => {
-      window.removeEventListener('mousemove', onMove);
-      window.removeEventListener('mouseup', onUp);
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerup', onUp);
+      window.removeEventListener('pointercancel', onUp);
       setGuides([]);
       setDropTargetId(null);
       if (dragState.current?.moved) {
@@ -232,8 +276,9 @@ export default function Canvas({
       dragState.current = null;
     };
 
-    window.addEventListener('mousemove', onMove);
-    window.addEventListener('mouseup', onUp);
+    window.addEventListener('pointermove', onMove);
+    window.addEventListener('pointerup', onUp);
+    window.addEventListener('pointercancel', onUp);
   };
 
   // ---- resize (single selection) ----
@@ -262,8 +307,9 @@ export default function Canvas({
       dispatch({ type: 'UPDATE_ITEMS', patches: { [item.id]: rect } });
     };
     const onUp = () => {
-      window.removeEventListener('mousemove', onMove);
-      window.removeEventListener('mouseup', onUp);
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerup', onUp);
+      window.removeEventListener('pointercancel', onUp);
       setGuides([]);
       setSizeBadge(null);
       const patches = { [item.id]: lastPatch };
@@ -274,8 +320,9 @@ export default function Canvas({
       }
       dispatch({ type: 'COMMIT_ITEMS', patches });
     };
-    window.addEventListener('mousemove', onMove);
-    window.addEventListener('mouseup', onUp);
+    window.addEventListener('pointermove', onMove);
+    window.addEventListener('pointerup', onUp);
+    window.addEventListener('pointercancel', onUp);
   };
 
   // ---- rotate (single selection) ----
@@ -294,12 +341,179 @@ export default function Canvas({
       dispatch({ type: 'UPDATE_ITEMS', patches: { [item.id]: { rotation: lastRotation } } });
     };
     const onUp = () => {
-      window.removeEventListener('mousemove', onMove);
-      window.removeEventListener('mouseup', onUp);
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerup', onUp);
+      window.removeEventListener('pointercancel', onUp);
       dispatch({ type: 'COMMIT_ITEMS', patches: { [item.id]: { rotation: lastRotation } } });
     };
-    window.addEventListener('mousemove', onMove);
-    window.addEventListener('mouseup', onUp);
+    window.addEventListener('pointermove', onMove);
+    window.addEventListener('pointerup', onUp);
+    window.addEventListener('pointercancel', onUp);
+  };
+
+  // ---- touch: pinch to zoom, two-finger pan ----
+  const trackTouch = (e) => {
+    const touches = touchesRef.current;
+    touches.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (touches.size === 2 && !pinchRef.current) {
+      const [a, b] = [...touches.values()];
+      const rect = containerRef.current.getBoundingClientRect();
+      const mid = { x: (a.x + b.x) / 2 - rect.left, y: (a.y + b.y) / 2 - rect.top };
+      pinchRef.current = {
+        startDist: Math.hypot(a.x - b.x, a.y - b.y),
+        startZoom: viewport.zoom,
+        // world point under the fingers' midpoint stays put while zooming
+        worldX: (mid.x - viewport.panX) / viewport.zoom,
+        worldY: (mid.y - viewport.panY) / viewport.zoom,
+      };
+      // any single-finger gesture that was in progress is abandoned, not committed
+      dragState.current = null;
+      setMarquee(null);
+      setGuides([]);
+      if (liveStrokeRef.current) {
+        liveStrokeRef.current = null;
+        setLiveStroke(null);
+      }
+    }
+  };
+
+  useEffect(() => {
+    const onMove = (e) => {
+      if (e.pointerType !== 'touch') return;
+      const touches = touchesRef.current;
+      if (!touches.has(e.pointerId)) return;
+      touches.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      const pinch = pinchRef.current;
+      if (!pinch || touches.size < 2) return;
+      const [a, b] = [...touches.values()];
+      const rect = containerRef.current.getBoundingClientRect();
+      const mid = { x: (a.x + b.x) / 2 - rect.left, y: (a.y + b.y) / 2 - rect.top };
+      const dist = Math.hypot(a.x - b.x, a.y - b.y);
+      const zoom = clamp(pinch.startZoom * (dist / pinch.startDist), MIN_ZOOM, MAX_ZOOM);
+      setViewport({ zoom, panX: mid.x - pinch.worldX * zoom, panY: mid.y - pinch.worldY * zoom });
+    };
+    const onUp = (e) => {
+      if (e.pointerType !== 'touch') return;
+      touchesRef.current.delete(e.pointerId);
+      if (touchesRef.current.size < 2) pinchRef.current = null;
+    };
+    window.addEventListener('pointermove', onMove);
+    window.addEventListener('pointerup', onUp);
+    window.addEventListener('pointercancel', onUp);
+    return () => {
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerup', onUp);
+      window.removeEventListener('pointercancel', onUp);
+    };
+  }, [containerRef, setViewport]);
+
+  // ---- drawing ----
+  const drawPointerAllowed = (e) => {
+    if (e.pointerType === 'pen') {
+      onDrawPenSeen?.();
+      return true;
+    }
+    if (e.pointerType === 'touch') return !draw.penOnly;
+    return e.button === 0;
+  };
+
+  // leaving draw mode ends the session: the next stroke starts a new sketch item
+  useEffect(() => {
+    if (!drawActive) {
+      sessionItemRef.current = null;
+      liveStrokeRef.current = null;
+      setLiveStroke(null);
+    }
+  }, [drawActive]);
+
+  const startStroke = (e) => {
+    e.preventDefault();
+    const p = screenToCanvas(e.clientX, e.clientY);
+    const stroke = {
+      color: draw.color,
+      size: draw.size / viewport.zoom,
+      pointerType: e.pointerType,
+      points: [[p.x, p.y, e.pressure || 0.5]],
+    };
+    liveStrokeRef.current = stroke;
+    setLiveStroke(stroke);
+    const pointerId = e.pointerId;
+    const onMove = (ev) => {
+      const live = liveStrokeRef.current;
+      if (!live || ev.pointerId !== pointerId) return;
+      // coalesced events carry every sample the pen produced between frames
+      const samples = ev.getCoalescedEvents?.() || [ev];
+      samples.forEach((s) => {
+        const q = screenToCanvas(s.clientX, s.clientY);
+        live.points.push([q.x, q.y, s.pressure || 0.5]);
+      });
+      setLiveStroke({ ...live, points: live.points });
+    };
+    const onUp = (ev) => {
+      if (ev.pointerId !== pointerId) return;
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerup', onUp);
+      window.removeEventListener('pointercancel', onUp);
+      const live = liveStrokeRef.current;
+      liveStrokeRef.current = null;
+      setLiveStroke(null);
+      if (!live) return;
+      if (live.points.length === 1) live.points.push([live.points[0][0] + 0.01, live.points[0][1], live.points[0][2]]);
+      commitStroke(live);
+    };
+    window.addEventListener('pointermove', onMove);
+    window.addEventListener('pointerup', onUp);
+    window.addEventListener('pointercancel', onUp);
+  };
+
+  const commitStroke = (stroke) => {
+    const existing = sessionItemRef.current ? itemsById[sessionItemRef.current] : null;
+    if (existing) {
+      dispatch({ type: 'COMMIT_ITEMS', patches: { [existing.id]: appendWorldStroke(existing, stroke) } });
+      return;
+    }
+    const item = makeItem('drawing', drawingFromWorldStrokes([stroke]));
+    sessionItemRef.current = item.id;
+    dispatch({ type: 'ADD_ITEM', item });
+  };
+
+  const startErase = (e) => {
+    e.preventDefault();
+    const pointerId = e.pointerId;
+    const radius = 10 / viewport.zoom;
+    const erased = new Set();
+    const eraseAt = (clientX, clientY) => {
+      const p = screenToCanvas(clientX, clientY);
+      const patches = {};
+      const deleteIds = [];
+      items.forEach((it) => {
+        if (it.type !== 'drawing' || it.locked || erased.has(it.id)) return;
+        const hits = strokesNear(it, p.x, p.y, radius);
+        if (hits.size === 0) return;
+        const next = removeStrokes(it, hits);
+        if (next) patches[it.id] = next;
+        else deleteIds.push(it.id);
+        erased.add(it.id);
+      });
+      if (Object.keys(patches).length) dispatch({ type: 'COMMIT_ITEMS', patches });
+      if (deleteIds.length) dispatch({ type: 'DELETE_ITEMS', ids: deleteIds });
+    };
+    eraseAt(e.clientX, e.clientY);
+    const onMove = (ev) => {
+      if (ev.pointerId !== pointerId) return;
+      // one hit per item per move batch, so the reducer sees consistent state
+      erased.clear();
+      eraseAt(ev.clientX, ev.clientY);
+    };
+    const onUp = (ev) => {
+      if (ev.pointerId !== pointerId) return;
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerup', onUp);
+      window.removeEventListener('pointercancel', onUp);
+    };
+    window.addEventListener('pointermove', onMove);
+    window.addEventListener('pointerup', onUp);
+    window.addEventListener('pointercancel', onUp);
   };
 
   const bg = board.settings.background;
@@ -308,9 +522,9 @@ export default function Canvas({
 
   return (
     <div
-      className="canvas-viewport"
+      className={`canvas-viewport${drawActive ? ` drawing tool-${draw.tool}` : ''}`}
       ref={containerRef}
-      onMouseDown={onBackgroundMouseDown}
+      onPointerDown={onBackgroundPointerDown}
       style={bgStyle}
     >
       <div
@@ -339,7 +553,7 @@ export default function Canvas({
               selected={selectedSet.has(item.id)}
               highlighted={highlightedIds?.has(item.id)}
               dropTarget={item.id === dropTargetId}
-              onMouseDown={(e) => onItemMouseDown(e, item)}
+              onPointerDown={(e) => onItemPointerDown(e, item)}
               onResizeStart={onResizeStart}
               onRotateStart={onRotateStart}
             />
@@ -372,6 +586,12 @@ export default function Canvas({
             className="marquee"
             style={{ left: marquee.x, top: marquee.y, width: marquee.width, height: marquee.height }}
           />
+        )}
+
+        {liveStroke && liveStroke.points.length > 1 && (
+          <svg className="live-stroke" aria-hidden="true">
+            <path d={strokePath(liveStroke)} fill={liveStroke.color} />
+          </svg>
         )}
       </div>
 

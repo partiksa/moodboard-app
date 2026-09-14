@@ -52,7 +52,7 @@ export default function AttachmentCard({ item, dispatch }) {
         <div className="attachment-name" title={item.name}>{item.name}</div>
         <div className="attachment-sub">{item.fileType || 'file'} · {formatSize(item.size)}</div>
       </div>
-      <button className="attachment-open" onMouseDown={(e) => e.stopPropagation()} onClick={openOrDownload}>
+      <button className="attachment-open" onPointerDown={(e) => e.stopPropagation()} onClick={openOrDownload}>
         <DownloadSimple size={13} weight="bold" /> Open
       </button>
     </div>

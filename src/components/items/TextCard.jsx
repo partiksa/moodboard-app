@@ -148,11 +148,11 @@ export default function TextCard({ item, board, dispatch }) {
         ...wrapperVars,
         ...(heading ? { '--tc-heading-color': headingColor || 'var(--text)' } : {}),
       }}
-      onMouseDown={onCardMouseDown}
+      onPointerDown={onCardMouseDown}
       onDoubleClick={startEditing}
     >
       {toolbarOpen && (
-        <div className="text-toolbar" onMouseDown={(e) => e.preventDefault()}>
+        <div className="text-toolbar" onPointerDown={(e) => e.preventDefault()}>
           <div className="text-toolbar-group">
             {BLOCK_STYLES.map((b) => (
               <button key={b.tag} onClick={() => setBlockStyle(b.tag)}>

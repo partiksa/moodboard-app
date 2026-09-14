@@ -270,6 +270,12 @@
   justify-content: center;
 }
 
+.tool-btn.active,
+.tool-btn.active:hover:not(:disabled) {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
 .tool-btn:disabled {
   opacity: 0.3;
   cursor: default;
@@ -418,5 +424,37 @@
   .zoom-controls,
   .board-title {
     display: none;
+  }
+}
+
+/* phones: the island scrolls sideways instead of wrapping into a blob */
+@media (max-width: 640px) {
+  .toolbar {
+    top: 10px;
+    max-width: calc(100% - 20px);
+  }
+
+  .toolbar-body {
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
+  }
+
+  .toolbar-body::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tool-btn.primary {
+    padding: 0 5px 0 12px;
+  }
+}
+
+/* touch devices: tooltips never disappear on their own, so they stay off */
+@media (hover: none) {
+  .tip::after,
+  .tip::before {
+    display: none !important;
   }
 }

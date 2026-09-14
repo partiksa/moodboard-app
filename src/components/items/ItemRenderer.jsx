@@ -6,6 +6,7 @@ import UrlCard from './UrlCard.jsx';
 import ColorSwatchCard from './ColorSwatchCard.jsx';
 import TodoCard from './TodoCard.jsx';
 import ColumnCard from './ColumnCard.jsx';
+import DrawingCard from './DrawingCard.jsx';
 import PrivateNoteBadge from './PrivateNoteBadge.jsx';
 import CommentBadge from './CommentBadge.jsx';
 import { isHeadingCard } from '../../utils/textCard';
@@ -19,6 +20,7 @@ const RENDERERS = {
   color: ColorSwatchCard,
   todo: TodoCard,
   column: ColumnCard,
+  drawing: DrawingCard,
 };
 
 export default function ItemRenderer({
@@ -28,7 +30,7 @@ export default function ItemRenderer({
   selected,
   highlighted,
   dropTarget,
-  onMouseDown,
+  onPointerDown,
   onResizeStart,
   onRotateStart,
 }) {
@@ -42,6 +44,7 @@ export default function ItemRenderer({
   if (item.locked) classes.push('locked');
   // a heading-only text card draws just its text, without the card box
   if (item.type === 'text' && isHeadingCard(item.body)) classes.push('frameless');
+  if (item.type === 'drawing') classes.push('frameless', 'is-drawing');
 
   return (
     <div
@@ -54,7 +57,7 @@ export default function ItemRenderer({
         transform: `rotate(${item.rotation || 0}deg)`,
         zIndex: item.zIndex,
       }}
-      onMouseDown={onMouseDown}
+      onPointerDown={onPointerDown}
       data-item-id={item.id}
     >
       <div className="item-frame">
@@ -70,10 +73,10 @@ export default function ItemRenderer({
             <div
               key={handle}
               className={`resize-handle ${handle} ${handle.length === 2 ? 'corner' : 'edge'}`}
-              onMouseDown={(e) => onResizeStart(e, item, handle)}
+              onPointerDown={(e) => onResizeStart(e, item, handle)}
             />
           ))}
-          <div className="rotate-handle" onMouseDown={(e) => onRotateStart(e, item)} />
+          <div className="rotate-handle" onPointerDown={(e) => onRotateStart(e, item)} />
         </>
       )}
     </div>

@@ -28,7 +28,7 @@ export default function CommentBadge({ item, dispatch }) {
   const stop = (e) => e.stopPropagation();
 
   return (
-    <div className="comment-area" onMouseDown={stop} onDoubleClick={stop}>
+    <div className="comment-area" onPointerDown={stop} onDoubleClick={stop}>
       {!composing && (
         <button
           type="button"

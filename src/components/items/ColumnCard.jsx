@@ -34,7 +34,7 @@ export default function ColumnCard({ item, board, dispatch }) {
 
   return (
     <div className="column-card">
-      <div className="column-header" onMouseDown={(e) => e.stopPropagation()}>
+      <div className="column-header" onPointerDown={(e) => e.stopPropagation()}>
         <div
           className="column-label"
           contentEditable

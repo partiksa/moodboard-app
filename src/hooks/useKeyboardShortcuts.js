@@ -46,6 +46,9 @@ export function useKeyboardShortcuts(handlers) {
         handlers.onNudge?.(e.key, e.shiftKey ? 10 : 1);
       } else if (!isEditable && e.key === 'Escape') {
         handlers.onEscape?.();
+      } else if (!isEditable && !mod && e.key.toLowerCase() === 'd') {
+        e.preventDefault();
+        handlers.onToggleDraw?.();
       }
     };
     window.addEventListener('keydown', onKeyDown);

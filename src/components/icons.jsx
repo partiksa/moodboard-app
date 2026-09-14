@@ -54,4 +54,7 @@ export {
   FolderSimple,
   Check,
   WarningCircle,
+  Eraser,
+  HandPointing,
+  PencilSimpleLine,
 } from '@phosphor-icons/react';

@@ -4,6 +4,7 @@ import Canvas from './Canvas.jsx';
 import SettingsPanel from './SettingsPanel.jsx';
 import ExportDialog from './ExportDialog.jsx';
 import FilesPanel from './files/FilesPanel.jsx';
+import DrawToolbar, { DRAW_COLORS, DRAW_SIZES } from './DrawToolbar.jsx';
 import ActivityPanel from './ActivityPanel.jsx';
 import ConflictDialog from './ConflictDialog.jsx';
 import ColorCheckDialog from './ColorCheckDialog.jsx';
@@ -36,6 +37,16 @@ export default function BoardEditor({ board: initialBoard, sha, collaboratorName
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [exportOpen, setExportOpen] = useState(false);
   const [filesOpen, setFilesOpen] = useState(false);
+  // drawing tool: off until the toolbar button turns it on; pencil-only flips on by itself
+  // the first time an Apple Pencil touches the canvas
+  const [draw, setDraw] = useState({ active: false, tool: 'pen', color: DRAW_COLORS[0], size: DRAW_SIZES[1].size, penOnly: false });
+  const toggleDraw = useCallback(() => {
+    setDraw((d) => ({ ...d, active: !d.active, tool: 'pen' }));
+    setSelectedIds([]);
+  }, []);
+  const onDrawPenSeen = useCallback(() => {
+    setDraw((d) => (d.penOnly ? d : { ...d, penOnly: true }));
+  }, []);
   const [activityOpen, setActivityOpen] = useState(false);
   const [colorCheckItem, setColorCheckItem] = useState(null);
   const canvasRef = useRef(null);
@@ -220,7 +231,8 @@ export default function BoardEditor({ board: initialBoard, sha, collaboratorName
     onDuplicate: duplicateSelected,
     onSelectAll: () => setSelectedIds(board.items.map((i) => i.id)),
     onNudge: nudgeSelected,
-    onEscape: () => setSelectedIds([]),
+    onEscape: () => { setSelectedIds([]); setDraw((d) => (d.active ? { ...d, active: false } : d)); },
+    onToggleDraw: toggleDraw,
     onFocusSearch: () => searchInputRef.current?.focus(),
     onZoomIn: () => zoomBy(1.15),
     onZoomOut: () => zoomBy(1 / 1.15),
@@ -252,6 +264,8 @@ export default function BoardEditor({ board: initialBoard, sha, collaboratorName
         onOpenSettings={() => setSettingsOpen(true)}
         onOpenExport={() => setExportOpen(true)}
         onOpenFiles={() => setFilesOpen(true)}
+        drawActive={draw.active}
+        onToggleDraw={toggleDraw}
         zoom={viewport.zoom}
         onZoomIn={() => zoomBy(1.15)}
         onZoomOut={() => zoomBy(1 / 1.15)}
@@ -273,10 +287,15 @@ export default function BoardEditor({ board: initialBoard, sha, collaboratorName
           setViewport={setViewport}
           viewportSize={viewportSize}
           onColorCheck={setColorCheckItem}
+          draw={draw}
+          onDrawPenSeen={onDrawPenSeen}
           highlightedIds={highlightedIds}
           canvasRef={canvasRef}
           worldRef={worldRef}
         />
+        {draw.active && (
+          <DrawToolbar draw={draw} onChange={setDraw} onDone={() => setDraw((d) => ({ ...d, active: false }))} />
+        )}
       </div>
 
       {settingsOpen && (

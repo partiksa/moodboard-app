@@ -1,0 +1,178 @@
+.draw-toolbar {
+  position: absolute;
+  bottom: 18px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: fit-content;
+  max-width: calc(100% - 24px);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(22px) saturate(1.4);
+  backdrop-filter: blur(22px) saturate(1.4);
+  border: 1px solid var(--panel-border);
+  border-radius: 999px;
+  padding: 5px 5px 5px 8px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset, var(--shadow-float);
+  z-index: 60;
+  animation: fade-up 0.45s var(--ease) both;
+  overflow-x: auto;
+  scrollbar-width: none;
+  touch-action: pan-x;
+}
+
+.draw-toolbar::-webkit-scrollbar {
+  display: none;
+}
+
+[data-theme='dark'] .draw-toolbar {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, var(--shadow-float);
+}
+
+.draw-group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.draw-divider {
+  width: 1px;
+  height: 18px;
+  background: var(--panel-strong);
+  margin: 0 4px;
+  flex-shrink: 0;
+}
+
+.draw-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.35s var(--ease), color 0.35s var(--ease), transform 0.5s var(--ease-spring);
+}
+
+.draw-btn svg {
+  transition: transform 0.55s var(--ease-spring);
+}
+
+.draw-btn:hover {
+  background: var(--accent-soft);
+}
+
+.draw-btn:hover svg {
+  transform: scale(1.15);
+}
+
+.draw-btn.active {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.draw-size span {
+  display: block;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.draw-colors {
+  gap: 4px;
+  padding: 0 2px;
+}
+
+.draw-swatch {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid var(--panel-border);
+  background: var(--swatch);
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  transition: transform 0.5s var(--ease-spring), box-shadow 0.35s var(--ease);
+}
+
+.draw-swatch:hover {
+  transform: scale(1.15);
+}
+
+.draw-swatch.active {
+  box-shadow: 0 0 0 2px var(--panel), 0 0 0 3.5px var(--accent);
+  transform: scale(1.1);
+}
+
+.draw-swatch.custom {
+  background: conic-gradient(from 90deg, #e03131, #f08c00, #2f9e44, #1971c2, #9c36b5, #e03131);
+  overflow: hidden;
+}
+
+.draw-swatch.custom::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  background: var(--swatch);
+}
+
+.draw-swatch.custom input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.draw-done {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  padding: 0 5px 0 14px;
+  margin-left: 4px;
+  border: none;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.14) inset, var(--shadow);
+  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+
+.draw-done .btn-orb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.5s var(--ease-spring);
+}
+
+[data-theme='dark'] .draw-done .btn-orb {
+  background: rgba(0, 0, 0, 0.14);
+}
+
+.draw-done:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-hover);
+}
+
+.draw-done:hover .btn-orb {
+  transform: scale(1.1);
+}
