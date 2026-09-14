@@ -2,7 +2,7 @@
   "id": "b_mthf7ok5_w5n6413",
   "name": "odrazse",
   "createdAt": "2026-08-31T15:56:15.509Z",
-  "updatedAt": "2026-09-14T17:27:18.460Z",
+  "updatedAt": "2026-09-14T17:41:55.263Z",
   "items": [
     {
       "id": "item_mthf7uv1_kfpanqd",
@@ -294,8 +294,8 @@
     {
       "id": "item_mtpv66a1_y46wjvj",
       "type": "video",
-      "x": 1896,
-      "y": -208.5,
+      "x": 2136,
+      "y": -296,
       "width": 240,
       "height": 328,
       "rotation": 0,
@@ -661,15 +661,6 @@
     }
   ],
   "activity": [
-    {
-      "id": "act_mthfwfo5_eeau3",
-      "ts": "2026-08-31T16:15:30.389Z",
-      "name": "patko",
-      "verb": "moved",
-      "itemType": "link card",
-      "itemTitle": "https://nonotak.com",
-      "private": false
-    },
     {
       "id": "act_mthfwgvt_jfeh9",
       "ts": "2026-08-31T16:15:31.961Z",
@@ -3359,6 +3350,15 @@
       "verb": "deleted",
       "itemType": "text note",
       "itemTitle": "0",
+      "private": false
+    },
+    {
+      "id": "act_mu1j5el9_xrnky",
+      "ts": "2026-09-14T17:41:51.261Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "video",
+      "itemTitle": "0001-0150.mp4",
       "private": false
     }
   ],
