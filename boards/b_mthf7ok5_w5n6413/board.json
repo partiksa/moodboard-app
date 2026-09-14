@@ -2,7 +2,7 @@
   "id": "b_mthf7ok5_w5n6413",
   "name": "odrazse",
   "createdAt": "2026-08-31T15:56:15.509Z",
-  "updatedAt": "2026-09-14T16:38:44.495Z",
+  "updatedAt": "2026-09-14T16:38:56.920Z",
   "items": [
     {
       "id": "item_mthf7uv1_kfpanqd",
@@ -661,24 +661,6 @@
     }
   ],
   "activity": [
-    {
-      "id": "act_mthfw085_5wvti",
-      "ts": "2026-08-31T16:15:10.373Z",
-      "name": "patko",
-      "verb": "moved",
-      "itemType": "link card",
-      "itemTitle": "https://nonotak.com/_DAYDREAM-V-2",
-      "private": false
-    },
-    {
-      "id": "act_mthfw221_unjnf",
-      "ts": "2026-08-31T16:15:12.745Z",
-      "name": "patko",
-      "verb": "deleted",
-      "itemType": "link card",
-      "itemTitle": "https://nonotak.com/_DAYDREAM-V-2",
-      "private": false
-    },
     {
       "id": "act_mthfw4gu_8yuoj",
       "ts": "2026-08-31T16:15:15.870Z",
@@ -3359,6 +3341,24 @@
       "verb": "commented on",
       "itemType": "image",
       "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mu1gwcm2_sqbid",
+      "ts": "2026-09-14T16:38:49.562Z",
+      "name": "Lota",
+      "verb": "added",
+      "itemType": "drawing",
+      "itemTitle": "drawing",
+      "private": false
+    },
+    {
+      "id": "act_mu1gwf7a_swd8n",
+      "ts": "2026-09-14T16:38:52.918Z",
+      "name": "Lota",
+      "verb": "deleted",
+      "itemType": "drawing",
+      "itemTitle": "drawing",
       "private": false
     }
   ],
