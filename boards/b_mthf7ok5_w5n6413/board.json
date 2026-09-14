@@ -2,7 +2,7 @@
   "id": "b_mthf7ok5_w5n6413",
   "name": "odrazse",
   "createdAt": "2026-08-31T15:56:15.509Z",
-  "updatedAt": "2026-09-14T07:23:23.971Z",
+  "updatedAt": "2026-09-14T07:23:33.584Z",
   "items": [
     {
       "id": "item_mthf7uv1_kfpanqd",
@@ -575,38 +575,9 @@
           "createdAt": "2026-09-13T16:04:00.640Z"
         }
       ]
-    },
-    {
-      "id": "item_mu0x1wdh_dts9zv8",
-      "type": "todo",
-      "x": 2112,
-      "y": -552,
-      "width": 240,
-      "height": 160,
-      "rotation": 0,
-      "zIndex": 36,
-      "locked": false,
-      "parentId": null,
-      "privateNote": "",
-      "tasks": [
-        {
-          "id": "task_mu0x1wdh_bzb3cam",
-          "text": "",
-          "done": false
-        }
-      ]
     }
   ],
   "activity": [
-    {
-      "id": "act_mthfc5fc_514c1",
-      "ts": "2026-08-31T15:59:43.992Z",
-      "name": "patko",
-      "verb": "moved",
-      "itemType": "image",
-      "itemTitle": "image",
-      "private": false
-    },
     {
       "id": "act_mthfc6p6_3961b",
       "ts": "2026-08-31T15:59:45.642Z",
@@ -3294,6 +3265,15 @@
       "ts": "2026-09-14T07:23:19.966Z",
       "name": "patko",
       "verb": "moved",
+      "itemType": "to-do list",
+      "itemTitle": "to-do list",
+      "private": false
+    },
+    {
+      "id": "act_mu0x26r2_f9itq",
+      "ts": "2026-09-14T07:23:29.582Z",
+      "name": "patko",
+      "verb": "deleted",
       "itemType": "to-do list",
       "itemTitle": "to-do list",
       "private": false
