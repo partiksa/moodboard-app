@@ -2,7 +2,7 @@
   "id": "b_mthf7ok5_w5n6413",
   "name": "odrazse",
   "createdAt": "2026-08-31T15:56:15.509Z",
-  "updatedAt": "2026-09-14T17:41:55.263Z",
+  "updatedAt": "2026-09-14T17:42:50.663Z",
   "items": [
     {
       "id": "item_mthf7uv1_kfpanqd",
@@ -441,8 +441,8 @@
     {
       "id": "item_mtzv85j5_sh6z7wa",
       "type": "image",
-      "x": 3468,
-      "y": -312,
+      "x": 3797.5,
+      "y": 74.5,
       "width": 312,
       "height": 360,
       "rotation": 0,
@@ -645,7 +645,7 @@
     {
       "id": "item_mu1fnnsm_vvchx0f",
       "type": "image",
-      "x": 3805,
+      "x": 3470,
       "y": -312,
       "width": 310,
       "height": 360,
@@ -661,24 +661,6 @@
     }
   ],
   "activity": [
-    {
-      "id": "act_mthfwgvt_jfeh9",
-      "ts": "2026-08-31T16:15:31.961Z",
-      "name": "patko",
-      "verb": "moved",
-      "itemType": "image",
-      "itemTitle": "image",
-      "private": false
-    },
-    {
-      "id": "act_mthfwk15_gwnyp",
-      "ts": "2026-08-31T16:15:36.041Z",
-      "name": "patko",
-      "verb": "moved",
-      "itemType": "image",
-      "itemTitle": "image",
-      "private": false
-    },
     {
       "id": "act_mthfwopm_kg822",
       "ts": "2026-08-31T16:15:42.106Z",
@@ -3359,6 +3341,24 @@
       "verb": "moved",
       "itemType": "video",
       "itemTitle": "0001-0150.mp4",
+      "private": false
+    },
+    {
+      "id": "act_mu1j6jkk_i3rtf",
+      "ts": "2026-09-14T17:42:44.372Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "image",
+      "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mu1j6lc5_va4pm",
+      "ts": "2026-09-14T17:42:46.661Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "image",
+      "itemTitle": "image",
       "private": false
     }
   ],
