@@ -2,7 +2,7 @@
   "id": "b_mthf7ok5_w5n6413",
   "name": "odrazse",
   "createdAt": "2026-08-31T15:56:15.509Z",
-  "updatedAt": "2026-09-14T17:27:11.340Z",
+  "updatedAt": "2026-09-14T17:27:18.460Z",
   "items": [
     {
       "id": "item_mthf7uv1_kfpanqd",
@@ -658,53 +658,9 @@
       "alt": "",
       "naturalWidth": 598,
       "naturalHeight": 694
-    },
-    {
-      "id": "item_mu1ilu1a_aiirkh9",
-      "type": "text",
-      "x": 3513.473491524912,
-      "y": -888,
-      "width": 240,
-      "height": 160,
-      "rotation": 0,
-      "zIndex": 43,
-      "locked": false,
-      "parentId": null,
-      "privateNote": "",
-      "body": "",
-      "textAlign": "left",
-      "textColor": "#111111",
-      "backgroundColor": "#ffffff"
     }
   ],
   "activity": [
-    {
-      "id": "act_mthfw9ve_i57nd",
-      "ts": "2026-08-31T16:15:22.874Z",
-      "name": "patko",
-      "verb": "moved",
-      "itemType": "image",
-      "itemTitle": "image",
-      "private": false
-    },
-    {
-      "id": "act_mthfwc83_yr56z",
-      "ts": "2026-08-31T16:15:25.923Z",
-      "name": "patko",
-      "verb": "moved",
-      "itemType": "image",
-      "itemTitle": "image",
-      "private": false
-    },
-    {
-      "id": "act_mthfwcua_nz9qa",
-      "ts": "2026-08-31T16:15:26.722Z",
-      "name": "patko",
-      "verb": "moved",
-      "itemType": "link card",
-      "itemTitle": "https://nonotak.com",
-      "private": false
-    },
     {
       "id": "act_mthfwfo5_eeau3",
       "ts": "2026-08-31T16:15:30.389Z",
@@ -3376,6 +3332,33 @@
       "verb": "moved",
       "itemType": "text note",
       "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mu1iml1h_vkrji",
+      "ts": "2026-09-14T17:27:13.157Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mu1imlj3_vhtva",
+      "ts": "2026-09-14T17:27:13.791Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "0",
+      "private": false
+    },
+    {
+      "id": "act_mu1imm1m_du8j3",
+      "ts": "2026-09-14T17:27:14.458Z",
+      "name": "patko",
+      "verb": "deleted",
+      "itemType": "text note",
+      "itemTitle": "0",
       "private": false
     }
   ],
