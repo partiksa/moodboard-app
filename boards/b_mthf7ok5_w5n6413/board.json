@@ -2,7 +2,7 @@
   "id": "b_mthf7ok5_w5n6413",
   "name": "odrazse",
   "createdAt": "2026-08-31T15:56:15.509Z",
-  "updatedAt": "2026-09-14T07:23:54.790Z",
+  "updatedAt": "2026-09-14T07:24:13.664Z",
   "items": [
     {
       "id": "item_mthf7uv1_kfpanqd",
@@ -579,8 +579,8 @@
     {
       "id": "item_mu0x2avm_xz1jv1c",
       "type": "todo",
-      "x": 2029.993419615977,
-      "y": -576,
+      "x": 2027.548514331757,
+      "y": -562,
       "width": 240,
       "height": 160,
       "rotation": 0,
@@ -598,15 +598,6 @@
     }
   ],
   "activity": [
-    {
-      "id": "act_mthfty06_gj438",
-      "ts": "2026-08-31T16:13:34.182Z",
-      "name": "patko",
-      "verb": "edited",
-      "itemType": "text note",
-      "itemTitle": "odrazse x ATELIÉR ZLÍN",
-      "private": false
-    },
     {
       "id": "act_mthftyuk_dka7h",
       "ts": "2026-08-31T16:13:35.276Z",
@@ -3294,6 +3285,15 @@
       "ts": "2026-09-14T07:23:50.788Z",
       "name": "patko",
       "verb": "updated",
+      "itemType": "to-do list",
+      "itemTitle": "to-do list",
+      "private": false
+    },
+    {
+      "id": "act_mu0x31of_y5dbf",
+      "ts": "2026-09-14T07:24:09.663Z",
+      "name": "patko",
+      "verb": "moved",
       "itemType": "to-do list",
       "itemTitle": "to-do list",
       "private": false
