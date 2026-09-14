@@ -2,7 +2,7 @@
   "id": "b_mthf7ok5_w5n6413",
   "name": "odrazse",
   "createdAt": "2026-08-31T15:56:15.509Z",
-  "updatedAt": "2026-09-14T17:26:42.162Z",
+  "updatedAt": "2026-09-14T17:27:11.340Z",
   "items": [
     {
       "id": "item_mthf7uv1_kfpanqd",
@@ -662,8 +662,8 @@
     {
       "id": "item_mu1ilu1a_aiirkh9",
       "type": "text",
-      "x": 3567.4809061754586,
-      "y": -795.5732567736436,
+      "x": 3513.473491524912,
+      "y": -888,
       "width": 240,
       "height": 160,
       "rotation": 0,
@@ -678,33 +678,6 @@
     }
   ],
   "activity": [
-    {
-      "id": "act_mthfw5wc_tuc7v",
-      "ts": "2026-08-31T16:15:17.724Z",
-      "name": "patko",
-      "verb": "moved",
-      "itemType": "image",
-      "itemTitle": "image",
-      "private": false
-    },
-    {
-      "id": "act_mthfw7xk_0sils",
-      "ts": "2026-08-31T16:15:20.360Z",
-      "name": "patko",
-      "verb": "moved",
-      "itemType": "image",
-      "itemTitle": "image",
-      "private": false
-    },
-    {
-      "id": "act_mthfw8xl_h1okm",
-      "ts": "2026-08-31T16:15:21.657Z",
-      "name": "patko",
-      "verb": "moved",
-      "itemType": "image",
-      "itemTitle": "image",
-      "private": false
-    },
     {
       "id": "act_mthfw9ve_i57nd",
       "ts": "2026-08-31T16:15:22.874Z",
@@ -3374,6 +3347,33 @@
       "ts": "2026-09-14T17:26:38.159Z",
       "name": "patko",
       "verb": "added",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mu1imer4_jwt64",
+      "ts": "2026-09-14T17:27:05.008Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mu1imfuw_ftmwa",
+      "ts": "2026-09-14T17:27:06.440Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mu1imgju_btped",
+      "ts": "2026-09-14T17:27:07.338Z",
+      "name": "patko",
+      "verb": "moved",
       "itemType": "text note",
       "itemTitle": "untitled note",
       "private": false
