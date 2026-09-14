@@ -2,7 +2,7 @@
   "id": "b_mthf7ok5_w5n6413",
   "name": "odrazse",
   "createdAt": "2026-08-31T15:56:15.509Z",
-  "updatedAt": "2026-09-14T17:12:25.306Z",
+  "updatedAt": "2026-09-14T17:26:42.162Z",
   "items": [
     {
       "id": "item_mthf7uv1_kfpanqd",
@@ -658,18 +658,26 @@
       "alt": "",
       "naturalWidth": 598,
       "naturalHeight": 694
+    },
+    {
+      "id": "item_mu1ilu1a_aiirkh9",
+      "type": "text",
+      "x": 3567.4809061754586,
+      "y": -795.5732567736436,
+      "width": 240,
+      "height": 160,
+      "rotation": 0,
+      "zIndex": 43,
+      "locked": false,
+      "parentId": null,
+      "privateNote": "",
+      "body": "",
+      "textAlign": "left",
+      "textColor": "#111111",
+      "backgroundColor": "#ffffff"
     }
   ],
   "activity": [
-    {
-      "id": "act_mthfw4gu_8yuoj",
-      "ts": "2026-08-31T16:15:15.870Z",
-      "name": "patko",
-      "verb": "added",
-      "itemType": "image",
-      "itemTitle": "image",
-      "private": false
-    },
     {
       "id": "act_mthfw5wc_tuc7v",
       "ts": "2026-08-31T16:15:17.724Z",
@@ -3359,6 +3367,15 @@
       "verb": "deleted",
       "itemType": "drawing",
       "itemTitle": "drawing",
+      "private": false
+    },
+    {
+      "id": "act_mu1ilu1b_hhlxz",
+      "ts": "2026-09-14T17:26:38.159Z",
+      "name": "patko",
+      "verb": "added",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
       "private": false
     }
   ],
