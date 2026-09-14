@@ -7,6 +7,17 @@
       "createdAt": "2026-09-13T16:21:29.354Z"
     }
   ],
-  "files": [],
-  "updatedAt": "2026-09-14T07:48:48.537Z"
+  "files": [
+    {
+      "id": "f_mu0xyxga_nz9xyot",
+      "name": "post2-01.png",
+      "path": "files/b_mthf7ok5_w5n6413/blobs/f_mu0xyxga_nz9xyot__post2-01.png",
+      "size": 153399,
+      "type": "image/png",
+      "categoryId": "c_mu00u7be_0jtoxlp",
+      "uploadedAt": "2026-09-14T07:48:58.463Z",
+      "uploadedBy": "Admin"
+    }
+  ],
+  "updatedAt": "2026-09-14T07:48:59.084Z"
 }
