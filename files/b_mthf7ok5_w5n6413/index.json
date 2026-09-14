@@ -37,7 +37,17 @@
       "categoryId": "c_mu00u7be_0jtoxlp",
       "uploadedAt": "2026-09-14T07:49:04.551Z",
       "uploadedBy": "Admin"
+    },
+    {
+      "id": "f_mu0xz4hu_96nc7hm",
+      "name": "post2-04.png",
+      "path": "files/b_mthf7ok5_w5n6413/blobs/f_mu0xz4hu_96nc7hm__post2-04.png",
+      "size": 171080,
+      "type": "image/png",
+      "categoryId": "c_mu00u7be_0jtoxlp",
+      "uploadedAt": "2026-09-14T07:49:07.512Z",
+      "uploadedBy": "Admin"
     }
   ],
-  "updatedAt": "2026-09-14T07:49:05.175Z"
+  "updatedAt": "2026-09-14T07:49:08.088Z"
 }
