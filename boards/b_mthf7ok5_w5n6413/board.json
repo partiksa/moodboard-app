@@ -2,7 +2,7 @@
   "id": "b_mthf7ok5_w5n6413",
   "name": "odrazse",
   "createdAt": "2026-08-31T15:56:15.509Z",
-  "updatedAt": "2026-09-14T16:38:07.759Z",
+  "updatedAt": "2026-09-14T16:38:44.495Z",
   "items": [
     {
       "id": "item_mthf7uv1_kfpanqd",
@@ -370,6 +370,12 @@
           "text": "toto je lepsie urcite",
           "author": "patko",
           "createdAt": "2026-09-13T13:25:31.240Z"
+        },
+        {
+          "id": "comment_mu1gw5m2_jdmc260",
+          "text": "Sexi",
+          "author": "Lota",
+          "createdAt": "2026-09-14T16:38:40.490Z"
         }
       ]
     },
@@ -522,6 +528,12 @@
           "text": "som za toto",
           "author": "patko",
           "createdAt": "2026-09-13T16:04:00.640Z"
+        },
+        {
+          "id": "comment_mu1gvtva_zvfvcq0",
+          "text": "Slayyyyy",
+          "author": "Lota",
+          "createdAt": "2026-09-14T16:38:25.270Z"
         }
       ]
     },
@@ -649,24 +661,6 @@
     }
   ],
   "activity": [
-    {
-      "id": "act_mthfvxdn_249rx",
-      "ts": "2026-08-31T16:15:06.683Z",
-      "name": "patko",
-      "verb": "edited",
-      "itemType": "column",
-      "itemTitle": "vis fx",
-      "private": false
-    },
-    {
-      "id": "act_mthfvyhd_6ie64",
-      "ts": "2026-08-31T16:15:08.113Z",
-      "name": "patko",
-      "verb": "deleted",
-      "itemType": "column",
-      "itemTitle": "column",
-      "private": false
-    },
     {
       "id": "act_mthfw085_5wvti",
       "ts": "2026-08-31T16:15:10.373Z",
@@ -3347,6 +3341,24 @@
       "verb": "deleted",
       "itemType": "drawing",
       "itemTitle": "drawing",
+      "private": false
+    },
+    {
+      "id": "act_mu1gvtvc_klrt4",
+      "ts": "2026-09-14T16:38:25.272Z",
+      "name": "Lota",
+      "verb": "commented on",
+      "itemType": "image",
+      "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mu1gw5m3_7e3p3",
+      "ts": "2026-09-14T16:38:40.491Z",
+      "name": "Lota",
+      "verb": "commented on",
+      "itemType": "image",
+      "itemTitle": "image",
       "private": false
     }
   ],
