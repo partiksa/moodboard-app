@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { getAdminToken, getAdminName } from '../../lib/adminAuth';
+import { getAdminToken, getAdminName, getSession, canManageBoard } from '../../lib/adminAuth';
 import { getBoardRaw } from '../../lib/boardSync';
 import {
   loadFileIndex,
@@ -69,9 +69,13 @@ export default function AdminFiles({ boardId }) {
     let cancelled = false;
     (async () => {
       try {
-        const [raw] = await Promise.all([getBoardRaw(boardId, token), refresh()]);
+        const raw = await getBoardRaw(boardId, token);
         if (cancelled) return;
-        setBoardName(raw?.board?.name || boardId);
+        if (!raw) throw new Error('That board no longer exists.');
+        if (!canManageBoard(getSession(), raw.board)) throw new Error('This board belongs to another account.');
+        await refresh();
+        if (cancelled) return;
+        setBoardName(raw.board.name || boardId);
         setStatus('ready');
       } catch (err) {
         if (cancelled) return;

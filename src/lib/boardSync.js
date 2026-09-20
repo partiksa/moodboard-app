@@ -150,6 +150,7 @@ export async function listBoardSummaries(token = GITHUB_TOKEN) {
       summaries.push({
         id: board.id,
         name: board.name,
+        workspaceId: board.workspaceId || null,
         itemCount: board.items?.length || 0,
         updatedAt: board.updatedAt,
         lastActivity: activity[activity.length - 1] || null,

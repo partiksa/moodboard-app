@@ -1,13 +1,17 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import {
+  getSession,
   getAdminToken,
   signInWithKey,
+  verifySession,
   signOutAdmin,
   adminConfigured,
-  adminInviteUrl,
+  sessionInviteUrl,
   getAdminName,
   setAdminName,
 } from '../../lib/adminAuth';
+import { loadWorkspaces } from '../../lib/workspaces';
+import AdminAccounts from './AdminAccounts';
 import { listBoardSummaries, createBoard, deleteBoard, getBoardRaw, saveBoard } from '../../lib/boardSync';
 import { createEmptyBoard } from '../../state/boardModel';
 import { importBoardFromFile } from '../../db/storage';
@@ -19,13 +23,11 @@ import { copyText } from '../../utils/clipboard';
 import './AdminApp.css';
 
 export default function AdminApp({ inviteKey = '' }) {
-  // an invite link signs the browser in on arrival; the key is then dropped from the URL
-  const [token, setToken] = useState(() => {
-    if (inviteKey) signInWithKey(inviteKey);
-    return getAdminToken();
-  });
+  const [session, setSession] = useState(() => getSession());
+  const token = session ? getAdminToken() : '';
   const [keyDraft, setKeyDraft] = useState('');
-  const [keyRejected, setKeyRejected] = useState(() => Boolean(inviteKey) && !getAdminToken());
+  const [keyState, setKeyState] = useState(inviteKey ? 'checking' : 'idle'); // idle | checking | rejected
+  const [workspaces, setWorkspaces] = useState([]);
   const [name, setName] = useState(() => getAdminName());
   const [nameDraft, setNameDraft] = useState('');
   const [inviteCopied, setInviteCopied] = useState(false);
@@ -41,13 +43,28 @@ export default function AdminApp({ inviteKey = '' }) {
   const [deletedIds, setDeletedIds] = useState(() => new Set());
   const importInputRef = useRef(null);
 
+  const isOwner = session?.kind === 'owner';
+
   const refresh = useCallback(async () => {
     if (!token) return;
     setStatus('loading');
     setError(null);
     try {
-      const list = await listBoardSummaries(token);
-      setBoards(list);
+      // a reset or deleted invite link signs this browser out on the next load
+      const fresh = await verifySession();
+      if (!fresh) {
+        setSession(null);
+        setBoards([]);
+        setStatus('idle');
+        setError('This invite link is no longer valid. Ask for a new one.');
+        return;
+      }
+      const [list, reg] = await Promise.all([
+        listBoardSummaries(token),
+        fresh.kind === 'owner' ? loadWorkspaces(token) : Promise.resolve(null),
+      ]);
+      setBoards(fresh.kind === 'owner' ? list : list.filter((b) => b.workspaceId === fresh.id));
+      if (reg) setWorkspaces(reg.registry.workspaces);
       setStatus('idle');
     } catch (err) {
       setError(err.message);
@@ -59,8 +76,25 @@ export default function AdminApp({ inviteKey = '' }) {
     refresh();
   }, [refresh]);
 
+  // an invite link signs the browser in on arrival; the key is then dropped from the URL
   useEffect(() => {
-    if (inviteKey) navigate('/admin');
+    if (!inviteKey) return;
+    let cancelled = false;
+    signInWithKey(inviteKey)
+      .then((s) => {
+        if (cancelled) return;
+        setSession(s);
+        setKeyState(s ? 'idle' : 'rejected');
+      })
+      .catch((err) => {
+        if (cancelled) return;
+        setKeyState('rejected');
+        setError(err.message);
+      })
+      .finally(() => {
+        if (!cancelled) navigate('/admin');
+      });
+    return () => { cancelled = true; };
   }, [inviteKey]);
 
   // Every mutating action goes through here, so none of them can fail without saying why and
@@ -85,14 +119,18 @@ export default function AdminApp({ inviteKey = '' }) {
     [busyId, refresh]
   );
 
-  const signIn = () => {
-    if (!keyDraft.trim()) return;
-    if (signInWithKey(keyDraft)) {
-      setToken(getAdminToken());
-      setKeyDraft('');
-      setKeyRejected(false);
-    } else {
-      setKeyRejected(true);
+  const signIn = async () => {
+    if (!keyDraft.trim() || keyState === 'checking') return;
+    setKeyState('checking');
+    setError(null);
+    try {
+      const s = await signInWithKey(keyDraft);
+      setSession(s);
+      setKeyState(s ? 'idle' : 'rejected');
+      if (s) setKeyDraft('');
+    } catch (err) {
+      setKeyState('rejected');
+      setError(err.message);
     }
   };
 
@@ -104,7 +142,7 @@ export default function AdminApp({ inviteKey = '' }) {
   };
 
   const copyInvite = async () => {
-    const url = adminInviteUrl();
+    const url = sessionInviteUrl(session);
     const ok = await copyText(url);
     if (ok) {
       setInviteCopied(true);
@@ -116,7 +154,7 @@ export default function AdminApp({ inviteKey = '' }) {
 
   const signOut = () => {
     signOutAdmin();
-    setToken('');
+    setSession(null);
     setBoards([]);
     setError(null);
     setStatus('idle');
@@ -126,7 +164,7 @@ export default function AdminApp({ inviteKey = '' }) {
     const name = prompt('New board name:')?.trim();
     if (!name) return;
     run('global', async () => {
-      const board = { ...createEmptyBoard(name), id: uid('b') };
+      const board = { ...createEmptyBoard(name), id: uid('b'), ...(isOwner ? {} : { workspaceId: session.id }) };
       await createBoard(board, token);
       return `Created "${name}".`;
     });
@@ -147,7 +185,7 @@ export default function AdminApp({ inviteKey = '' }) {
     run(id, async () => {
       const raw = await getBoardRaw(id, token);
       if (!raw) throw new Error('That board no longer exists on GitHub.');
-      const clone = { ...raw.board, id: uid('b'), name: `${raw.board.name} copy` };
+      const clone = { ...raw.board, id: uid('b'), name: `${raw.board.name} copy`, ...(isOwner ? {} : { workspaceId: session.id }) };
       await createBoard(clone, token);
       return `Duplicated as "${clone.name}".`;
     });
@@ -179,7 +217,7 @@ export default function AdminApp({ inviteKey = '' }) {
     if (!file) return;
     run('global', async () => {
       const board = await importBoardFromFile(file);
-      const imported = { ...board, id: uid('b'), name: board.name || 'Imported board' };
+      const imported = { ...board, id: uid('b'), name: board.name || 'Imported board', ...(isOwner ? {} : { workspaceId: session.id }) };
       await createBoard(imported, token);
       return `Imported "${imported.name}".`;
     });
@@ -196,7 +234,7 @@ export default function AdminApp({ inviteKey = '' }) {
     );
   }
 
-  if (!token) {
+  if (!session) {
     return (
       <div className="admin-screen">
         <div className="admin-card">
@@ -214,12 +252,15 @@ export default function AdminApp({ inviteKey = '' }) {
                 type="text"
                 placeholder="Paste the invite link…"
                 value={keyDraft}
-                onChange={(e) => { setKeyDraft(e.target.value); setKeyRejected(false); }}
+                onChange={(e) => { setKeyDraft(e.target.value); setKeyState('idle'); }}
                 onKeyDown={(e) => e.key === 'Enter' && signIn()}
                 autoFocus
               />
-              {keyRejected && <p className="admin-error">That link isn&rsquo;t valid for this moodboard.</p>}
-              <button className="admin-btn" onClick={signIn} disabled={!keyDraft.trim()}>Sign in</button>
+              {keyState === 'rejected' && <p className="admin-error">{error || 'That link isn\u2019t valid for this moodboard.'}</p>}
+              {keyState !== 'rejected' && error && <p className="admin-error">{error}</p>}
+              <button className="admin-btn" onClick={signIn} disabled={!keyDraft.trim() || keyState === 'checking'}>
+                {keyState === 'checking' ? 'Checking…' : 'Sign in'}
+              </button>
             </>
           ) : (
             <p className="admin-note">
@@ -263,7 +304,10 @@ export default function AdminApp({ inviteKey = '' }) {
   return (
     <div className="admin-dashboard">
       <div className="admin-topbar">
-        <h2>Admin dashboard</h2>
+        <div>
+          <span className="dialog-eyebrow">{isOwner ? 'Owner' : 'Account'}</span>
+          <h2>{isOwner ? 'Admin dashboard' : session.name}</h2>
+        </div>
         <div>
           <button className="admin-btn" onClick={handleCreate} disabled={busy}>New board</button>
           <button
@@ -292,13 +336,30 @@ export default function AdminApp({ inviteKey = '' }) {
       {notice && <p className="admin-note">{notice}</p>}
       {status === 'loading' && <p className="admin-note">Loading boards…</p>}
 
+      {isOwner && (
+        <AdminAccounts
+          workspaces={workspaces}
+          boards={visibleBoards}
+          token={token}
+          run={run}
+          busy={busy}
+          onError={setError}
+        />
+      )}
+
+      {isOwner && <div className="admin-section-head"><h3>Boards</h3></div>}
       <div className="admin-board-list">
         {visibleBoards.map((b) => {
           const rowBusy = busyId === b.id;
+          const owner = b.workspaceId ? workspaces.find((w) => w.id === b.workspaceId) : null;
+          const ownerLabel = !isOwner ? null : b.workspaceId ? (owner?.name || 'Unassigned') : 'Mine';
           return (
             <div key={b.id} className="admin-board-row">
               <div className="admin-board-main">
-                <div className="admin-board-name">{b.name}</div>
+                <div className="admin-board-name">
+                  {b.name}
+                  {ownerLabel && <span className="admin-owner-tag">{ownerLabel}</span>}
+                </div>
                 {b.error ? (
                   <div className="admin-board-meta admin-board-broken">
                     This board&rsquo;s data could not be read: {b.error}

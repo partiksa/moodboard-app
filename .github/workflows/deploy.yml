@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths-ignore:
       - 'boards/**' # board data commits (written by the app itself) shouldn't trigger a redeploy
+      - 'workspaces/**' # same for the admin account registry
   workflow_dispatch:
 
 permissions:

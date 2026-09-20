@@ -21,8 +21,10 @@ sensitive.
 - **The shared write token is embedded in the public JavaScript bundle.** Anyone who opens your
   deployed site can extract it from the browser's network tab or source. Scope it to the smallest
   possible permission (see below) and never put anything sensitive in a board.
-- **Admin access is an invite link.** `#/admin?key=<VITE_ADMIN_KEY>` signs the browser that opens it
-  in as an admin (no account or e-mail); the dashboard then works through the same shared write token.
+- **Admin access is an invite link.** `#/admin?key=<VITE_ADMIN_KEY>` is the owner's link and sees
+  everything. The owner creates *accounts* in the dashboard (stored in `workspaces/index.json`); each
+  account has its own invite link and its own dashboard with only the boards it created. Opening a link
+  signs that browser in (no account or e-mail); everything then works through the same shared write token.
   The key is a *convenience check*, not a security boundary: like the token it sits in the public
   bundle, so treat the invite link as something you hand to people you trust. A normal collaborator
   simply isn't shown a link to the dashboard.
@@ -83,8 +85,9 @@ Set as GitHub Actions secrets/variables (production) or in `.env.local` (local d
 ## Sharing a board
 
 1. Open `<site>/#/admin?key=<VITE_ADMIN_KEY>` (not linked from the normal UI), pick a display name,
-   and click **New board**. **Copy invite link** in the dashboard gives you that URL to send to anyone
-   who should also be an admin; opening it once keeps their browser signed in.
+   and click **New board**. To give someone their own dashboard, create an account under **Accounts**
+   and send them its **Copy invite link** URL; opening it once keeps their browser signed in, and
+   **Reset link** locks them out again.
 2. Click **Copy link** on the board row. That URL (`.../#/b/<id>`) is the board's permanent share link.
 3. Send it to your trusted collaborators. The first time each of them opens it, they're asked for a
    display name, which is then remembered in their browser and shown on everything they change.
