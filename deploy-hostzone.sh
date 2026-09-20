@@ -16,6 +16,11 @@ find "$OUT" -type f -exec chmod 644 {} + ; find "$OUT" -type d -exec chmod 755 {
 
 # hash routing needs no rewrite rule; the .htaccess only keeps assets cacheable
 cat > "$OUT/.htaccess" <<'HT'
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
 <IfModule mod_headers.c>
   <FilesMatch "\.(js|css|woff2?|png|svg)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
