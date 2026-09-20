@@ -21,11 +21,11 @@ sensitive.
 - **The shared write token is embedded in the public JavaScript bundle.** Anyone who opens your
   deployed site can extract it from the browser's network tab or source. Scope it to the smallest
   possible permission (see below) and never put anything sensitive in a board.
-- **The admin token is different and stays local.** It's a personal access token the repo owner pastes
-  into their own browser; it's stored only in that browser's `localStorage` and is never built into the
-  app or committed. It gates the `#/admin` dashboard as a *convenience check*, not a security boundary
-  — anyone who knows the `#/admin` URL and has a valid token can get in, and a normal collaborator
-  simply isn't shown a link to it.
+- **Admin access is an invite link.** `#/admin?key=<VITE_ADMIN_KEY>` signs the browser that opens it
+  in as an admin (no account or e-mail); the dashboard then works through the same shared write token.
+  The key is a *convenience check*, not a security boundary: like the token it sits in the public
+  bundle, so treat the invite link as something you hand to people you trust. A normal collaborator
+  simply isn't shown a link to the dashboard.
 - **Do not use this for private, regulated, or otherwise sensitive data.**
 
 ## Local development
@@ -53,7 +53,8 @@ npm run preview
    personal access tokens → Generate new token. Scope it to **this repository only**, with
    **Contents: Read and write** permission and nothing else. Copy the token.
 3. **Add it as a repository secret**: repo Settings → Secrets and variables → Actions → New repository
-   secret, name it `VITE_GITHUB_TOKEN`, paste the token.
+   secret, name it `VITE_GITHUB_TOKEN`, paste the token. Add a second secret `VITE_ADMIN_KEY` with a
+   long random string (`openssl rand -hex 16`); it becomes the admin invite key.
 4. **Enable GitHub Pages via Actions**: repo Settings → Pages → Build and deployment → Source →
    **GitHub Actions**.
 5. **Check Actions permissions**: repo Settings → Actions → General → Workflow permissions → ensure
@@ -77,12 +78,13 @@ Set as GitHub Actions secrets/variables (production) or in `.env.local` (local d
 | `VITE_GITHUB_REPO` | Repo name (auto-filled by the workflow) |
 | `VITE_GITHUB_BRANCH` | Branch board data is read/written from (auto-filled: the branch that was pushed) |
 | `VITE_GITHUB_TOKEN` | The shared write token from step 2 above (**secret**, not a variable) |
+| `VITE_ADMIN_KEY` | Secret in the admin invite link `#/admin?key=…` (**secret**) |
 
 ## Sharing a board
 
-1. Open the deployed site as the repo owner, go to `#/admin` (append `/#/admin` to the site URL — it's
-   not linked from the normal UI), sign in with your own personal GitHub token (Contents: Read/write
-   on this repo is enough), and click **New board**.
+1. Open `<site>/#/admin?key=<VITE_ADMIN_KEY>` (not linked from the normal UI), pick a display name,
+   and click **New board**. **Copy invite link** in the dashboard gives you that URL to send to anyone
+   who should also be an admin; opening it once keeps their browser signed in.
 2. Click **Copy link** on the board row. That URL (`.../#/b/<id>`) is the board's permanent share link.
 3. Send it to your trusted collaborators. The first time each of them opens it, they're asked for a
    display name, which is then remembered in their browser and shown on everything they change.

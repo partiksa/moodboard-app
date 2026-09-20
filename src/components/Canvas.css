@@ -10,6 +10,15 @@
   overscroll-behavior: none;
 }
 
+/* inputs inside items keep native text selection and scrolling */
+.canvas-viewport input,
+.canvas-viewport textarea,
+.canvas-viewport [contenteditable='true'] {
+  -webkit-user-select: text;
+  user-select: text;
+  touch-action: auto;
+}
+
 /* draw mode: strokes land on top of everything, items stop catching the pointer */
 .canvas-viewport.drawing {
   cursor: crosshair;

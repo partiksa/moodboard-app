@@ -1,5 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { getAdminToken, setAdminToken, clearAdminToken } from '../../lib/adminAuth';
+import {
+  getAdminToken,
+  signInWithKey,
+  signOutAdmin,
+  adminConfigured,
+  adminInviteUrl,
+  getAdminName,
+  setAdminName,
+} from '../../lib/adminAuth';
 import { listBoardSummaries, createBoard, deleteBoard, getBoardRaw, saveBoard } from '../../lib/boardSync';
 import { createEmptyBoard } from '../../state/boardModel';
 import { importBoardFromFile } from '../../db/storage';
@@ -10,9 +18,17 @@ import { GITHUB_CONFIGURED } from '../../config';
 import { copyText } from '../../utils/clipboard';
 import './AdminApp.css';
 
-export default function AdminApp() {
-  const [token, setToken] = useState(() => getAdminToken());
-  const [tokenDraft, setTokenDraft] = useState('');
+export default function AdminApp({ inviteKey = '' }) {
+  // an invite link signs the browser in on arrival; the key is then dropped from the URL
+  const [token, setToken] = useState(() => {
+    if (inviteKey) signInWithKey(inviteKey);
+    return getAdminToken();
+  });
+  const [keyDraft, setKeyDraft] = useState('');
+  const [keyRejected, setKeyRejected] = useState(() => Boolean(inviteKey) && !getAdminToken());
+  const [name, setName] = useState(() => getAdminName());
+  const [nameDraft, setNameDraft] = useState('');
+  const [inviteCopied, setInviteCopied] = useState(false);
   const [boards, setBoards] = useState([]);
   const [status, setStatus] = useState('idle'); // idle | loading | error
   const [error, setError] = useState(null);
@@ -43,6 +59,10 @@ export default function AdminApp() {
     refresh();
   }, [refresh]);
 
+  useEffect(() => {
+    if (inviteKey) navigate('/admin');
+  }, [inviteKey]);
+
   // Every mutating action goes through here, so none of them can fail without saying why and
   // none of them can be fired twice by an impatient second click.
   const run = useCallback(
@@ -66,14 +86,36 @@ export default function AdminApp() {
   );
 
   const signIn = () => {
-    if (!tokenDraft.trim()) return;
-    setAdminToken(tokenDraft);
-    setToken(tokenDraft.trim());
-    setTokenDraft('');
+    if (!keyDraft.trim()) return;
+    if (signInWithKey(keyDraft)) {
+      setToken(getAdminToken());
+      setKeyDraft('');
+      setKeyRejected(false);
+    } else {
+      setKeyRejected(true);
+    }
+  };
+
+  const saveName = () => {
+    const trimmed = nameDraft.trim();
+    if (!trimmed) return;
+    setAdminName(trimmed);
+    setName(trimmed);
+  };
+
+  const copyInvite = async () => {
+    const url = adminInviteUrl();
+    const ok = await copyText(url);
+    if (ok) {
+      setInviteCopied(true);
+      setTimeout(() => setInviteCopied(false), 1400);
+    } else {
+      setError(`Could not reach the clipboard. The invite link is: ${url}`);
+    }
   };
 
   const signOut = () => {
-    clearAdminToken();
+    signOutAdmin();
     setToken('');
     setBoards([]);
     setError(null);
@@ -158,22 +200,58 @@ export default function AdminApp() {
     return (
       <div className="admin-screen">
         <div className="admin-card">
-          <h2>Admin sign-in</h2>
+          <span className="dialog-eyebrow">Admin</span>
+          <h2>Invite link needed</h2>
+          {adminConfigured() ? (
+            <>
+              <p className="admin-note">
+                The admin dashboard opens from an invite link. Ask whoever runs this moodboard
+                for theirs, or paste the link (or just its key) below. Once accepted, this
+                browser stays signed in.
+              </p>
+              <input
+                className="admin-input"
+                type="text"
+                placeholder="Paste the invite link…"
+                value={keyDraft}
+                onChange={(e) => { setKeyDraft(e.target.value); setKeyRejected(false); }}
+                onKeyDown={(e) => e.key === 'Enter' && signIn()}
+                autoFocus
+              />
+              {keyRejected && <p className="admin-error">That link isn&rsquo;t valid for this moodboard.</p>}
+              <button className="admin-btn" onClick={signIn} disabled={!keyDraft.trim()}>Sign in</button>
+            </>
+          ) : (
+            <p className="admin-note">
+              This build has no <code>VITE_ADMIN_KEY</code> configured, so no invite link can work.
+              See README.md.
+            </p>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  if (!name) {
+    return (
+      <div className="admin-screen">
+        <div className="admin-card">
+          <span className="dialog-eyebrow">Welcome</span>
+          <h2>What should we call you?</h2>
           <p className="admin-note">
-            Paste a GitHub personal access token with write access to this repository. It is
-            stored only in this browser&rsquo;s local storage and is never sent anywhere except
-            directly to the GitHub API. This is a convenience check, not strong security &mdash;
-            anyone who can access this browser profile can also see and use it.
+            Your name is shown next to the boards and files you change, so the others know who
+            did what. You can change it later from any board.
           </p>
           <input
             className="admin-input"
-            type="password"
-            placeholder="ghp_..."
-            value={tokenDraft}
-            onChange={(e) => setTokenDraft(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && signIn()}
+            type="text"
+            placeholder="Your name"
+            value={nameDraft}
+            onChange={(e) => setNameDraft(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && saveName()}
+            autoFocus
           />
-          <button className="admin-btn" onClick={signIn} disabled={!tokenDraft.trim()}>Sign in</button>
+          <button className="admin-btn" onClick={saveName} disabled={!nameDraft.trim()}>Continue</button>
         </div>
       </div>
     );
@@ -203,7 +281,10 @@ export default function AdminApp() {
             onChange={handleImportFile}
           />
           <button className="admin-btn ghost" onClick={refresh} disabled={busy}>Refresh</button>
-          <button className="admin-btn ghost" onClick={signOut}>Sign out</button>
+          <button className="admin-btn ghost" onClick={copyInvite}>
+            {inviteCopied ? 'Invite link copied' : 'Copy invite link'}
+          </button>
+          <button className="admin-btn ghost" onClick={signOut} title={`Signed in as ${name}`}>Sign out</button>
         </div>
       </div>
 

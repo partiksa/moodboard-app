@@ -11,6 +11,15 @@
   user-select: none;
 }
 
+/* the canvas disables selection for panning; the open editor has to get it back */
+.text-card.editing .text-card-body {
+  cursor: text;
+  -webkit-user-select: text;
+  user-select: text;
+  touch-action: auto;
+  -webkit-user-modify: read-write;
+}
+
 /* heading-only card: the box disappears, only the large text stays on the board */
 .text-card--heading {
   padding: 0;

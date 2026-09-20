@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
+import { flushSync } from 'react-dom';
 import { isHeadingCard, headingColorForBackground } from '../../utils/textCard';
 import { TextB, TextItalic, ListBullets, ListNumbers, LinkSimple } from '../icons.jsx';
 
@@ -25,8 +26,17 @@ export default function TextCard({ item, board, dispatch }) {
   const lastDownRef = useRef({ time: 0, x: 0, y: 0 });
   const focusPointRef = useRef(null);
 
+  // The body is written from item.body only while not editing: while the caret is in it,
+  // the DOM is the source of truth and re-setting innerHTML (after a toolbar action, or
+  // when a collaborator's save arrives) would throw the caret back to the start.
+  useLayoutEffect(() => {
+    const el = bodyRef.current;
+    if (!el || editing) return;
+    if (el.innerHTML !== (item.body || '')) el.innerHTML = item.body || '';
+  }, [item.body, editing]);
+
   const mountedRef = useRef(false);
-  useEffect(() => {
+  useLayoutEffect(() => {
     // no focus on mount: a loaded board may hold several empty cards and none should steal focus
     const mounted = mountedRef.current;
     mountedRef.current = true;
@@ -62,10 +72,26 @@ export default function TextCard({ item, board, dispatch }) {
     e.stopPropagation();
     e.preventDefault();
     focusPointRef.current = { x: e.clientX, y: e.clientY };
-    setEditing(true);
+    // synchronous so the focus happens inside the tap: mobile browsers otherwise keep the
+    // keyboard closed
+    flushSync(() => setEditing(true));
   };
 
-  const onCardMouseDown = (e) => {
+  const commit = () => {
+    if (bodyRef.current) update({ body: bodyRef.current.innerHTML });
+  };
+
+  // editing ends when focus leaves the whole card, not when it hops from the text to a
+  // toolbar select or colour input
+  const onCardBlur = (e) => {
+    if (!editing) return;
+    if (e.relatedTarget && e.currentTarget.contains(e.relatedTarget)) return;
+    commit();
+    setToolbarOpen(false);
+    setEditing(false);
+  };
+
+  const onCardPointerDown = (e) => {
     // while editing, clicks inside the card (text or toolbar) must not start a drag
     if (editing) {
       e.stopPropagation();
@@ -87,7 +113,7 @@ export default function TextCard({ item, board, dispatch }) {
   const exec = (cmd, value) => {
     bodyRef.current?.focus();
     document.execCommand(cmd, false, value);
-    update({ body: bodyRef.current.innerHTML });
+    commit();
   };
 
   const setBlockStyle = (tag) => exec('formatBlock', `<${tag}>`);
@@ -116,7 +142,7 @@ export default function TextCard({ item, board, dispatch }) {
     URL_RE.lastIndex = 0;
     e.preventDefault();
     document.execCommand('insertHTML', false, linkifyHtml(text));
-    update({ body: bodyRef.current.innerHTML });
+    commit();
   };
 
   const openLinkIfClicked = (e) => {
@@ -148,11 +174,18 @@ export default function TextCard({ item, board, dispatch }) {
         ...wrapperVars,
         ...(heading ? { '--tc-heading-color': headingColor || 'var(--text)' } : {}),
       }}
-      onPointerDown={onCardMouseDown}
+      onPointerDown={onCardPointerDown}
       onDoubleClick={startEditing}
+      onBlur={onCardBlur}
     >
       {toolbarOpen && (
-        <div className="text-toolbar" onPointerDown={(e) => e.preventDefault()}>
+        <div
+          className="text-toolbar"
+          onPointerDown={(e) => {
+            e.stopPropagation();
+            if (e.target.closest('button')) e.preventDefault();
+          }}
+        >
           <div className="text-toolbar-group">
             {BLOCK_STYLES.map((b) => (
               <button key={b.tag} onClick={() => setBlockStyle(b.tag)}>
@@ -193,17 +226,16 @@ export default function TextCard({ item, board, dispatch }) {
         suppressContentEditableWarning
         data-placeholder={editing ? 'Type anything…' : 'Double-click to write'}
         onFocus={() => setToolbarOpen(true)}
-        onBlur={() => {
-          setToolbarOpen(false);
-          setEditing(false);
-          update({ body: bodyRef.current.innerHTML });
-        }}
         onKeyDown={(e) => {
-          if (e.key === 'Escape') bodyRef.current?.blur();
+          if (e.key === 'Escape') {
+            e.stopPropagation();
+            bodyRef.current?.blur();
+            setToolbarOpen(false);
+            setEditing(false);
+          }
         }}
         onPaste={onPaste}
         onDoubleClick={openLinkIfClicked}
-        dangerouslySetInnerHTML={{ __html: item.body }}
       />
     </div>
   );

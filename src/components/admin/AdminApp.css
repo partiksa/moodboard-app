@@ -198,3 +198,25 @@
   opacity: 0.45;
   cursor: not-allowed;
 }
+
+.admin-card .dialog-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  margin-bottom: 14px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--text-muted);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.admin-card code {
+  font-family: 'Geist Mono', 'SF Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  padding: 1px 5px;
+  border-radius: 5px;
+  background: var(--accent-softer);
+}

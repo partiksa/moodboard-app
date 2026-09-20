@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { getAdminToken } from '../../lib/adminAuth';
+import { getAdminToken, getAdminName } from '../../lib/adminAuth';
 import { getBoardRaw } from '../../lib/boardSync';
 import {
   loadFileIndex,
@@ -171,6 +171,7 @@ export default function AdminFiles({ boardId }) {
         try {
           const { index: next } = await uploadBoardFile(boardId, file, targetCat, {
             token,
+            uploadedBy: getAdminName(),
             onProgress: (p) => setUploads((u) => u.map((r) => (r.id === row.id ? { ...r, progress: p } : r))),
           });
           setIndex(next);

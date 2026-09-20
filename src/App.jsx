@@ -44,7 +44,7 @@ export default function App() {
   }, []);
 
   if (route.name === 'admin') {
-    return <AdminApp />;
+    return <AdminApp inviteKey={route.key} />;
   }
 
   if (route.name === 'admin-files') {
