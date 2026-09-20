@@ -38,11 +38,31 @@ jobs:
           VITE_GITHUB_BRANCH: ${{ github.ref_name }}
           VITE_GITHUB_TOKEN: ${{ secrets.VITE_GITHUB_TOKEN }}
           VITE_ADMIN_KEY: ${{ secrets.VITE_ADMIN_KEY }}
+          VITE_SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
         run: npm run build
 
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
+
+      # Same app built for the custom domain (root base path). Downloaded with
+      # `gh run download -n hostzone-dist` and uploaded to the host over SFTP.
+      - name: Build for Hostzone
+        env:
+          VITE_BASE_PATH: /
+          VITE_GITHUB_OWNER: ${{ github.repository_owner }}
+          VITE_GITHUB_REPO: ${{ github.event.repository.name }}
+          VITE_GITHUB_BRANCH: ${{ github.ref_name }}
+          VITE_GITHUB_TOKEN: ${{ secrets.VITE_GITHUB_TOKEN }}
+          VITE_ADMIN_KEY: ${{ secrets.VITE_ADMIN_KEY }}
+          VITE_SITE_URL: https://moodboard.sarkozypatrik.sk
+        run: npx vite build --outDir dist-hostzone
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hostzone-dist
+          path: dist-hostzone
+          retention-days: 7
 
   deploy:
     needs: build
