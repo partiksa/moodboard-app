@@ -2,7 +2,7 @@
   "id": "b_muo5rojs_3stehxr",
   "name": "solarpunk",
   "createdAt": "2026-09-30T13:45:58.024Z",
-  "updatedAt": "2026-09-30T13:49:01.941Z",
+  "updatedAt": "2026-09-30T13:50:45.975Z",
   "items": [
     {
       "id": "item_muo5rw12_qocpoma",
@@ -102,6 +102,23 @@
       "parentId": null,
       "privateNote": "",
       "body": "<span style=\"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-size: medium;\">Mikro-vodné turbíny do domácich potrubí</span>",
+      "textAlign": "left",
+      "textColor": "#111111",
+      "backgroundColor": "#ffffff"
+    },
+    {
+      "id": "item_muo5xman_w09k6ve",
+      "type": "text",
+      "x": 34,
+      "y": 460,
+      "width": 351,
+      "height": 68,
+      "rotation": 0,
+      "zIndex": 7,
+      "locked": false,
+      "parentId": null,
+      "privateNote": "",
+      "body": "<span style=\"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-size: medium;\">Rozprašovač života (Eco-Blaster)</span>",
       "textAlign": "left",
       "textColor": "#111111",
       "backgroundColor": "#ffffff"
@@ -268,6 +285,51 @@
       "verb": "moved",
       "itemType": "text note",
       "itemTitle": "Mikro-vodné turbíny do domácich potrubí",
+      "private": false
+    },
+    {
+      "id": "act_muo5xmao_8z0aq",
+      "ts": "2026-09-30T13:50:35.040Z",
+      "name": "patko",
+      "verb": "added",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_muo5xno7_wsi13",
+      "ts": "2026-09-30T13:50:36.823Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_muo5xoyy_pymzl",
+      "ts": "2026-09-30T13:50:38.506Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "Rozprašovač života (Eco-Blaster)",
+      "private": false
+    },
+    {
+      "id": "act_muo5xqh4_zwa6q",
+      "ts": "2026-09-30T13:50:40.456Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "Rozprašovač života (Eco-Blaster)",
+      "private": false
+    },
+    {
+      "id": "act_muo5xrn9_5l82o",
+      "ts": "2026-09-30T13:50:41.973Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "Rozprašovač života (Eco-Blaster)",
       "private": false
     }
   ],
