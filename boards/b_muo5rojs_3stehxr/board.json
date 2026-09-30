@@ -2,7 +2,7 @@
   "id": "b_muo5rojs_3stehxr",
   "name": "solarpunk",
   "createdAt": "2026-09-30T13:45:58.024Z",
-  "updatedAt": "2026-09-30T13:50:45.975Z",
+  "updatedAt": "2026-09-30T13:50:55.642Z",
   "items": [
     {
       "id": "item_muo5rw12_qocpoma",
@@ -101,7 +101,7 @@
       "locked": false,
       "parentId": null,
       "privateNote": "",
-      "body": "<span style=\"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-size: medium;\">Mikro-vodné turbíny do domácich potrubí</span>",
+      "body": "<span style=\"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-size: medium;\">vodné turbíny do domácich potrubí</span>",
       "textAlign": "left",
       "textColor": "#111111",
       "backgroundColor": "#ffffff"
@@ -118,7 +118,7 @@
       "locked": false,
       "parentId": null,
       "privateNote": "",
-      "body": "<span style=\"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-size: medium;\">Rozprašovač života (Eco-Blaster)</span>",
+      "body": "<span style=\"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-size: medium;\">Zbran strielajuca semeinka</span>",
       "textAlign": "left",
       "textColor": "#111111",
       "backgroundColor": "#ffffff"
@@ -330,6 +330,24 @@
       "verb": "moved",
       "itemType": "text note",
       "itemTitle": "Rozprašovač života (Eco-Blaster)",
+      "private": false
+    },
+    {
+      "id": "act_muo5xx0g_j2743",
+      "ts": "2026-09-30T13:50:48.928Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "Rozprašovač života (Eco-Blaster)",
+      "private": false
+    },
+    {
+      "id": "act_muo5xz3s_5g19t",
+      "ts": "2026-09-30T13:50:51.640Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "Mikro-vodné turbíny do domácich potrubí",
       "private": false
     }
   ],
