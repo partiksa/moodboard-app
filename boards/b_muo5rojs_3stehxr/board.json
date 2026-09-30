@@ -2,7 +2,7 @@
   "id": "b_muo5rojs_3stehxr",
   "name": "solarpunk",
   "createdAt": "2026-09-30T13:45:58.024Z",
-  "updatedAt": "2026-09-30T13:54:29.008Z",
+  "updatedAt": "2026-09-30T13:54:47.608Z",
   "items": [
     {
       "id": "item_muo5rw12_qocpoma",
@@ -143,8 +143,8 @@
     {
       "id": "item_muo5z8vw_q4762kh",
       "type": "text",
-      "x": 42.5,
-      "y": 608,
+      "x": 33,
+      "y": 701,
       "width": 240,
       "height": 160,
       "rotation": 0,
@@ -612,6 +612,15 @@
       "verb": "moved",
       "itemType": "image",
       "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_muo62y3a_jfkao",
+      "ts": "2026-09-30T13:54:43.606Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "harpuna na rybi ktora zisti ich zdravie ",
       "private": false
     }
   ],
