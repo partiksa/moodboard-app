@@ -2,7 +2,7 @@
   "id": "b_muo5rojs_3stehxr",
   "name": "solarpunk",
   "createdAt": "2026-09-30T13:45:58.024Z",
-  "updatedAt": "2026-09-30T13:51:21.225Z",
+  "updatedAt": "2026-09-30T13:51:33.191Z",
   "items": [
     {
       "id": "item_muo5rw12_qocpoma",
@@ -126,16 +126,16 @@
     {
       "id": "item_muo5yiue_mmdgqq4",
       "type": "text",
-      "x": 607,
-      "y": 299.5,
-      "width": 240,
-      "height": 160,
+      "x": 33,
+      "y": 551.5,
+      "width": 259,
+      "height": 48.5,
       "rotation": 0,
       "zIndex": 8,
       "locked": false,
       "parentId": null,
       "privateNote": "",
-      "body": "",
+      "body": "sniperka na cistenie vody",
       "textAlign": "left",
       "textColor": "#111111",
       "backgroundColor": "#ffffff"
@@ -383,6 +383,33 @@
       "verb": "added",
       "itemType": "text note",
       "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_muo5yoxe_2n4kw",
+      "ts": "2026-09-30T13:51:25.106Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_muo5ypfg_j20fb",
+      "ts": "2026-09-30T13:51:25.756Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_muo5ys2t_77bw3",
+      "ts": "2026-09-30T13:51:29.189Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "sniperka na cistenie vody",
       "private": false
     }
   ],
