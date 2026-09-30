@@ -2,7 +2,7 @@
   "id": "b_muo5rojs_3stehxr",
   "name": "solarpunk",
   "createdAt": "2026-09-30T13:45:58.024Z",
-  "updatedAt": "2026-09-30T13:48:00.025Z",
+  "updatedAt": "2026-09-30T13:49:01.941Z",
   "items": [
     {
       "id": "item_muo5rw12_qocpoma",
@@ -85,6 +85,23 @@
       "parentId": null,
       "privateNote": "",
       "body": "<span style=\"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-size: medium;\">Riasové člny na čistenie riek</span>",
+      "textAlign": "left",
+      "textColor": "#111111",
+      "backgroundColor": "#ffffff"
+    },
+    {
+      "id": "item_muo5vcr1_vms7wuw",
+      "type": "text",
+      "x": 23,
+      "y": 380,
+      "width": 351,
+      "height": 56,
+      "rotation": 0,
+      "zIndex": 6,
+      "locked": false,
+      "parentId": null,
+      "privateNote": "",
+      "body": "<span style=\"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-size: medium;\">Mikro-vodné turbíny do domácich potrubí</span>",
       "textAlign": "left",
       "textColor": "#111111",
       "backgroundColor": "#ffffff"
@@ -206,6 +223,51 @@
       "verb": "moved",
       "itemType": "text note",
       "itemTitle": "Riasové člny na čistenie riek",
+      "private": false
+    },
+    {
+      "id": "act_muo5vcr1_3ii2w",
+      "ts": "2026-09-30T13:48:49.357Z",
+      "name": "patko",
+      "verb": "added",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_muo5veb2_2n037",
+      "ts": "2026-09-30T13:48:51.374Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_muo5vfdg_4p5si",
+      "ts": "2026-09-30T13:48:52.756Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "Mikro-vodné turbíny do domácich potrubí",
+      "private": false
+    },
+    {
+      "id": "act_muo5vhob_yhevu",
+      "ts": "2026-09-30T13:48:55.739Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "Mikro-vodné turbíny do domácich potrubí",
+      "private": false
+    },
+    {
+      "id": "act_muo5vjdf_lasj8",
+      "ts": "2026-09-30T13:48:57.939Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "Mikro-vodné turbíny do domácich potrubí",
       "private": false
     }
   ],
