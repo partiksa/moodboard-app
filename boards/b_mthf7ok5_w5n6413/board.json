@@ -2,7 +2,7 @@
   "id": "b_mthf7ok5_w5n6413",
   "name": "odrazse",
   "createdAt": "2026-08-31T15:56:15.509Z",
-  "updatedAt": "2026-09-30T10:41:05.710Z",
+  "updatedAt": "2026-09-30T10:41:24.005Z",
   "items": [
     {
       "id": "item_mthf7uv1_kfpanqd",
@@ -665,7 +665,7 @@
       "x": 1804.5917125909052,
       "y": 225.45645451347372,
       "width": 240,
-      "height": 160,
+      "height": 486.5435454865263,
       "rotation": 0,
       "zIndex": 43,
       "locked": false,
@@ -678,15 +678,6 @@
     }
   ],
   "activity": [
-    {
-      "id": "act_mthfwtqn_2ndc0",
-      "ts": "2026-08-31T16:15:48.623Z",
-      "name": "patko",
-      "verb": "moved",
-      "itemType": "image",
-      "itemTitle": "image",
-      "private": false
-    },
     {
       "id": "act_mthfwvxd_tj7wq",
       "ts": "2026-08-31T16:15:51.457Z",
@@ -3374,6 +3365,15 @@
       "ts": "2026-09-30T10:41:01.705Z",
       "name": "patko",
       "verb": "added",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_munz68ma_j5xkh",
+      "ts": "2026-09-30T10:41:19.906Z",
+      "name": "patko",
+      "verb": "moved",
       "itemType": "text note",
       "itemTitle": "untitled note",
       "private": false
