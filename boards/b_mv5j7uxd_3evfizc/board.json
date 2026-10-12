@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-12T21:55:02.184Z",
+  "updatedAt": "2026-10-12T21:57:16.214Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -1337,7 +1337,15 @@
       "description": "",
       "image": "",
       "fetchedAt": "2026-10-12T21:54:56.664Z",
-      "failed": true
+      "failed": true,
+      "comments": [
+        {
+          "id": "comment_mv5slmz6_lun4gud",
+          "text": "rozdielnost kazdeho znas, pristup individual vel avariacii...",
+          "author": "patko",
+          "createdAt": "2026-10-12T21:57:12.210Z"
+        }
+      ]
     }
   ],
   "activity": [
@@ -2750,6 +2758,15 @@
       "ts": "2026-10-12T21:54:58.084Z",
       "name": "patko",
       "verb": "moved",
+      "itemType": "link card",
+      "itemTitle": "https://www.are.na/block/31646376",
+      "private": false
+    },
+    {
+      "id": "act_mv5slmz7_67ijf",
+      "ts": "2026-10-12T21:57:12.211Z",
+      "name": "patko",
+      "verb": "commented on",
       "itemType": "link card",
       "itemTitle": "https://www.are.na/block/31646376",
       "private": false
