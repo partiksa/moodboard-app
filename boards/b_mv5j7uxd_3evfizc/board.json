@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-12T17:35:55.523Z",
+  "updatedAt": "2026-10-12T17:36:05.403Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -37,6 +37,33 @@
       "ts": "2026-10-12T17:35:51.522Z",
       "name": "patko",
       "verb": "moved",
+      "itemType": "image",
+      "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mv5j9p58_3k4fw",
+      "ts": "2026-10-12T17:35:58.604Z",
+      "name": "patko",
+      "verb": "added",
+      "itemType": "image",
+      "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mv5j9qen_vw1e1",
+      "ts": "2026-10-12T17:36:00.239Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "image",
+      "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mv5j9rav_7kxuw",
+      "ts": "2026-10-12T17:36:01.399Z",
+      "name": "patko",
+      "verb": "deleted",
       "itemType": "image",
       "itemTitle": "image",
       "private": false
