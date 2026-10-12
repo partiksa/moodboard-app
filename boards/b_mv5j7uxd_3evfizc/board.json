@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-12T18:32:13.944Z",
+  "updatedAt": "2026-10-12T18:32:24.009Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -265,7 +265,15 @@
       "body": "<h1>no ai was used in anything</h1><h1>wholeheartedly made by a dumb human</h1>",
       "textAlign": "left",
       "textColor": "#111111",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#ffffff",
+      "comments": [
+        {
+          "id": "comment_mv5la691_0invozx",
+          "text": "love this :D",
+          "author": "emika",
+          "createdAt": "2026-10-12T18:32:20.006Z"
+        }
+      ]
     }
   ],
   "activity": [
@@ -1048,6 +1056,15 @@
       "ts": "2026-10-12T18:31:57.472Z",
       "name": "emika",
       "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "no ai was used in anything wholeheartedl",
+      "private": false
+    },
+    {
+      "id": "act_mv5la692_sc8to",
+      "ts": "2026-10-12T18:32:20.006Z",
+      "name": "emika",
+      "verb": "commented on",
       "itemType": "text note",
       "itemTitle": "no ai was used in anything wholeheartedl",
       "private": false
