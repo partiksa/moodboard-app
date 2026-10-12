@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-12T17:36:43.043Z",
+  "updatedAt": "2026-10-12T17:37:06.007Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -58,12 +58,29 @@
     {
       "id": "item_mv5jakcf_q7rkkh8",
       "type": "text",
-      "x": 273.83376692110954,
-      "y": 278.9894460631425,
+      "x": 696,
+      "y": 292.9534907388209,
+      "width": 237.47813962955286,
+      "height": 223.04650926117904,
+      "rotation": 0,
+      "zIndex": 4,
+      "locked": false,
+      "parentId": null,
+      "privateNote": "",
+      "body": "toto vyzera jak milka alebo to muller alebo jak sa to vola nvm nehodi sa mi to",
+      "textAlign": "left",
+      "textColor": "#111111",
+      "backgroundColor": "#ffffff"
+    },
+    {
+      "id": "item_mv5jb22c_sccw61z",
+      "type": "text",
+      "x": 359.15188771669403,
+      "y": 192.72931921912647,
       "width": 240,
       "height": 160,
       "rotation": 0,
-      "zIndex": 4,
+      "zIndex": 5,
       "locked": false,
       "parentId": null,
       "privateNote": "",
@@ -158,6 +175,51 @@
     {
       "id": "act_mv5jakcg_jsuc9",
       "ts": "2026-10-12T17:36:39.040Z",
+      "name": "patko",
+      "verb": "added",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5jatta_8tas0",
+      "ts": "2026-10-12T17:36:51.310Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5jav8k_uvdtz",
+      "ts": "2026-10-12T17:36:53.156Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "toto vyzera jak milka alebo to muller al",
+      "private": false
+    },
+    {
+      "id": "act_mv5jax38_02bxr",
+      "ts": "2026-10-12T17:36:55.556Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "toto vyzera jak milka alebo to muller al",
+      "private": false
+    },
+    {
+      "id": "act_mv5jazfy_x9q6l",
+      "ts": "2026-10-12T17:36:58.606Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "toto vyzera jak milka alebo to muller al",
+      "private": false
+    },
+    {
+      "id": "act_mv5jb22d_5wm6d",
+      "ts": "2026-10-12T17:37:02.005Z",
       "name": "patko",
       "verb": "added",
       "itemType": "text note",
