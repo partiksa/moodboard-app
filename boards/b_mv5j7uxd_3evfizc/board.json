@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-12T18:35:07.031Z",
+  "updatedAt": "2026-10-12T18:35:51.159Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -112,7 +112,15 @@
       "body": "za mna fajne sigma rci co vyzera super v minsuakch a zjavne ma aj kapitalky co by ohlo byt kul<div>jako. ten poppins furt nvm</div><div>kamene nvm co sa deje za man nepouzitelne ako logo a zbytocne spolu s mitt</div><div>a tiez ten certificat jak som hovoril za mna...</div>",
       "textAlign": "left",
       "textColor": "#111111",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#ffffff",
+      "comments": [
+        {
+          "id": "comment_mv5lem38_fy6nkul",
+          "text": "mne osobne są toto páči  úplne najmenej, len som chcela ponúknuť aj niečo iné (z hľadiska farieb a vibu)",
+          "author": "emika",
+          "createdAt": "2026-10-12T18:35:47.156Z"
+        }
+      ]
     },
     {
       "id": "item_mv5jl29h_4fh1c68",
@@ -1118,6 +1126,15 @@
       "verb": "commented on",
       "itemType": "text note",
       "itemTitle": "font fakt vyzera jak tie ruzove sladkost",
+      "private": false
+    },
+    {
+      "id": "act_mv5lem38_xhnln",
+      "ts": "2026-10-12T18:35:47.156Z",
+      "name": "emika",
+      "verb": "commented on",
+      "itemType": "text note",
+      "itemTitle": "za mna fajne sigma rci co vyzera super v",
       "private": false
     }
   ],
