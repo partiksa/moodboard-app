@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-12T17:38:20.823Z",
+  "updatedAt": "2026-10-12T17:38:53.656Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -76,9 +76,9 @@
       "id": "item_mv5jb22c_sccw61z",
       "type": "text",
       "x": 57.64376625773292,
-      "y": -137.1983900971145,
+      "y": -196.46298987195917,
       "width": 516.8018337082815,
-      "height": 257.1983900971145,
+      "height": 316.46298987195917,
       "rotation": 0,
       "zIndex": 5,
       "locked": false,
@@ -310,6 +310,15 @@
     {
       "id": "act_mv5jcnsl_or9h5",
       "ts": "2026-10-12T17:38:16.821Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "celkove: chcete ist tymto smerom uz nero",
+      "private": false
+    },
+    {
+      "id": "act_mv5jdd4m_2wtxg",
+      "ts": "2026-10-12T17:38:49.654Z",
       "name": "patko",
       "verb": "moved",
       "itemType": "text note",
