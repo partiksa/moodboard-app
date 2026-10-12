@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-12T21:49:15.567Z",
+  "updatedAt": "2026-10-12T21:51:36.222Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -1332,16 +1332,16 @@
     {
       "id": "item_mv5sbc3r_tvmevsx",
       "type": "text",
-      "x": 164.83234047419512,
-      "y": 142.03961265192473,
-      "width": 240,
-      "height": 160,
+      "x": -840,
+      "y": -619.3835420177522,
+      "width": 543.1676595258049,
+      "height": 584.0028504602722,
       "rotation": 0,
       "zIndex": 22,
       "locked": false,
       "parentId": null,
       "privateNote": "",
-      "body": "",
+      "body": "mam kapacitu<div>rad sa budem nejak podielat</div><div><br></div><div>aaa uz chapem dava zmysel</div><div><br></div><div>a som megazahracky</div><div>a napad ked uz takto podme kludne skusit ich nestylizovat maybe je to odveci napad ae tak o tom to je si myslim</div><div>rozhodne za tym vedia byt myslienky</div><div><br></div><div>iba rozmyslam ale jako nahodou tie korene rastlilny bomba veci vizualne aj takto nedotknute teda minimalne dotknute</div><div><br></div><div>zamyslim sa jak to spracovavt mozno ked tak nieco poslem</div><div>ale okej uz chapem abckstory ale stale si stojim za tym ze treba najst nieco medzi moc hrave a moc apple chapes</div>",
       "textAlign": "left",
       "textColor": "#111111",
       "backgroundColor": "#ffffff"
@@ -2561,6 +2561,60 @@
       "verb": "added",
       "itemType": "text note",
       "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5se5i2_ftsnl",
+      "ts": "2026-10-12T21:51:22.970Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5se7mf_f0746",
+      "ts": "2026-10-12T21:51:25.719Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5se9hj_i3s8z",
+      "ts": "2026-10-12T21:51:28.135Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5seako_ius1r",
+      "ts": "2026-10-12T21:51:29.544Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5sebtc_1x7pl",
+      "ts": "2026-10-12T21:51:31.152Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "mam kapacitu rad sa budem nejak podielat",
+      "private": false
+    },
+    {
+      "id": "act_mv5secmz_dp4cx",
+      "ts": "2026-10-12T21:51:32.220Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "mam kapacitu rad sa budem nejak podielat",
       "private": false
     }
   ],
