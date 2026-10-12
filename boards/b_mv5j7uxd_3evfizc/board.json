@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-12T22:01:25.553Z",
+  "updatedAt": "2026-10-12T22:02:20.183Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -1323,7 +1323,7 @@
     {
       "id": "item_mv5siq1w_a98btur",
       "type": "url",
-      "x": 1536,
+      "x": 1752,
       "y": -560,
       "width": 240,
       "height": 160,
@@ -1350,7 +1350,7 @@
     {
       "id": "item_mv5spfxw_lmo8fvl",
       "type": "text",
-      "x": 1536,
+      "x": 1752,
       "y": -672,
       "width": 477.97602640042123,
       "height": 78.62755226308172,
@@ -1367,7 +1367,7 @@
     {
       "id": "item_mv5spqtt_bolc45d",
       "type": "text",
-      "x": 1536,
+      "x": 1752,
       "y": -357.76492148912706,
       "width": 358.2233127109282,
       "height": 152.2646840394396,
@@ -1384,16 +1384,16 @@
     {
       "id": "item_mv5sqzda_4d3tvhx",
       "type": "text",
-      "x": 1590.2718341094005,
-      "y": -395.96219882016766,
-      "width": 240,
-      "height": 160,
+      "x": 1756.7289325084373,
+      "y": -194.1984584303708,
+      "width": 348.76544769405405,
+      "height": 158.8177668728907,
       "rotation": 0,
       "zIndex": 26,
       "locked": false,
       "parentId": null,
       "privateNote": "",
-      "body": "",
+      "body": "variable font na tisku obyc san serif<div>ale kedze je variable namiesto rezov by interpolaciou isiel z korenov do pismen=rast</div><div>na digital jednoducho zanimovane</div><div>na tisk velmi profi suverejne</div>",
       "textAlign": "left",
       "textColor": "#111111",
       "backgroundColor": "#ffffff"
@@ -2946,6 +2946,42 @@
       "verb": "added",
       "itemType": "text note",
       "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5srzuo_hhy7e",
+      "ts": "2026-10-12T22:02:08.832Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5ss05u_izmd0",
+      "ts": "2026-10-12T22:02:09.234Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5ss20g_nhvps",
+      "ts": "2026-10-12T22:02:11.632Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "variable font na tisku obyc san serif al",
+      "private": false
+    },
+    {
+      "id": "act_mv5ss5g3_u3r1y",
+      "ts": "2026-10-12T22:02:16.083Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "4 items",
+      "itemTitle": "",
       "private": false
     }
   ],
