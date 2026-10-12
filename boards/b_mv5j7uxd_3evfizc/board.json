@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-12T17:42:22.991Z",
+  "updatedAt": "2026-10-12T17:43:52.697Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -84,7 +84,24 @@
       "locked": false,
       "parentId": null,
       "privateNote": "",
-      "body": "celkove:<div>chcete ist tymto smerom</div><div>uz nerobite skolku ale robite vzdelavaci insitut pre dospleych ludi podla mna podstatnejsie vyzerat co najrespektovanejsie a zte viete co a jako nie milo, zlato, farebne a detsky aj ked chapem ale za mna naco</div><div><br></div><div>tiez nerozumeim zaidnej z ikoniek teda ako koren s listom okej asi</div><div>kamene neviem uplne</div><div>a list uz vobec jako asi vsetko sa snazi hrat na nejaku ratolest a rodinu nerozumiem tomu moc</div><div>otazka: treba ikonku? mate genialy nazov mitt vela fontov ma ligaturu na tt a obcas aj it ked tak sa da dorobit lahko</div><div>kedze kratky nazov ikona netreba zybtocne za mna</div><div><br></div><div>mitt bude vyzerat profi</div><div><br></div><div>teraz ak chcete hrave tak by som kludne pouzil ten stredy font spravil igaturu z itt kludne aj tu bodku nechajte mozte ju pouzivat jak element...</div><div><br></div>",
+      "body": "celkove:<div>chcete ist tymto smerom</div><div>uz nerobite skolku ale robite vzdelavaci insitut pre dospleych ludi podla mna podstatnejsie vyzerat co najrespektovanejsie a zte viete co a jako nie milo, zlato, farebne a detsky aj ked chapem ale za mna naco</div><div><br></div><div>tiez nerozumeim zaidnej z ikoniek teda ako koren s listom okej asi</div><div>kamene neviem uplne</div><div>a list uz vobec jako asi vsetko sa snazi hrat na nejaku ratolest a rodinu nerozumiem tomu moc</div><div>otazka: treba ikonku? mate genialy nazov mitt vela fontov ma ligaturu na tt a obcas aj it ked tak sa da dorobit lahko</div><div>kedze kratky nazov ikona netreba zybtocne za mna</div><div><br></div><div>mitt bude vyzerat profi</div><div><br></div><div>teraz ak chcete hrave tak by som kludne pouzil ten stredy font spravil igaturu z itt kludne aj tu bodku nechajte mozte ju pouzivat jak element...</div><div><br></div><div>poppins je vsade ako nevadi mi chapem jeho vyber pre oble tvary pismen a ajko nic nim nepokazite ale nie je na nic obzvlast dobry mozno porozmyslat</div><div><br></div><div>farby: vsetko velmi silno farebne kriedovo farebne</div><div>cesta ktorou chcete ist? nemam s tym problem ale jako naco toot je oficialna vec nie skolka, pr asi tiez nebude neviem ako extremne a keby hladam miesto kde sa chcem nieco naucit a dostat odtial nejaky certifikat nechem aby certifikat bol farebny ale aby vyzeral respektovatelne nie ako vysvedcenie zo skolky, to neni hate len moje rozmyslanie</div><div>ale jako nemusi to byt zle</div><div><br></div><div>tiez na akzdom z navrhov chyba mala verzia ktora bude pouzivana bez maleho napisu kedze ten nenni citatelny velmi rychlo aj kvoli tomu ze je v light alebo regular ale aj preto ze je dlhy... co neni problem len sa zamysliet maybe aj nad tym</div><div>ale sak co ludia pochopia ja nvm pre co stoji MIT aleb IBM ale viem co robia takze poho</div><div>len nech ratate ze prevazme to budete pouzivat bez toho pravdepodone</div><div><br></div><div><br></div>",
+      "textAlign": "left",
+      "textColor": "#111111",
+      "backgroundColor": "#ffffff"
+    },
+    {
+      "id": "item_mv5jjov9_eycwjgp",
+      "type": "text",
+      "x": 202.5,
+      "y": 536,
+      "width": 240,
+      "height": 160,
+      "rotation": 0,
+      "zIndex": 6,
+      "locked": false,
+      "parentId": null,
+      "privateNote": "",
+      "body": "",
       "textAlign": "left",
       "textColor": "#111111",
       "backgroundColor": "#ffffff"
@@ -395,6 +412,42 @@
       "verb": "moved",
       "itemType": "text note",
       "itemTitle": "celkove: chcete ist tymto smerom uz nero",
+      "private": false
+    },
+    {
+      "id": "act_mv5jjmpa_0kwh6",
+      "ts": "2026-10-12T17:43:41.998Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "celkove: chcete ist tymto smerom uz nero",
+      "private": false
+    },
+    {
+      "id": "act_mv5jjov9_n3h17",
+      "ts": "2026-10-12T17:43:44.805Z",
+      "name": "patko",
+      "verb": "added",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5jjqa8_6yxu4",
+      "ts": "2026-10-12T17:43:46.640Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5jjrvb_k8dag",
+      "ts": "2026-10-12T17:43:48.695Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
       "private": false
     }
   ],
