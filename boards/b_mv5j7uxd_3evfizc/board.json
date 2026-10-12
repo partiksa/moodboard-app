@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-12T22:00:27.828Z",
+  "updatedAt": "2026-10-12T22:01:25.553Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -1367,12 +1367,29 @@
     {
       "id": "item_mv5spqtt_bolc45d",
       "type": "text",
-      "x": 1372.7409387212924,
-      "y": -472.8073520822711,
+      "x": 1536,
+      "y": -357.76492148912706,
+      "width": 358.2233127109282,
+      "height": 152.2646840394396,
+      "rotation": 0,
+      "zIndex": 25,
+      "locked": false,
+      "parentId": null,
+      "privateNote": "",
+      "body": "skeny hraciek ciernobiele= skresleny pohlad na vzdelavanie a to jak malo poznama reprezentuej BW a extrem nizky depth of field skannera<div>v kontraste s farebnym takymito fontami= novy pistup, pochopenie....</div>",
+      "textAlign": "left",
+      "textColor": "#111111",
+      "backgroundColor": "#ffffff"
+    },
+    {
+      "id": "item_mv5sqzda_4d3tvhx",
+      "type": "text",
+      "x": 1590.2718341094005,
+      "y": -395.96219882016766,
       "width": 240,
       "height": 160,
       "rotation": 0,
-      "zIndex": 25,
+      "zIndex": 26,
       "locked": false,
       "parentId": null,
       "privateNote": "",
@@ -2871,6 +2888,60 @@
     {
       "id": "act_mv5spqtt_lhifq",
       "ts": "2026-10-12T22:00:23.825Z",
+      "name": "patko",
+      "verb": "added",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5sqs89_pdmp0",
+      "ts": "2026-10-12T22:01:12.297Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5sqtlt_mw2qi",
+      "ts": "2026-10-12T22:01:14.081Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5sqvf4_umogn",
+      "ts": "2026-10-12T22:01:16.432Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5sqw7z_u3h6t",
+      "ts": "2026-10-12T22:01:17.471Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5sqxn8_lf0rm",
+      "ts": "2026-10-12T22:01:19.316Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "skeny hraciek ciernobiele= skresleny poh",
+      "private": false
+    },
+    {
+      "id": "act_mv5sqzda_8ye05",
+      "ts": "2026-10-12T22:01:21.550Z",
       "name": "patko",
       "verb": "added",
       "itemType": "text note",
