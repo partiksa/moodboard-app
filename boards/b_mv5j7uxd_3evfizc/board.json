@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-12T18:48:09.663Z",
+  "updatedAt": "2026-10-12T18:48:16.726Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -763,6 +763,23 @@
       ],
       "localWidth": 94.81013212031633,
       "localHeight": 234.66499306699075
+    },
+    {
+      "id": "item_mv5lujmh_7tix677",
+      "type": "image",
+      "x": -384,
+      "y": -4,
+      "width": 240,
+      "height": 160,
+      "rotation": 0,
+      "zIndex": 18,
+      "locked": false,
+      "parentId": null,
+      "privateNote": "",
+      "src": "",
+      "alt": "",
+      "naturalWidth": 0,
+      "naturalHeight": 0
     }
   ],
   "activity": [
@@ -1718,6 +1735,24 @@
       "verb": "added",
       "itemType": "drawing",
       "itemTitle": "drawing",
+      "private": false
+    },
+    {
+      "id": "act_mv5lujmh_ycwuk",
+      "ts": "2026-10-12T18:48:10.457Z",
+      "name": "emika",
+      "verb": "added",
+      "itemType": "image",
+      "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mv5luldg_e0xfx",
+      "ts": "2026-10-12T18:48:12.724Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "image",
+      "itemTitle": "image",
       "private": false
     }
   ],
