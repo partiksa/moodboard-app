@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-12T21:52:08.643Z",
+  "updatedAt": "2026-10-12T21:53:03.164Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -1315,7 +1315,7 @@
       "locked": false,
       "parentId": null,
       "privateNote": "",
-      "body": "mam kapacitu<div>rad sa budem nejak podielat</div><div><br></div><div>aaa uz chapem dava zmysel</div><div><br></div><div>a som megazahracky</div><div>a napad ked uz takto podme kludne skusit ich nestylizovat maybe je to odveci napad ae tak o tom to je si myslim</div><div>rozhodne za tym vedia byt myslienky</div><div><br></div><div>iba rozmyslam ale jako nahodou tie korene rastlilny bomba veci vizualne aj takto nedotknute teda minimalne dotknute</div><div><br></div><div>zamyslim sa jak to spracovavt mozno ked tak nieco poslem</div><div>ale okej uz chapem abckstory ale stale si stojim za tym ze treba najst nieco medzi moc hrave a moc apple chapes</div>",
+      "body": "mam kapacitu<div>rad sa budem nejak podielat</div><div><br></div><div>aaa uz chapem dava zmysel</div><div><br></div><div>a som megazahracky</div><div>a napad ked uz takto podme kludne skusit ich nestylizovat maybe je to odveci napad ae tak o tom to je si myslim</div><div>rozhodne za tym vedia byt myslienky</div><div><br></div><div>iba rozmyslam ale jako nahodou tie korene rastlilny bomba veci vizualne aj takto nedotknute teda minimalne dotknute</div><div><br></div><div>zamyslim sa jak to spracovavt mozno ked tak nieco poslem</div><div>ale okej uz chapem abckstory ale stale si stojim za tym ze treba najst nieco medzi moc hrave a moc apple chapes</div><div><br></div><div>tiez velmi odveci napad ale preco nespravime na logo na ig, strnaku... ako kratky loop animaciu celeho rastu maybe napr, mozno by mohlo byt zaujimave</div><div>nvm uba rozmyslam</div><div><br></div>",
       "textAlign": "left",
       "textColor": "#111111",
       "backgroundColor": "#ffffff"
@@ -2634,6 +2634,15 @@
       "verb": "deleted",
       "itemType": "2 items",
       "itemTitle": "",
+      "private": false
+    },
+    {
+      "id": "act_mv5sganw_uztnv",
+      "ts": "2026-10-12T21:53:02.972Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "mam kapacitu rad sa budem nejak podielat",
       "private": false
     }
   ],
