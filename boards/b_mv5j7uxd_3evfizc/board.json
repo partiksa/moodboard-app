@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-12T17:43:52.697Z",
+  "updatedAt": "2026-10-12T17:44:58.755Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -94,10 +94,27 @@
       "type": "text",
       "x": 202.5,
       "y": 536,
-      "width": 240,
-      "height": 160,
+      "width": 241.80747032827242,
+      "height": 251.27725157775456,
       "rotation": 0,
       "zIndex": 6,
+      "locked": false,
+      "parentId": null,
+      "privateNote": "",
+      "body": "za mna fajne sigma rci co vyzera super v minsuakch a zjavne ma aj kapitalky co by ohlo byt kul<div>jako. ten poppins furt nvm</div><div>kamene nvm co sa deje za man nepouzitelne ako logo a zbytocne spolu s mitt</div><div>a tiez ten certificat jak som hovoril za mna...</div>",
+      "textAlign": "left",
+      "textColor": "#111111",
+      "backgroundColor": "#ffffff"
+    },
+    {
+      "id": "item_mv5jl29h_4fh1c68",
+      "type": "text",
+      "x": -38.40373516413618,
+      "y": 536,
+      "width": 240.90373516413618,
+      "height": 251.27725157775456,
+      "rotation": 0,
+      "zIndex": 7,
       "locked": false,
       "parentId": null,
       "privateNote": "",
@@ -444,6 +461,69 @@
     {
       "id": "act_mv5jjrvb_k8dag",
       "ts": "2026-10-12T17:43:48.695Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5jl0xt_29990",
+      "ts": "2026-10-12T17:44:47.105Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5jl1l4_jkw05",
+      "ts": "2026-10-12T17:44:47.944Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5jl29i_pw4lw",
+      "ts": "2026-10-12T17:44:48.822Z",
+      "name": "patko",
+      "verb": "added",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5jl3xr_fjekx",
+      "ts": "2026-10-12T17:44:50.991Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5jl512_q4vtq",
+      "ts": "2026-10-12T17:44:52.406Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5jl6f1_ivir2",
+      "ts": "2026-10-12T17:44:54.205Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5jl6ua_ujmez",
+      "ts": "2026-10-12T17:44:54.754Z",
       "name": "patko",
       "verb": "moved",
       "itemType": "text note",
