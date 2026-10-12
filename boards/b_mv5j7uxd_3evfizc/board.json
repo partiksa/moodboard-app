@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-12T18:47:56.326Z",
+  "updatedAt": "2026-10-12T18:48:04.610Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -1276,6 +1276,15 @@
       "verb": "moved",
       "itemType": "image",
       "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mv5luc0v_ss0qc",
+      "ts": "2026-10-12T18:48:00.607Z",
+      "name": "emika",
+      "verb": "restored a previous version of",
+      "itemType": "the board",
+      "itemTitle": "",
       "private": false
     }
   ],
