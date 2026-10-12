@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-12T18:45:29.244Z",
+  "updatedAt": "2026-10-12T18:47:33.086Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -322,6 +322,23 @@
           "createdAt": "2026-10-12T18:32:20.006Z"
         }
       ]
+    },
+    {
+      "id": "item_mv5ltnoj_1v95xeb",
+      "type": "image",
+      "x": 972.7028957588643,
+      "y": -322.14333976039165,
+      "width": 240,
+      "height": 160,
+      "rotation": 0,
+      "zIndex": 16,
+      "locked": false,
+      "parentId": null,
+      "privateNote": "",
+      "src": "",
+      "alt": "",
+      "naturalWidth": 0,
+      "naturalHeight": 0
     }
   ],
   "activity": [
@@ -1187,6 +1204,15 @@
       "verb": "moved",
       "itemType": "text note",
       "itemTitle": "celkove: chcete ist tymto smerom uz nero",
+      "private": false
+    },
+    {
+      "id": "act_mv5ltnoo_bfcag",
+      "ts": "2026-10-12T18:47:29.064Z",
+      "name": "emika",
+      "verb": "added",
+      "itemType": "image",
+      "itemTitle": "image",
       "private": false
     }
   ],
