@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-12T21:51:36.222Z",
+  "updatedAt": "2026-10-12T21:51:45.337Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -1332,8 +1332,8 @@
     {
       "id": "item_mv5sbc3r_tvmevsx",
       "type": "text",
-      "x": -840,
-      "y": -619.3835420177522,
+      "x": 934.978139629553,
+      "y": -497.50166267982354,
       "width": 543.1676595258049,
       "height": 584.0028504602722,
       "rotation": 0,
@@ -2611,6 +2611,24 @@
     {
       "id": "act_mv5secmz_dp4cx",
       "ts": "2026-10-12T21:51:32.220Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "mam kapacitu rad sa budem nejak podielat",
+      "private": false
+    },
+    {
+      "id": "act_mv5seilw_2pr6c",
+      "ts": "2026-10-12T21:51:39.956Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "mam kapacitu rad sa budem nejak podielat",
+      "private": false
+    },
+    {
+      "id": "act_mv5sejo7_cwhn6",
+      "ts": "2026-10-12T21:51:41.335Z",
       "name": "patko",
       "verb": "moved",
       "itemType": "text note",
