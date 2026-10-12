@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-12T18:33:44.860Z",
+  "updatedAt": "2026-10-12T18:35:07.031Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -146,7 +146,15 @@
       "body": "font fakt vyzera jak tie ruzove sladkosti<div>ratolest jako je kul ale tiez neni dobreho pomeru moc vertikal logo zle na prprofil, preciatku...</div><div>tiez v malom nic moc a preto zbytocne ak je mitt</div><div>farebny kontrast...</div><div><br></div>",
       "textAlign": "left",
       "textColor": "#111111",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#ffffff",
+      "comments": [
+        {
+          "id": "comment_mv5ldo1a_2swaoe9",
+          "text": "hej, s tým som tu bojovala aj ja, že je to moc... mayb fajn ako doplnková ikona ale ako logo to má príliš veľa \"doplnkov\" a \"častí\" alebo ako to nazvať (meaning viac vysvetlený pri celkovom feedbacku)",
+          "author": "emika",
+          "createdAt": "2026-10-12T18:35:03.023Z"
+        }
+      ]
     },
     {
       "id": "item_mv5jpbin_b0hasy8",
@@ -1101,6 +1109,15 @@
       "verb": "commented on",
       "itemType": "text note",
       "itemTitle": "toto vyzera jak milka alebo to muller al",
+      "private": false
+    },
+    {
+      "id": "act_mv5ldo1b_i0kx1",
+      "ts": "2026-10-12T18:35:03.023Z",
+      "name": "emika",
+      "verb": "commented on",
+      "itemType": "text note",
+      "itemTitle": "font fakt vyzera jak tie ruzove sladkost",
       "private": false
     }
   ],
