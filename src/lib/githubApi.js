@@ -35,20 +35,11 @@ function friendlyError(status, fallback) {
 async function request(path, { method = 'GET', token, body } = {}) {
   let res;
   try {
-    res = await fetch(`${API_ROOT}${path}`, {
-      method,
-      // GitHub answers authenticated GETs with `cache-control: private, max-age=60`, so the
-      // browser used to replay a stale listing or a stale file sha for a minute: a deleted
-      // board reappeared on refresh and saves failed on a sha that was already outdated.
-      cache: 'no-store',
-      headers: {
-        Accept: 'application/vnd.github+json',
-        Authorization: `Bearer ${token}`,
-        'X-GitHub-Api-Version': '2022-11-28',
-        ...(body ? { 'Content-Type': 'application/json' } : {}),
-      },
-      body: body ? JSON.stringify(body) : undefined,
-    });
+    res = await send(path, method, token, body);
+    // The repository is public, so reading never needs a token. A token that expired or was
+    // revoked would otherwise take the whole site down with it, so a rejected read is retried
+    // without the header. Writes still fail: those genuinely need a working token.
+    if (res.status === 401 && token && method === 'GET') res = await send(path, method, null, body);
   } catch {
     throw new GitHubApiError('Could not reach GitHub. Check your internet connection.', 0);
   }
@@ -60,6 +51,23 @@ async function request(path, { method = 'GET', token, body } = {}) {
   }
   if (res.status === 204) return null;
   return res.json();
+}
+
+function send(path, method, token, body) {
+  return fetch(`${API_ROOT}${path}`, {
+    method,
+    // GitHub answers authenticated GETs with `cache-control: private, max-age=60`, so the
+    // browser used to replay a stale listing or a stale file sha for a minute: a deleted
+    // board reappeared on refresh and saves failed on a sha that was already outdated.
+    cache: 'no-store',
+    headers: {
+      Accept: 'application/vnd.github+json',
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      'X-GitHub-Api-Version': '2022-11-28',
+      ...(body ? { 'Content-Type': 'application/json' } : {}),
+    },
+    body: body ? JSON.stringify(body) : undefined,
+  });
 }
 
 function contentsPath(path) {

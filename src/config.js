@@ -7,4 +7,5 @@ export const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN || '';
 // Secret in the admin invite link (#/admin?key=...). Anyone who opens that link is an admin.
 export const ADMIN_KEY = import.meta.env.VITE_ADMIN_KEY || '';
 
-export const GITHUB_CONFIGURED = Boolean(GITHUB_OWNER && GITHUB_REPO && GITHUB_TOKEN);
+// Reading only needs the public repo; the token is for writing (admin).
+export const GITHUB_CONFIGURED = Boolean(GITHUB_OWNER && GITHUB_REPO);
