@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-12T18:26:14.596Z",
+  "updatedAt": "2026-10-12T18:26:52.328Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -253,16 +253,16 @@
     {
       "id": "item_mv5l297k_lnt1q3g",
       "type": "text",
-      "x": 779.9635776912643,
-      "y": 1149.0859192623236,
-      "width": 240,
-      "height": 160,
+      "x": 309.2145812167788,
+      "y": 1560,
+      "width": 758.7854187832212,
+      "height": 166.89874227105338,
       "rotation": 0,
       "zIndex": 15,
       "locked": false,
       "parentId": null,
       "privateNote": "",
-      "body": "",
+      "body": "<h1>no ai was used in anything</h1><h1>wholeheartedly made by a dumb human</h1>",
       "textAlign": "left",
       "textColor": "#111111",
       "backgroundColor": "#ffffff"
@@ -924,6 +924,96 @@
       "verb": "added",
       "itemType": "text note",
       "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5l2tu4_pp05c",
+      "ts": "2026-10-12T18:26:37.324Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5l2v1a_w2mu8",
+      "ts": "2026-10-12T18:26:38.878Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5l2wnk_wlnr3",
+      "ts": "2026-10-12T18:26:40.976Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "no ai was used in anything wholeheartedl",
+      "private": false
+    },
+    {
+      "id": "act_mv5l2xj1_co2wq",
+      "ts": "2026-10-12T18:26:42.109Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "no ai was used in anything wholeheartedl",
+      "private": false
+    },
+    {
+      "id": "act_mv5l2y0m_ktv9x",
+      "ts": "2026-10-12T18:26:42.742Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "no ai was used in anything wholeheartedl",
+      "private": false
+    },
+    {
+      "id": "act_mv5l2ymv_06lrg",
+      "ts": "2026-10-12T18:26:43.543Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "no ai was used in anything wholeheartedl",
+      "private": false
+    },
+    {
+      "id": "act_mv5l2zmi_k7ol4",
+      "ts": "2026-10-12T18:26:44.826Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "no ai was used in anything wholeheartedl",
+      "private": false
+    },
+    {
+      "id": "act_mv5l30we_k6aec",
+      "ts": "2026-10-12T18:26:46.478Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "no ai was used in anything wholeheartedl",
+      "private": false
+    },
+    {
+      "id": "act_mv5l31k0_b70zn",
+      "ts": "2026-10-12T18:26:47.328Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "no ai was used in anything wholeheartedl",
+      "private": false
+    },
+    {
+      "id": "act_mv5l32bq_zk4xz",
+      "ts": "2026-10-12T18:26:48.326Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "no ai was used in anything wholeheartedl",
       "private": false
     }
   ],
