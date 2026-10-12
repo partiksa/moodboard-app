@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-12T21:54:34.278Z",
+  "updatedAt": "2026-10-12T21:55:02.184Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -1319,6 +1319,25 @@
       "textAlign": "left",
       "textColor": "#111111",
       "backgroundColor": "#ffffff"
+    },
+    {
+      "id": "item_mv5siq1w_a98btur",
+      "type": "url",
+      "x": 1536,
+      "y": -560,
+      "width": 240,
+      "height": 160,
+      "rotation": 0,
+      "zIndex": 23,
+      "locked": false,
+      "parentId": null,
+      "privateNote": "",
+      "url": "https://www.are.na/block/31646376",
+      "title": "",
+      "description": "",
+      "image": "",
+      "fetchedAt": "2026-10-12T21:54:56.664Z",
+      "failed": true
     }
   ],
   "activity": [
@@ -2706,6 +2725,33 @@
       "verb": "deleted",
       "itemType": "link card",
       "itemTitle": "https://d2w9rnfcy7mm78.cloudfront.net/31646376/original_958141d36c29192441f5cbbfea4e4dfe.gif?1729681510?bc=0",
+      "private": false
+    },
+    {
+      "id": "act_mv5siq20_s6nrz",
+      "ts": "2026-10-12T21:54:56.232Z",
+      "name": "patko",
+      "verb": "added",
+      "itemType": "link card",
+      "itemTitle": "https://www.are.na/block/31646376",
+      "private": false
+    },
+    {
+      "id": "act_mv5siqe2_lmeea",
+      "ts": "2026-10-12T21:54:56.666Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "link card",
+      "itemTitle": "https://www.are.na/block/31646376",
+      "private": false
+    },
+    {
+      "id": "act_mv5sirhg_qqe4g",
+      "ts": "2026-10-12T21:54:58.084Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "link card",
+      "itemTitle": "https://www.are.na/block/31646376",
       "private": false
     }
   ],
