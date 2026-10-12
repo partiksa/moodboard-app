@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-12T18:49:10.499Z",
+  "updatedAt": "2026-10-12T18:49:37.390Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -1298,8 +1298,8 @@
     {
       "id": "item_mv5lvem9_qbadquk",
       "type": "image",
-      "x": 565.5,
-      "y": -744,
+      "x": 577.5,
+      "y": -768,
       "width": 335.7682786882034,
       "height": 234.20873760349988,
       "rotation": 0,
@@ -1315,16 +1315,16 @@
     {
       "id": "item_mv5lvquo_xwkux82",
       "type": "text",
-      "x": 972.7028957588643,
-      "y": -322.14333976039165,
+      "x": 577.5,
+      "y": -801.2692635408309,
       "width": 240,
-      "height": 160,
+      "height": 33.269263540830934,
       "rotation": 0,
       "zIndex": 21,
       "locked": false,
       "parentId": null,
       "privateNote": "",
-      "body": "",
+      "body": "z tohto som vychádzala...",
       "textAlign": "left",
       "textColor": "#111111",
       "backgroundColor": "#ffffff"
@@ -2436,6 +2436,51 @@
       "verb": "added",
       "itemType": "text note",
       "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5lvzij_l8955",
+      "ts": "2026-10-12T18:49:17.707Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5lw0jn_y6m83",
+      "ts": "2026-10-12T18:49:19.043Z",
+      "name": "emika",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5lw2wb_78c50",
+      "ts": "2026-10-12T18:49:22.091Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "z tohto som vychádzala...",
+      "private": false
+    },
+    {
+      "id": "act_mv5lw7sp_ry0h2",
+      "ts": "2026-10-12T18:49:28.441Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "image",
+      "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mv5lwbm5_7dko5",
+      "ts": "2026-10-12T18:49:33.389Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "image",
+      "itemTitle": "image",
       "private": false
     }
   ],
