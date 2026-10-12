@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-12T21:46:46.342Z",
+  "updatedAt": "2026-10-12T21:46:57.476Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -108,8 +108,8 @@
     {
       "id": "item_mv5jjov9_eycwjgp",
       "type": "text",
-      "x": -73.80747032827242,
-      "y": 834.3613742111227,
+      "x": 216,
+      "y": 536.0000000000001,
       "width": 241.80747032827242,
       "height": 251.27725157775456,
       "rotation": 0,
@@ -158,8 +158,8 @@
     {
       "id": "item_mv5jmcgl_ioi4j9u",
       "type": "text",
-      "x": 459,
-      "y": 536,
+      "x": 0,
+      "y": 897.2227484222453,
       "width": 237,
       "height": 251.27725157775456,
       "rotation": 0,
@@ -2499,6 +2499,24 @@
       "verb": "moved",
       "itemType": "text note",
       "itemTitle": "za mna fajne sigma rci co vyzera super v",
+      "private": false
+    },
+    {
+      "id": "act_mv5s8btk_fnqiy",
+      "ts": "2026-10-12T21:46:51.224Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "za mna fajne sigma rci co vyzera super v",
+      "private": false
+    },
+    {
+      "id": "act_mv5s8dk2_x2j15",
+      "ts": "2026-10-12T21:46:53.474Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "font fakt vyzera jak tie ruzove sladkost",
       "private": false
     }
   ],
