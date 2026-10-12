@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-12T18:36:30.441Z",
+  "updatedAt": "2026-10-12T18:36:36.858Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -83,8 +83,8 @@
     {
       "id": "item_mv5jb22c_sccw61z",
       "type": "text",
-      "x": 61.30358315647976,
-      "y": -726.914663914337,
+      "x": -38.40373516413618,
+      "y": -894.914663914337,
       "width": 543.7134094864446,
       "height": 846.914663914337,
       "rotation": 0,
@@ -1152,6 +1152,15 @@
       "verb": "commented on",
       "itemType": "text note",
       "itemTitle": "gluten sa mi nepaci, mozno aj pre to ze ",
+      "private": false
+    },
+    {
+      "id": "act_mv5lflcp_oxqy5",
+      "ts": "2026-10-12T18:36:32.857Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "celkove: chcete ist tymto smerom uz nero",
       "private": false
     }
   ],
