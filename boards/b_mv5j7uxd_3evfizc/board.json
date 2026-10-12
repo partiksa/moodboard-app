@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-12T21:46:40.824Z",
+  "updatedAt": "2026-10-12T21:46:46.342Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -108,8 +108,8 @@
     {
       "id": "item_mv5jjov9_eycwjgp",
       "type": "text",
-      "x": 202.5,
-      "y": 536,
+      "x": -73.80747032827242,
+      "y": 834.3613742111227,
       "width": 241.80747032827242,
       "height": 251.27725157775456,
       "rotation": 0,
@@ -2486,6 +2486,15 @@
     {
       "id": "act_mv5s80pk_4x7x0",
       "ts": "2026-10-12T21:46:36.824Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "za mna fajne sigma rci co vyzera super v",
+      "private": false
+    },
+    {
+      "id": "act_mv5s84yt_x5ylq",
+      "ts": "2026-10-12T21:46:42.341Z",
       "name": "patko",
       "verb": "moved",
       "itemType": "text note",
