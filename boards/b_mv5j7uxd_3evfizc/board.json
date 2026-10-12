@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-12T21:47:10.706Z",
+  "updatedAt": "2026-10-12T21:48:50.857Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -58,8 +58,8 @@
     {
       "id": "item_mv5jakcf_q7rkkh8",
       "type": "text",
-      "x": 696,
-      "y": 292.9534907388209,
+      "x": 697.5,
+      "y": 176.36179455673533,
       "width": 237.47813962955286,
       "height": 223.04650926117904,
       "rotation": 0,
@@ -2526,6 +2526,15 @@
       "verb": "moved",
       "itemType": "text note",
       "itemTitle": "font fakt vyzera jak tie ruzove sladkost",
+      "private": false
+    },
+    {
+      "id": "act_mv5sat1i_nioz1",
+      "ts": "2026-10-12T21:48:46.854Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "toto vyzera jak milka alebo to muller al",
       "private": false
     }
   ],
