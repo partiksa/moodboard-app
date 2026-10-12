@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-12T18:25:54.723Z",
+  "updatedAt": "2026-10-12T18:26:14.596Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -236,12 +236,29 @@
     {
       "id": "item_mv5l1tv8_w97piyr",
       "type": "text",
+      "x": 743.0301274834143,
+      "y": 1068.5,
+      "width": 240,
+      "height": 160,
+      "rotation": 0,
+      "zIndex": 14,
+      "locked": false,
+      "parentId": null,
+      "privateNote": "",
+      "body": "nieco co ma trz napadlo&nbsp;<div>keep in mind 20 min mojho casu hej nic finished iba napd</div>",
+      "textAlign": "left",
+      "textColor": "#111111",
+      "backgroundColor": "#ffffff"
+    },
+    {
+      "id": "item_mv5l297k_lnt1q3g",
+      "type": "text",
       "x": 779.9635776912643,
       "y": 1149.0859192623236,
       "width": 240,
       "height": 160,
       "rotation": 0,
-      "zIndex": 14,
+      "zIndex": 15,
       "locked": false,
       "parentId": null,
       "privateNote": "",
@@ -876,6 +893,33 @@
     {
       "id": "act_mv5l1tvc_mxacs",
       "ts": "2026-10-12T18:25:50.712Z",
+      "name": "patko",
+      "verb": "added",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5l27pg_f982s",
+      "ts": "2026-10-12T18:26:08.644Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv5l28i3_khi6b",
+      "ts": "2026-10-12T18:26:09.675Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "nieco co ma trz napadlo&nbsp; keep in mi",
+      "private": false
+    },
+    {
+      "id": "act_mv5l297k_wexq1",
+      "ts": "2026-10-12T18:26:10.592Z",
       "name": "patko",
       "verb": "added",
       "itemType": "text note",
