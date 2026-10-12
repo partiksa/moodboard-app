@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-12T18:35:51.159Z",
+  "updatedAt": "2026-10-12T18:36:30.441Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -137,7 +137,15 @@
       "body": "gluten sa mi nepaci, mozno aj pre to ze je zle spraveny co sa tyka tvaru m a aj spacingu a kernigu tt it...<div>farby jako kul faerbny contrast to urcite nesplna ale neva no</div><div>list nechapem nerozumiem a tiez jak som hvooril</div>",
       "textAlign": "left",
       "textColor": "#111111",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#ffffff",
+      "comments": [
+        {
+          "id": "comment_mv5lfgef_ug6fwia",
+          "text": "mne sa ten font extrém páči ale asi aj preto, že sa v typografii vôbec nevyznám :D takže tam nevidím toto všetko čo píšeš ale chápem...",
+          "author": "emika",
+          "createdAt": "2026-10-12T18:36:26.439Z"
+        }
+      ]
     },
     {
       "id": "item_mv5jmcgl_ioi4j9u",
@@ -1135,6 +1143,15 @@
       "verb": "commented on",
       "itemType": "text note",
       "itemTitle": "za mna fajne sigma rci co vyzera super v",
+      "private": false
+    },
+    {
+      "id": "act_mv5lfgef_fetdd",
+      "ts": "2026-10-12T18:36:26.439Z",
+      "name": "emika",
+      "verb": "commented on",
+      "itemType": "text note",
+      "itemTitle": "gluten sa mi nepaci, mozno aj pre to ze ",
       "private": false
     }
   ],
