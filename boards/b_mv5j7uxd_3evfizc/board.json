@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-12T18:47:44.228Z",
+  "updatedAt": "2026-10-12T18:47:56.326Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -327,9 +327,9 @@
       "id": "item_mv5ltnoj_1v95xeb",
       "type": "image",
       "x": 600,
-      "y": -266.53637790030234,
-      "width": 543.8045668504535,
-      "height": 362.53637790030234,
+      "y": -157.26257089540886,
+      "width": 243.0361056648848,
+      "height": 243.7637586758575,
       "rotation": 0,
       "zIndex": 16,
       "locked": false,
@@ -1236,6 +1236,42 @@
     {
       "id": "act_mv5ltwao_v2gxj",
       "ts": "2026-10-12T18:47:40.224Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "image",
+      "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mv5lu06j_anv4w",
+      "ts": "2026-10-12T18:47:45.259Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "image",
+      "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mv5lu13c_ri1bh",
+      "ts": "2026-10-12T18:47:46.440Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "image",
+      "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mv5lu2ur_io5co",
+      "ts": "2026-10-12T18:47:48.723Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "image",
+      "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mv5lu5ms_6jswf",
+      "ts": "2026-10-12T18:47:52.324Z",
       "name": "emika",
       "verb": "moved",
       "itemType": "image",
