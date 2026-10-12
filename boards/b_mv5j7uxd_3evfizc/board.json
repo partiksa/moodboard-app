@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-12T18:32:54.475Z",
+  "updatedAt": "2026-10-12T18:33:38.409Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -70,7 +70,15 @@
       "body": "toto vyzera jak milka alebo to muller alebo jak sa to vola nvm nehodi sa mi to",
       "textAlign": "left",
       "textColor": "#111111",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#ffffff",
+      "comments": [
+        {
+          "id": "comment_mv5lbrnp_s9frra5",
+          "text": "true, mne sa páčil font, tak som to chela skúsiť... tiež mi to dačo pripomínalo ale nevedela som si to zaradiť",
+          "author": "emika",
+          "createdAt": "2026-10-12T18:33:34.406Z"
+        }
+      ]
     },
     {
       "id": "item_mv5jb22c_sccw61z",
@@ -1084,6 +1092,15 @@
       "verb": "commented on",
       "itemType": "image",
       "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mv5lbrnq_6quaw",
+      "ts": "2026-10-12T18:33:34.406Z",
+      "name": "emika",
+      "verb": "commented on",
+      "itemType": "text note",
+      "itemTitle": "toto vyzera jak milka alebo to muller al",
       "private": false
     }
   ],
