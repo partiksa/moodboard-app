@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-12T21:53:06.974Z",
+  "updatedAt": "2026-10-12T21:54:26.220Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -2643,6 +2643,33 @@
       "verb": "edited",
       "itemType": "text note",
       "itemTitle": "mam kapacitu rad sa budem nejak podielat",
+      "private": false
+    },
+    {
+      "id": "act_mv5shyc2_f5a7w",
+      "ts": "2026-10-12T21:54:20.306Z",
+      "name": "patko",
+      "verb": "added",
+      "itemType": "image",
+      "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mv5shzhn_zhmtc",
+      "ts": "2026-10-12T21:54:21.803Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "image",
+      "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mv5shzqh_a5spl",
+      "ts": "2026-10-12T21:54:22.121Z",
+      "name": "patko",
+      "verb": "deleted",
+      "itemType": "image",
+      "itemTitle": "image",
       "private": false
     }
   ],
