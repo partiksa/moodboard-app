@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-12T18:36:36.858Z",
+  "updatedAt": "2026-10-12T18:45:17.678Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -95,7 +95,15 @@
       "body": "celkove:<div>chcete ist tymto smerom</div><div>uz nerobite skolku ale robite vzdelavaci insitut pre dospleych ludi podla mna podstatnejsie vyzerat co najrespektovanejsie a zte viete co a jako nie milo, zlato, farebne a detsky aj ked chapem ale za mna naco</div><div><br></div><div>tiez nerozumeim zaidnej z ikoniek teda ako koren s listom okej asi</div><div>kamene neviem uplne</div><div>a list uz vobec jako asi vsetko sa snazi hrat na nejaku ratolest a rodinu nerozumiem tomu moc</div><div>otazka: treba ikonku? mate genialy nazov mitt vela fontov ma ligaturu na tt a obcas aj it ked tak sa da dorobit lahko</div><div>kedze kratky nazov ikona netreba zybtocne za mna</div><div><br></div><div>mitt bude vyzerat profi</div><div><br></div><div>teraz ak chcete hrave tak by som kludne pouzil ten stredy font spravil igaturu z itt kludne aj tu bodku nechajte mozte ju pouzivat jak element...</div><div><br></div><div>poppins je vsade ako nevadi mi chapem jeho vyber pre oble tvary pismen a ajko nic nim nepokazite ale nie je na nic obzvlast dobry mozno porozmyslat</div><div><br></div><div>farby: vsetko velmi silno farebne kriedovo farebne</div><div>cesta ktorou chcete ist? nemam s tym problem ale jako naco toot je oficialna vec nie skolka, pr asi tiez nebude neviem ako extremne a keby hladam miesto kde sa chcem nieco naucit a dostat odtial nejaky certifikat nechem aby certifikat bol farebny ale aby vyzeral respektovatelne nie ako vysvedcenie zo skolky, to neni hate len moje rozmyslanie</div><div>ale jako nemusi to byt zle</div><div><br></div><div>tiez na akzdom z navrhov chyba mala verzia ktora bude pouzivana bez maleho napisu kedze ten nenni citatelny velmi rychlo aj kvoli tomu ze je v light alebo regular ale aj preto ze je dlhy... co neni problem len sa zamysliet maybe aj nad tym</div><div>ale sak co ludia pochopia ja nvm pre co stoji MIT aleb IBM ale viem co robia takze poho</div><div>len nech ratate ze prevazme to budete pouzivat bez toho pravdepodone</div><div><br></div><div><br></div>",
       "textAlign": "left",
       "textColor": "#111111",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#ffffff",
+      "comments": [
+        {
+          "id": "comment_mv5lqrr9_6p08vdw",
+          "text": "nedala som ti príbeh za tým, iba som ti poslala hotový produkt, takže chápem.... tak ešteter raz teraz :D \n\npôvodne som chcela ísť do zelenej a žltej v takom viac \"profi\" štýle... zvšoyk teamu sa dosť chytil na myšlienku rastu musíme rásť (cháp vzdelávať sa), aby sme mohli pomáhať rásť iným (deťom, rodičom, našim teamom). čiže ja preto zelená\n\nkeď som na poslednom meetingu ukazovala nejaké farebné kombinácie, zhodli sa všetci na takej dosť farebnej, takže aj z toho som vychádzala... no zároveň si nemyslím, že tie farby z toho robia niečo menej profesionálne alebo odveci... ale chápem... \n\nčo sa tých symbolov/loga alebo ako ot nazvať týka - okrem kameňov (čo je inspo z jednej detskej hračky) sú to všetko montessori materiály (pridám foto) - bavili sme sa o tom, že by sme ich využili ako logo a pridali k tomu len font... neviem... súhlasím, že MITT má potenciál byť cool logo samo o sebe, no ja nad tým neviem tak rozmýšľať ako ty... mne také veci nikdy nenapadnú, čiže som sa ani extra nesnažila... ale to čo si spracoval (to panáčikové) je namakané.... \na okrem toho sa na tomzhodli ostatní že by prijali aj nejaký znak/symbol k mitt.... \n\ntoto všetko sú al eúplne prvé na'vrhy, ktorým som sa iba dnes venovala, chcem to skúsiť znova zajtra, kým mám na to čas a kapacitu... len som chcela počuť aj odborný feedback a nie len \"toto je cool\", \"pekné farby\", \"neviem si vybrať\" a pod... takže ďakujem (a som veľmi otvorená spolupráci ak by máš kapacitu :))",
+          "author": "emika",
+          "createdAt": "2026-10-12T18:45:14.375Z"
+        }
+      ]
     },
     {
       "id": "item_mv5jjov9_eycwjgp",
@@ -1159,6 +1167,15 @@
       "ts": "2026-10-12T18:36:32.857Z",
       "name": "emika",
       "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "celkove: chcete ist tymto smerom uz nero",
+      "private": false
+    },
+    {
+      "id": "act_mv5lqrrc_y4q5d",
+      "ts": "2026-10-12T18:45:14.376Z",
+      "name": "emika",
+      "verb": "commented on",
       "itemType": "text note",
       "itemTitle": "celkove: chcete ist tymto smerom uz nero",
       "private": false
