@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-12T17:39:50.992Z",
+  "updatedAt": "2026-10-12T17:40:38.622Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -75,16 +75,16 @@
     {
       "id": "item_mv5jb22c_sccw61z",
       "type": "text",
-      "x": 57.64376625773292,
-      "y": -320.5831894004075,
-      "width": 517.9200337040334,
-      "height": 440.5831894004075,
+      "x": 61.30358315647976,
+      "y": -499.49518872069325,
+      "width": 522.3928336870405,
+      "height": 619.4951887206932,
       "rotation": 0,
       "zIndex": 5,
       "locked": false,
       "parentId": null,
       "privateNote": "",
-      "body": "celkove:<div>chcete ist tymto smerom</div><div>uz nerobite skolku ale robite vzdelavaci insitut pre dospleych ludi podla mna podstatnejsie vyzerat co najrespektovanejsie a zte viete co a jako nie milo, zlato, farebne a detsky aj ked chapem ale za mna naco</div>",
+      "body": "celkove:<div>chcete ist tymto smerom</div><div>uz nerobite skolku ale robite vzdelavaci insitut pre dospleych ludi podla mna podstatnejsie vyzerat co najrespektovanejsie a zte viete co a jako nie milo, zlato, farebne a detsky aj ked chapem ale za mna naco</div><div><br></div><div>tiez nerozumeim zaidnej z ikoniek teda ako koren s listom okej asi</div><div>kamene neviem uplne</div><div>a list uz vobec jako asi vsetko sa snazi hrat na nejaku ratolest a rodinu nerozumiem tomu moc</div><div>otazka: treba ikonku? mate genialy nazov mitt vela fontov ma ligaturu na tt a obcas aj it ked tak sa da dorobit lahko</div><div>kedze kratky nazov ikona netreba zybtocne za mna</div><div><br></div><div>mitt bude vyzerat profi</div><div><br></div><div>teraz ak chcete hrave tak by som kludne pouzil ten stredy font spravil igaturu z itt kludne aj tu bodku nechajte mozte ju pouzivat jak element...</div><div><br></div>",
       "textAlign": "left",
       "textColor": "#111111",
       "backgroundColor": "#ffffff"
@@ -328,6 +328,51 @@
     {
       "id": "act_mv5jelda_vge66",
       "ts": "2026-10-12T17:39:46.990Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "celkove: chcete ist tymto smerom uz nero",
+      "private": false
+    },
+    {
+      "id": "act_mv5jfgun_ls8mk",
+      "ts": "2026-10-12T17:40:27.791Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "celkove: chcete ist tymto smerom uz nero",
+      "private": false
+    },
+    {
+      "id": "act_mv5jfiaf_mtjf4",
+      "ts": "2026-10-12T17:40:29.655Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "celkove: chcete ist tymto smerom uz nero",
+      "private": false
+    },
+    {
+      "id": "act_mv5jfjlm_aga6k",
+      "ts": "2026-10-12T17:40:31.354Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "celkove: chcete ist tymto smerom uz nero",
+      "private": false
+    },
+    {
+      "id": "act_mv5jfl3b_qve9k",
+      "ts": "2026-10-12T17:40:33.287Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "celkove: chcete ist tymto smerom uz nero",
+      "private": false
+    },
+    {
+      "id": "act_mv5jfm4c_6amfd",
+      "ts": "2026-10-12T17:40:34.621Z",
       "name": "patko",
       "verb": "moved",
       "itemType": "text note",
