@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-13T09:51:23.169Z",
+  "updatedAt": "2026-10-13T10:13:05.895Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -1453,6 +1453,23 @@
       "parentId": null,
       "privateNote": "",
       "body": "bodky co maju hracky pouzivat cez fokty a invert<div>bodky schvalne zvacsime..</div>",
+      "textAlign": "left",
+      "textColor": "#111111",
+      "backgroundColor": "#ffffff"
+    },
+    {
+      "id": "item_mv6ivx37_05f94eb",
+      "type": "text",
+      "x": 1055.2481234395466,
+      "y": -317.02444746835795,
+      "width": 240,
+      "height": 160,
+      "rotation": 0,
+      "zIndex": 30,
+      "locked": false,
+      "parentId": null,
+      "privateNote": "",
+      "body": "",
       "textAlign": "left",
       "textColor": "#111111",
       "backgroundColor": "#ffffff"
@@ -3176,6 +3193,15 @@
       "verb": "moved",
       "itemType": "image",
       "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mv6ivx37_9to4j",
+      "ts": "2026-10-13T10:13:01.891Z",
+      "name": "emika",
+      "verb": "added",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
       "private": false
     }
   ],
