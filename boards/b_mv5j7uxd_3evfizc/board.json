@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-13T10:17:54.177Z",
+  "updatedAt": "2026-10-13T10:18:01.745Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -1301,7 +1301,7 @@
       "body": "z tohto som vychádzala...",
       "textAlign": "left",
       "textColor": "#111111",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#fff995"
     },
     {
       "id": "item_mv5sbc3r_tvmevsx",
@@ -4076,6 +4076,24 @@
       "ts": "2026-10-13T10:17:50.176Z",
       "name": "emika",
       "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "z tohto som vychádzala...",
+      "private": false
+    },
+    {
+      "id": "act_mv6j28va_vph82",
+      "ts": "2026-10-13T10:17:57.094Z",
+      "name": "emika",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "z tohto som vychádzala...",
+      "private": false
+    },
+    {
+      "id": "act_mv6j29dc_08ge2",
+      "ts": "2026-10-13T10:17:57.744Z",
+      "name": "emika",
+      "verb": "edited",
       "itemType": "text note",
       "itemTitle": "z tohto som vychádzala...",
       "private": false
