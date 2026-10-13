@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-13T10:17:37.844Z",
+  "updatedAt": "2026-10-13T10:17:54.177Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -4069,6 +4069,15 @@
       "verb": "moved",
       "itemType": "text note",
       "itemTitle": "súhlasím... aj ja sa to snažím niekde ná",
+      "private": false
+    },
+    {
+      "id": "act_mv6j23j4_8r1oz",
+      "ts": "2026-10-13T10:17:50.176Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "z tohto som vychádzala...",
       "private": false
     }
   ],
