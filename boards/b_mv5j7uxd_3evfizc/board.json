@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-13T10:28:52.697Z",
+  "updatedAt": "2026-10-13T10:39:00.451Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -2703,18 +2703,28 @@
       "alt": "",
       "naturalWidth": 524,
       "naturalHeight": 526
+    },
+    {
+      "id": "item_mv6jt8kz_3i1md6r",
+      "type": "url",
+      "x": 1083.321251443331,
+      "y": -468.7322891195042,
+      "width": 240,
+      "height": 160,
+      "rotation": 0,
+      "zIndex": 44,
+      "locked": false,
+      "parentId": null,
+      "privateNote": "",
+      "url": "",
+      "title": "",
+      "description": "",
+      "image": "",
+      "fetchedAt": null,
+      "failed": false
     }
   ],
   "activity": [
-    {
-      "id": "act_mv5ja4y5_q7xix",
-      "ts": "2026-10-12T17:36:19.085Z",
-      "name": "patko",
-      "verb": "added",
-      "itemType": "image",
-      "itemTitle": "image",
-      "private": false
-    },
     {
       "id": "act_mv5ja62j_xox76",
       "ts": "2026-10-12T17:36:20.539Z",
@@ -5404,6 +5414,15 @@
       "verb": "moved",
       "itemType": "12 items",
       "itemTitle": "",
+      "private": false
+    },
+    {
+      "id": "act_mv6jt8l3_kjq0w",
+      "ts": "2026-10-13T10:38:56.439Z",
+      "name": "emika",
+      "verb": "added",
+      "itemType": "link card",
+      "itemTitle": "link",
       "private": false
     }
   ],
