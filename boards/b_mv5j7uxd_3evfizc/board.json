@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-13T05:56:53.272Z",
+  "updatedAt": "2026-10-13T05:57:12.227Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -1266,8 +1266,8 @@
       "type": "image",
       "x": 577.5,
       "y": -768,
-      "width": 335.7682786882034,
-      "height": 234.20873760349988,
+      "width": 40,
+      "height": 30,
       "rotation": 0,
       "zIndex": 20,
       "locked": false,
@@ -3158,6 +3158,15 @@
       "verb": "moved",
       "itemType": "text note",
       "itemTitle": "bodky co maju hracky pouzivat cez fokty ",
+      "private": false
+    },
+    {
+      "id": "act_mv69qu4h_gudhj",
+      "ts": "2026-10-13T05:57:08.225Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "image",
+      "itemTitle": "image",
       "private": false
     }
   ],
