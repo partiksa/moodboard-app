@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-13T10:19:24.363Z",
+  "updatedAt": "2026-10-13T10:19:36.374Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -2012,7 +2012,7 @@
       "id": "item_mv6j2pgy_il1owe7",
       "type": "text",
       "x": 1057.9164507543378,
-      "y": -30.952735370826275,
+      "y": -34.7895749939255,
       "width": 275.0245624942304,
       "height": 163.97420061974168,
       "rotation": 0,
@@ -2037,12 +2037,12 @@
       "locked": false,
       "parentId": null,
       "privateNote": "",
-      "url": "",
+      "url": "https://sk.pinterest.com/pin/8585055536791999/",
       "title": "",
       "description": "",
       "image": "",
-      "fetchedAt": null,
-      "failed": false
+      "fetchedAt": "2026-10-13T10:19:25.710Z",
+      "failed": true
     }
   ],
   "activity": [
@@ -4204,6 +4204,60 @@
       "verb": "added",
       "itemType": "link card",
       "itemTitle": "link",
+      "private": false
+    },
+    {
+      "id": "act_mv6j44z8_pzdbn",
+      "ts": "2026-10-13T10:19:25.364Z",
+      "name": "emika",
+      "verb": "edited",
+      "itemType": "link card",
+      "itemTitle": "link",
+      "private": false
+    },
+    {
+      "id": "act_mv6j457j_ii2jr",
+      "ts": "2026-10-13T10:19:25.663Z",
+      "name": "emika",
+      "verb": "edited",
+      "itemType": "link card",
+      "itemTitle": "https://sk.pinterest.com/pin/8585055536791999/",
+      "private": false
+    },
+    {
+      "id": "act_mv6j458v_vmeec",
+      "ts": "2026-10-13T10:19:25.711Z",
+      "name": "emika",
+      "verb": "edited",
+      "itemType": "link card",
+      "itemTitle": "https://sk.pinterest.com/pin/8585055536791999/",
+      "private": false
+    },
+    {
+      "id": "act_mv6j4649_3y8d2",
+      "ts": "2026-10-13T10:19:26.841Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "toto sa mi tiež dosť páči ako nápad, ja ",
+      "private": false
+    },
+    {
+      "id": "act_mv6j47yh_p60ov",
+      "ts": "2026-10-13T10:19:29.225Z",
+      "name": "emika",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "toto sa mi tiež dosť páči ako nápad, ja ",
+      "private": false
+    },
+    {
+      "id": "act_mv6j4adx_bq0vy",
+      "ts": "2026-10-13T10:19:32.373Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "toto sa mi tiež dosť páči ako nápad, ja ",
       "private": false
     }
   ],
