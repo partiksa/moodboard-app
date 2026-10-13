@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-13T10:39:00.451Z",
+  "updatedAt": "2026-10-13T10:39:12.327Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -2707,78 +2707,24 @@
     {
       "id": "item_mv6jt8kz_3i1md6r",
       "type": "url",
-      "x": 1083.321251443331,
-      "y": -468.7322891195042,
-      "width": 240,
-      "height": 160,
+      "x": 1446.5635154715212,
+      "y": -744.8609720113,
+      "width": 63.16456736767327,
+      "height": 48.860972011299964,
       "rotation": 0,
       "zIndex": 44,
       "locked": false,
       "parentId": null,
       "privateNote": "",
-      "url": "",
+      "url": "https://pin.it/1oA0HuF8o",
       "title": "",
       "description": "",
       "image": "",
-      "fetchedAt": null,
-      "failed": false
+      "fetchedAt": "2026-10-13T10:39:01.141Z",
+      "failed": true
     }
   ],
   "activity": [
-    {
-      "id": "act_mv5ja62j_xox76",
-      "ts": "2026-10-12T17:36:20.539Z",
-      "name": "patko",
-      "verb": "moved",
-      "itemType": "image",
-      "itemTitle": "image",
-      "private": false
-    },
-    {
-      "id": "act_mv5ja83i_w1hsi",
-      "ts": "2026-10-12T17:36:23.166Z",
-      "name": "patko",
-      "verb": "added",
-      "itemType": "image",
-      "itemTitle": "image",
-      "private": false
-    },
-    {
-      "id": "act_mv5jaa7c_wl91u",
-      "ts": "2026-10-12T17:36:25.896Z",
-      "name": "patko",
-      "verb": "moved",
-      "itemType": "image",
-      "itemTitle": "image",
-      "private": false
-    },
-    {
-      "id": "act_mv5jakcg_jsuc9",
-      "ts": "2026-10-12T17:36:39.040Z",
-      "name": "patko",
-      "verb": "added",
-      "itemType": "text note",
-      "itemTitle": "untitled note",
-      "private": false
-    },
-    {
-      "id": "act_mv5jatta_8tas0",
-      "ts": "2026-10-12T17:36:51.310Z",
-      "name": "patko",
-      "verb": "edited",
-      "itemType": "text note",
-      "itemTitle": "untitled note",
-      "private": false
-    },
-    {
-      "id": "act_mv5jav8k_uvdtz",
-      "ts": "2026-10-12T17:36:53.156Z",
-      "name": "patko",
-      "verb": "moved",
-      "itemType": "text note",
-      "itemTitle": "toto vyzera jak milka alebo to muller al",
-      "private": false
-    },
     {
       "id": "act_mv5jax38_02bxr",
       "ts": "2026-10-12T17:36:55.556Z",
@@ -5423,6 +5369,60 @@
       "verb": "added",
       "itemType": "link card",
       "itemTitle": "link",
+      "private": false
+    },
+    {
+      "id": "act_mv6jtbz6_312sl",
+      "ts": "2026-10-13T10:39:00.834Z",
+      "name": "emika",
+      "verb": "edited",
+      "itemType": "link card",
+      "itemTitle": "link",
+      "private": false
+    },
+    {
+      "id": "act_mv6jtc4q_kag65",
+      "ts": "2026-10-13T10:39:01.034Z",
+      "name": "emika",
+      "verb": "edited",
+      "itemType": "link card",
+      "itemTitle": "https://pin.it/1oA0HuF8o",
+      "private": false
+    },
+    {
+      "id": "act_mv6jtc7q_p8ncd",
+      "ts": "2026-10-13T10:39:01.142Z",
+      "name": "emika",
+      "verb": "edited",
+      "itemType": "link card",
+      "itemTitle": "https://pin.it/1oA0HuF8o",
+      "private": false
+    },
+    {
+      "id": "act_mv6jteae_hq4wj",
+      "ts": "2026-10-13T10:39:03.830Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "link card",
+      "itemTitle": "https://pin.it/1oA0HuF8o",
+      "private": false
+    },
+    {
+      "id": "act_mv6jtfxm_yndfn",
+      "ts": "2026-10-13T10:39:05.962Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "link card",
+      "itemTitle": "https://pin.it/1oA0HuF8o",
+      "private": false
+    },
+    {
+      "id": "act_mv6jthra_76w80",
+      "ts": "2026-10-13T10:39:08.326Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "link card",
+      "itemTitle": "https://pin.it/1oA0HuF8o",
       "private": false
     }
   ],
