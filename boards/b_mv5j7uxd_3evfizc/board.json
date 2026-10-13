@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-13T10:16:51.675Z",
+  "updatedAt": "2026-10-13T10:17:06.689Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -1460,7 +1460,7 @@
     {
       "id": "item_mv6ivx37_05f94eb",
       "type": "text",
-      "x": 1152,
+      "x": 1146.4858188110043,
       "y": -497.50166267982354,
       "width": 240,
       "height": 63.10198643520101,
@@ -1494,8 +1494,8 @@
     {
       "id": "item_mv6izbdv_6d8wpgb",
       "type": "drawing",
-      "x": 1057.9164507543376,
-      "y": -473.29344101919,
+      "x": 1057.9164507543378,
+      "y": -470.17036353002595,
       "width": 417.13873611333315,
       "height": 241.88078853610048,
       "rotation": 0,
@@ -1990,6 +1990,23 @@
       ],
       "localWidth": 116.22970990018757,
       "localHeight": 89.52824143957372
+    },
+    {
+      "id": "item_mv6j124p_qomdr3k",
+      "type": "text",
+      "x": 1170.4858188110043,
+      "y": -473.50166267982354,
+      "width": 240,
+      "height": 63.10198643520101,
+      "rotation": 0,
+      "zIndex": 34,
+      "locked": false,
+      "parentId": null,
+      "privateNote": "",
+      "body": "super, ďakujem veľmi... budem ti veeeľmi vďačná za pomoc",
+      "textAlign": "left",
+      "textColor": "#111111",
+      "backgroundColor": "#fff995"
     }
   ],
   "activity": [
@@ -3971,6 +3988,42 @@
       "verb": "added",
       "itemType": "drawing",
       "itemTitle": "drawing",
+      "private": false
+    },
+    {
+      "id": "act_mv6j0x8c_7wjr0",
+      "ts": "2026-10-13T10:16:55.356Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "super, ďakujem veľmi... budem ti veeeľmi",
+      "private": false
+    },
+    {
+      "id": "act_mv6j10be_j54qo",
+      "ts": "2026-10-13T10:16:59.354Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "drawing",
+      "itemTitle": "drawing",
+      "private": false
+    },
+    {
+      "id": "act_mv6j124p_ur7c4",
+      "ts": "2026-10-13T10:17:01.705Z",
+      "name": "emika",
+      "verb": "duplicated",
+      "itemType": "text note",
+      "itemTitle": "super, ďakujem veľmi... budem ti veeeľmi",
+      "private": false
+    },
+    {
+      "id": "act_mv6j12w0_66yay",
+      "ts": "2026-10-13T10:17:02.688Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "super, ďakujem veľmi... budem ti veeeľmi",
       "private": false
     }
   ],
