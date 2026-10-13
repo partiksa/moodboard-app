@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-13T10:19:36.374Z",
+  "updatedAt": "2026-10-13T10:19:46.657Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -2020,7 +2020,7 @@
       "locked": false,
       "parentId": null,
       "privateNote": "",
-      "body": "toto sa mi tiež dosť páči ako nápad, ja som nad niečím pohyblivým aj rozmýšľala... aj ako si poslal tu are.nu<div><br></div><div>napr.&nbsp;<a href=\"https://sk.pinterest.com/pin/8585055536791999/\" target=\"_blank\" rel=\"noreferrer\" style=\"font-family: var(--tc-body-font); font-size: var(--tc-body-size);\">https://sk.pinterest.com/pin/8585055536791999/</a></div>",
+      "body": "toto sa mi tiež dosť páči ako nápad, ja som nad niečím pohyblivým aj rozmýšľala... aj ako si poslal tu are.nu<div><br></div><div>napr.</div>",
       "textAlign": "left",
       "textColor": "#111111",
       "backgroundColor": "#fff995"
@@ -2028,10 +2028,10 @@
     {
       "id": "item_mv6j4149_q8z1wzu",
       "type": "url",
-      "x": 1154.3144412064612,
-      "y": -211.66820476386144,
-      "width": 240,
-      "height": 160,
+      "x": 1128,
+      "y": 63.969560402469625,
+      "width": 171.56021127486588,
+      "height": 56.997577342881925,
       "rotation": 0,
       "zIndex": 36,
       "locked": false,
@@ -4258,6 +4258,33 @@
       "verb": "moved",
       "itemType": "text note",
       "itemTitle": "toto sa mi tiež dosť páči ako nápad, ja ",
+      "private": false
+    },
+    {
+      "id": "act_mv6j4dss_6i00n",
+      "ts": "2026-10-13T10:19:36.796Z",
+      "name": "emika",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "toto sa mi tiež dosť páči ako nápad, ja ",
+      "private": false
+    },
+    {
+      "id": "act_mv6j4fis_b7gbj",
+      "ts": "2026-10-13T10:19:39.028Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "link card",
+      "itemTitle": "https://sk.pinterest.com/pin/8585055536791999/",
+      "private": false
+    },
+    {
+      "id": "act_mv6j4ibk_6bx0v",
+      "ts": "2026-10-13T10:19:42.656Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "link card",
+      "itemTitle": "https://sk.pinterest.com/pin/8585055536791999/",
       "private": false
     }
   ],
