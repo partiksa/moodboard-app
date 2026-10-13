@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-13T10:23:37.994Z",
+  "updatedAt": "2026-10-13T10:25:11.768Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -5116,6 +5116,15 @@
       "ts": "2026-10-13T10:23:33.895Z",
       "name": "emika",
       "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "skeny hraciek ciernobiele= skresleny poh",
+      "private": false
+    },
+    {
+      "id": "act_mv6jbh6c_bi52f",
+      "ts": "2026-10-13T10:25:07.764Z",
+      "name": "emika",
+      "verb": "edited",
       "itemType": "text note",
       "itemTitle": "skeny hraciek ciernobiele= skresleny poh",
       "private": false
