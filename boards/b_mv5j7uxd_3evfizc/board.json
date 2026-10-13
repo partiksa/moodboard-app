@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-13T10:39:16.537Z",
+  "updatedAt": "2026-10-13T10:39:42.991Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -2707,12 +2707,12 @@
     {
       "id": "item_mv6jt8kz_3i1md6r",
       "type": "url",
-      "x": 1446.5635154715212,
-      "y": -744.8609720113,
+      "x": 1427.7555551563737,
+      "y": -713.8249063708154,
       "width": 63.16456736767327,
       "height": 48.860972011299964,
       "rotation": 0,
-      "zIndex": 44,
+      "zIndex": 46,
       "locked": false,
       "parentId": null,
       "privateNote": "",
@@ -2726,8 +2726,8 @@
     {
       "id": "item_mv6jtl04_tnc4qe7",
       "type": "text",
-      "x": 1170.4858188110043,
-      "y": -473.50166267982354,
+      "x": 1206.5619693924555,
+      "y": -757.1008904135138,
       "width": 240,
       "height": 63.10198643520101,
       "rotation": 0,
@@ -2735,49 +2735,13 @@
       "locked": false,
       "parentId": null,
       "privateNote": "",
-      "body": "super, ďakujem veľmi... budem ti veeeľmi vďačná za pomoc",
+      "body": "link na pinterest... moc tam toho neni ale tak, preistotu",
       "textAlign": "left",
       "textColor": "#111111",
       "backgroundColor": "#fff995"
     }
   ],
   "activity": [
-    {
-      "id": "act_mv5jazfy_x9q6l",
-      "ts": "2026-10-12T17:36:58.606Z",
-      "name": "patko",
-      "verb": "moved",
-      "itemType": "text note",
-      "itemTitle": "toto vyzera jak milka alebo to muller al",
-      "private": false
-    },
-    {
-      "id": "act_mv5jb22d_5wm6d",
-      "ts": "2026-10-12T17:37:02.005Z",
-      "name": "patko",
-      "verb": "added",
-      "itemType": "text note",
-      "itemTitle": "untitled note",
-      "private": false
-    },
-    {
-      "id": "act_mv5jcanw_s80il",
-      "ts": "2026-10-12T17:37:59.804Z",
-      "name": "patko",
-      "verb": "moved",
-      "itemType": "text note",
-      "itemTitle": "untitled note",
-      "private": false
-    },
-    {
-      "id": "act_mv5jcb7e_23nv5",
-      "ts": "2026-10-12T17:38:00.506Z",
-      "name": "patko",
-      "verb": "edited",
-      "itemType": "text note",
-      "itemTitle": "untitled note",
-      "private": false
-    },
     {
       "id": "act_mv5jcc63_7fp3r",
       "ts": "2026-10-12T17:38:01.755Z",
@@ -5440,6 +5404,42 @@
       "verb": "duplicated",
       "itemType": "text note",
       "itemTitle": "super, ďakujem veľmi... budem ti veeeľmi",
+      "private": false
+    },
+    {
+      "id": "act_mv6ju0aa_3in47",
+      "ts": "2026-10-13T10:39:32.338Z",
+      "name": "emika",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "super, ďakujem veľmi... budem ti veeeľmi",
+      "private": false
+    },
+    {
+      "id": "act_mv6ju26h_ja290",
+      "ts": "2026-10-13T10:39:34.793Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "link na pinterest... moc tam toho neni a",
+      "private": false
+    },
+    {
+      "id": "act_mv6ju3sd_dyewp",
+      "ts": "2026-10-13T10:39:36.877Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "link card",
+      "itemTitle": "https://pin.it/1oA0HuF8o",
+      "private": false
+    },
+    {
+      "id": "act_mv6ju5ew_69c1k",
+      "ts": "2026-10-13T10:39:38.984Z",
+      "name": "emika",
+      "verb": "brought forward",
+      "itemType": "1 item(s)",
+      "itemTitle": "",
       "private": false
     }
   ],
