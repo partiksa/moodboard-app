@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-13T10:27:12.694Z",
+  "updatedAt": "2026-10-13T10:27:22.362Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -2674,7 +2674,7 @@
       "id": "item_mv6jda1x_w6xju1v",
       "type": "text",
       "x": 1872,
-      "y": 14.329549051229236,
+      "y": 10.624936777039757,
       "width": 192.5676868326982,
       "height": 81.84341229687084,
       "rotation": 0,
@@ -5302,6 +5302,15 @@
     {
       "id": "act_mv6je2hg_22aqb",
       "ts": "2026-10-13T10:27:08.692Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "toto je cool, vieme to ale urobiť tak je",
+      "private": false
+    },
+    {
+      "id": "act_mv6je9xz_8hen7",
+      "ts": "2026-10-13T10:27:18.359Z",
       "name": "emika",
       "verb": "moved",
       "itemType": "text note",
