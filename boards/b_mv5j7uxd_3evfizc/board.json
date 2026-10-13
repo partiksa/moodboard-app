@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-13T12:37:14.809Z",
+  "updatedAt": "2026-10-13T14:50:32.614Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -2743,15 +2743,6 @@
   ],
   "activity": [
     {
-      "id": "act_mv5jcf47_hkis9",
-      "ts": "2026-10-12T17:38:05.575Z",
-      "name": "patko",
-      "verb": "moved",
-      "itemType": "text note",
-      "itemTitle": "celkove: chcete ist tymto smerom uz nero",
-      "private": false
-    },
-    {
       "id": "act_mv5jcgfc_5cbyw",
       "ts": "2026-10-12T17:38:07.272Z",
       "name": "patko",
@@ -5439,6 +5430,15 @@
       "name": "emika",
       "verb": "moved",
       "itemType": "2 items",
+      "itemTitle": "",
+      "private": false
+    },
+    {
+      "id": "act_mv6ssps5_hzj6q",
+      "ts": "2026-10-13T14:50:28.613Z",
+      "name": "emika",
+      "verb": "restored a previous version of",
+      "itemType": "the board",
       "itemTitle": "",
       "private": false
     }
