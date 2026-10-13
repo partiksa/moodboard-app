@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-13T10:22:29.061Z",
+  "updatedAt": "2026-10-13T10:23:02.345Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -2639,16 +2639,33 @@
     {
       "id": "item_mv6j7gbe_xhgazx9",
       "type": "text",
-      "x": 2110.2233127109284,
-      "y": 3.6346412118562057,
+      "x": 2171.111656355464,
+      "y": 14.329549051229236,
       "width": 217.77668728907156,
-      "height": 88.83370786205438,
+      "height": 99.28002270248078,
       "rotation": 0,
       "zIndex": 40,
       "locked": false,
       "parentId": null,
       "privateNote": "",
-      "body": "toto neviem ako myslíš",
+      "body": "toto neviem ako myslíš... teda cez obrázok logicky vidím čo z toho bude, len neviem ako to urobiť u nás",
+      "textAlign": "left",
+      "textColor": "#111111",
+      "backgroundColor": "#fff995"
+    },
+    {
+      "id": "item_mv6j8o1i_ihzzllr",
+      "type": "text",
+      "x": 2039.1214316222922,
+      "y": -256.54259359788966,
+      "width": 217.77668728907156,
+      "height": 99.28002270248078,
+      "rotation": 0,
+      "zIndex": 41,
+      "locked": false,
+      "parentId": null,
+      "privateNote": "",
+      "body": "toto neviem ako myslíš... teda cez obrázok logicky vidím čo z toho bude, len neviem ako to urobiť u nás",
       "textAlign": "left",
       "textColor": "#111111",
       "backgroundColor": "#fff995"
@@ -5002,6 +5019,51 @@
       "verb": "moved",
       "itemType": "text note",
       "itemTitle": "toto neviem ako myslíš",
+      "private": false
+    },
+    {
+      "id": "act_mv6j8ez5_f2rdy",
+      "ts": "2026-10-13T10:22:44.945Z",
+      "name": "emika",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "toto neviem ako myslíš",
+      "private": false
+    },
+    {
+      "id": "act_mv6j8gw1_62nje",
+      "ts": "2026-10-13T10:22:47.425Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "toto neviem ako myslíš... teda cez obráz",
+      "private": false
+    },
+    {
+      "id": "act_mv6j8l2h_pgqpg",
+      "ts": "2026-10-13T10:22:52.841Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "toto neviem ako myslíš... teda cez obráz",
+      "private": false
+    },
+    {
+      "id": "act_mv6j8o1j_ooz81",
+      "ts": "2026-10-13T10:22:56.695Z",
+      "name": "emika",
+      "verb": "duplicated",
+      "itemType": "text note",
+      "itemTitle": "toto neviem ako myslíš... teda cez obráz",
+      "private": false
+    },
+    {
+      "id": "act_mv6j8pb9_m1uim",
+      "ts": "2026-10-13T10:22:58.341Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "toto neviem ako myslíš... teda cez obráz",
       "private": false
     }
   ],
