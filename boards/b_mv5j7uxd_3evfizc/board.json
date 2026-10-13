@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-13T10:21:59.513Z",
+  "updatedAt": "2026-10-13T10:22:06.413Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -2635,6 +2635,23 @@
       "textAlign": "left",
       "textColor": "#111111",
       "backgroundColor": "#fff995"
+    },
+    {
+      "id": "item_mv6j7gbe_xhgazx9",
+      "type": "text",
+      "x": 2110.2233127109284,
+      "y": 3.6346412118562057,
+      "width": 247.64127599839048,
+      "height": 237.73954102542604,
+      "rotation": 0,
+      "zIndex": 40,
+      "locked": false,
+      "parentId": null,
+      "privateNote": "",
+      "body": "toto sa mi mega páči... ja by som veľmi chcela mať z toho loga dačo, čo budeme vedieť používať aj mimo loga, v grafikách ako len nejaký grafický doťuk a zladenie s brandingom.... a aj dačo takéto by znelo ako plán... len dosť ťažko sa nachádza dačo ako by sa to zladilo s nami... nie?",
+      "textAlign": "left",
+      "textColor": "#111111",
+      "backgroundColor": "#fff995"
     }
   ],
   "activity": [
@@ -4936,6 +4953,24 @@
     {
       "id": "act_mv6j7ctx_4hgfw",
       "ts": "2026-10-13T10:21:55.509Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "toto sa mi mega páči... ja by som veľmi ",
+      "private": false
+    },
+    {
+      "id": "act_mv6j7gbe_go515",
+      "ts": "2026-10-13T10:22:00.026Z",
+      "name": "emika",
+      "verb": "duplicated",
+      "itemType": "text note",
+      "itemTitle": "toto sa mi mega páči... ja by som veľmi ",
+      "private": false
+    },
+    {
+      "id": "act_mv6j7i5n_tnty3",
+      "ts": "2026-10-13T10:22:02.411Z",
       "name": "emika",
       "verb": "moved",
       "itemType": "text note",
