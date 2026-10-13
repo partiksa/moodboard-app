@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-13T10:14:00.607Z",
+  "updatedAt": "2026-10-13T10:15:26.975Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -1477,16 +1477,16 @@
     {
       "id": "item_mv6ix1d8_yh2cfi2",
       "type": "text",
-      "x": 1320,
-      "y": -257.3004448655718,
-      "width": 240,
-      "height": 63.10198643520101,
+      "x": 1459.3378388402105,
+      "y": -315.34239182782744,
+      "width": 244.66216115978955,
+      "height": 200.55281683390191,
       "rotation": 0,
       "zIndex": 31,
       "locked": false,
       "parentId": null,
       "privateNote": "",
-      "body": "super, ďakujem veľmi... budem ti veeeľmi vďačná za pomoc",
+      "body": "asi neviem ako to myslíš... ale veľa sa chceme hrať stým rastom, čiže by som išla do niečoho takéhoto... samovi aj mamči sa najviac páčila tá fazuľa... tam možno nejaké prvky z toho by som nechala..? ono existuje takáto hra len že korene...&nbsp;",
       "textAlign": "left",
       "textColor": "#111111",
       "backgroundColor": "#fff995"
@@ -3273,6 +3273,33 @@
       "verb": "moved",
       "itemType": "text note",
       "itemTitle": "super, ďakujem veľmi... budem ti veeeľmi",
+      "private": false
+    },
+    {
+      "id": "act_mv6iyr2h_gxp06",
+      "ts": "2026-10-13T10:15:14.057Z",
+      "name": "emika",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "super, ďakujem veľmi... budem ti veeeľmi",
+      "private": false
+    },
+    {
+      "id": "act_mv6iyv9c_8110l",
+      "ts": "2026-10-13T10:15:19.488Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "asi neviem ako to myslíš... ale veľa sa ",
+      "private": false
+    },
+    {
+      "id": "act_mv6iyxy3_kkeo0",
+      "ts": "2026-10-13T10:15:22.971Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "asi neviem ako to myslíš... ale veľa sa ",
       "private": false
     }
   ],
