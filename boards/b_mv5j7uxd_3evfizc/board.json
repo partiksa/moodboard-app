@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-13T05:57:47.449Z",
+  "updatedAt": "2026-10-13T05:58:01.703Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -1266,8 +1266,8 @@
       "type": "image",
       "x": 577.5,
       "y": -768,
-      "width": 40,
-      "height": 30,
+      "width": 274.76284170795884,
+      "height": 206.07213128096913,
       "rotation": 0,
       "zIndex": 20,
       "locked": false,
@@ -3163,6 +3163,15 @@
     {
       "id": "act_mv69qu4h_gudhj",
       "ts": "2026-10-13T05:57:08.225Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "image",
+      "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mv69rwas_57bna",
+      "ts": "2026-10-13T05:57:57.700Z",
       "name": "emika",
       "verb": "moved",
       "itemType": "image",
