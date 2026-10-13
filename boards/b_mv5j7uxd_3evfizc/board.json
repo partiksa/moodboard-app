@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-13T10:25:11.768Z",
+  "updatedAt": "2026-10-13T10:25:54.544Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -1384,8 +1384,8 @@
     {
       "id": "item_mv5sqzda_4d3tvhx",
       "type": "text",
-      "x": 1756.7289325084373,
-      "y": -155.18312566103452,
+      "x": 1756.728932508437,
+      "y": -114.78957499392553,
       "width": 348.76544769405405,
       "height": 158.8177668728907,
       "rotation": 0,
@@ -2656,16 +2656,16 @@
     {
       "id": "item_mv6j8o1i_ihzzllr",
       "type": "text",
-      "x": 2012.1993391113497,
-      "y": -252.4698370628605,
-      "width": 217.77668728907156,
-      "height": 74.8077073039681,
+      "x": 1776.6711342220533,
+      "y": -228.28957499392547,
+      "width": 453.30489217836794,
+      "height": 81.84341229687084,
       "rotation": 0,
       "zIndex": 41,
       "locked": false,
       "parentId": null,
       "privateNote": "",
-      "body": "toto si asi neviem predstaviť... moc veľa cudzích slov na mňa... :D&nbsp;",
+      "body": "toto si asi neviem predstaviť... moc veľa cudzích slov na mňa... :D ale teda z toho čo chápem... nie je to skôr vec na neskôr pri nejakom plagáte... na logo si sken asi neviem úplne predstaviť....",
       "textAlign": "left",
       "textColor": "#111111",
       "backgroundColor": "#fff995"
@@ -5127,6 +5127,60 @@
       "verb": "edited",
       "itemType": "text note",
       "itemTitle": "skeny hraciek ciernobiele= skresleny poh",
+      "private": false
+    },
+    {
+      "id": "act_mv6jc4i1_nxa3m",
+      "ts": "2026-10-13T10:25:37.993Z",
+      "name": "emika",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "toto si asi neviem predstaviť... moc veľ",
+      "private": false
+    },
+    {
+      "id": "act_mv6jc7d9_nbgss",
+      "ts": "2026-10-13T10:25:41.709Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "toto si asi neviem predstaviť... moc veľ",
+      "private": false
+    },
+    {
+      "id": "act_mv6jc9to_dfzl8",
+      "ts": "2026-10-13T10:25:44.892Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "toto si asi neviem predstaviť... moc veľ",
+      "private": false
+    },
+    {
+      "id": "act_mv6jcb84_v0whm",
+      "ts": "2026-10-13T10:25:46.708Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "toto si asi neviem predstaviť... moc veľ",
+      "private": false
+    },
+    {
+      "id": "act_mv6jcciw_esssp",
+      "ts": "2026-10-13T10:25:48.392Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "variable font na tisku obyc san serif al",
+      "private": false
+    },
+    {
+      "id": "act_mv6jce6n_68df7",
+      "ts": "2026-10-13T10:25:50.543Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "variable font na tisku obyc san serif al",
       "private": false
     }
   ],
