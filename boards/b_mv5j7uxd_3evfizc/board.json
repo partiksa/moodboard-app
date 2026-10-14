@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-14T16:36:30.293Z",
+  "updatedAt": "2026-10-14T16:36:37.385Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -3041,24 +3041,6 @@
   ],
   "activity": [
     {
-      "id": "act_mv5jpbio_ws0fn",
-      "ts": "2026-10-12T17:48:07.440Z",
-      "name": "patko",
-      "verb": "added",
-      "itemType": "image",
-      "itemTitle": "image",
-      "private": false
-    },
-    {
-      "id": "act_mv5jpd5o_08b4f",
-      "ts": "2026-10-12T17:48:09.564Z",
-      "name": "patko",
-      "verb": "moved",
-      "itemType": "image",
-      "itemTitle": "image",
-      "private": false
-    },
-    {
       "id": "act_mv5jpr97_jns6p",
       "ts": "2026-10-12T17:48:27.835Z",
       "name": "patko",
@@ -5738,6 +5720,24 @@
       "verb": "moved",
       "itemType": "drawing",
       "itemTitle": "drawing",
+      "private": false
+    },
+    {
+      "id": "act_mv8c0yry_ip2k1",
+      "ts": "2026-10-14T16:36:32.398Z",
+      "name": "patko",
+      "verb": "added",
+      "itemType": "image",
+      "itemTitle": "image",
+      "private": false
+    },
+    {
+      "id": "act_mv8c0zj8_wo5ju",
+      "ts": "2026-10-14T16:36:33.380Z",
+      "name": "patko",
+      "verb": "deleted",
+      "itemType": "image",
+      "itemTitle": "image",
       "private": false
     }
   ],
