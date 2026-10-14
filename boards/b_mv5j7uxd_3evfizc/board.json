@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-14T15:47:16.043Z",
+  "updatedAt": "2026-10-14T15:48:11.423Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -2677,7 +2677,15 @@
       "body": "toto si asi neviem predstaviť... moc veľa cudzích slov na mňa... :D ale teda z toho čo chápem... nie je to skôr vec na neskôr pri nejakom plagáte... na logo si sken asi neviem úplne predstaviť....",
       "textAlign": "left",
       "textColor": "#111111",
-      "backgroundColor": "#fff995"
+      "backgroundColor": "#fff995",
+      "comments": [
+        {
+          "id": "comment_mv8aap9z_irper8l",
+          "text": "jo ja som myslel na celkov vizual ale zbytoc komplik ja len hadzem",
+          "author": "patko",
+          "createdAt": "2026-10-14T15:48:07.415Z"
+        }
+      ]
     },
     {
       "id": "item_mv6jda1x_w6xju1v",
@@ -2792,15 +2800,6 @@
     }
   ],
   "activity": [
-    {
-      "id": "act_mv5jjrvb_k8dag",
-      "ts": "2026-10-12T17:43:48.695Z",
-      "name": "patko",
-      "verb": "moved",
-      "itemType": "text note",
-      "itemTitle": "untitled note",
-      "private": false
-    },
     {
       "id": "act_mv5jl0xt_29990",
       "ts": "2026-10-12T17:44:47.105Z",
@@ -5490,6 +5489,15 @@
       "verb": "moved",
       "itemType": "2 items",
       "itemTitle": "",
+      "private": false
+    },
+    {
+      "id": "act_mv8aapa1_nx5qc",
+      "ts": "2026-10-14T15:48:07.417Z",
+      "name": "patko",
+      "verb": "commented on",
+      "itemType": "text note",
+      "itemTitle": "toto si asi neviem predstaviť... moc veľ",
       "private": false
     }
   ],
