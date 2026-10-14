@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-14T16:37:49.229Z",
+  "updatedAt": "2026-10-14T16:37:59.035Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -3536,76 +3536,22 @@
     {
       "id": "item_mv8c2iyx_ud12nnn",
       "type": "text",
-      "x": 2032.1025868871802,
-      "y": 1127.4636968155467,
-      "width": 240,
+      "x": 2088,
+      "y": 472,
+      "width": 403.4920829669154,
       "height": 160,
       "rotation": 0,
       "zIndex": 60,
       "locked": false,
       "parentId": null,
       "privateNote": "",
-      "body": "",
+      "body": "<h1>prve nastrely</h1>",
       "textAlign": "left",
       "textColor": "#111111",
       "backgroundColor": "#ffffff"
     }
   ],
   "activity": [
-    {
-      "id": "act_mv5l2v1a_w2mu8",
-      "ts": "2026-10-12T18:26:38.878Z",
-      "name": "patko",
-      "verb": "edited",
-      "itemType": "text note",
-      "itemTitle": "untitled note",
-      "private": false
-    },
-    {
-      "id": "act_mv5l2wnk_wlnr3",
-      "ts": "2026-10-12T18:26:40.976Z",
-      "name": "patko",
-      "verb": "edited",
-      "itemType": "text note",
-      "itemTitle": "no ai was used in anything wholeheartedl",
-      "private": false
-    },
-    {
-      "id": "act_mv5l2xj1_co2wq",
-      "ts": "2026-10-12T18:26:42.109Z",
-      "name": "patko",
-      "verb": "edited",
-      "itemType": "text note",
-      "itemTitle": "no ai was used in anything wholeheartedl",
-      "private": false
-    },
-    {
-      "id": "act_mv5l2y0m_ktv9x",
-      "ts": "2026-10-12T18:26:42.742Z",
-      "name": "patko",
-      "verb": "edited",
-      "itemType": "text note",
-      "itemTitle": "no ai was used in anything wholeheartedl",
-      "private": false
-    },
-    {
-      "id": "act_mv5l2ymv_06lrg",
-      "ts": "2026-10-12T18:26:43.543Z",
-      "name": "patko",
-      "verb": "edited",
-      "itemType": "text note",
-      "itemTitle": "no ai was used in anything wholeheartedl",
-      "private": false
-    },
-    {
-      "id": "act_mv5l2zmi_k7ol4",
-      "ts": "2026-10-12T18:26:44.826Z",
-      "name": "patko",
-      "verb": "moved",
-      "itemType": "text note",
-      "itemTitle": "no ai was used in anything wholeheartedl",
-      "private": false
-    },
     {
       "id": "act_mv5l30we_k6aec",
       "ts": "2026-10-12T18:26:46.478Z",
@@ -6250,6 +6196,60 @@
       "verb": "added",
       "itemType": "text note",
       "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv8c2mbz_87liz",
+      "ts": "2026-10-14T16:37:49.583Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "untitled note",
+      "private": false
+    },
+    {
+      "id": "act_mv8c2n4f_mgpbv",
+      "ts": "2026-10-14T16:37:50.607Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "prve nastrely",
+      "private": false
+    },
+    {
+      "id": "act_mv8c2otn_q4g9e",
+      "ts": "2026-10-14T16:37:52.811Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "prve nastrely",
+      "private": false
+    },
+    {
+      "id": "act_mv8c2qhu_us303",
+      "ts": "2026-10-14T16:37:54.978Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "prve nastrely",
+      "private": false
+    },
+    {
+      "id": "act_mv8c2qrs_tyq1w",
+      "ts": "2026-10-14T16:37:55.336Z",
+      "name": "patko",
+      "verb": "edited",
+      "itemType": "text note",
+      "itemTitle": "prve nastrely",
+      "private": false
+    },
+    {
+      "id": "act_mv8c2s88_vxf7z",
+      "ts": "2026-10-14T16:37:57.224Z",
+      "name": "patko",
+      "verb": "moved",
+      "itemType": "text note",
+      "itemTitle": "prve nastrely",
       "private": false
     }
   ],
