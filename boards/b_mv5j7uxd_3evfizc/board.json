@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-14T12:30:51.789Z",
+  "updatedAt": "2026-10-14T12:30:58.958Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -2717,8 +2717,8 @@
     {
       "id": "item_mv6jt8kz_3i1md6r",
       "type": "url",
-      "x": 1518.504352052432,
-      "y": -619.7308024615991,
+      "x": 1560,
+      "y": -627.6869596416947,
       "width": 63.16456736767327,
       "height": 48.860972011299964,
       "rotation": 0,
@@ -2737,8 +2737,8 @@
     {
       "id": "item_mv6jtl04_tnc4qe7",
       "type": "text",
-      "x": 1341.6689194201053,
-      "y": -663.0067865042975,
+      "x": 1383.1645673676733,
+      "y": -670.962943684393,
       "width": 240,
       "height": 63.10198643520101,
       "rotation": 0,
@@ -2792,15 +2792,6 @@
     }
   ],
   "activity": [
-    {
-      "id": "act_mv5jjqa8_6yxu4",
-      "ts": "2026-10-12T17:43:46.640Z",
-      "name": "patko",
-      "verb": "edited",
-      "itemType": "text note",
-      "itemTitle": "untitled note",
-      "private": false
-    },
     {
       "id": "act_mv5jjrvb_k8dag",
       "ts": "2026-10-12T17:43:48.695Z",
@@ -5489,6 +5480,15 @@
       "name": "emika",
       "verb": "edited",
       "itemType": "10 items",
+      "itemTitle": "",
+      "private": false
+    },
+    {
+      "id": "act_mv8393aj_nt3tf",
+      "ts": "2026-10-14T12:30:54.955Z",
+      "name": "emika",
+      "verb": "moved",
+      "itemType": "2 items",
       "itemTitle": "",
       "private": false
     }
