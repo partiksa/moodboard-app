@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-14T15:48:11.423Z",
+  "updatedAt": "2026-10-14T15:48:23.223Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -2660,7 +2660,15 @@
       "body": "toto neviem ako myslíš... teda cez obrázok logicky vidím čo z toho bude, len neviem ako to urobiť u nás",
       "textAlign": "left",
       "textColor": "#111111",
-      "backgroundColor": "#fff995"
+      "backgroundColor": "#fff995",
+      "comments": [
+        {
+          "id": "comment_mv8aaydu_k1bif1h",
+          "text": "tiez nevime este",
+          "author": "patko",
+          "createdAt": "2026-10-14T15:48:19.218Z"
+        }
+      ]
     },
     {
       "id": "item_mv6j8o1i_ihzzllr",
@@ -2800,15 +2808,6 @@
     }
   ],
   "activity": [
-    {
-      "id": "act_mv5jl0xt_29990",
-      "ts": "2026-10-12T17:44:47.105Z",
-      "name": "patko",
-      "verb": "moved",
-      "itemType": "text note",
-      "itemTitle": "untitled note",
-      "private": false
-    },
     {
       "id": "act_mv5jl1l4_jkw05",
       "ts": "2026-10-12T17:44:47.944Z",
@@ -5498,6 +5497,15 @@
       "verb": "commented on",
       "itemType": "text note",
       "itemTitle": "toto si asi neviem predstaviť... moc veľ",
+      "private": false
+    },
+    {
+      "id": "act_mv8aaydu_601ml",
+      "ts": "2026-10-14T15:48:19.218Z",
+      "name": "patko",
+      "verb": "commented on",
+      "itemType": "text note",
+      "itemTitle": "toto neviem ako myslíš... teda cez obráz",
       "private": false
     }
   ],
