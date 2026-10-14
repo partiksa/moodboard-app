@@ -2,7 +2,7 @@
   "id": "b_mv5j7uxd_3evfizc",
   "name": "mitt",
   "createdAt": "2026-10-12T17:34:32.785Z",
-  "updatedAt": "2026-10-14T12:30:32.735Z",
+  "updatedAt": "2026-10-14T12:30:46.452Z",
   "items": [
     {
       "id": "item_mv5j9izv_it7olm9",
@@ -2721,7 +2721,8 @@
       "description": "",
       "image": "",
       "fetchedAt": "2026-10-13T10:39:01.141Z",
-      "failed": true
+      "failed": true,
+      "groupId": "group_mv838tn7_8m77570"
     },
     {
       "id": "item_mv6jtl04_tnc4qe7",
@@ -2738,7 +2739,8 @@
       "body": "link na pinterest... moc tam toho neni ale tak, preistotu",
       "textAlign": "left",
       "textColor": "#111111",
-      "backgroundColor": "#fff995"
+      "backgroundColor": "#fff995",
+      "groupId": "group_mv838tn7_8m77570"
     },
     {
       "id": "item_mv837i98_g20ijwk",
@@ -2755,7 +2757,8 @@
       "body": "tá hra s písmenkami mi napadlo aj niečo s týmto...?",
       "textAlign": "left",
       "textColor": "#111111",
-      "backgroundColor": "#fff995"
+      "backgroundColor": "#fff995",
+      "groupId": "group_mv838qtu_uotuj2y"
     },
     {
       "id": "item_mv8389f0_xgooc5o",
@@ -2774,28 +2777,11 @@
       "description": "",
       "image": "",
       "fetchedAt": "2026-10-14T12:30:21.064Z",
-      "failed": true
+      "failed": true,
+      "groupId": "group_mv838qtu_uotuj2y"
     }
   ],
   "activity": [
-    {
-      "id": "act_mv5jhung_4vces",
-      "ts": "2026-10-12T17:42:18.988Z",
-      "name": "patko",
-      "verb": "moved",
-      "itemType": "text note",
-      "itemTitle": "celkove: chcete ist tymto smerom uz nero",
-      "private": false
-    },
-    {
-      "id": "act_mv5jjmpa_0kwh6",
-      "ts": "2026-10-12T17:43:41.998Z",
-      "name": "patko",
-      "verb": "edited",
-      "itemType": "text note",
-      "itemTitle": "celkove: chcete ist tymto smerom uz nero",
-      "private": false
-    },
     {
       "id": "act_mv5jjov9_n3h17",
       "ts": "2026-10-12T17:43:44.805Z",
@@ -5476,6 +5462,24 @@
       "verb": "moved",
       "itemType": "link card",
       "itemTitle": "https://montemama.sk/produkt/rimsky-obluk/",
+      "private": false
+    },
+    {
+      "id": "act_mv838qtu_xevlz",
+      "ts": "2026-10-14T12:30:38.802Z",
+      "name": "emika",
+      "verb": "edited",
+      "itemType": "2 items",
+      "itemTitle": "",
+      "private": false
+    },
+    {
+      "id": "act_mv838tn7_ql16h",
+      "ts": "2026-10-14T12:30:42.451Z",
+      "name": "emika",
+      "verb": "edited",
+      "itemType": "2 items",
+      "itemTitle": "",
       "private": false
     }
   ],
